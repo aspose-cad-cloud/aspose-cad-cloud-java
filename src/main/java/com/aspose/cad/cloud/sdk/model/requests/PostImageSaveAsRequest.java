@@ -1,3 +1,5 @@
+
+
 /*
 * --------------------------------------------------------------------------------------------------------------------
 * <copyright company="Aspose" file="PostImageSaveAsRequest.java">
@@ -74,3 +76,4 @@ public class PostImageSaveAsRequest
     **/
     public String storage;
 }
+

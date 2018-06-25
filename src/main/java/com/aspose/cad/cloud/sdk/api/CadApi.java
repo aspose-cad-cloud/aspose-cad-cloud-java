@@ -233,10 +233,10 @@ public class CadApi
               return null;
           }
                 
-          throw ex;                
+          throw ex;
       }
     }
-  
+	
     /**
      * Get properties of an image.
      * 
@@ -303,10 +303,10 @@ public class CadApi
               return null;
           }
                 
-          throw ex;                
+          throw ex;
       }
     }
-  
+	
     /**
      * Rotate and flip existing image
      * 
@@ -384,10 +384,10 @@ public class CadApi
               return null;
           }
                 
-          throw ex;                
+          throw ex;
       }
     }
-  
+	
     /**
      * Export existing image to another format
      * 
@@ -461,10 +461,10 @@ public class CadApi
               return null;
           }
                 
-          throw ex;                
+          throw ex;
       }
     }
-  
+	
     /**
      * Change scale of an image from body
      * 
@@ -548,10 +548,10 @@ public class CadApi
               return null;
           }
                 
-          throw ex;                
+          throw ex;
       }
     }
-  
+	
     /**
      * Rotate and flip existing image and get it from response.
      * 
@@ -629,10 +629,10 @@ public class CadApi
               return null;
           }
                 
-          throw ex;                
+          throw ex;
       }
     }
-  
+	
     /**
      * Export existing image to another format. Image is passed as request body.
      * 
@@ -707,7 +707,9 @@ public class CadApi
               return null;
           }
                 
-          throw ex;                
+          throw ex;
       }
     }
-}  
+	
+}
+
