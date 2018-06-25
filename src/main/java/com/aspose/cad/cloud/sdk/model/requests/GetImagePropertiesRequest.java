@@ -1,8 +1,7 @@
-}
 /*
 * --------------------------------------------------------------------------------------------------------------------
 * <copyright company="Aspose" file="GetImagePropertiesRequest.java">
-*   Copyright (c) 2018 Aspose.Imaging for Cloud
+*   Copyright (c) 2018 Aspose.CAD for Cloud
 * </copyright>
 * <summary>
 *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -60,3 +59,4 @@ public class GetImagePropertiesRequest
     * File storage, which has to be used.
     **/
     public String storage;
+}

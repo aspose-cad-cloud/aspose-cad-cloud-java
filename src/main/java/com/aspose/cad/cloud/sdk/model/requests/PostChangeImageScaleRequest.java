@@ -1,8 +1,7 @@
-}
 /*
 * --------------------------------------------------------------------------------------------------------------------
 * <copyright company="Aspose" file="PostChangeImageScaleRequest.java">
-*   Copyright (c) 2018 Aspose.Imaging for Cloud
+*   Copyright (c) 2018 Aspose.CAD for Cloud
 * </copyright>
 * <summary>
 *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -81,3 +80,4 @@ public class PostChangeImageScaleRequest
     * Your Aspose Cloud Storage name.
     **/
     public String storage;
+}

@@ -30,6 +30,8 @@ package com.aspose.cad.cloud.sdk.model;
 import java.util.Objects;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.aspose.cad.cloud.sdk.stablemodel.SaaSposeResponse;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
 

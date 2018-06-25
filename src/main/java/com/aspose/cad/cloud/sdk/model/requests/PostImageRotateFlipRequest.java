@@ -1,8 +1,7 @@
-}
 /*
 * --------------------------------------------------------------------------------------------------------------------
 * <copyright company="Aspose" file="PostImageRotateFlipRequest.java">
-*   Copyright (c) 2018 Aspose.Imaging for Cloud
+*   Copyright (c) 2018 Aspose.CAD for Cloud
 * </copyright>
 * <summary>
 *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -67,3 +66,4 @@ public class PostImageRotateFlipRequest
     * Path to updated file, if this is empty, response contains streamed image.
     **/
     public String outPath;
+}
