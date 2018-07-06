@@ -65,7 +65,7 @@ public class ApiResponse
 		return this.saasposeResponse;
 	}
 
-	public CadResponse getImagingResponse()
+	public CadResponse getCadResponse()
 	{
 		return this.cadResponse;
 	}
