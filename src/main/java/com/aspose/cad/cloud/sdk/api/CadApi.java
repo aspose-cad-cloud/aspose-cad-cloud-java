@@ -1,7 +1,7 @@
 /*
 * --------------------------------------------------------------------------------------------------------------------
 * <copyright company="Aspose" file="CadApi.java">
-*   Copyright (c) 2018 Aspose.CAD for Cloud
+*   Copyright (c) 2018 Aspose Pty Ltd.
 * </copyright>
 * <summary>
 *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -26,6 +26,7 @@
 */
 package com.aspose.cad.cloud.sdk.api;
 
+import com.aspose.cad.cloud.sdk.model.*;
 import com.aspose.cad.cloud.sdk.invoker.*;
 import com.aspose.cad.cloud.sdk.invoker.internal.*;
 import com.aspose.cad.cloud.sdk.model.*;
@@ -41,6 +42,11 @@ import java.util.HashMap;
  */
 public class CadApi 
 {
+	/**
+	 * Current SDK version
+	 */
+	public static final String Version = "17.11";
+
 	/**
 	 * The API invoker
 	 */

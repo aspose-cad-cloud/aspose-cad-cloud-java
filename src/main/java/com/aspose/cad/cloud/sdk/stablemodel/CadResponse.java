@@ -1,7 +1,7 @@
 /*
 * --------------------------------------------------------------------------------------------------------------------
 * <copyright company="Aspose" file="CadResponse.java">
-*   Copyright (c) 2018 Aspose.cad for Cloud
+*   Copyright (c) 2018 Aspose Pty Ltd.
 * </copyright>
 * <summary>
 *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -28,14 +28,11 @@ package com.aspose.cad.cloud.sdk.stablemodel;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import com.aspose.cad.cloud.sdk.stablemodel.SaaSposeResponse;
 
 /**
  * Represents information about image.
  */
-@ApiModel(description = "Represents information about image.")
 public class CadResponse extends SaaSposeResponse {
   @JsonProperty("Height")
   private Integer height = null;
@@ -64,7 +61,6 @@ public class CadResponse extends SaaSposeResponse {
    * Gets or sets the height of image.
    * @return height
   **/
-  @ApiModelProperty(value = "Gets or sets the height of image.")
   public Integer getHeight() {
     return height;
   }
@@ -82,7 +78,6 @@ public class CadResponse extends SaaSposeResponse {
    * Gets or sets the width of image.
    * @return width
   **/
-  @ApiModelProperty(value = "Gets or sets the width of image.")
   public Integer getWidth() {
     return width;
   }
@@ -100,7 +95,6 @@ public class CadResponse extends SaaSposeResponse {
    * Gets or sets the bits per pixel for image.
    * @return bitsPerPixel
   **/
-  @ApiModelProperty(value = "Gets or sets the bits per pixel for image.")
   public Integer getBitsPerPixel() {
     return bitsPerPixel;
   }
@@ -113,7 +107,6 @@ public class CadResponse extends SaaSposeResponse {
    * Gets or sets the horizontal resolution of an image.
    * @return horizontalResolution
   **/
-  @ApiModelProperty(value = "Gets or sets the horizontal resolution of an image.")
   public Double getHorizontalResolution() {
     return horizontalResolution;
   }
@@ -131,7 +124,6 @@ public class CadResponse extends SaaSposeResponse {
    * Gets or sets the vertical resolution of an image.
    * @return verticalResolution
   **/
-  @ApiModelProperty(value = "Gets or sets the vertical resolution of an image.")
   public Double getVerticalResolution() {
     return verticalResolution;
   }
@@ -149,7 +141,6 @@ public class CadResponse extends SaaSposeResponse {
    * Gets or sets a value indicating whether image is cached.
    * @return isCached
   **/
-  @ApiModelProperty(value = "Gets or sets a value indicating whether image is cached.")
   public Boolean isIsCached() {
     return isCached;
   }

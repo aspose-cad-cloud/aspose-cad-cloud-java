@@ -132,13 +132,13 @@ public abstract class ApiTester
     /**
      * Gets or sets a value indicating whether resulting images should be removed from cloud storage.
      */
-    public Boolean RemoveResult = false;
+    public Boolean RemoveResult = true;
 
     /**
      * Gets or sets a value indicating whether to automatic recover reference (i.e. if resulting images of failed tests are considered as new valid references).
      * Please, change this value ONLY if you clearly understand the consequences, or it may lead to replacement of the images you need, so they will be lost.
      */
-    public Boolean AutoRecoverReference = true;
+    public Boolean AutoRecoverReference = false;
 
     /**
      * Creates the API instances using default access parameters.

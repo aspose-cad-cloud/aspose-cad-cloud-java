@@ -1,7 +1,7 @@
 /*
 * --------------------------------------------------------------------------------------------------------------------
 * <copyright company="Aspose" file="SaaSposeResponse.java">
-*   Copyright (c) 2018 Aspose.cad for Cloud
+*   Copyright (c) 2018 Aspose Pty Ltd.
 * </copyright>
 * <summary>
 *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -29,7 +29,7 @@ package com.aspose.cad.cloud.sdk.stablemodel;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.swagger.annotations.ApiModelProperty;
+//import io.swagger.annotations.ApiModelProperty;
 
 /**
  * The basic response class kept from the old Aspose for Cloud Platform. We keep this base class and use it because most probably users are already using it to get API responses. The plan in future is to get rid of it.
@@ -48,7 +48,6 @@ public class SaaSposeResponse {
    * HTTP status code.
    * @return code
   **/
-  @ApiModelProperty(required = true, value = "HTTP status code.")
   public Integer getCode() {
     return code;
   }
@@ -61,7 +60,6 @@ public class SaaSposeResponse {
    * Status description.
    * @return status
   **/
-  @ApiModelProperty(value = "Status description.")
   public String getStatus() {
     return status;
   }

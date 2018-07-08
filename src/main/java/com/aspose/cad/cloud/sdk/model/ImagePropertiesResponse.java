@@ -1,7 +1,7 @@
 /*
 * --------------------------------------------------------------------------------------------------------------------
 * <copyright company="Aspose" file="ImagePropertiesResponse.java">
-*   Copyright (c) 2018 Aspose.CAD for Cloud
+*   Copyright (c) 2018 Aspose Pty Ltd.
 * </copyright>
 * <summary>
 *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -30,10 +30,8 @@ package com.aspose.cad.cloud.sdk.model;
 import java.util.Objects;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.aspose.cad.cloud.sdk.stablemodel.SaaSposeResponse;
-import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.aspose.cad.cloud.sdk.stablemodel.*;
 
 /**
  * Represents properties of the image.

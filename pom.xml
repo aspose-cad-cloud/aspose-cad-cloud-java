@@ -4,54 +4,53 @@
     <groupId>com.aspose</groupId>
     <artifactId>aspose-cad-cloud</artifactId>
     <packaging>jar</packaging>
-    <name>aspose-cad-cloud</name>
-    <version>17.11</version>
+    <name>Aspose.CAD for Cloud Java SDK</name>
+    <version>${releaseVersion}</version>
     <url>https://github.com/aspose-cad-cloud/aspose-cad-cloud-java</url>
-    <description>Aspose.CAD for Cloud SDK</description>
+    <description>Aspose.CAD for Cloud Java SDK</description>
+	
     <licenses>
         <license>
-            <name>MIT</name>
+            <name>MIT License</name>
             <url>https://github.com/aspose-cad-cloud/aspose-cad-cloud-java/blob/master/LICENSE</url>
             <distribution>repo</distribution>
         </license>
     </licenses>
+	
+	<scm>
+        <connection>scm:git:git://github.com/aspose-cad-cloud/aspose-cad-cloud-java.git</connection>
+        <developerConnection>scm:git:ssh://github.com:aspose-cad-cloud/aspose-cad-cloud-java.git</developerConnection>
+        <url>https://github.com/aspose-cad-cloud/aspose-cad-cloud-java</url>
+    </scm>
     
-    <developers>
-        <developer>
-            <name>Aspose</name>
-            <email>sales@asposeptyltd.com</email>
-            <organization>Aspose Pty Ltd.</organization>
-            <organizationUrl>https://www.aspose.cloud/</organizationUrl>
-        </developer>
-    </developers>
+    <organization>
+        <name>Aspose Pty Ltd</name>
+        <url>http://www.aspose.com</url>
+    </organization>
+
+	
+	<properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <jackson-version>2.6.4</jackson-version>
+        <maven-plugin-version>1.0.0</maven-plugin-version>
+        <junit-version>4.12</junit-version>
+		<skipTests>true</skipTests>
+		<maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+		<javadoc.opts>-Xdoclint:none</javadoc.opts>
+		<releaseVersion>${releaseVersion}</releaseVersion>
+    </properties>
     
     <build>
+	
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-enforcer-plugin</artifactId>
-                <version>3.0.0-M1</version>
-                <executions>
-                    <execution>
-                        <id>enforce-maven</id>
-                        <goals>
-                            <goal>enforce</goal>
-                        </goals>
-                        <configuration>
-                            <rules>
-                                <requireMavenVersion>
-                                    <version>2.2.0</version>
-                                </requireMavenVersion>
-                            </rules>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+			
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.13</version>
                 <configuration>
+                    <skipTests>${skipTests}</skipTests>
                     <systemProperties>
                         <property>
                             <name>loggerPath</name>
@@ -68,6 +67,7 @@
                     </includes>
                 </configuration>
             </plugin>
+			
             <plugin>
                 <artifactId>maven-dependency-plugin</artifactId>
                 <executions>
@@ -83,7 +83,6 @@
                 </executions>
             </plugin>
 
-            <!-- attach test jar -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
@@ -97,13 +96,19 @@
                     </execution>
                 </executions>
                 <configuration>
+                    <archive>                   
+                         <manifest>
+                             <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                             <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                         </manifest>
+                    </archive>
                 </configuration>
             </plugin>
 
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
-                <version>1.10</version>
+                <version>1.9</version>
                 <executions>
                     <execution>
                         <id>add_sources</id>
@@ -113,8 +118,7 @@
                         </goals>
                         <configuration>
                             <sources>
-                                <source>
-                                src/main/java</source>
+                                <source>src/main/java</source>
                             </sources>
                         </configuration>
                     </execution>
@@ -133,22 +137,33 @@
                     </execution>
                 </executions>
             </plugin>
+			
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.6.1</version>
                 <configuration>
-                        <source>1.7</source>
-                        <target>1.7</target>
+				    <fork>true</fork>
+				    <compilerVersion>1.7</compilerVersion>
+					<executable>${JAVA_HOME}/bin/javac</executable>
+					<verbose>true</verbose>
+                    <source>1.7</source>
+                    <target>1.7</target>
                 </configuration>
             </plugin>
+			
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>2.10.4</version>
+				
+				<!-- uncomment if you're using JDK 1.8 or higher
 				<configuration>
-                    <additionalparam>-Xdoclint:none</additionalparam>
+                    <additionalparam>${javadoc.opts}</additionalparam>
                 </configuration>
+				-->
+				
+				
                 <executions>
                     <execution>
                         <id>attach-javadocs</id>
@@ -158,6 +173,7 @@
                     </execution>
                 </executions>
             </plugin>
+			
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
@@ -171,40 +187,36 @@
                     </execution>
                 </executions>
             </plugin>
+			
         </plugins>
+		
     </build>
+    
+    <reporting>
 	
-	<reporting>
       <plugins>
+	  
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-surefire-report-plugin</artifactId>
           <version>2.13</version>
-		  <configuration>
+          <configuration>
               <outputDirectory>target/surefire-reports</outputDirectory>
           </configuration>
         </plugin>
+		
       </plugins>
+	  
     </reporting>
 
     <profiles>
+	
         <profile>
-		    <repositories>
-            	<repository>
-                	<id>mvnrepository</id>
-                	<name>mvnrepository</name>
-                	<url>http://www.mvnrepository.com</url>
-                	<snapshots>
-                    	<enabled>false</enabled>
-                	</snapshots>
-                	<releases>
-                    	<enabled>true</enabled>
-                	</releases>
-            	</repository>
+        	<repositories>
             	<repository>
        				<id>AsposeJavaAPI</id>
        				<name>Aspose Java API</name>
-       				<url>http://artifact.aspose.com/repo/</url>
+       				<url>http://artifact.aspose.cloud/repo/</url>
        				<snapshots>
                     	<enabled>false</enabled>
                 	</snapshots>
@@ -213,94 +225,79 @@
                 	</releases>
    				</repository>
         	</repositories>
-            <id>sign-artifacts</id>
-			<activation>
+            <id>repositoryProfile</id>
+            <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-gpg-plugin</artifactId>
-                        <version>1.5</version>
-                        <executions>
-                            <execution>
-                                <id>sign-artifacts</id>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>sign</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
         </profile>
+		
     </profiles>
 
     <dependencies>
-        <dependency>
-            <groupId>io.swagger</groupId>
-            <artifactId>swagger-annotations</artifactId>
-            <version>${swagger-annotations-version}</version>
+	
+	    <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.3.2</version>
         </dependency>
 
-        <!-- JSON processing: jackson -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
             <version>${jackson-version}</version>
         </dependency>
+		
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
             <version>${jackson-version}</version>
         </dependency>
+		
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>${jackson-version}</version>
         </dependency>
+		
         <dependency>
             <groupId>com.fasterxml.jackson.jaxrs</groupId>
             <artifactId>jackson-jaxrs-json-provider</artifactId>
             <version>${jackson-version}</version>
         </dependency>
-		<dependency>
-      		<groupId>com.aspose</groupId>
-      		<artifactId>aspose-cloud-storage</artifactId>
-      		<version>1.0.1</version>
-      		<scope>compile</scope>
-		</dependency>
-		<dependency>
-            <groupId>pl.pragmatists</groupId>
-            <artifactId>JUnitParams</artifactId>
-            <version>1.1.1</version>
-            <scope>test</scope>
+            
+        <dependency>
+             <groupId>com.brsanthu</groupId>
+            <artifactId>migbase64</artifactId>
+            <version>2.2</version>
         </dependency>
-		<dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-            <version>2.4</version>
-        </dependency>
-            <!-- Base64 encoding that works in both JVM and Android -->
-            <dependency>
-                <groupId>com.brsanthu</groupId>
-                <artifactId>migbase64</artifactId>
-                <version>2.2</version>
-            </dependency>
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>${junit-version}</version>
             <scope>test</scope>
         </dependency>
+		
+        <dependency>
+            <groupId>pl.pragmatists</groupId>
+            <artifactId>JUnitParams</artifactId>
+            <version>1.1.1</version>
+            <scope>test</scope>
+        </dependency>
+		
+        <dependency>
+      		<groupId>com.aspose</groupId>
+      		<artifactId>aspose-cloud-storage</artifactId>
+      		<version>1.0.1</version>
+      		<scope>compile</scope>
+		</dependency>
+		
+		<dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.4</version>
+        </dependency>
+		
     </dependencies>
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <swagger-annotations-version>1.5.15</swagger-annotations-version>
-        <jackson-version>2.6.4</jackson-version>
-        <maven-plugin-version>1.0.0</maven-plugin-version>
-        <junit-version>4.12</junit-version>
-    </properties>
+	
 </project>
