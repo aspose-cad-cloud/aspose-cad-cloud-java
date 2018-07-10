@@ -5,7 +5,7 @@
     <artifactId>aspose-cad-cloud</artifactId>
     <packaging>jar</packaging>
     <name>Aspose.CAD for Cloud Java SDK</name>
-    <version>${releaseVersion}</version>
+    <version>17.11</version>
     <url>https://github.com/aspose-cad-cloud/aspose-cad-cloud-java</url>
     <description>Aspose.CAD for Cloud Java SDK</description>
 	
