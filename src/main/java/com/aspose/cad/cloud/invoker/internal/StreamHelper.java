@@ -25,7 +25,7 @@
 * --------------------------------------------------------------------------------------------------------------------
 */
 
-package com.aspose.cad.cloud.sdk.invoker.internal;
+package com.aspose.cad.cloud.invoker.internal;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

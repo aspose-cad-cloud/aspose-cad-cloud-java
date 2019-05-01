@@ -26,9 +26,9 @@
 */
 package com.aspose.cad.cloud.test.api;
 
-import com.aspose.cad.cloud.sdk.invoker.ApiResponse;
-import com.aspose.cad.cloud.sdk.model.requests.*;
-import com.aspose.cad.cloud.sdk.stablemodel.*;
+import com.aspose.cad.cloud.ApiResponse;
+import com.aspose.cad.cloud.model.requests.*;
+import com.aspose.cad.cloud.*;
 import com.aspose.cad.cloud.test.base.ApiTester;
 import com.aspose.cad.cloud.test.base.StorageFileInfo;
 
@@ -38,6 +38,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.Assert;
 import org.junit.Before;
+
+import java.io.File;
 import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -142,6 +144,7 @@ public class ResizeApiTests extends ApiTester {
 	})
     public void postImageResizeTest(String formatExtension, Boolean saveResultToStorage, String... additionalExportFormats) throws Exception {
     	byte[] imageData = null;
+    	File imageFile = null;
 		String name = null;
 		Integer newWidth = 100;
         Integer newHeight = 150;
@@ -165,7 +168,8 @@ public class ResizeApiTests extends ApiTester {
 			if (inputFile.getName().endsWith(formatExtension))
             {
                 name = inputFile.getName();
-				imageData = Files.readAllBytes(Paths.get(LocalTestFolder + name));
+				//imageData = Files.readAllBytes(Paths.get(LocalTestFolder + name));
+				imageFile = Paths.get(LocalTestFolder + name).toFile();
             }
             else
             {
@@ -174,7 +178,7 @@ public class ResizeApiTests extends ApiTester {
 			
 			for (String format : formatsToExport)
             {
-				postImageResizeRequest = new PostChangeImageScaleRequest(imageData, format, newWidth, newHeight, outPath, storage);
+				postImageResizeRequest = new PostChangeImageScaleRequest(imageFile, format, newWidth, newHeight, outPath, storage);
 				outName = name + "_resize." + format;
 				
 				Method propertiesTester = ResizeApiTests.class.getDeclaredMethod("postImageResizePropertiesTester", CadResponse.class, CadResponse.class);
@@ -205,10 +209,10 @@ public class ResizeApiTests extends ApiTester {
 	 * @return API response
 	 * @throws Exception 
 	 */
-	private ApiResponse getImageResizeGetRequestInvoker(String name, String outPath) throws Exception
+	private File getImageResizeGetRequestInvoker(String name, String outPath) throws Exception
 	{
-		getImageResizeRequest.name = name;
-		getImageResizeRequest.outPath = outPath;
+		getImageResizeRequest.setName(name);
+		getImageResizeRequest.setOutPath(outPath);
         return CadApi.getChangeImageScale(getImageResizeRequest);
 	}
 	
@@ -219,10 +223,10 @@ public class ResizeApiTests extends ApiTester {
 	 * @return API response
 	 * @throws Exception 
 	 */
-	private ApiResponse postImageResizePostRequestInvoker(byte[] imageData, String outPath) throws Exception
+	private File postImageResizePostRequestInvoker(File imageData, String outPath) throws Exception
 	{
-	    postImageResizeRequest.drawingData = imageData;
-		postImageResizeRequest.outPath = outPath;
+	    postImageResizeRequest.setDrawingData(imageData);
+		postImageResizeRequest.setOutPath(outPath);
         return CadApi.postChangeImageScale(postImageResizeRequest);
 	}
 	

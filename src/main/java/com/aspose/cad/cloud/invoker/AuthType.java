@@ -25,7 +25,7 @@
 * --------------------------------------------------------------------------------------------------------------------
 */
 
-package com.aspose.cad.cloud.sdk.invoker;
+package com.aspose.cad.cloud.invoker;
 
 /**
  * Supported types of authentication.

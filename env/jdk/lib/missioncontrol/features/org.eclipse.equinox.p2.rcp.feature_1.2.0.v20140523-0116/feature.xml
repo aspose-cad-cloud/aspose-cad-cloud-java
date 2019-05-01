@@ -29,7 +29,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.equinox.p2.ui.sdk.scheduler"
+         id="org.eclipse.equinox.p2.ui.scheduler"
          download-size="112"
          install-size="234"
          version="1.2.0.v20140422-1847"
@@ -50,7 +50,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.equinox.p2.ui.sdk"
+         id="org.eclipse.equinox.p2.ui"
          download-size="46"
          install-size="89"
          version="1.0.300.v20140407-1803"

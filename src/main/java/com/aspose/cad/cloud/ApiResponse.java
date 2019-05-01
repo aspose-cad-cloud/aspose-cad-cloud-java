@@ -25,56 +25,49 @@
  * --------------------------------------------------------------------------------
  */
 
-package com.aspose.cad.cloud.model;
+package com.aspose.cad.cloud;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.aspose.cad.cloud.model.SaaSposeResponse;
-import io.swagger.annotations.ApiModel;
+import java.util.List;
+import java.util.Map;
 
 /**
- * Represents properties of the image.
+ * API response returned by API call.
+ *
+ * @param <T> The type of data that is deserialized from response body
  */
-@ApiModel(description = "Represents properties of the image.")
+public class ApiResponse<T> {
+    final private int statusCode;
+    final private Map<String, List<String>> headers;
+    final private T data;
 
-public class ImagePropertiesResponse extends SaaSposeResponse {
-
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
+    /**
+     * @param statusCode The status code of HTTP response
+     * @param headers The headers of HTTP response
+     */
+    public ApiResponse(int statusCode, Map<String, List<String>> headers) {
+        this(statusCode, headers, null);
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * @param statusCode The status code of HTTP response
+     * @param headers The headers of HTTP response
+     * @param data The object deserialized from response bod
+     */
+    public ApiResponse(int statusCode, Map<String, List<String>> headers, T data) {
+        this.statusCode = statusCode;
+        this.headers = headers;
+        this.data = data;
     }
-    return super.equals(o);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(super.hashCode());
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class ImagePropertiesResponse {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
+    public int getStatusCode() {
+        return statusCode;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
 
+    public Map<String, List<String>> getHeaders() {
+        return headers;
+    }
+
+    public T getData() {
+        return data;
+    }
 }
-

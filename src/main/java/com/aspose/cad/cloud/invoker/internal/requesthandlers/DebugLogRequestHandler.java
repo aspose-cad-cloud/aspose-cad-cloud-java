@@ -25,7 +25,7 @@
 * --------------------------------------------------------------------------------------------------------------------
 */
 
-package com.aspose.cad.cloud.sdk.invoker.internal.requesthandlers;
+package com.aspose.cad.cloud.invoker.internal.requesthandlers;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -35,7 +35,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import com.aspose.cad.cloud.sdk.invoker.Configuration;
+import com.aspose.cad.cloud.Configuration;
 
 /**
  * Debug log request handler.

@@ -25,56 +25,42 @@
  * --------------------------------------------------------------------------------
  */
 
-package com.aspose.cad.cloud.model;
+package com.aspose.cad.cloud;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.aspose.cad.cloud.model.SaaSposeResponse;
-import io.swagger.annotations.ApiModel;
 
-/**
- * Represents properties of the image.
- */
-@ApiModel(description = "Represents properties of the image.")
+public class Pair {
+    private String name = "";
+    private String value = "";
 
-public class ImagePropertiesResponse extends SaaSposeResponse {
-
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
+    public Pair (String name, String value) {
+        setName(name);
+        setValue(value);
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    private void setName(String name) {
+        if (!isValidString(name)) return;
+
+        this.name = name;
     }
-    return super.equals(o);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(super.hashCode());
-  }
+    private void setValue(String value) {
+        if (!isValidString(value)) return;
 
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class ImagePropertiesResponse {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
+        this.value = value;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
 
+    public String getName() {
+        return this.name;
+    }
+
+    public String getValue() {
+        return this.value;
+    }
+
+    private boolean isValidString(String arg) {
+        if (arg == null) return false;
+        if (arg.trim().isEmpty()) return false;
+
+        return true;
+    }
 }
-

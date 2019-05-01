@@ -25,7 +25,7 @@
 * --------------------------------------------------------------------------------------------------------------------
 */
 
-package com.aspose.cad.cloud.sdk.invoker.internal;
+package com.aspose.cad.cloud.invoker.internal;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -38,8 +38,8 @@ import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.aspose.cad.cloud.sdk.invoker.ApiException;
-import com.aspose.cad.cloud.sdk.invoker.internal.requesthandlers.IRequestHandler;
+import com.aspose.cad.cloud.invoker.ApiException;
+import com.aspose.cad.cloud.invoker.internal.requesthandlers.IRequestHandler;
 
 /**
  * API invoker class

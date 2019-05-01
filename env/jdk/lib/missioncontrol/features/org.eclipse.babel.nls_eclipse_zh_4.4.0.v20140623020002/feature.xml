@@ -100,7 +100,7 @@
 	<plugin fragment="true" id="org.eclipse.equinox.p2.engine.nl_zh" unpack="false" version="4.4.0.v20140623020002" download-size="2592" install-size="2592" />
 	<plugin fragment="true" id="org.eclipse.equinox.p2.examples.rcp.cloud.nl_zh" unpack="false" version="4.4.0.v20140623020002" download-size="1492" install-size="1492" />
 	<plugin fragment="true" id="org.eclipse.equinox.p2.examples.rcp.discovery.nl_zh" unpack="false" version="4.4.0.v20140623020002" download-size="1496" install-size="1496" />
-	<plugin fragment="true" id="org.eclipse.equinox.p2.examples.rcp.sdkbundlevisibility.nl_zh" unpack="false" version="4.4.0.v20140623020002" download-size="3048" install-size="3048" />
+	<plugin fragment="true" id="org.eclipse.equinox.p2.examples.rcpbundlevisibility.nl_zh" unpack="false" version="4.4.0.v20140623020002" download-size="3048" install-size="3048" />
 	<plugin fragment="true" id="org.eclipse.equinox.p2.extensionlocation.nl_zh" unpack="false" version="4.4.0.v20140623020002" download-size="1388" install-size="1388" />
 	<plugin fragment="true" id="org.eclipse.equinox.p2.garbagecollector.nl_zh" unpack="false" version="4.4.0.v20140623020002" download-size="1390" install-size="1390" />
 	<plugin fragment="true" id="org.eclipse.equinox.p2.installer.nl_zh" unpack="false" version="4.4.0.v20140623020002" download-size="2960" install-size="2960" />
@@ -125,8 +125,8 @@
 	<plugin fragment="true" id="org.eclipse.equinox.p2.ui.discovery.nl_zh" unpack="false" version="4.4.0.v20140623020002" download-size="4709" install-size="4709" />
 	<plugin fragment="true" id="org.eclipse.equinox.p2.ui.importexport.nl_zh" unpack="false" version="4.4.0.v20140623020002" download-size="3146" install-size="3146" />
 	<plugin fragment="true" id="org.eclipse.equinox.p2.ui.nl_zh" unpack="false" version="4.4.0.v20140623020002" download-size="4529" install-size="4529" />
-	<plugin fragment="true" id="org.eclipse.equinox.p2.ui.sdk.nl_zh" unpack="false" version="4.4.0.v20140623020002" download-size="3022" install-size="3022" />
-	<plugin fragment="true" id="org.eclipse.equinox.p2.ui.sdk.scheduler.nl_zh" unpack="false" version="4.4.0.v20140623020002" download-size="4627" install-size="4627" />
+	<plugin fragment="true" id="org.eclipse.equinox.p2.ui.nl_zh" unpack="false" version="4.4.0.v20140623020002" download-size="3022" install-size="3022" />
+	<plugin fragment="true" id="org.eclipse.equinox.p2.ui.scheduler.nl_zh" unpack="false" version="4.4.0.v20140623020002" download-size="4627" install-size="4627" />
 	<plugin fragment="true" id="org.eclipse.equinox.p2.updatechecker.nl_zh" unpack="false" version="4.4.0.v20140623020002" download-size="1384" install-size="1384" />
 	<plugin fragment="true" id="org.eclipse.equinox.p2.updatesite.nl_zh" unpack="false" version="4.4.0.v20140623020002" download-size="2903" install-size="2903" />
 	<plugin fragment="true" id="org.eclipse.equinox.simpleconfigurator.manipulator.nl_zh" unpack="false" version="4.4.0.v20140623020002" download-size="1447" install-size="1447" />
@@ -209,7 +209,7 @@
 	<plugin fragment="true" id="org.eclipse.pde.ui.nl_zh" unpack="false" version="4.4.0.v20140623020002" download-size="40866" install-size="40866" />
 	<plugin fragment="true" id="org.eclipse.pde.ui.templates.nl_zh" unpack="false" version="4.4.0.v20140623020002" download-size="9913" install-size="9913" />
 	<plugin fragment="true" id="org.eclipse.platform.nl_zh" unpack="false" version="4.4.0.v20140623020002" download-size="3930" install-size="3930" />
-	<plugin fragment="true" id="org.eclipse.sdk.nl_zh" unpack="false" version="4.4.0.v20140623020002" download-size="2927" install-size="2927" />
+	<plugin fragment="true" id="org.eclipse.nl_zh" unpack="false" version="4.4.0.v20140623020002" download-size="2927" install-size="2927" />
 	<plugin fragment="true" id="org.eclipse.search.nl_zh" unpack="false" version="4.4.0.v20140623020002" download-size="9054" install-size="9054" />
 	<plugin fragment="true" id="org.eclipse.swt.carbon.macosx.nl_zh" unpack="false" version="4.4.0.v20140623020002" download-size="1405" install-size="1405" />
 	<plugin fragment="true" id="org.eclipse.swt.cocoa.macosx.nl_zh" unpack="false" version="4.4.0.v20140623020002" download-size="1427" install-size="1427" />

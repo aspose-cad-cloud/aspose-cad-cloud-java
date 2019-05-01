@@ -16,7 +16,7 @@
         <property name='download.size' value='1375'/>
       </properties>
     </artifact>
-    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.p2.ui.sdk.scheduler' version='1.2.0.v20140422-1847'>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.p2.ui.scheduler' version='1.2.0.v20140422-1847'>
       <properties size='1'>
         <property name='download.size' value='115196'/>
       </properties>
@@ -129,7 +129,7 @@
         <property name='download.size' value='568363'/>
       </properties>
     </artifact>
-    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.p2.ui.sdk.scheduler.nl_ja' version='4.4.0.v20140623020002'>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.p2.ui.scheduler.nl_ja' version='4.4.0.v20140623020002'>
       <properties size='1'>
         <property name='download.size' value='5229'/>
       </properties>
@@ -247,7 +247,7 @@
         <property name='download.size' value='48408'/>
       </properties>
     </artifact>
-    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.p2.ui.sdk.nl_ja' version='4.4.0.v20140623020002'>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.p2.ui.nl_ja' version='4.4.0.v20140623020002'>
       <properties size='1'>
         <property name='download.size' value='3961'/>
       </properties>
@@ -770,7 +770,7 @@
         <property name='download.size' value='1401'/>
       </properties>
     </artifact>
-    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.p2.ui.sdk.nl_zh' version='4.4.0.v20140623020002'>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.p2.ui.nl_zh' version='4.4.0.v20140623020002'>
       <properties size='1'>
         <property name='download.size' value='3022'/>
       </properties>
@@ -1780,7 +1780,7 @@
         <property name='download.size' value='70958'/>
       </properties>
     </artifact>
-    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.p2.ui.sdk.scheduler.nl_zh' version='4.4.0.v20140623020002'>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.p2.ui.scheduler.nl_zh' version='4.4.0.v20140623020002'>
       <properties size='1'>
         <property name='download.size' value='4627'/>
       </properties>
@@ -1999,7 +1999,7 @@
         <property name='artifact.folder' value='true'/>
       </repositoryProperties>
     </artifact>
-    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.p2.ui.sdk' version='1.0.300.v20140407-1803'>
+    <artifact classifier='osgi.bundle' id='org.eclipse.equinox.p2.ui' version='1.0.300.v20140407-1803'>
       <properties size='1'>
         <property name='download.size' value='48042'/>
       </properties>

@@ -25,13 +25,13 @@
 * --------------------------------------------------------------------------------------------------------------------
 */
 
-package com.aspose.cad.cloud.sdk.invoker.internal;
+package com.aspose.cad.cloud.invoker.internal;
 
 import java.io.StringReader;
 import javax.xml.bind.JAXBContext;
 
-import com.aspose.cad.cloud.sdk.invoker.JSON;
-import com.aspose.cad.cloud.sdk.invoker.ApiException;
+import com.aspose.cad.cloud.invoker.JSON;
+import com.aspose.cad.cloud.invoker.ApiException;
 
 /** 
  * Serialization helper class

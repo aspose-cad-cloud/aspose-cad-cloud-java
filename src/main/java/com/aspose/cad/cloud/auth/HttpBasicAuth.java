@@ -25,56 +25,44 @@
  * --------------------------------------------------------------------------------
  */
 
-package com.aspose.cad.cloud.model;
+package com.aspose.cad.cloud.auth;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.aspose.cad.cloud.model.SaaSposeResponse;
-import io.swagger.annotations.ApiModel;
+import com.aspose.cad.cloud.Pair;
 
-/**
- * Represents properties of the image.
- */
-@ApiModel(description = "Represents properties of the image.")
+import com.squareup.okhttp.Credentials;
 
-public class ImagePropertiesResponse extends SaaSposeResponse {
+import java.util.Map;
+import java.util.List;
 
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
+import java.io.UnsupportedEncodingException;
+
+public class HttpBasicAuth implements Authentication {
+    private String username;
+    private String password;
+
+    public String getUsername() {
+        return username;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    public void setUsername(String username) {
+        this.username = username;
     }
-    return super.equals(o);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(super.hashCode());
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class ImagePropertiesResponse {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
+    public String getPassword() {
+        return password;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    @Override
+    public void applyToParams(List<Pair> queryParams, Map<String, String> headerParams) {
+        if (username == null && password == null) {
+            return;
+        }
+        headerParams.put("Authorization", Credentials.basic(
+            username == null ? "" : username,
+            password == null ? "" : password));
+    }
 }
-

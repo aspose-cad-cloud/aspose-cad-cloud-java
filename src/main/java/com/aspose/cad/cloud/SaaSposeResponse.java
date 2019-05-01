@@ -24,7 +24,7 @@
 * </summary>
 * --------------------------------------------------------------------------------------------------------------------
 */
-package com.aspose.cad.cloud.sdk.stablemodel;
+package com.aspose.cad.cloud;
 
 import java.util.Objects;
 

@@ -35,16 +35,15 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.concurrent.Callable;
 
+import com.aspose.cad.cloud.ApiClient;
+import com.aspose.cad.cloud.invoker.ApiResponse;
+import com.aspose.cad.cloud.invoker.AuthType;
+import com.aspose.cad.cloud.invoker.JSON;
+import com.aspose.cad.cloud.invoker.internal.SerializationHelper;
+import com.aspose.cad.cloud.invoker.internal.StreamHelper;
 import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
 
-import com.aspose.cad.cloud.sdk.invoker.ApiResponse;
-import com.aspose.cad.cloud.sdk.invoker.AuthType;
-import com.aspose.cad.cloud.sdk.invoker.JSON;
-import com.aspose.cad.cloud.sdk.invoker.internal.SerializationHelper;
-import com.aspose.cad.cloud.sdk.invoker.internal.StreamHelper;
-import com.aspose.cad.cloud.sdk.model.requests.GetImagePropertiesRequest;
-import com.aspose.cad.cloud.sdk.stablemodel.CadResponse;
 import com.aspose.storage.model.MoveFileResponse;
 import com.aspose.storage.model.ResponseMessage;
 
@@ -106,7 +105,7 @@ public abstract class ApiTester
     /**
      * Aspose.cad API
      */
-    protected com.aspose.cad.cloud.sdk.api.CadApi CadApi;
+    protected com.aspose.cad.cloud.api.CadApi CadApi;
 
     /**
      * Aspose.Storage API
@@ -179,7 +178,15 @@ public abstract class ApiTester
                 }
             }
 
-            CadApi = new com.aspose.cad.cloud.sdk.api.CadApi(appKey, appSid, baseUrl, apiVersion, authType, debug);
+            ApiClient api = new ApiClient();
+            api.setAppKey(appKey);
+            api.setAppSid(appSid);
+            api.setBaseUrl(baseUrl);
+            api.setApiVersion(apiVersion);
+            api.setDebugging(debug);
+            //new Configuration() appKey, appSid, baseUrl, apiVersion, authType, debug
+
+            CadApi = new com.aspose.cad.cloud.api.CadApi();
             StorageApi = new com.aspose.storage.api.StorageApi(baseUrl + apiVersion, appKey, appSid);
             InputTestFiles = fetchInputTestFilesInfo();
     }

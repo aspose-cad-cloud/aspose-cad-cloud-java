@@ -25,14 +25,14 @@
 * --------------------------------------------------------------------------------------------------------------------
 */
 
-package com.aspose.cad.cloud.sdk.invoker.internal.requesthandlers;
+package com.aspose.cad.cloud.invoker.internal.requesthandlers;
 
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 
-import com.aspose.cad.cloud.sdk.invoker.ApiException;
-import com.aspose.cad.cloud.sdk.invoker.internal.SerializationHelper;
-import com.aspose.cad.cloud.sdk.stablemodel.SaaSposeResponse;
+import com.aspose.cad.cloud.ApiException;
+import com.aspose.cad.cloud.invoker.internal.SerializationHelper;
+import com.aspose.cad.cloud.SaaSposeResponse;
 
 /**
  * API exception request handler
@@ -61,7 +61,7 @@ public class ApiExceptionRequestHandler implements IRequestHandler
     /**
      * Processes the response.
      * @param connection The connection.
-     * @param resultStream The result data.
+     * @param resultData The result data.
      * @throws Exception 
      */
     public void processResponse(HttpURLConnection connection, byte[] resultData) throws Exception
@@ -75,7 +75,7 @@ public class ApiExceptionRequestHandler implements IRequestHandler
     /**
      * Throws the API exception.
      * @param connection The connection.
-     * @param resultStream The result data.
+     * @param resultData The result data.
      * @throws Exception
      */
     private void throwApiException(HttpURLConnection connection, byte[] resultData) throws Exception

@@ -25,17 +25,17 @@
 * --------------------------------------------------------------------------------------------------------------------
 */
 
-package com.aspose.cad.cloud.sdk.invoker.internal.requesthandlers;
+package com.aspose.cad.cloud.invoker.internal.requesthandlers;
 
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 
-import com.aspose.cad.cloud.sdk.invoker.AuthType;
-import com.aspose.cad.cloud.sdk.invoker.Configuration;
-import com.aspose.cad.cloud.sdk.invoker.internal.ApiInvoker;
-import com.aspose.cad.cloud.sdk.invoker.internal.NeedRepeatRequestException;
-import com.aspose.cad.cloud.sdk.invoker.internal.SerializationHelper;
+import com.aspose.cad.cloud.invoker.AuthType;
+import com.aspose.cad.cloud.Configuration;
+import com.aspose.cad.cloud.invoker.internal.ApiInvoker;
+import com.aspose.cad.cloud.invoker.internal.NeedRepeatRequestException;
+import com.aspose.cad.cloud.invoker.internal.SerializationHelper;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**

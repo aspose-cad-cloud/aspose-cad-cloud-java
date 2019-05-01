@@ -25,56 +25,67 @@
  * --------------------------------------------------------------------------------
  */
 
-package com.aspose.cad.cloud.model;
+package com.aspose.cad.cloud.auth;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.aspose.cad.cloud.model.SaaSposeResponse;
-import io.swagger.annotations.ApiModel;
+import com.aspose.cad.cloud.Pair;
 
-/**
- * Represents properties of the image.
- */
-@ApiModel(description = "Represents properties of the image.")
+import java.util.Map;
+import java.util.List;
 
-public class ImagePropertiesResponse extends SaaSposeResponse {
 
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    return super.equals(o);
+public class ApiKeyAuth implements Authentication {
+  private final String location;
+  private final String paramName;
+
+  private String apiKey;
+  private String apiKeyPrefix;
+
+  public ApiKeyAuth(String location, String paramName) {
+    this.location = location;
+    this.paramName = paramName;
+  }
+
+  public String getLocation() {
+    return location;
+  }
+
+  public String getParamName() {
+    return paramName;
+  }
+
+  public String getApiKey() {
+    return apiKey;
+  }
+
+  public void setApiKey(String apiKey) {
+    this.apiKey = apiKey;
+  }
+
+  public String getApiKeyPrefix() {
+    return apiKeyPrefix;
+  }
+
+  public void setApiKeyPrefix(String apiKeyPrefix) {
+    this.apiKeyPrefix = apiKeyPrefix;
   }
 
   @Override
-  public int hashCode() {
-    return Objects.hash(super.hashCode());
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class ImagePropertiesResponse {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
+  public void applyToParams(List<Pair> queryParams, Map<String, String> headerParams) {
+    if (apiKey == null) {
+      return;
     }
-    return o.toString().replace("\n", "\n    ");
+    String value;
+    if (apiKeyPrefix != null) {
+      value = apiKeyPrefix + " " + apiKey;
+    }
+    else {
+      value = apiKey;
+    }
+    if ("query".equals(location)) {
+      queryParams.add(new Pair(paramName, value));
+    }
+    else if ("header".equals(location)) {
+      headerParams.put(paramName, value);
+    }
   }
-
 }
-

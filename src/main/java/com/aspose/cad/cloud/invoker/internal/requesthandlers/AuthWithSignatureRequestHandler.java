@@ -25,7 +25,7 @@
 * --------------------------------------------------------------------------------------------------------------------
 */
 
-package com.aspose.cad.cloud.sdk.invoker.internal.requesthandlers;
+package com.aspose.cad.cloud.invoker.internal.requesthandlers;
 
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
@@ -38,9 +38,9 @@ import java.security.NoSuchAlgorithmException;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
-import com.aspose.cad.cloud.sdk.invoker.AuthType;
-import com.aspose.cad.cloud.sdk.invoker.Configuration;
-import com.aspose.cad.cloud.sdk.invoker.internal.UrlHelper;
+import com.aspose.cad.cloud.invoker.AuthType;
+import com.aspose.cad.cloud.Configuration;
+import com.aspose.cad.cloud.invoker.internal.UrlHelper;
 import com.migcomponents.migbase64.Base64;
 
 /**

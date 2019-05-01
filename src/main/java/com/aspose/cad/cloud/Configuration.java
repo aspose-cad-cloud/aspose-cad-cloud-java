@@ -25,13 +25,38 @@
 * --------------------------------------------------------------------------------------------------------------------
 */
 
-package com.aspose.cad.cloud.sdk.invoker;
+package com.aspose.cad.cloud;
+
+import com.aspose.cad.cloud.invoker.AuthType;
 
 /**
  * Represents a set of configuration settings.
  */
 public class Configuration
 {
+    private static ApiClient defaultApiClient;
+
+    /**
+     * Get the default API client, which would be used when creating API
+     * instances without providing an API client.
+     *
+     * @return Default API client
+     */
+    public static ApiClient getDefaultApiClient() {
+        defaultApiClient = new ApiClient();
+        return defaultApiClient;
+    }
+
+    /**
+     * Set the default API client, which would be used when creating API
+     * instances without providing an API client.
+     *
+     * @param apiClient API client
+     */
+    public static void setDefaultApiClient(ApiClient apiClient) {
+        defaultApiClient = apiClient;
+    }
+
         /**
          * The default base URL
          */
@@ -71,7 +96,7 @@ public class Configuration
          * Authentication type.
          * Default is OAuth.
          */
-        public AuthType AuthType;
+        public com.aspose.cad.cloud.invoker.AuthType AuthType;
         
         /**
          * Get Aspose Cloud API base URL.

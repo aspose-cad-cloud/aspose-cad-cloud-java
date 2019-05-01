@@ -25,56 +25,8 @@
  * --------------------------------------------------------------------------------
  */
 
-package com.aspose.cad.cloud.model;
+package com.aspose.cad.cloud.auth;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.aspose.cad.cloud.model.SaaSposeResponse;
-import io.swagger.annotations.ApiModel;
-
-/**
- * Represents properties of the image.
- */
-@ApiModel(description = "Represents properties of the image.")
-
-public class ImagePropertiesResponse extends SaaSposeResponse {
-
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    return super.equals(o);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(super.hashCode());
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class ImagePropertiesResponse {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
+public enum OAuthFlow {
+    accessCode, implicit, password, application
 }
-

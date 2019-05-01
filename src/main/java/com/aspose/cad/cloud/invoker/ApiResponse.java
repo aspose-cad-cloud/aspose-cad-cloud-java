@@ -24,10 +24,10 @@
 * </summary>
 * --------------------------------------------------------------------------------------------------------------------
 */
-package com.aspose.cad.cloud.sdk.invoker;
+package com.aspose.cad.cloud.invoker;
 
-import com.aspose.cad.cloud.sdk.stablemodel.CadResponse;
-import com.aspose.cad.cloud.sdk.stablemodel.SaaSposeResponse;
+import com.aspose.cad.cloud.CadResponse;
+import com.aspose.cad.cloud.SaaSposeResponse;
 
 /**
  * Represents CAD for Cloud response.

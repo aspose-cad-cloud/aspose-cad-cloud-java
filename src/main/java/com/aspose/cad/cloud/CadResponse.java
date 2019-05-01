@@ -24,11 +24,11 @@
 * </summary>
 * --------------------------------------------------------------------------------------------------------------------
 */
-package com.aspose.cad.cloud.sdk.stablemodel;
+package com.aspose.cad.cloud;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.aspose.cad.cloud.sdk.stablemodel.SaaSposeResponse;
+import com.aspose.cad.cloud.SaaSposeResponse;
 
 /**
  * Represents information about image.
