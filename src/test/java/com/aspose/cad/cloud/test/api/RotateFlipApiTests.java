@@ -32,6 +32,7 @@ import com.aspose.cad.cloud.*;
 import com.aspose.cad.cloud.test.base.ApiTester;
 import com.aspose.cad.cloud.test.base.StorageFileInfo;
 
+import com.aspose.storage.model.FileResponse;
 import junitparams.*;
 
 import org.junit.Test;
@@ -79,7 +80,7 @@ public class RotateFlipApiTests extends ApiTester {
      */
     @Test
 	@Parameters({
-			".dwg, false,"
+			".dwg, true,"
 	})
     public void getImageRotateFlipTest(String formatExtension, Boolean saveResultToStorage, String... additionalExportFormats) throws Exception {
         String name = null;
@@ -98,7 +99,7 @@ public class RotateFlipApiTests extends ApiTester {
             }
         }
 		
-		for (StorageFileInfo inputFile : InputTestFiles)
+		for (FileResponse inputFile : InputTestFiles)
 		{
 			if (inputFile.getName().endsWith(formatExtension))
             {
@@ -149,7 +150,7 @@ public class RotateFlipApiTests extends ApiTester {
      */
     @Test
 	@Parameters({
-			".dwg, false,"
+			".dwg, true,"
 	})
     public void postImageRotateFlipTest(String formatExtension, Boolean saveResultToStorage, String... additionalExportFormats) throws Exception {
     	byte[] imageData = null;
@@ -170,7 +171,7 @@ public class RotateFlipApiTests extends ApiTester {
             }
         }
 		
-		for (StorageFileInfo inputFile : InputTestFiles)
+		for (FileResponse inputFile : InputTestFiles)
 		{
 			if (inputFile.getName().endsWith(formatExtension))
             {
@@ -192,7 +193,7 @@ public class RotateFlipApiTests extends ApiTester {
 
                     Method propertiesTester = RotateFlipApiTests.class.getDeclaredMethod("postImageRotateFlipPropertiesTester", CadResponse.class, CadResponse.class);
                     propertiesTester.setAccessible(true);
-                    Method requestInvoker = RotateFlipApiTests.class.getDeclaredMethod("postImageRotateFlipPostRequestInvoker", byte[].class, String.class);
+                    Method requestInvoker = RotateFlipApiTests.class.getDeclaredMethod("postImageRotateFlipPostRequestInvoker", File.class, String.class);
                     requestInvoker.setAccessible(true);
                     this.testPostRequest(
                             "postImageRotateFlipTest; save result to storage: " + saveResultToStorage,

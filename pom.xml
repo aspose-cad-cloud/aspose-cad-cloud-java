@@ -288,7 +288,7 @@
         <dependency>
       		<groupId>com.aspose</groupId>
       		<artifactId>aspose-cloud-storage</artifactId>
-      		<version>1.0.1</version>
+      		<version>1.0.2</version>
       		<scope>compile</scope>
 		</dependency>
 		

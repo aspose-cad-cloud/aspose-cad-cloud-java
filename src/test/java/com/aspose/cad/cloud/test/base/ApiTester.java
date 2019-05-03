@@ -31,6 +31,7 @@ import java.io.File;
 import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -41,6 +42,8 @@ import com.aspose.cad.cloud.invoker.AuthType;
 import com.aspose.cad.cloud.invoker.JSON;
 import com.aspose.cad.cloud.invoker.internal.SerializationHelper;
 import com.aspose.cad.cloud.invoker.internal.StreamHelper;
+import com.aspose.storage.model.FileResponse;
+import com.aspose.storage.model.FilesResponse;
 import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
 
@@ -100,7 +103,7 @@ public abstract class ApiTester
     /**
      * Input test files info
      */
-    protected List<StorageFileInfo> InputTestFiles;
+    protected List<FileResponse> InputTestFiles;
 
     /**
      * Aspose.cad API
@@ -178,16 +181,16 @@ public abstract class ApiTester
                 }
             }
 
-            ApiClient api = new ApiClient();
-            api.setAppKey(appKey);
-            api.setAppSid(appSid);
-            api.setBaseUrl(baseUrl);
-            api.setApiVersion(apiVersion);
-            api.setDebugging(debug);
+            ApiClient api = new ApiClient()
+                    .setAppKey(appKey)
+                    .setAppSid(appSid)
+                    .setBaseUrl(baseUrl)
+                    .setApiVersion(apiVersion)
+                    .setDebugging(debug);
             //new Configuration() appKey, appSid, baseUrl, apiVersion, authType, debug
 
-            CadApi = new com.aspose.cad.cloud.api.CadApi();
-            StorageApi = new com.aspose.storage.api.StorageApi(baseUrl + apiVersion, appKey, appSid);
+            CadApi = new com.aspose.cad.cloud.api.CadApi(api);
+            StorageApi = new com.aspose.storage.api.StorageApi(baseUrl + apiVersion, appKey, appSid, debug);
             InputTestFiles = fetchInputTestFilesInfo();
     }
 
@@ -341,7 +344,7 @@ public abstract class ApiTester
      */
     protected Boolean checkInputFileExists(String inputFileName)
     {
-        for (StorageFileInfo storageFileInfo : InputTestFiles)
+        for (FileResponse storageFileInfo : InputTestFiles)
         {
             if (storageFileInfo.getName().equals(inputFileName))
             {
@@ -360,18 +363,18 @@ public abstract class ApiTester
      * @return The storage file information.
      * @throws Exception 
      */
-    protected StorageFileInfo getStorageFileInfo(String folder, String fileName,
+    protected FileResponse getStorageFileInfo(String folder, String fileName,
         String storage) throws Exception
     {
-        ResponseMessage fileListResponse = StorageApi.GetListFiles(folder, storage);
-        Assert.assertEquals((int)fileListResponse.getCode(), 200);
-        InputStream stream = fileListResponse.getInputStream();
-        byte[] stringBytes = StreamHelper.readAsBytes(stream);
-        stream.close();
+        FilesResponse fileListResponse = StorageApi.GetListFiles(folder, storage);
+        //Assert.assertEquals((int)fileListResponse.getCode(), 200);
+        //InputStream stream = fileListResponse.getInputStream();
+        //byte[] stringBytes = StreamHelper.readAsBytes(stream);
+        //stream.close();
         
-        String responseString = new String(stringBytes);
-        FilesList references = SerializationHelper.deserialize(responseString, FilesList.class);
-        for (StorageFileInfo storageFileInfo : references.Files)
+        //String responseString = new String(stringBytes);
+        //FilesList references = SerializationHelper.deserialize(responseString, FilesList.class);
+        for (FileResponse storageFileInfo : fileListResponse.getFiles())
         {
             if (storageFileInfo.getName().equals(fileName))
             {
@@ -387,17 +390,17 @@ public abstract class ApiTester
      * @return The input test files info.
      * @throws Exception 
      */
-    private List<StorageFileInfo> fetchInputTestFilesInfo() throws Exception
+    private List<FileResponse> fetchInputTestFilesInfo() throws Exception
     {
-        ResponseMessage filesResponse = StorageApi.GetListFiles(CloudTestFolder, DefaultStorage);
-        Assert.assertEquals((int)filesResponse.getCode(), 200);
-        InputStream stream = filesResponse.getInputStream();
-        byte[] stringBytes = StreamHelper.readAsBytes(stream);
-        stream.close();
+        FilesResponse filesResponse = StorageApi.GetListFiles(CloudTestFolder, DefaultStorage);
+        //Assert.assertEquals((int)filesResponse.getCode(), 200);
+        //InputStream stream = filesResponse.getInputStream();
+        //byte[] stringBytes = StreamHelper.readAsBytes(stream);
+        //stream.close();
         
-        String responseString = new String(stringBytes);
-        FilesList filesList = SerializationHelper.deserialize(responseString, FilesList.class);
-        return filesList.Files;
+        //String responseString = new String(stringBytes);
+        //FilesList filesList = SerializationHelper.deserialize(responseString, FilesList.class);
+        return filesResponse.getFiles();
     }
 
     /**
@@ -410,23 +413,21 @@ public abstract class ApiTester
      */
     private long obtainGetResponseLength(String inputFileName, String outPath, Method requestInvoker) throws Exception
     {
-    	byte[] result = null;
+    	//byte[] result = null;
     	Object responseObject = requestInvoker.invoke(this, inputFileName, outPath);
 
     	Assert.assertNotNull(responseObject);
-    	ApiResponse response = (ApiResponse)responseObject;
-    	if (response != null)
-    	{
-    		result = response.getResponseData();
-    	}
-    	
-    	if (outPath == null || outPath.equals(""))
-        {
-            Assert.assertNotNull(result);
-            return result.length;
-        }
+    	File response = (File)responseObject;
 
-        return 0;
+    	return response.length();
+
+    	//if (outPath == null || outPath.equals(""))
+        //{
+        //    Assert.assertNotNull(result);
+        //    return result.length;
+        //}
+
+        //return 0;
     }
 
     /**
@@ -440,36 +441,9 @@ public abstract class ApiTester
      */
     private long obtainPostResponseLength(String inputPath, String outPath, String storage, Method requestInvoker) throws Exception
     {
-        ResponseMessage inputDownloadResponse = StorageApi.GetDownload(inputPath, "", storage);
-        Assert.assertEquals((int)inputDownloadResponse.getCode(), 200);
-        InputStream stream = null;
-        byte[] result = null;
-        try 
-        {
-        	stream = inputDownloadResponse.getInputStream();
-        	Object responseObject = requestInvoker.invoke(this, StreamHelper.readAsBytes(stream), outPath);
-        	Assert.assertNotNull(responseObject);
-        	ApiResponse response = (ApiResponse)responseObject;
-        	if (response != null)
-        	{
-        		result = response.getResponseData();
-        	}
-        }
-        finally
-        {
-        	if (stream != null)
-        	{
-        		stream.close();
-        	}
-        }
-        
-        if (outPath == null || outPath.equals(""))
-        {
-            Assert.assertNotNull(result);
-            return result.length;
-        }
-
-        return 0;
+        File inputDownloadResponse = StorageApi.GetDownload(inputPath, "", storage);
+        File responseObject = (File)requestInvoker.invoke(this, inputDownloadResponse, outPath);
+        return responseObject.length();
     }
 
     /**
@@ -534,20 +508,20 @@ public abstract class ApiTester
                 }
             }
 
-            StorageFileInfo referenceInfo = getStorageFileInfo(referencePath, resultFileName, storage);
-            if (referenceInfo == null)
+            FileResponse referenceInfo = getStorageFileInfo(referencePath, resultFileName, storage);
+            if (referenceInfo == null && !AutoRecoverReference)
             {
                 throw new Exception(
-                		String.format("Reference result file %s doesn't exist in the specified storage folder: %s. Please, upload it first.", 
-                				resultFileName, referencePath));
+                        String.format("Reference result file %s doesn't exist in the specified storage folder: %s. Please, upload it first.",
+                                resultFileName, referencePath));
             }
 
-            long referenceLength = referenceInfo.getSize();
+            long referenceLength = referenceInfo == null ? 0 : referenceInfo.getSize();
             long responseLength = invokeRequestFunc.call();
             
             if (saveResultToStorage)
             {
-                StorageFileInfo resultInfo = getStorageFileInfo(folder, resultFileName, storage);
+                FileResponse resultInfo = getStorageFileInfo(folder, resultFileName, storage);
                 if (resultInfo == null)
                 {
                     throw new Exception(
@@ -586,7 +560,9 @@ public abstract class ApiTester
         {
             if (saveResultToStorage && !passed && this.AutoRecoverReference && StorageApi.GetIsExist(outPath, "", storage).getFileExist().getIsExist())
             {
-                MoveFileResponse moveFileResponse = StorageApi.PostMoveFile(outPath, referencePath + resultFileName, "", storage, storage);
+                File download = StorageApi.GetDownload(outPath, null, storage);
+
+                ResponseMessage moveFileResponse = StorageApi.PutCreate(referencePath + "/" + resultFileName, null, storage, download);
                 Assert.assertEquals(moveFileResponse.getStatus(), "OK");
             }
             else if (saveResultToStorage && this.RemoveResult && StorageApi.GetIsExist(outPath, "", storage).getFileExist().getIsExist())

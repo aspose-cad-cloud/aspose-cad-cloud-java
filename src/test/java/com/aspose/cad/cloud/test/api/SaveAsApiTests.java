@@ -33,6 +33,7 @@ import com.aspose.cad.cloud.*;
 import com.aspose.cad.cloud.test.base.ApiTester;
 import com.aspose.cad.cloud.test.base.StorageFileInfo;
 
+import com.aspose.storage.model.FileResponse;
 import junitparams.*;
 
 import org.junit.Test;
@@ -102,7 +103,7 @@ public class SaveAsApiTests extends ApiTester {
             }
         }
 		
-		for (StorageFileInfo inputFile : InputTestFiles)
+		for (FileResponse inputFile : InputTestFiles)
 		{
 			if (inputFile.getName().endsWith(formatExtension))
             {
@@ -147,18 +148,18 @@ public class SaveAsApiTests extends ApiTester {
      */
     @Test
 	@Parameters({
-			".dwg, false,",
 			".dwg, true,",
+            //".dwg, false,",
 			".dxf, true,",
-			".dxf, false,",
+			//".dxf, false,",
 			".dgn, true,",
-			".dgn, false,",
+			//".dgn, false,",
 			".stl, true,",
-			".stl, false,",
+			//".stl, false,",
 			".ifc, true,",
-			".ifc, false,",
+			//".ifc, false,",
 			".dwf, true,",
-			".dwf, false,"
+			//".dwf, false,"
 	})
     public void postImageSaveAsTest(String formatExtension, Boolean saveResultToStorage, String... additionalExportFormats) throws Exception {
     	byte[] imageData = null;
@@ -179,7 +180,7 @@ public class SaveAsApiTests extends ApiTester {
             }
         }
 		
-		for (StorageFileInfo inputFile : InputTestFiles)
+		for (FileResponse inputFile : InputTestFiles)
 		{
 			if (inputFile.getName().endsWith(formatExtension))
             {
@@ -199,7 +200,7 @@ public class SaveAsApiTests extends ApiTester {
 				
 				Method propertiesTester = SaveAsApiTests.class.getDeclaredMethod("postImageSaveAsPropertiesTester", CadResponse.class, CadResponse.class);
 				propertiesTester.setAccessible(true);
-				Method requestInvoker = SaveAsApiTests.class.getDeclaredMethod("postImageSaveAsPostRequestInvoker", byte[].class, String.class);
+				Method requestInvoker = SaveAsApiTests.class.getDeclaredMethod("postImageSaveAsPostRequestInvoker", File.class, String.class);
 				requestInvoker.setAccessible(true);
 			    this.testPostRequest(
 		            "postImageSaveAsTest; save result to storage: " + saveResultToStorage,  

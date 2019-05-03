@@ -32,6 +32,7 @@ import com.aspose.cad.cloud.*;
 import com.aspose.cad.cloud.test.base.ApiTester;
 import com.aspose.cad.cloud.test.base.StorageFileInfo;
 
+import com.aspose.storage.model.FileResponse;
 import junitparams.*;
 
 import org.junit.Test;
@@ -71,7 +72,7 @@ public class ResizeApiTests extends ApiTester {
      */
     @Test
 	@Parameters({
-			".dwg, false,"
+			".dwg, true,"
 	})
     public void getImageResizeTest(String formatExtension, Boolean saveResultToStorage, String... additionalExportFormats) throws Exception {
         String name = null;
@@ -92,7 +93,7 @@ public class ResizeApiTests extends ApiTester {
             }
         }
 		
-		for (StorageFileInfo inputFile : InputTestFiles)
+		for (FileResponse inputFile : InputTestFiles)
 		{
 			if (inputFile.getName().endsWith(formatExtension))
             {
@@ -140,7 +141,7 @@ public class ResizeApiTests extends ApiTester {
      */
     @Test
 	@Parameters({
-			".dwg, false,"
+			".dwg, true,"
 	})
     public void postImageResizeTest(String formatExtension, Boolean saveResultToStorage, String... additionalExportFormats) throws Exception {
     	byte[] imageData = null;
@@ -163,7 +164,7 @@ public class ResizeApiTests extends ApiTester {
             }
         }
 		
-		for (StorageFileInfo inputFile : InputTestFiles)
+		for (FileResponse inputFile : InputTestFiles)
 		{
 			if (inputFile.getName().endsWith(formatExtension))
             {
@@ -183,7 +184,7 @@ public class ResizeApiTests extends ApiTester {
 				
 				Method propertiesTester = ResizeApiTests.class.getDeclaredMethod("postImageResizePropertiesTester", CadResponse.class, CadResponse.class);
 				propertiesTester.setAccessible(true);
-				Method requestInvoker = ResizeApiTests.class.getDeclaredMethod("postImageResizePostRequestInvoker", byte[].class, String.class);
+				Method requestInvoker = ResizeApiTests.class.getDeclaredMethod("postImageResizePostRequestInvoker", File.class, String.class);
 				requestInvoker.setAccessible(true);
 			    this.testPostRequest(
 		            "postImageResizeTest; save result to storage: " + saveResultToStorage,  
