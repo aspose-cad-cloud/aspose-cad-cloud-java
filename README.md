@@ -75,12 +75,12 @@ All Aspose.CAD for Cloud SDKs, helper scripts and templates are licensed under [
 
 ## Contact Us
 Your feedback is very important to us. Please feel free to contact via
-+ [**Free Support Forum**](https://forum.aspose.cloud/c/CAD)
-+ [**Paid Support Helpdesk**](https://helpdesk.aspose.CAD/)
++ [**Free Support Forum**](https://forum.aspose.cloud/c/cad)
++ [**Paid Support Helpdesk**](https://helpdesk.aspose.cloud/)
 
 # Resources
-+ [**Web API reference**](https://apireference.aspose.cloud/CAD/)
-+ [**Website**](https://www.aspose.cloud)
-+ [**Product Home**](https://products.aspose.cloud/CAD/cloud)
-+ [**Documentation**](https://docs.aspose.cloud/display/CADcloud/Home)
-+ [**Blog**](https://blog.aspose.cloud/category/aspose-products/aspose.CAD-cloud/)
++ [**Web API reference**](https://apireference.aspose.cloud/cad/)
++ [**Website**](https://www.aspose.cloud/)
++ [**Product Home**](https://products.aspose.cloud/cad)
++ [**Documentation**](https://docs.aspose.cloud/display/cadcloud/Home)
++ [**Blog**](https://blog.aspose.cloud/category/cad/)
