@@ -93,7 +93,7 @@ public abstract class ApiTester
     /**
      * The default cloud storage
      */
-    protected final String DefaultStorage = "OCR";
+    protected String DefaultStorage = "First Storage";
 
     /**
      * The size difference division
@@ -148,7 +148,7 @@ public abstract class ApiTester
      */
     protected void createApiInstances() throws Exception
     {
-        this.createApiInstances(AppKey, AppSid, BaseUrl, "v1.1", AuthType.OAuth2, false);
+        this.createApiInstances(AppKey, AppSid, BaseUrl, "v3.0", AuthType.OAuth2, false);
     }
     
     /**
@@ -174,11 +174,21 @@ public abstract class ApiTester
                     appKey = accessData.AppKey;
                     appSid = accessData.AppSid;
                     baseUrl = accessData.BaseURL;
+
+                    if (accessData.Storage != null && !accessData.Storage.isEmpty())
+                    {
+                        DefaultStorage = accessData.Storage;
+                    }
                 }
                 else
                 {
                     throw new Exception("Please, specify valid access data (AppKey, AppSid, Base URL)");
                 }
+            }
+
+            if (!baseUrl.endsWith("/"))
+            {
+                baseUrl += "/";
             }
 
             ApiClient api = new ApiClient()
@@ -190,7 +200,7 @@ public abstract class ApiTester
             //new Configuration() appKey, appSid, baseUrl, apiVersion, authType, debug
 
             CadApi = new com.aspose.cad.cloud.api.CadApi(api);
-            StorageApi = new com.aspose.storage.api.StorageApi(baseUrl + apiVersion, appKey, appSid, debug);
+            StorageApi = new com.aspose.storage.api.StorageApi(baseUrl + "v1.1", appKey, appSid, debug);
             InputTestFiles = fetchInputTestFilesInfo();
     }
 
@@ -392,6 +402,11 @@ public abstract class ApiTester
      */
     private List<FileResponse> fetchInputTestFilesInfo() throws Exception
     {
+        if (!StorageApi.GetIsExist(CloudTestFolder, null, DefaultStorage).getFileExist().getIsExist())
+        {
+            StorageApi.PutCreateFolder(CloudTestFolder, DefaultStorage, null);
+        }
+
         FilesResponse filesResponse = StorageApi.GetListFiles(CloudTestFolder, DefaultStorage);
         //Assert.assertEquals((int)filesResponse.getCode(), 200);
         //InputStream stream = filesResponse.getInputStream();
@@ -532,10 +547,10 @@ public abstract class ApiTester
                 this.checkSizeDiff(referenceLength, resultInfo.getSize());
 
                 //CadResponse resultProperties =
-                //    CadApi.getImageProperties(new GetImagePropertiesRequest(resultFileName, folder, storage)).getCadResponse();
+                //    CadApi.getImageProperties(new GetDrawingPropertiesRequest(resultFileName, folder, storage)).getCadResponse();
                 //Assert.assertNotNull(resultProperties);
                 //CadResponse originalProperties =
-                //    CadApi.getImageProperties(new GetImagePropertiesRequest(inputFileName, folder, storage)).getCadResponse();
+                //    CadApi.getImageProperties(new GetDrawingPropertiesRequest(inputFileName, folder, storage)).getCadResponse();
                 //Assert.assertNotNull(originalProperties);
 
                 //if (propertiesTester != null)

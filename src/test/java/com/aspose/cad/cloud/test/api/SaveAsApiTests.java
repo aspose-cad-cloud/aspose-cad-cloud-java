@@ -26,7 +26,7 @@
 */
 package com.aspose.cad.cloud.test.api;
 
-import com.aspose.cad.cloud.CadResponse;
+import com.aspose.cad.cloud.model.CadResponse;
 import com.aspose.cad.cloud.invoker.ApiResponse;
 import com.aspose.cad.cloud.model.requests.*;
 import com.aspose.cad.cloud.*;
@@ -54,8 +54,8 @@ import java.util.Collections;
 @RunWith(JUnitParamsRunner.class)
 public class SaveAsApiTests extends ApiTester {
 
-	private GetImageSaveAsRequest getImageSaveAsRequest;
-	private PostImageSaveAsRequest postImageSaveAsRequest;
+	private GetDrawingSaveAsRequest getImageSaveAsRequest;
+	private PutDrawingSaveAsRequest postImageSaveAsRequest;
 	
 	@Before
     public void setUp() throws Exception { 
@@ -116,7 +116,7 @@ public class SaveAsApiTests extends ApiTester {
 			
 			for (String format : formatsToExport)
             {
-				getImageSaveAsRequest = new GetImageSaveAsRequest(name, format, folder, storage, null, outPath);
+				getImageSaveAsRequest = new GetDrawingSaveAsRequest(name, format, folder, outPath, null);
 				outName = name + "." + format;
 				
 				Method propertiesTester = SaveAsApiTests.class.getDeclaredMethod("getImageSaveAsPropertiesTester", CadResponse.class, CadResponse.class);
@@ -195,7 +195,7 @@ public class SaveAsApiTests extends ApiTester {
 			
 			for (String format : formatsToExport)
             {
-				postImageSaveAsRequest = new PostImageSaveAsRequest(imageFile, format, null, outPath, storage);
+				postImageSaveAsRequest = new PutDrawingSaveAsRequest(imageFile, format, outPath, storage);
 				outName = name + "." + format;
 				
 				Method propertiesTester = SaveAsApiTests.class.getDeclaredMethod("postImageSaveAsPropertiesTester", CadResponse.class, CadResponse.class);
@@ -226,9 +226,9 @@ public class SaveAsApiTests extends ApiTester {
 	 */
 	private File getImageSaveAsGetRequestInvoker(String name, String outPath) throws Exception
 	{
-		getImageSaveAsRequest.setName(name);
-		getImageSaveAsRequest.setOutPath(outPath);
-        return CadApi.getImageSaveAs(getImageSaveAsRequest);
+		getImageSaveAsRequest.setname(name);
+		getImageSaveAsRequest.setoutPath(outPath);
+        return CadApi.getDrawingSaveAs(getImageSaveAsRequest);
 	}
 	
 	/**
@@ -240,9 +240,9 @@ public class SaveAsApiTests extends ApiTester {
 	 */
 	private File postImageSaveAsPostRequestInvoker(File imageData, String outPath) throws Exception
 	{
-	    postImageSaveAsRequest.setDrawingData(imageData);
-		postImageSaveAsRequest.setOutPath(outPath);
-        return CadApi.postImageSaveAs(postImageSaveAsRequest);
+	    postImageSaveAsRequest.setdrawingData(imageData);
+		postImageSaveAsRequest.setoutPath(outPath);
+        return CadApi.putDrawingSaveAs(postImageSaveAsRequest);
 	}
 	
 	/**

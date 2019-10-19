@@ -19,12 +19,12 @@ CADApi CADApi = new CADApi("yourAppKey", "yourAppSID");
 // this GET request converts drawing files
 // nullable parameters are input file folder, Aspose storage name (if you have more than one storage and want to use non-default one), rasterization options and output file path 
 // if output file path is not set, resulting image is returned in a stream; otherwise, it's saved at the specified path in the storage and null is returned
-GetImageSaveAsRequest getSaveRequest = new GetImageSaveAsRequest("inputDrawing.dxf", "png", "InputFolder", null, null, "ResultFolder/resultImage.png");
+GetDrawingSaveAsRequest getSaveRequest = new GetDrawingSaveAsRequest("inputDrawing.dxf", "png", "InputFolder", null, null, "ResultFolder/resultImage.png");
 
 // returns ApiResponse with null response data value, saves result to storage
 CADApi.getImageSaveAs(getSaveRequest);
 
-GetImageSaveAsRequest getStreamRequest = new GetImageSaveAsRequest("inputDrawing.dwg", "png", "InputFolder", null, null, null);
+GetDrawingSaveAsRequest getStreamRequest = new GetDrawingSaveAsRequest("inputDrawing.dwg", "png", "InputFolder", null, null, null);
 
 // returns ApiResponse with resulting image bytes
 ApiResponse apiResponse = CADApi.getImageSaveAs(getStreamRequest);

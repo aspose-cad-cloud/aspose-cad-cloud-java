@@ -45,4 +45,9 @@ public class ServerAccessData
      * The base URL.
      */
 	public String BaseURL;
+
+    /**
+     * The storage to use
+     */
+    public String Storage;
 }

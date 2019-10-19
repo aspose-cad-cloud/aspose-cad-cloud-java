@@ -27,6 +27,7 @@
 package com.aspose.cad.cloud.test.api;
 
 import com.aspose.cad.cloud.invoker.ApiResponse;
+import com.aspose.cad.cloud.model.CadResponse;
 import com.aspose.cad.cloud.model.requests.*;
 import com.aspose.cad.cloud.*;
 import com.aspose.cad.cloud.test.base.ApiTester;
@@ -54,8 +55,8 @@ import java.util.Collections;
 @RunWith(JUnitParamsRunner.class)
 public class RotateFlipApiTests extends ApiTester {
 
-	private GetImageRotateFlipRequest getImageRotateFlipRequest;
-	private PostImageRotateFlipRequest postImageRotateFlipRequest;
+	private GetDrawingRotateFlipRequest getImageRotateFlipRequest;
+	private PutDrawingRotateFlipRequest postImageRotateFlipRequest;
 
     private String[] _rotateFlipMethods = new String[]
     {
@@ -114,7 +115,7 @@ public class RotateFlipApiTests extends ApiTester {
             {
                 for (String method : _rotateFlipMethods)
                 {
-                    getImageRotateFlipRequest = new GetImageRotateFlipRequest(name, format, method, folder, storage, outPath);
+                    getImageRotateFlipRequest = new GetDrawingRotateFlipRequest(name, format, method, folder, storage, outPath);
                     outName = name + "_" + method + "." + format;
 
                     Method propertiesTester = RotateFlipApiTests.class.getDeclaredMethod("getImageRotateFlipPropertiesTester", CadResponse.class, CadResponse.class);
@@ -189,7 +190,7 @@ public class RotateFlipApiTests extends ApiTester {
                 for (String method : _rotateFlipMethods)
                 {
                     outName = name + "_" + method + "." + format;
-                    postImageRotateFlipRequest = new PostImageRotateFlipRequest(imageFile, format, method, outPath);
+                    postImageRotateFlipRequest = new PutDrawingRotateFlipRequest(imageFile, format, method, outPath, null);
 
                     Method propertiesTester = RotateFlipApiTests.class.getDeclaredMethod("postImageRotateFlipPropertiesTester", CadResponse.class, CadResponse.class);
                     propertiesTester.setAccessible(true);
@@ -222,9 +223,9 @@ public class RotateFlipApiTests extends ApiTester {
 	 */
 	private File getImageRotateFlipGetRequestInvoker(String name, String outPath) throws Exception
 	{
-		getImageRotateFlipRequest.setName(name);
-		getImageRotateFlipRequest.setOutPath(outPath);
-        return CadApi.getImageRotateFlip(getImageRotateFlipRequest);
+		getImageRotateFlipRequest.setname(name);
+		getImageRotateFlipRequest.setoutPath(outPath);
+        return CadApi.getDrawingRotateFlip(getImageRotateFlipRequest);
 	}
 
 	/**
@@ -236,9 +237,9 @@ public class RotateFlipApiTests extends ApiTester {
 	 */
 	private File postImageRotateFlipPostRequestInvoker(File imageData, String outPath) throws Exception
 	{
-	    postImageRotateFlipRequest.setDrawingData(imageData);
-		postImageRotateFlipRequest.setOutPath(outPath);
-        return CadApi.postImageRotateFlip(postImageRotateFlipRequest);
+	    postImageRotateFlipRequest.setdrawingData(imageData);
+		postImageRotateFlipRequest.setoutPath(outPath);
+        return CadApi.putDrawingRotateFlip(postImageRotateFlipRequest);
 	}
 	
 	/**

@@ -26,3 +26,4 @@ build
 .project
 .idea/
 /TestData/serverAccess.json
+/*.log

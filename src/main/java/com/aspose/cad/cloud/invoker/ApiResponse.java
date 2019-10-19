@@ -26,7 +26,7 @@
 */
 package com.aspose.cad.cloud.invoker;
 
-import com.aspose.cad.cloud.CadResponse;
+import com.aspose.cad.cloud.model.CadResponse;
 import com.aspose.cad.cloud.SaaSposeResponse;
 
 /**

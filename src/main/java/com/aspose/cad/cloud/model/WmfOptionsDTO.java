@@ -29,15 +29,46 @@ package com.aspose.cad.cloud.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import com.aspose.cad.cloud.model.SaaSposeResponse;
+import com.aspose.cad.cloud.model.CadRasterizationOptionsDTO;
+import com.aspose.cad.cloud.model.ImageOptionsBaseDTO;
+import com.aspose.cad.cloud.model.ResolutionSetting;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import java.io.IOException;
+import java.util.List;
 
 /**
- * Represents properties of the image.
+ * Export options for WMF format
  */
-@ApiModel(description = "Represents properties of the image.")
+@ApiModel(description = "Export options for WMF format")
 
-public class ImagePropertiesResponse extends SaaSposeResponse {
+public class WmfOptionsDTO extends ImageOptionsBaseDTO {
+  @SerializedName("BitsPerPixel")
+  private Integer bitsPerPixel = null;
+
+  public WmfOptionsDTO bitsPerPixel(Integer bitsPerPixel) {
+    this.bitsPerPixel = bitsPerPixel;
+    return this;
+  }
+
+   /**
+   * Bits per pixel for resulting image
+   * @return bitsPerPixel
+  **/
+  @ApiModelProperty(required = true, value = "Bits per pixel for resulting image")
+  public Integer getBitsPerPixel() {
+    return bitsPerPixel;
+  }
+
+  public void setBitsPerPixel(Integer bitsPerPixel) {
+    this.bitsPerPixel = bitsPerPixel;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -47,20 +78,23 @@ public class ImagePropertiesResponse extends SaaSposeResponse {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    return super.equals(o);
+    WmfOptionsDTO wmfOptionsDTO = (WmfOptionsDTO) o;
+    return Objects.equals(this.bitsPerPixel, wmfOptionsDTO.bitsPerPixel) &&
+        super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(super.hashCode());
+    return Objects.hash(bitsPerPixel, super.hashCode());
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ImagePropertiesResponse {\n");
+    sb.append("class WmfOptionsDTO {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    sb.append("    bitsPerPixel: ").append(toIndentedString(bitsPerPixel)).append("\n");
     sb.append("}");
     return sb.toString();
   }

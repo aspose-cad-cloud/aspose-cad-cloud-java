@@ -59,186 +59,36 @@ public class CadApi {
     }
 
     /**
-     * Build call for getChangeImageScale
+     * Build call for getDrawingProperties
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private com.squareup.okhttp.Call getChangeImageScaleCall(GetChangeImageScaleRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/cad/{name}/resize"
-            .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(request.getName().toString()));
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "format", request.getFormat());
-        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "newWidth", request.getNewWidth());
-        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "newHeight", request.getNewHeight());
-        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "folder", request.getFolder());
-        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "storage", request.getStorage());
-        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "outPath", request.getOutPath());
-
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        
-        Map<String, Object> localVarFormParams = new LinkedHashMap<String, Object>();
-        
-        final String[] localVarAccepts = {
-            "multipart/form-data"
-        };
-        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
-
-        final String[] localVarContentTypes = {
-            "application/xml", "application/json"
-        };
-        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
-
-        if (progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
-                @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
-                    return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
-                }
-            });
-        }
-
-        String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getChangeImageScaleValidateBeforeCall(GetChangeImageScaleRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
-        // verify the required parameter 'Name' is set
-        if (request.getName() == null) {
-          throw new ApiException(BadRequest, "Missing the required parameter 'Name' when calling getChangeImageScale");
-        }
-        
-        // verify the required parameter 'Format' is set
-        if (request.getFormat() == null) {
-          throw new ApiException(BadRequest, "Missing the required parameter 'Format' when calling getChangeImageScale");
-        }
-        
-        // verify the required parameter 'NewWidth' is set
-        if (request.getNewWidth() == null) {
-          throw new ApiException(BadRequest, "Missing the required parameter 'NewWidth' when calling getChangeImageScale");
-        }
-        
-        // verify the required parameter 'NewHeight' is set
-        if (request.getNewHeight() == null) {
-          throw new ApiException(BadRequest, "Missing the required parameter 'NewHeight' when calling getChangeImageScale");
-        }
-        
-
-        com.squareup.okhttp.Call call = getChangeImageScaleCall(request, progressListener, progressRequestListener);
-        return call;
-
-    }
-
-    /**
-     * Change scale of an existing image
-     * 
-     * @return File
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     */
-    public File getChangeImageScale(GetChangeImageScaleRequest request) throws ApiException {
-        try {
-            ApiResponse<File> resp = getChangeImageScaleWithHttpInfo(request);
-            return resp.getData();
-        }
-        catch (ApiException ex) {
-            if (ex.getCode() == NotAuth) {
-                apiClient.requestToken();
-                ApiResponse<File> resp = getChangeImageScaleWithHttpInfo(request);
-                return resp.getData();
-            }
-            throw ex;
-        }
-    }
-
-    /**
-     * Change scale of an existing image
-     * 
-     * @return ApiResponse&lt;File&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     */
-    private ApiResponse<File> getChangeImageScaleWithHttpInfo(GetChangeImageScaleRequest request) throws ApiException {
-        com.squareup.okhttp.Call call = getChangeImageScaleValidateBeforeCall(request, null, null);
-        Type localVarReturnType = new TypeToken<File>() { }.getType();
-        return apiClient.execute(call, localVarReturnType);
-    }
-
-    /**
-     * Change scale of an existing image (asynchronously)
-     * 
-     * @param callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     */
-    public com.squareup.okhttp.Call getChangeImageScaleAsync(GetChangeImageScaleRequest request, final ApiCallback<File> callback) throws ApiException {
-
-        ProgressResponseBody.ProgressListener progressListener = null;
-        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
-
-        if (callback != null) {
-            progressListener = new ProgressResponseBody.ProgressListener() {
-                @Override
-                public void update(long bytesRead, long contentLength, boolean done) {
-                    callback.onDownloadProgress(bytesRead, contentLength, done);
-                }
-            };
-
-            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
-                @Override
-                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
-                    callback.onUploadProgress(bytesWritten, contentLength, done);
-                }
-            };
-        }
-
-        com.squareup.okhttp.Call call = getChangeImageScaleValidateBeforeCall(request, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<File>() { }.getType();
-        apiClient.executeAsync(call, localVarReturnType, callback);
-        return call;
-    }
-    /**
-     * Build call for getImageProperties
-     * @param progressListener Progress listener
-     * @param progressRequestListener Progress request listener
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     */
-    private com.squareup.okhttp.Call getImagePropertiesCall(GetImagePropertiesRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call getDrawingPropertiesCall(GetDrawingPropertiesRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
         String localVarPath = "/cad/{name}/properties"
-            .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(request.getName().toString()));
+            .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(request.getname().toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "folder", request.getFolder());
-        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "storage", request.getStorage());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "folder", request.getfolder());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "storage", request.getstorage());
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         
         Map<String, Object> localVarFormParams = new LinkedHashMap<String, Object>();
         
         final String[] localVarAccepts = {
-            "application/xml", "application/json"
+            "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/xml", "application/json"
+            "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
@@ -255,39 +105,39 @@ public class CadApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] {  };
+        String[] localVarAuthNames = new String[] { "JWT" };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getImagePropertiesValidateBeforeCall(GetImagePropertiesRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call getDrawingPropertiesValidateBeforeCall(GetDrawingPropertiesRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
-        // verify the required parameter 'Name' is set
-        if (request.getName() == null) {
-          throw new ApiException(BadRequest, "Missing the required parameter 'Name' when calling getImageProperties");
+        // verify the required parameter 'name' is set
+        if (request.getname() == null) {
+          throw new ApiException(BadRequest, "Missing the required parameter 'name' when calling getDrawingProperties");
         }
         
 
-        com.squareup.okhttp.Call call = getImagePropertiesCall(request, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getDrawingPropertiesCall(request, progressListener, progressRequestListener);
         return call;
 
     }
 
     /**
-     * Get properties of an image.
+     * Retrieves info about an existing drawing.             
      * 
-     * @return ImagePropertiesResponse
+     * @return CadResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ImagePropertiesResponse getImageProperties(GetImagePropertiesRequest request) throws ApiException {
+    public CadResponse getDrawingProperties(GetDrawingPropertiesRequest request) throws ApiException {
         try {
-            ApiResponse<ImagePropertiesResponse> resp = getImagePropertiesWithHttpInfo(request);
+            ApiResponse<CadResponse> resp = getDrawingPropertiesWithHttpInfo(request);
             return resp.getData();
         }
         catch (ApiException ex) {
             if (ex.getCode() == NotAuth) {
                 apiClient.requestToken();
-                ApiResponse<ImagePropertiesResponse> resp = getImagePropertiesWithHttpInfo(request);
+                ApiResponse<CadResponse> resp = getDrawingPropertiesWithHttpInfo(request);
                 return resp.getData();
             }
             throw ex;
@@ -295,25 +145,25 @@ public class CadApi {
     }
 
     /**
-     * Get properties of an image.
+     * Retrieves info about an existing drawing.             
      * 
-     * @return ApiResponse&lt;ImagePropertiesResponse&gt;
+     * @return ApiResponse&lt;CadResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    private ApiResponse<ImagePropertiesResponse> getImagePropertiesWithHttpInfo(GetImagePropertiesRequest request) throws ApiException {
-        com.squareup.okhttp.Call call = getImagePropertiesValidateBeforeCall(request, null, null);
-        Type localVarReturnType = new TypeToken<ImagePropertiesResponse>() { }.getType();
+    private ApiResponse<CadResponse> getDrawingPropertiesWithHttpInfo(GetDrawingPropertiesRequest request) throws ApiException {
+        com.squareup.okhttp.Call call = getDrawingPropertiesValidateBeforeCall(request, null, null);
+        Type localVarReturnType = new TypeToken<CadResponse>() { }.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     * Get properties of an image. (asynchronously)
+     * Retrieves info about an existing drawing.              (asynchronously)
      * 
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getImagePropertiesAsync(GetImagePropertiesRequest request, final ApiCallback<ImagePropertiesResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call getDrawingPropertiesAsync(GetDrawingPropertiesRequest request, final ApiCallback<CadResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -334,45 +184,195 @@ public class CadApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getImagePropertiesValidateBeforeCall(request, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<ImagePropertiesResponse>() { }.getType();
+        com.squareup.okhttp.Call call = getDrawingPropertiesValidateBeforeCall(request, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<CadResponse>() { }.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
     /**
-     * Build call for getImageRotateFlip
+     * Build call for getDrawingResize
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private com.squareup.okhttp.Call getImageRotateFlipCall(GetImageRotateFlipRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call getDrawingResizeCall(GetDrawingResizeRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/cad/{name}/resize"
+            .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(request.getname().toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "outputFormat", request.getoutputFormat());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "newWidth", request.getnewWidth());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "newHeight", request.getnewHeight());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "folder", request.getfolder());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "outPath", request.getoutPath());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "storage", request.getstorage());
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        
+        Map<String, Object> localVarFormParams = new LinkedHashMap<String, Object>();
+        
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "JWT" };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call getDrawingResizeValidateBeforeCall(GetDrawingResizeRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'name' is set
+        if (request.getname() == null) {
+          throw new ApiException(BadRequest, "Missing the required parameter 'name' when calling getDrawingResize");
+        }
+        
+        // verify the required parameter 'outputFormat' is set
+        if (request.getoutputFormat() == null) {
+          throw new ApiException(BadRequest, "Missing the required parameter 'outputFormat' when calling getDrawingResize");
+        }
+        
+        // verify the required parameter 'newWidth' is set
+        if (request.getnewWidth() == null) {
+          throw new ApiException(BadRequest, "Missing the required parameter 'newWidth' when calling getDrawingResize");
+        }
+        
+        // verify the required parameter 'newHeight' is set
+        if (request.getnewHeight() == null) {
+          throw new ApiException(BadRequest, "Missing the required parameter 'newHeight' when calling getDrawingResize");
+        }
+        
+
+        com.squareup.okhttp.Call call = getDrawingResizeCall(request, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Resize an existing drawing.
+     * 
+     * @return File
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public File getDrawingResize(GetDrawingResizeRequest request) throws ApiException {
+        try {
+            ApiResponse<File> resp = getDrawingResizeWithHttpInfo(request);
+            return resp.getData();
+        }
+        catch (ApiException ex) {
+            if (ex.getCode() == NotAuth) {
+                apiClient.requestToken();
+                ApiResponse<File> resp = getDrawingResizeWithHttpInfo(request);
+                return resp.getData();
+            }
+            throw ex;
+        }
+    }
+
+    /**
+     * Resize an existing drawing.
+     * 
+     * @return ApiResponse&lt;File&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    private ApiResponse<File> getDrawingResizeWithHttpInfo(GetDrawingResizeRequest request) throws ApiException {
+        com.squareup.okhttp.Call call = getDrawingResizeValidateBeforeCall(request, null, null);
+        Type localVarReturnType = new TypeToken<File>() { }.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Resize an existing drawing. (asynchronously)
+     * 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call getDrawingResizeAsync(GetDrawingResizeRequest request, final ApiCallback<File> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = getDrawingResizeValidateBeforeCall(request, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<File>() { }.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for getDrawingRotateFlip
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    private com.squareup.okhttp.Call getDrawingRotateFlipCall(GetDrawingRotateFlipRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
         String localVarPath = "/cad/{name}/rotateflip"
-            .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(request.getName().toString()));
+            .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(request.getname().toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "format", request.getFormat());
-        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "method", request.getMethod());
-        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "folder", request.getFolder());
-        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "storage", request.getStorage());
-        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "outPath", request.getOutPath());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "outputFormat", request.getoutputFormat());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "rotateFlipType", request.getrotateFlipType());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "folder", request.getfolder());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "outPath", request.getoutPath());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "storage", request.getstorage());
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         
         Map<String, Object> localVarFormParams = new LinkedHashMap<String, Object>();
         
         final String[] localVarAccepts = {
-            "multipart/form-data"
+            "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/xml", "application/json"
+            "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
@@ -389,49 +389,49 @@ public class CadApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] {  };
+        String[] localVarAuthNames = new String[] { "JWT" };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getImageRotateFlipValidateBeforeCall(GetImageRotateFlipRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call getDrawingRotateFlipValidateBeforeCall(GetDrawingRotateFlipRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
-        // verify the required parameter 'Name' is set
-        if (request.getName() == null) {
-          throw new ApiException(BadRequest, "Missing the required parameter 'Name' when calling getImageRotateFlip");
+        // verify the required parameter 'name' is set
+        if (request.getname() == null) {
+          throw new ApiException(BadRequest, "Missing the required parameter 'name' when calling getDrawingRotateFlip");
         }
         
-        // verify the required parameter 'Format' is set
-        if (request.getFormat() == null) {
-          throw new ApiException(BadRequest, "Missing the required parameter 'Format' when calling getImageRotateFlip");
+        // verify the required parameter 'outputFormat' is set
+        if (request.getoutputFormat() == null) {
+          throw new ApiException(BadRequest, "Missing the required parameter 'outputFormat' when calling getDrawingRotateFlip");
         }
         
-        // verify the required parameter 'Method' is set
-        if (request.getMethod() == null) {
-          throw new ApiException(BadRequest, "Missing the required parameter 'Method' when calling getImageRotateFlip");
+        // verify the required parameter 'rotateFlipType' is set
+        if (request.getrotateFlipType() == null) {
+          throw new ApiException(BadRequest, "Missing the required parameter 'rotateFlipType' when calling getDrawingRotateFlip");
         }
         
 
-        com.squareup.okhttp.Call call = getImageRotateFlipCall(request, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getDrawingRotateFlipCall(request, progressListener, progressRequestListener);
         return call;
 
     }
 
     /**
-     * Rotate and flip existing image
+     * Rotate/flip an existing drawing.
      * 
      * @return File
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public File getImageRotateFlip(GetImageRotateFlipRequest request) throws ApiException {
+    public File getDrawingRotateFlip(GetDrawingRotateFlipRequest request) throws ApiException {
         try {
-            ApiResponse<File> resp = getImageRotateFlipWithHttpInfo(request);
+            ApiResponse<File> resp = getDrawingRotateFlipWithHttpInfo(request);
             return resp.getData();
         }
         catch (ApiException ex) {
             if (ex.getCode() == NotAuth) {
                 apiClient.requestToken();
-                ApiResponse<File> resp = getImageRotateFlipWithHttpInfo(request);
+                ApiResponse<File> resp = getDrawingRotateFlipWithHttpInfo(request);
                 return resp.getData();
             }
             throw ex;
@@ -439,25 +439,25 @@ public class CadApi {
     }
 
     /**
-     * Rotate and flip existing image
+     * Rotate/flip an existing drawing.
      * 
      * @return ApiResponse&lt;File&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    private ApiResponse<File> getImageRotateFlipWithHttpInfo(GetImageRotateFlipRequest request) throws ApiException {
-        com.squareup.okhttp.Call call = getImageRotateFlipValidateBeforeCall(request, null, null);
+    private ApiResponse<File> getDrawingRotateFlipWithHttpInfo(GetDrawingRotateFlipRequest request) throws ApiException {
+        com.squareup.okhttp.Call call = getDrawingRotateFlipValidateBeforeCall(request, null, null);
         Type localVarReturnType = new TypeToken<File>() { }.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     * Rotate and flip existing image (asynchronously)
+     * Rotate/flip an existing drawing. (asynchronously)
      * 
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getImageRotateFlipAsync(GetImageRotateFlipRequest request, final ApiCallback<File> callback) throws ApiException {
+    public com.squareup.okhttp.Call getDrawingRotateFlipAsync(GetDrawingRotateFlipRequest request, final ApiCallback<File> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -478,45 +478,44 @@ public class CadApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getImageRotateFlipValidateBeforeCall(request, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getDrawingRotateFlipValidateBeforeCall(request, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<File>() { }.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
     /**
-     * Build call for getImageSaveAs
+     * Build call for getDrawingSaveAs
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private com.squareup.okhttp.Call getImageSaveAsCall(GetImageSaveAsRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call getDrawingSaveAsCall(GetDrawingSaveAsRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/cad/{name}/saveAs"
-            .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(request.getName().toString()));
+        String localVarPath = "/cad/{name}/saveAs/{outputFormat}"
+            .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(request.getname().toString()))
+            .replaceAll("\\{" + "outputFormat" + "\\}", apiClient.escapeString(request.getoutputFormat().toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "format", request.getFormat());
-        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "folder", request.getFolder());
-        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "storage", request.getStorage());
-        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "rasterOptions", request.getRasterOptions());
-        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "outPath", request.getOutPath());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "folder", request.getfolder());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "outPath", request.getoutPath());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "storage", request.getstorage());
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         
         Map<String, Object> localVarFormParams = new LinkedHashMap<String, Object>();
         
         final String[] localVarAccepts = {
-            "multipart/form-data"
+            "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/xml", "application/json"
+            "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
@@ -533,44 +532,44 @@ public class CadApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] {  };
+        String[] localVarAuthNames = new String[] { "JWT" };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getImageSaveAsValidateBeforeCall(GetImageSaveAsRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call getDrawingSaveAsValidateBeforeCall(GetDrawingSaveAsRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
-        // verify the required parameter 'Name' is set
-        if (request.getName() == null) {
-          throw new ApiException(BadRequest, "Missing the required parameter 'Name' when calling getImageSaveAs");
+        // verify the required parameter 'name' is set
+        if (request.getname() == null) {
+          throw new ApiException(BadRequest, "Missing the required parameter 'name' when calling getDrawingSaveAs");
         }
         
-        // verify the required parameter 'Format' is set
-        if (request.getFormat() == null) {
-          throw new ApiException(BadRequest, "Missing the required parameter 'Format' when calling getImageSaveAs");
+        // verify the required parameter 'outputFormat' is set
+        if (request.getoutputFormat() == null) {
+          throw new ApiException(BadRequest, "Missing the required parameter 'outputFormat' when calling getDrawingSaveAs");
         }
         
 
-        com.squareup.okhttp.Call call = getImageSaveAsCall(request, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getDrawingSaveAsCall(request, progressListener, progressRequestListener);
         return call;
 
     }
 
     /**
-     * Export existing drawing to another format
+     * Export an existing drawing to another format.
      * 
      * @return File
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public File getImageSaveAs(GetImageSaveAsRequest request) throws ApiException {
+    public File getDrawingSaveAs(GetDrawingSaveAsRequest request) throws ApiException {
         try {
-            ApiResponse<File> resp = getImageSaveAsWithHttpInfo(request);
+            ApiResponse<File> resp = getDrawingSaveAsWithHttpInfo(request);
             return resp.getData();
         }
         catch (ApiException ex) {
             if (ex.getCode() == NotAuth) {
                 apiClient.requestToken();
-                ApiResponse<File> resp = getImageSaveAsWithHttpInfo(request);
+                ApiResponse<File> resp = getDrawingSaveAsWithHttpInfo(request);
                 return resp.getData();
             }
             throw ex;
@@ -578,25 +577,25 @@ public class CadApi {
     }
 
     /**
-     * Export existing drawing to another format
+     * Export an existing drawing to another format.
      * 
      * @return ApiResponse&lt;File&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    private ApiResponse<File> getImageSaveAsWithHttpInfo(GetImageSaveAsRequest request) throws ApiException {
-        com.squareup.okhttp.Call call = getImageSaveAsValidateBeforeCall(request, null, null);
+    private ApiResponse<File> getDrawingSaveAsWithHttpInfo(GetDrawingSaveAsRequest request) throws ApiException {
+        com.squareup.okhttp.Call call = getDrawingSaveAsValidateBeforeCall(request, null, null);
         Type localVarReturnType = new TypeToken<File>() { }.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     * Export existing drawing to another format (asynchronously)
+     * Export an existing drawing to another format. (asynchronously)
      * 
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getImageSaveAsAsync(GetImageSaveAsRequest request, final ApiCallback<File> callback) throws ApiException {
+    public com.squareup.okhttp.Call getDrawingSaveAsAsync(GetDrawingSaveAsRequest request, final ApiCallback<File> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -617,19 +616,2407 @@ public class CadApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getImageSaveAsValidateBeforeCall(request, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getDrawingSaveAsValidateBeforeCall(request, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<File>() { }.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
     /**
-     * Build call for postChangeImageScale
+     * Build call for postDrawingBmp
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private com.squareup.okhttp.Call postChangeImageScaleCall(PostChangeImageScaleRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call postDrawingBmpCall(PostDrawingBmpRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = request.getoptions();
+
+        // create path and map variables
+        String localVarPath = "/cad/{name}/bmp"
+            .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(request.getname().toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "folder", request.getfolder());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "outPath", request.getoutPath());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "storage", request.getstorage());
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        
+        Map<String, Object> localVarFormParams = new LinkedHashMap<String, Object>();
+        
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "JWT" };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call postDrawingBmpValidateBeforeCall(PostDrawingBmpRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'name' is set
+        if (request.getname() == null) {
+          throw new ApiException(BadRequest, "Missing the required parameter 'name' when calling postDrawingBmp");
+        }
+        
+
+        com.squareup.okhttp.Call call = postDrawingBmpCall(request, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Export an existing drawing to BMP format with export settings specified.
+     * 
+     * @return File
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public File postDrawingBmp(PostDrawingBmpRequest request) throws ApiException {
+        try {
+            ApiResponse<File> resp = postDrawingBmpWithHttpInfo(request);
+            return resp.getData();
+        }
+        catch (ApiException ex) {
+            if (ex.getCode() == NotAuth) {
+                apiClient.requestToken();
+                ApiResponse<File> resp = postDrawingBmpWithHttpInfo(request);
+                return resp.getData();
+            }
+            throw ex;
+        }
+    }
+
+    /**
+     * Export an existing drawing to BMP format with export settings specified.
+     * 
+     * @return ApiResponse&lt;File&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    private ApiResponse<File> postDrawingBmpWithHttpInfo(PostDrawingBmpRequest request) throws ApiException {
+        com.squareup.okhttp.Call call = postDrawingBmpValidateBeforeCall(request, null, null);
+        Type localVarReturnType = new TypeToken<File>() { }.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Export an existing drawing to BMP format with export settings specified. (asynchronously)
+     * 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call postDrawingBmpAsync(PostDrawingBmpRequest request, final ApiCallback<File> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = postDrawingBmpValidateBeforeCall(request, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<File>() { }.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for postDrawingGif
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    private com.squareup.okhttp.Call postDrawingGifCall(PostDrawingGifRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = request.getoptions();
+
+        // create path and map variables
+        String localVarPath = "/cad/{name}/gif"
+            .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(request.getname().toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "folder", request.getfolder());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "outPath", request.getoutPath());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "storage", request.getstorage());
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        
+        Map<String, Object> localVarFormParams = new LinkedHashMap<String, Object>();
+        
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "JWT" };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call postDrawingGifValidateBeforeCall(PostDrawingGifRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'name' is set
+        if (request.getname() == null) {
+          throw new ApiException(BadRequest, "Missing the required parameter 'name' when calling postDrawingGif");
+        }
+        
+
+        com.squareup.okhttp.Call call = postDrawingGifCall(request, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Export an existing drawing into GIF format with export settings specified.
+     * 
+     * @return File
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public File postDrawingGif(PostDrawingGifRequest request) throws ApiException {
+        try {
+            ApiResponse<File> resp = postDrawingGifWithHttpInfo(request);
+            return resp.getData();
+        }
+        catch (ApiException ex) {
+            if (ex.getCode() == NotAuth) {
+                apiClient.requestToken();
+                ApiResponse<File> resp = postDrawingGifWithHttpInfo(request);
+                return resp.getData();
+            }
+            throw ex;
+        }
+    }
+
+    /**
+     * Export an existing drawing into GIF format with export settings specified.
+     * 
+     * @return ApiResponse&lt;File&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    private ApiResponse<File> postDrawingGifWithHttpInfo(PostDrawingGifRequest request) throws ApiException {
+        com.squareup.okhttp.Call call = postDrawingGifValidateBeforeCall(request, null, null);
+        Type localVarReturnType = new TypeToken<File>() { }.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Export an existing drawing into GIF format with export settings specified. (asynchronously)
+     * 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call postDrawingGifAsync(PostDrawingGifRequest request, final ApiCallback<File> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = postDrawingGifValidateBeforeCall(request, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<File>() { }.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for postDrawingJpeg
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    private com.squareup.okhttp.Call postDrawingJpegCall(PostDrawingJpegRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = request.getoptions();
+
+        // create path and map variables
+        String localVarPath = "/cad/{name}/jpeg"
+            .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(request.getname().toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "folder", request.getfolder());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "outPath", request.getoutPath());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "storage", request.getstorage());
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        
+        Map<String, Object> localVarFormParams = new LinkedHashMap<String, Object>();
+        
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "JWT" };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call postDrawingJpegValidateBeforeCall(PostDrawingJpegRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'name' is set
+        if (request.getname() == null) {
+          throw new ApiException(BadRequest, "Missing the required parameter 'name' when calling postDrawingJpeg");
+        }
+        
+
+        com.squareup.okhttp.Call call = postDrawingJpegCall(request, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Export an existing drawing into JPEG format with export settings specified.
+     * 
+     * @return File
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public File postDrawingJpeg(PostDrawingJpegRequest request) throws ApiException {
+        try {
+            ApiResponse<File> resp = postDrawingJpegWithHttpInfo(request);
+            return resp.getData();
+        }
+        catch (ApiException ex) {
+            if (ex.getCode() == NotAuth) {
+                apiClient.requestToken();
+                ApiResponse<File> resp = postDrawingJpegWithHttpInfo(request);
+                return resp.getData();
+            }
+            throw ex;
+        }
+    }
+
+    /**
+     * Export an existing drawing into JPEG format with export settings specified.
+     * 
+     * @return ApiResponse&lt;File&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    private ApiResponse<File> postDrawingJpegWithHttpInfo(PostDrawingJpegRequest request) throws ApiException {
+        com.squareup.okhttp.Call call = postDrawingJpegValidateBeforeCall(request, null, null);
+        Type localVarReturnType = new TypeToken<File>() { }.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Export an existing drawing into JPEG format with export settings specified. (asynchronously)
+     * 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call postDrawingJpegAsync(PostDrawingJpegRequest request, final ApiCallback<File> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = postDrawingJpegValidateBeforeCall(request, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<File>() { }.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for postDrawingJpeg2000
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    private com.squareup.okhttp.Call postDrawingJpeg2000Call(PostDrawingJpeg2000Request request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = request.getoptions();
+
+        // create path and map variables
+        String localVarPath = "/cad/{name}/jpeg2000"
+            .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(request.getname().toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "folder", request.getfolder());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "outPath", request.getoutPath());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "storage", request.getstorage());
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        
+        Map<String, Object> localVarFormParams = new LinkedHashMap<String, Object>();
+        
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "JWT" };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call postDrawingJpeg2000ValidateBeforeCall(PostDrawingJpeg2000Request request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'name' is set
+        if (request.getname() == null) {
+          throw new ApiException(BadRequest, "Missing the required parameter 'name' when calling postDrawingJpeg2000");
+        }
+        
+
+        com.squareup.okhttp.Call call = postDrawingJpeg2000Call(request, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Export an existing drawing into JPEG2000 format with export settings specified.
+     * 
+     * @return File
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public File postDrawingJpeg2000(PostDrawingJpeg2000Request request) throws ApiException {
+        try {
+            ApiResponse<File> resp = postDrawingJpeg2000WithHttpInfo(request);
+            return resp.getData();
+        }
+        catch (ApiException ex) {
+            if (ex.getCode() == NotAuth) {
+                apiClient.requestToken();
+                ApiResponse<File> resp = postDrawingJpeg2000WithHttpInfo(request);
+                return resp.getData();
+            }
+            throw ex;
+        }
+    }
+
+    /**
+     * Export an existing drawing into JPEG2000 format with export settings specified.
+     * 
+     * @return ApiResponse&lt;File&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    private ApiResponse<File> postDrawingJpeg2000WithHttpInfo(PostDrawingJpeg2000Request request) throws ApiException {
+        com.squareup.okhttp.Call call = postDrawingJpeg2000ValidateBeforeCall(request, null, null);
+        Type localVarReturnType = new TypeToken<File>() { }.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Export an existing drawing into JPEG2000 format with export settings specified. (asynchronously)
+     * 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call postDrawingJpeg2000Async(PostDrawingJpeg2000Request request, final ApiCallback<File> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = postDrawingJpeg2000ValidateBeforeCall(request, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<File>() { }.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for postDrawingPdf
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    private com.squareup.okhttp.Call postDrawingPdfCall(PostDrawingPdfRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = request.getoptions();
+
+        // create path and map variables
+        String localVarPath = "/cad/{name}/pdf"
+            .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(request.getname().toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "folder", request.getfolder());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "outPath", request.getoutPath());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "storage", request.getstorage());
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        
+        Map<String, Object> localVarFormParams = new LinkedHashMap<String, Object>();
+        
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "JWT" };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call postDrawingPdfValidateBeforeCall(PostDrawingPdfRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'name' is set
+        if (request.getname() == null) {
+          throw new ApiException(BadRequest, "Missing the required parameter 'name' when calling postDrawingPdf");
+        }
+        
+
+        com.squareup.okhttp.Call call = postDrawingPdfCall(request, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Export an existing drawing to PDF format with export settings specified.
+     * 
+     * @return File
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public File postDrawingPdf(PostDrawingPdfRequest request) throws ApiException {
+        try {
+            ApiResponse<File> resp = postDrawingPdfWithHttpInfo(request);
+            return resp.getData();
+        }
+        catch (ApiException ex) {
+            if (ex.getCode() == NotAuth) {
+                apiClient.requestToken();
+                ApiResponse<File> resp = postDrawingPdfWithHttpInfo(request);
+                return resp.getData();
+            }
+            throw ex;
+        }
+    }
+
+    /**
+     * Export an existing drawing to PDF format with export settings specified.
+     * 
+     * @return ApiResponse&lt;File&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    private ApiResponse<File> postDrawingPdfWithHttpInfo(PostDrawingPdfRequest request) throws ApiException {
+        com.squareup.okhttp.Call call = postDrawingPdfValidateBeforeCall(request, null, null);
+        Type localVarReturnType = new TypeToken<File>() { }.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Export an existing drawing to PDF format with export settings specified. (asynchronously)
+     * 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call postDrawingPdfAsync(PostDrawingPdfRequest request, final ApiCallback<File> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = postDrawingPdfValidateBeforeCall(request, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<File>() { }.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for postDrawingPng
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    private com.squareup.okhttp.Call postDrawingPngCall(PostDrawingPngRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = request.getoptions();
+
+        // create path and map variables
+        String localVarPath = "/cad/{name}/png"
+            .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(request.getname().toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "folder", request.getfolder());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "outPath", request.getoutPath());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "storage", request.getstorage());
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        
+        Map<String, Object> localVarFormParams = new LinkedHashMap<String, Object>();
+        
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "JWT" };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call postDrawingPngValidateBeforeCall(PostDrawingPngRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'name' is set
+        if (request.getname() == null) {
+          throw new ApiException(BadRequest, "Missing the required parameter 'name' when calling postDrawingPng");
+        }
+        
+
+        com.squareup.okhttp.Call call = postDrawingPngCall(request, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Export an existing drawing into PNG format with export settings specified.
+     * 
+     * @return File
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public File postDrawingPng(PostDrawingPngRequest request) throws ApiException {
+        try {
+            ApiResponse<File> resp = postDrawingPngWithHttpInfo(request);
+            return resp.getData();
+        }
+        catch (ApiException ex) {
+            if (ex.getCode() == NotAuth) {
+                apiClient.requestToken();
+                ApiResponse<File> resp = postDrawingPngWithHttpInfo(request);
+                return resp.getData();
+            }
+            throw ex;
+        }
+    }
+
+    /**
+     * Export an existing drawing into PNG format with export settings specified.
+     * 
+     * @return ApiResponse&lt;File&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    private ApiResponse<File> postDrawingPngWithHttpInfo(PostDrawingPngRequest request) throws ApiException {
+        com.squareup.okhttp.Call call = postDrawingPngValidateBeforeCall(request, null, null);
+        Type localVarReturnType = new TypeToken<File>() { }.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Export an existing drawing into PNG format with export settings specified. (asynchronously)
+     * 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call postDrawingPngAsync(PostDrawingPngRequest request, final ApiCallback<File> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = postDrawingPngValidateBeforeCall(request, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<File>() { }.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for postDrawingPsd
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    private com.squareup.okhttp.Call postDrawingPsdCall(PostDrawingPsdRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = request.getoptions();
+
+        // create path and map variables
+        String localVarPath = "/cad/{name}/psd"
+            .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(request.getname().toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "folder", request.getfolder());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "outPath", request.getoutPath());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "storage", request.getstorage());
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        
+        Map<String, Object> localVarFormParams = new LinkedHashMap<String, Object>();
+        
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "JWT" };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call postDrawingPsdValidateBeforeCall(PostDrawingPsdRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'name' is set
+        if (request.getname() == null) {
+          throw new ApiException(BadRequest, "Missing the required parameter 'name' when calling postDrawingPsd");
+        }
+        
+
+        com.squareup.okhttp.Call call = postDrawingPsdCall(request, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Export an existing drawing into PSD format with export settings specified.
+     * 
+     * @return File
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public File postDrawingPsd(PostDrawingPsdRequest request) throws ApiException {
+        try {
+            ApiResponse<File> resp = postDrawingPsdWithHttpInfo(request);
+            return resp.getData();
+        }
+        catch (ApiException ex) {
+            if (ex.getCode() == NotAuth) {
+                apiClient.requestToken();
+                ApiResponse<File> resp = postDrawingPsdWithHttpInfo(request);
+                return resp.getData();
+            }
+            throw ex;
+        }
+    }
+
+    /**
+     * Export an existing drawing into PSD format with export settings specified.
+     * 
+     * @return ApiResponse&lt;File&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    private ApiResponse<File> postDrawingPsdWithHttpInfo(PostDrawingPsdRequest request) throws ApiException {
+        com.squareup.okhttp.Call call = postDrawingPsdValidateBeforeCall(request, null, null);
+        Type localVarReturnType = new TypeToken<File>() { }.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Export an existing drawing into PSD format with export settings specified. (asynchronously)
+     * 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call postDrawingPsdAsync(PostDrawingPsdRequest request, final ApiCallback<File> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = postDrawingPsdValidateBeforeCall(request, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<File>() { }.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for postDrawingSvg
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    private com.squareup.okhttp.Call postDrawingSvgCall(PostDrawingSvgRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = request.getoptions();
+
+        // create path and map variables
+        String localVarPath = "/cad/{name}/svg"
+            .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(request.getname().toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "folder", request.getfolder());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "outPath", request.getoutPath());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "storage", request.getstorage());
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        
+        Map<String, Object> localVarFormParams = new LinkedHashMap<String, Object>();
+        
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "JWT" };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call postDrawingSvgValidateBeforeCall(PostDrawingSvgRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'name' is set
+        if (request.getname() == null) {
+          throw new ApiException(BadRequest, "Missing the required parameter 'name' when calling postDrawingSvg");
+        }
+        
+
+        com.squareup.okhttp.Call call = postDrawingSvgCall(request, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Export an existing drawing to SVG format with export settings specified.
+     * 
+     * @return File
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public File postDrawingSvg(PostDrawingSvgRequest request) throws ApiException {
+        try {
+            ApiResponse<File> resp = postDrawingSvgWithHttpInfo(request);
+            return resp.getData();
+        }
+        catch (ApiException ex) {
+            if (ex.getCode() == NotAuth) {
+                apiClient.requestToken();
+                ApiResponse<File> resp = postDrawingSvgWithHttpInfo(request);
+                return resp.getData();
+            }
+            throw ex;
+        }
+    }
+
+    /**
+     * Export an existing drawing to SVG format with export settings specified.
+     * 
+     * @return ApiResponse&lt;File&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    private ApiResponse<File> postDrawingSvgWithHttpInfo(PostDrawingSvgRequest request) throws ApiException {
+        com.squareup.okhttp.Call call = postDrawingSvgValidateBeforeCall(request, null, null);
+        Type localVarReturnType = new TypeToken<File>() { }.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Export an existing drawing to SVG format with export settings specified. (asynchronously)
+     * 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call postDrawingSvgAsync(PostDrawingSvgRequest request, final ApiCallback<File> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = postDrawingSvgValidateBeforeCall(request, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<File>() { }.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for postDrawingTiff
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    private com.squareup.okhttp.Call postDrawingTiffCall(PostDrawingTiffRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = request.getoptions();
+
+        // create path and map variables
+        String localVarPath = "/cad/{name}/tiff"
+            .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(request.getname().toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "folder", request.getfolder());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "outPath", request.getoutPath());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "storage", request.getstorage());
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        
+        Map<String, Object> localVarFormParams = new LinkedHashMap<String, Object>();
+        
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "JWT" };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call postDrawingTiffValidateBeforeCall(PostDrawingTiffRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'name' is set
+        if (request.getname() == null) {
+          throw new ApiException(BadRequest, "Missing the required parameter 'name' when calling postDrawingTiff");
+        }
+        
+
+        com.squareup.okhttp.Call call = postDrawingTiffCall(request, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Export an existing drawing into TIFF format with export settings specified.
+     * 
+     * @return File
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public File postDrawingTiff(PostDrawingTiffRequest request) throws ApiException {
+        try {
+            ApiResponse<File> resp = postDrawingTiffWithHttpInfo(request);
+            return resp.getData();
+        }
+        catch (ApiException ex) {
+            if (ex.getCode() == NotAuth) {
+                apiClient.requestToken();
+                ApiResponse<File> resp = postDrawingTiffWithHttpInfo(request);
+                return resp.getData();
+            }
+            throw ex;
+        }
+    }
+
+    /**
+     * Export an existing drawing into TIFF format with export settings specified.
+     * 
+     * @return ApiResponse&lt;File&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    private ApiResponse<File> postDrawingTiffWithHttpInfo(PostDrawingTiffRequest request) throws ApiException {
+        com.squareup.okhttp.Call call = postDrawingTiffValidateBeforeCall(request, null, null);
+        Type localVarReturnType = new TypeToken<File>() { }.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Export an existing drawing into TIFF format with export settings specified. (asynchronously)
+     * 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call postDrawingTiffAsync(PostDrawingTiffRequest request, final ApiCallback<File> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = postDrawingTiffValidateBeforeCall(request, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<File>() { }.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for postDrawingWmf
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    private com.squareup.okhttp.Call postDrawingWmfCall(PostDrawingWmfRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = request.getoptions();
+
+        // create path and map variables
+        String localVarPath = "/cad/{name}/wmf"
+            .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(request.getname().toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "folder", request.getfolder());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "outPath", request.getoutPath());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "storage", request.getstorage());
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        
+        Map<String, Object> localVarFormParams = new LinkedHashMap<String, Object>();
+        
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "JWT" };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call postDrawingWmfValidateBeforeCall(PostDrawingWmfRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'name' is set
+        if (request.getname() == null) {
+          throw new ApiException(BadRequest, "Missing the required parameter 'name' when calling postDrawingWmf");
+        }
+        
+
+        com.squareup.okhttp.Call call = postDrawingWmfCall(request, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Export an existing drawing to WMF format with export settings specified.
+     * 
+     * @return File
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public File postDrawingWmf(PostDrawingWmfRequest request) throws ApiException {
+        try {
+            ApiResponse<File> resp = postDrawingWmfWithHttpInfo(request);
+            return resp.getData();
+        }
+        catch (ApiException ex) {
+            if (ex.getCode() == NotAuth) {
+                apiClient.requestToken();
+                ApiResponse<File> resp = postDrawingWmfWithHttpInfo(request);
+                return resp.getData();
+            }
+            throw ex;
+        }
+    }
+
+    /**
+     * Export an existing drawing to WMF format with export settings specified.
+     * 
+     * @return ApiResponse&lt;File&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    private ApiResponse<File> postDrawingWmfWithHttpInfo(PostDrawingWmfRequest request) throws ApiException {
+        com.squareup.okhttp.Call call = postDrawingWmfValidateBeforeCall(request, null, null);
+        Type localVarReturnType = new TypeToken<File>() { }.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Export an existing drawing to WMF format with export settings specified. (asynchronously)
+     * 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call postDrawingWmfAsync(PostDrawingWmfRequest request, final ApiCallback<File> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = postDrawingWmfValidateBeforeCall(request, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<File>() { }.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for putDrawingBmp
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    private com.squareup.okhttp.Call putDrawingBmpCall(PutDrawingBmpRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/cad/bmp";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "outPath", request.getoutPath());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "storage", request.getstorage());
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        
+        Map<String, Object> localVarFormParams = new LinkedHashMap<String, Object>();
+        if (request.getdrawingData() != null)
+          localVarFormParams.put("drawingData", request.getdrawingData());
+if (request.getoptions() != null)
+          localVarFormParams.put("options", request.getoptions());
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "multipart/form-data"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "JWT" };
+        return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call putDrawingBmpValidateBeforeCall(PutDrawingBmpRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'drawingData' is set
+        if (request.getdrawingData() == null) {
+          throw new ApiException(BadRequest, "Missing the required parameter 'drawingData' when calling putDrawingBmp");
+        }
+        
+
+        com.squareup.okhttp.Call call = putDrawingBmpCall(request, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Export drawing to BMP format. Drawing data is passed as zero-indexed multipart/form-data as well as export BMP options serialized as JSON. Order of drawing data and BMP options could vary.
+     * 
+     * @return File
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public File putDrawingBmp(PutDrawingBmpRequest request) throws ApiException {
+        try {
+            ApiResponse<File> resp = putDrawingBmpWithHttpInfo(request);
+            return resp.getData();
+        }
+        catch (ApiException ex) {
+            if (ex.getCode() == NotAuth) {
+                apiClient.requestToken();
+                ApiResponse<File> resp = putDrawingBmpWithHttpInfo(request);
+                return resp.getData();
+            }
+            throw ex;
+        }
+    }
+
+    /**
+     * Export drawing to BMP format. Drawing data is passed as zero-indexed multipart/form-data as well as export BMP options serialized as JSON. Order of drawing data and BMP options could vary.
+     * 
+     * @return ApiResponse&lt;File&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    private ApiResponse<File> putDrawingBmpWithHttpInfo(PutDrawingBmpRequest request) throws ApiException {
+        com.squareup.okhttp.Call call = putDrawingBmpValidateBeforeCall(request, null, null);
+        Type localVarReturnType = new TypeToken<File>() { }.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Export drawing to BMP format. Drawing data is passed as zero-indexed multipart/form-data as well as export BMP options serialized as JSON. Order of drawing data and BMP options could vary. (asynchronously)
+     * 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call putDrawingBmpAsync(PutDrawingBmpRequest request, final ApiCallback<File> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = putDrawingBmpValidateBeforeCall(request, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<File>() { }.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for putDrawingGif
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    private com.squareup.okhttp.Call putDrawingGifCall(PutDrawingGifRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/cad/gif";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "outPath", request.getoutPath());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "storage", request.getstorage());
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        
+        Map<String, Object> localVarFormParams = new LinkedHashMap<String, Object>();
+        if (request.getdrawingData() != null)
+          localVarFormParams.put("drawingData", request.getdrawingData());
+if (request.getoptions() != null)
+          localVarFormParams.put("options", request.getoptions());
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "multipart/form-data"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "JWT" };
+        return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call putDrawingGifValidateBeforeCall(PutDrawingGifRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'drawingData' is set
+        if (request.getdrawingData() == null) {
+          throw new ApiException(BadRequest, "Missing the required parameter 'drawingData' when calling putDrawingGif");
+        }
+        
+
+        com.squareup.okhttp.Call call = putDrawingGifCall(request, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Export drawing to GIF format. Drawing data is passed as zero-indexed multipart/form-data as well as export GIF options serialized as JSON. Order of drawing data and GIF options could vary.
+     * 
+     * @return File
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public File putDrawingGif(PutDrawingGifRequest request) throws ApiException {
+        try {
+            ApiResponse<File> resp = putDrawingGifWithHttpInfo(request);
+            return resp.getData();
+        }
+        catch (ApiException ex) {
+            if (ex.getCode() == NotAuth) {
+                apiClient.requestToken();
+                ApiResponse<File> resp = putDrawingGifWithHttpInfo(request);
+                return resp.getData();
+            }
+            throw ex;
+        }
+    }
+
+    /**
+     * Export drawing to GIF format. Drawing data is passed as zero-indexed multipart/form-data as well as export GIF options serialized as JSON. Order of drawing data and GIF options could vary.
+     * 
+     * @return ApiResponse&lt;File&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    private ApiResponse<File> putDrawingGifWithHttpInfo(PutDrawingGifRequest request) throws ApiException {
+        com.squareup.okhttp.Call call = putDrawingGifValidateBeforeCall(request, null, null);
+        Type localVarReturnType = new TypeToken<File>() { }.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Export drawing to GIF format. Drawing data is passed as zero-indexed multipart/form-data as well as export GIF options serialized as JSON. Order of drawing data and GIF options could vary. (asynchronously)
+     * 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call putDrawingGifAsync(PutDrawingGifRequest request, final ApiCallback<File> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = putDrawingGifValidateBeforeCall(request, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<File>() { }.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for putDrawingJpeg
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    private com.squareup.okhttp.Call putDrawingJpegCall(PutDrawingJpegRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/cad/jpeg";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "outPath", request.getoutPath());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "storage", request.getstorage());
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        
+        Map<String, Object> localVarFormParams = new LinkedHashMap<String, Object>();
+        if (request.getdrawingData() != null)
+          localVarFormParams.put("drawingData", request.getdrawingData());
+if (request.getoptions() != null)
+          localVarFormParams.put("options", request.getoptions());
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "multipart/form-data"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "JWT" };
+        return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call putDrawingJpegValidateBeforeCall(PutDrawingJpegRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'drawingData' is set
+        if (request.getdrawingData() == null) {
+          throw new ApiException(BadRequest, "Missing the required parameter 'drawingData' when calling putDrawingJpeg");
+        }
+        
+
+        com.squareup.okhttp.Call call = putDrawingJpegCall(request, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Export drawing to JPEG format. Drawing data is passed as zero-indexed multipart/form-data as well as export JPEG options serialized as JSON. Order of drawing data and JPEG options could vary.
+     * 
+     * @return File
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public File putDrawingJpeg(PutDrawingJpegRequest request) throws ApiException {
+        try {
+            ApiResponse<File> resp = putDrawingJpegWithHttpInfo(request);
+            return resp.getData();
+        }
+        catch (ApiException ex) {
+            if (ex.getCode() == NotAuth) {
+                apiClient.requestToken();
+                ApiResponse<File> resp = putDrawingJpegWithHttpInfo(request);
+                return resp.getData();
+            }
+            throw ex;
+        }
+    }
+
+    /**
+     * Export drawing to JPEG format. Drawing data is passed as zero-indexed multipart/form-data as well as export JPEG options serialized as JSON. Order of drawing data and JPEG options could vary.
+     * 
+     * @return ApiResponse&lt;File&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    private ApiResponse<File> putDrawingJpegWithHttpInfo(PutDrawingJpegRequest request) throws ApiException {
+        com.squareup.okhttp.Call call = putDrawingJpegValidateBeforeCall(request, null, null);
+        Type localVarReturnType = new TypeToken<File>() { }.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Export drawing to JPEG format. Drawing data is passed as zero-indexed multipart/form-data as well as export JPEG options serialized as JSON. Order of drawing data and JPEG options could vary. (asynchronously)
+     * 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call putDrawingJpegAsync(PutDrawingJpegRequest request, final ApiCallback<File> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = putDrawingJpegValidateBeforeCall(request, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<File>() { }.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for putDrawingJpeg2000
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    private com.squareup.okhttp.Call putDrawingJpeg2000Call(PutDrawingJpeg2000Request request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/cad/jpeg2000";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "outPath", request.getoutPath());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "storage", request.getstorage());
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        
+        Map<String, Object> localVarFormParams = new LinkedHashMap<String, Object>();
+        if (request.getdrawingData() != null)
+          localVarFormParams.put("drawingData", request.getdrawingData());
+if (request.getoptions() != null)
+          localVarFormParams.put("options", request.getoptions());
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "multipart/form-data"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "JWT" };
+        return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call putDrawingJpeg2000ValidateBeforeCall(PutDrawingJpeg2000Request request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'drawingData' is set
+        if (request.getdrawingData() == null) {
+          throw new ApiException(BadRequest, "Missing the required parameter 'drawingData' when calling putDrawingJpeg2000");
+        }
+        
+
+        com.squareup.okhttp.Call call = putDrawingJpeg2000Call(request, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Export drawing to JPEG2000 format. Drawing data is passed as zero-indexed multipart/form-data as well as export JPEG2000 options serialized as JSON. Order of drawing data and JPEG2000 options could vary.
+     * 
+     * @return File
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public File putDrawingJpeg2000(PutDrawingJpeg2000Request request) throws ApiException {
+        try {
+            ApiResponse<File> resp = putDrawingJpeg2000WithHttpInfo(request);
+            return resp.getData();
+        }
+        catch (ApiException ex) {
+            if (ex.getCode() == NotAuth) {
+                apiClient.requestToken();
+                ApiResponse<File> resp = putDrawingJpeg2000WithHttpInfo(request);
+                return resp.getData();
+            }
+            throw ex;
+        }
+    }
+
+    /**
+     * Export drawing to JPEG2000 format. Drawing data is passed as zero-indexed multipart/form-data as well as export JPEG2000 options serialized as JSON. Order of drawing data and JPEG2000 options could vary.
+     * 
+     * @return ApiResponse&lt;File&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    private ApiResponse<File> putDrawingJpeg2000WithHttpInfo(PutDrawingJpeg2000Request request) throws ApiException {
+        com.squareup.okhttp.Call call = putDrawingJpeg2000ValidateBeforeCall(request, null, null);
+        Type localVarReturnType = new TypeToken<File>() { }.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Export drawing to JPEG2000 format. Drawing data is passed as zero-indexed multipart/form-data as well as export JPEG2000 options serialized as JSON. Order of drawing data and JPEG2000 options could vary. (asynchronously)
+     * 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call putDrawingJpeg2000Async(PutDrawingJpeg2000Request request, final ApiCallback<File> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = putDrawingJpeg2000ValidateBeforeCall(request, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<File>() { }.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for putDrawingPdf
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    private com.squareup.okhttp.Call putDrawingPdfCall(PutDrawingPdfRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/cad/pdf";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "outPath", request.getoutPath());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "storage", request.getstorage());
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        
+        Map<String, Object> localVarFormParams = new LinkedHashMap<String, Object>();
+        if (request.getdrawingData() != null)
+          localVarFormParams.put("drawingData", request.getdrawingData());
+if (request.getoptions() != null)
+          localVarFormParams.put("options", request.getoptions());
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "multipart/form-data"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "JWT" };
+        return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call putDrawingPdfValidateBeforeCall(PutDrawingPdfRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'drawingData' is set
+        if (request.getdrawingData() == null) {
+          throw new ApiException(BadRequest, "Missing the required parameter 'drawingData' when calling putDrawingPdf");
+        }
+        
+
+        com.squareup.okhttp.Call call = putDrawingPdfCall(request, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Export drawing to PDF format. Drawing data is passed as zero-indexed multipart/form-data as well as export PDF options serialized as JSON. Order of drawing data and PDF options could vary.
+     * 
+     * @return File
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public File putDrawingPdf(PutDrawingPdfRequest request) throws ApiException {
+        try {
+            ApiResponse<File> resp = putDrawingPdfWithHttpInfo(request);
+            return resp.getData();
+        }
+        catch (ApiException ex) {
+            if (ex.getCode() == NotAuth) {
+                apiClient.requestToken();
+                ApiResponse<File> resp = putDrawingPdfWithHttpInfo(request);
+                return resp.getData();
+            }
+            throw ex;
+        }
+    }
+
+    /**
+     * Export drawing to PDF format. Drawing data is passed as zero-indexed multipart/form-data as well as export PDF options serialized as JSON. Order of drawing data and PDF options could vary.
+     * 
+     * @return ApiResponse&lt;File&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    private ApiResponse<File> putDrawingPdfWithHttpInfo(PutDrawingPdfRequest request) throws ApiException {
+        com.squareup.okhttp.Call call = putDrawingPdfValidateBeforeCall(request, null, null);
+        Type localVarReturnType = new TypeToken<File>() { }.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Export drawing to PDF format. Drawing data is passed as zero-indexed multipart/form-data as well as export PDF options serialized as JSON. Order of drawing data and PDF options could vary. (asynchronously)
+     * 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call putDrawingPdfAsync(PutDrawingPdfRequest request, final ApiCallback<File> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = putDrawingPdfValidateBeforeCall(request, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<File>() { }.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for putDrawingPng
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    private com.squareup.okhttp.Call putDrawingPngCall(PutDrawingPngRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/cad/png";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "outPath", request.getoutPath());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "storage", request.getstorage());
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        
+        Map<String, Object> localVarFormParams = new LinkedHashMap<String, Object>();
+        if (request.getdrawingData() != null)
+          localVarFormParams.put("drawingData", request.getdrawingData());
+if (request.getoptions() != null)
+          localVarFormParams.put("options", request.getoptions());
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "multipart/form-data"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "JWT" };
+        return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call putDrawingPngValidateBeforeCall(PutDrawingPngRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'drawingData' is set
+        if (request.getdrawingData() == null) {
+          throw new ApiException(BadRequest, "Missing the required parameter 'drawingData' when calling putDrawingPng");
+        }
+        
+
+        com.squareup.okhttp.Call call = putDrawingPngCall(request, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Export drawing to PNG format. Drawing data is passed as zero-indexed multipart/form-data as well as export PNG options serialized as JSON. Order of drawing data and PNG options could vary.
+     * 
+     * @return File
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public File putDrawingPng(PutDrawingPngRequest request) throws ApiException {
+        try {
+            ApiResponse<File> resp = putDrawingPngWithHttpInfo(request);
+            return resp.getData();
+        }
+        catch (ApiException ex) {
+            if (ex.getCode() == NotAuth) {
+                apiClient.requestToken();
+                ApiResponse<File> resp = putDrawingPngWithHttpInfo(request);
+                return resp.getData();
+            }
+            throw ex;
+        }
+    }
+
+    /**
+     * Export drawing to PNG format. Drawing data is passed as zero-indexed multipart/form-data as well as export PNG options serialized as JSON. Order of drawing data and PNG options could vary.
+     * 
+     * @return ApiResponse&lt;File&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    private ApiResponse<File> putDrawingPngWithHttpInfo(PutDrawingPngRequest request) throws ApiException {
+        com.squareup.okhttp.Call call = putDrawingPngValidateBeforeCall(request, null, null);
+        Type localVarReturnType = new TypeToken<File>() { }.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Export drawing to PNG format. Drawing data is passed as zero-indexed multipart/form-data as well as export PNG options serialized as JSON. Order of drawing data and PNG options could vary. (asynchronously)
+     * 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call putDrawingPngAsync(PutDrawingPngRequest request, final ApiCallback<File> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = putDrawingPngValidateBeforeCall(request, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<File>() { }.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for putDrawingProperties
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    private com.squareup.okhttp.Call putDrawingPropertiesCall(PutDrawingPropertiesRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/cad/properties";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        
+        Map<String, Object> localVarFormParams = new LinkedHashMap<String, Object>();
+        if (request.getdrawingData() != null)
+          localVarFormParams.put("drawingData", request.getdrawingData());
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "multipart/form-data", "application/octet-stream"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "JWT" };
+        return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call putDrawingPropertiesValidateBeforeCall(PutDrawingPropertiesRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'drawingData' is set
+        if (request.getdrawingData() == null) {
+          throw new ApiException(BadRequest, "Missing the required parameter 'drawingData' when calling putDrawingProperties");
+        }
+        
+
+        com.squareup.okhttp.Call call = putDrawingPropertiesCall(request, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Retrieves info about drawing which is passed as a zero-indexed multipart/form-data content or as raw body stream.
+     * 
+     * @return CadResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public CadResponse putDrawingProperties(PutDrawingPropertiesRequest request) throws ApiException {
+        try {
+            ApiResponse<CadResponse> resp = putDrawingPropertiesWithHttpInfo(request);
+            return resp.getData();
+        }
+        catch (ApiException ex) {
+            if (ex.getCode() == NotAuth) {
+                apiClient.requestToken();
+                ApiResponse<CadResponse> resp = putDrawingPropertiesWithHttpInfo(request);
+                return resp.getData();
+            }
+            throw ex;
+        }
+    }
+
+    /**
+     * Retrieves info about drawing which is passed as a zero-indexed multipart/form-data content or as raw body stream.
+     * 
+     * @return ApiResponse&lt;CadResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    private ApiResponse<CadResponse> putDrawingPropertiesWithHttpInfo(PutDrawingPropertiesRequest request) throws ApiException {
+        com.squareup.okhttp.Call call = putDrawingPropertiesValidateBeforeCall(request, null, null);
+        Type localVarReturnType = new TypeToken<CadResponse>() { }.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Retrieves info about drawing which is passed as a zero-indexed multipart/form-data content or as raw body stream. (asynchronously)
+     * 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call putDrawingPropertiesAsync(PutDrawingPropertiesRequest request, final ApiCallback<CadResponse> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = putDrawingPropertiesValidateBeforeCall(request, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<CadResponse>() { }.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for putDrawingPsd
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    private com.squareup.okhttp.Call putDrawingPsdCall(PutDrawingPsdRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/cad/psd";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "outPath", request.getoutPath());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "storage", request.getstorage());
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        
+        Map<String, Object> localVarFormParams = new LinkedHashMap<String, Object>();
+        if (request.getdrawingData() != null)
+          localVarFormParams.put("drawingData", request.getdrawingData());
+if (request.getoptions() != null)
+          localVarFormParams.put("options", request.getoptions());
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "multipart/form-data"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "JWT" };
+        return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call putDrawingPsdValidateBeforeCall(PutDrawingPsdRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'drawingData' is set
+        if (request.getdrawingData() == null) {
+          throw new ApiException(BadRequest, "Missing the required parameter 'drawingData' when calling putDrawingPsd");
+        }
+        
+
+        com.squareup.okhttp.Call call = putDrawingPsdCall(request, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Export drawing to PSD format. Drawing data is passed as zero-indexed multipart/form-data as well as export PSD options serialized as JSON. Order of drawing data and PSD options could vary.
+     * 
+     * @return File
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public File putDrawingPsd(PutDrawingPsdRequest request) throws ApiException {
+        try {
+            ApiResponse<File> resp = putDrawingPsdWithHttpInfo(request);
+            return resp.getData();
+        }
+        catch (ApiException ex) {
+            if (ex.getCode() == NotAuth) {
+                apiClient.requestToken();
+                ApiResponse<File> resp = putDrawingPsdWithHttpInfo(request);
+                return resp.getData();
+            }
+            throw ex;
+        }
+    }
+
+    /**
+     * Export drawing to PSD format. Drawing data is passed as zero-indexed multipart/form-data as well as export PSD options serialized as JSON. Order of drawing data and PSD options could vary.
+     * 
+     * @return ApiResponse&lt;File&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    private ApiResponse<File> putDrawingPsdWithHttpInfo(PutDrawingPsdRequest request) throws ApiException {
+        com.squareup.okhttp.Call call = putDrawingPsdValidateBeforeCall(request, null, null);
+        Type localVarReturnType = new TypeToken<File>() { }.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Export drawing to PSD format. Drawing data is passed as zero-indexed multipart/form-data as well as export PSD options serialized as JSON. Order of drawing data and PSD options could vary. (asynchronously)
+     * 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call putDrawingPsdAsync(PutDrawingPsdRequest request, final ApiCallback<File> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = putDrawingPsdValidateBeforeCall(request, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<File>() { }.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for putDrawingResize
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    private com.squareup.okhttp.Call putDrawingResizeCall(PutDrawingResizeRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -637,20 +3024,20 @@ public class CadApi {
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "format", request.getFormat());
-        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "newWidth", request.getNewWidth());
-        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "newHeight", request.getNewHeight());
-        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "outPath", request.getOutPath());
-        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "storage", request.getStorage());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "outputFormat", request.getoutputFormat());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "newWidth", request.getnewWidth());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "newHeight", request.getnewHeight());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "outPath", request.getoutPath());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "storage", request.getstorage());
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         
         Map<String, Object> localVarFormParams = new LinkedHashMap<String, Object>();
-        if (request.getDrawingData() != null)
-          localVarFormParams.put("DrawingData", request.getDrawingData());
+        if (request.getdrawingData() != null)
+          localVarFormParams.put("drawingData", request.getdrawingData());
 
         final String[] localVarAccepts = {
-            "multipart/form-data"
+            "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
@@ -673,54 +3060,54 @@ public class CadApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        String[] localVarAuthNames = new String[] { "JWT" };
+        return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call postChangeImageScaleValidateBeforeCall(PostChangeImageScaleRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call putDrawingResizeValidateBeforeCall(PutDrawingResizeRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
-        // verify the required parameter 'DrawingData' is set
-        if (request.getDrawingData() == null) {
-          throw new ApiException(BadRequest, "Missing the required parameter 'DrawingData' when calling postChangeImageScale");
+        // verify the required parameter 'drawingData' is set
+        if (request.getdrawingData() == null) {
+          throw new ApiException(BadRequest, "Missing the required parameter 'drawingData' when calling putDrawingResize");
         }
         
-        // verify the required parameter 'Format' is set
-        if (request.getFormat() == null) {
-          throw new ApiException(BadRequest, "Missing the required parameter 'Format' when calling postChangeImageScale");
+        // verify the required parameter 'outputFormat' is set
+        if (request.getoutputFormat() == null) {
+          throw new ApiException(BadRequest, "Missing the required parameter 'outputFormat' when calling putDrawingResize");
         }
         
-        // verify the required parameter 'NewWidth' is set
-        if (request.getNewWidth() == null) {
-          throw new ApiException(BadRequest, "Missing the required parameter 'NewWidth' when calling postChangeImageScale");
+        // verify the required parameter 'newWidth' is set
+        if (request.getnewWidth() == null) {
+          throw new ApiException(BadRequest, "Missing the required parameter 'newWidth' when calling putDrawingResize");
         }
         
-        // verify the required parameter 'NewHeight' is set
-        if (request.getNewHeight() == null) {
-          throw new ApiException(BadRequest, "Missing the required parameter 'NewHeight' when calling postChangeImageScale");
+        // verify the required parameter 'newHeight' is set
+        if (request.getnewHeight() == null) {
+          throw new ApiException(BadRequest, "Missing the required parameter 'newHeight' when calling putDrawingResize");
         }
         
 
-        com.squareup.okhttp.Call call = postChangeImageScaleCall(request, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = putDrawingResizeCall(request, progressListener, progressRequestListener);
         return call;
 
     }
 
     /**
-     * Change scale of an image from body
+     * Resize a drawing. Drawing data is passed as a zero-indexed multipart/form-data content or as raw body stream.
      * 
      * @return File
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public File postChangeImageScale(PostChangeImageScaleRequest request) throws ApiException {
+    public File putDrawingResize(PutDrawingResizeRequest request) throws ApiException {
         try {
-            ApiResponse<File> resp = postChangeImageScaleWithHttpInfo(request);
+            ApiResponse<File> resp = putDrawingResizeWithHttpInfo(request);
             return resp.getData();
         }
         catch (ApiException ex) {
             if (ex.getCode() == NotAuth) {
                 apiClient.requestToken();
-                ApiResponse<File> resp = postChangeImageScaleWithHttpInfo(request);
+                ApiResponse<File> resp = putDrawingResizeWithHttpInfo(request);
                 return resp.getData();
             }
             throw ex;
@@ -728,25 +3115,25 @@ public class CadApi {
     }
 
     /**
-     * Change scale of an image from body
+     * Resize a drawing. Drawing data is passed as a zero-indexed multipart/form-data content or as raw body stream.
      * 
      * @return ApiResponse&lt;File&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    private ApiResponse<File> postChangeImageScaleWithHttpInfo(PostChangeImageScaleRequest request) throws ApiException {
-        com.squareup.okhttp.Call call = postChangeImageScaleValidateBeforeCall(request, null, null);
+    private ApiResponse<File> putDrawingResizeWithHttpInfo(PutDrawingResizeRequest request) throws ApiException {
+        com.squareup.okhttp.Call call = putDrawingResizeValidateBeforeCall(request, null, null);
         Type localVarReturnType = new TypeToken<File>() { }.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     * Change scale of an image from body (asynchronously)
+     * Resize a drawing. Drawing data is passed as a zero-indexed multipart/form-data content or as raw body stream. (asynchronously)
      * 
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call postChangeImageScaleAsync(PostChangeImageScaleRequest request, final ApiCallback<File> callback) throws ApiException {
+    public com.squareup.okhttp.Call putDrawingResizeAsync(PutDrawingResizeRequest request, final ApiCallback<File> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -767,19 +3154,19 @@ public class CadApi {
             };
         }
 
-        com.squareup.okhttp.Call call = postChangeImageScaleValidateBeforeCall(request, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = putDrawingResizeValidateBeforeCall(request, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<File>() { }.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
     /**
-     * Build call for postImageRotateFlip
+     * Build call for putDrawingRotateFlip
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private com.squareup.okhttp.Call postImageRotateFlipCall(PostImageRotateFlipRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call putDrawingRotateFlipCall(PutDrawingRotateFlipRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -787,24 +3174,25 @@ public class CadApi {
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "format", request.getFormat());
-        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "method", request.getMethod());
-        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "outPath", request.getOutPath());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "outputFormat", request.getoutputFormat());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "rotateFlipType", request.getrotateFlipType());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "outPath", request.getoutPath());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "storage", request.getstorage());
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         
         Map<String, Object> localVarFormParams = new LinkedHashMap<String, Object>();
-        if (request.getDrawingData() != null)
-          localVarFormParams.put("DrawingData", request.getDrawingData());
+        if (request.getdrawingData() != null)
+          localVarFormParams.put("drawingData", request.getdrawingData());
 
         final String[] localVarAccepts = {
-            "multipart/form-data"
+            "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "multipart/form-data"
+            "multipart/form-data", "application/octet-stream"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
@@ -821,49 +3209,49 @@ public class CadApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        String[] localVarAuthNames = new String[] { "JWT" };
+        return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call postImageRotateFlipValidateBeforeCall(PostImageRotateFlipRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call putDrawingRotateFlipValidateBeforeCall(PutDrawingRotateFlipRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
-        // verify the required parameter 'DrawingData' is set
-        if (request.getDrawingData() == null) {
-          throw new ApiException(BadRequest, "Missing the required parameter 'DrawingData' when calling postImageRotateFlip");
+        // verify the required parameter 'drawingData' is set
+        if (request.getdrawingData() == null) {
+          throw new ApiException(BadRequest, "Missing the required parameter 'drawingData' when calling putDrawingRotateFlip");
         }
         
-        // verify the required parameter 'Format' is set
-        if (request.getFormat() == null) {
-          throw new ApiException(BadRequest, "Missing the required parameter 'Format' when calling postImageRotateFlip");
+        // verify the required parameter 'outputFormat' is set
+        if (request.getoutputFormat() == null) {
+          throw new ApiException(BadRequest, "Missing the required parameter 'outputFormat' when calling putDrawingRotateFlip");
         }
         
-        // verify the required parameter 'Method' is set
-        if (request.getMethod() == null) {
-          throw new ApiException(BadRequest, "Missing the required parameter 'Method' when calling postImageRotateFlip");
+        // verify the required parameter 'rotateFlipType' is set
+        if (request.getrotateFlipType() == null) {
+          throw new ApiException(BadRequest, "Missing the required parameter 'rotateFlipType' when calling putDrawingRotateFlip");
         }
         
 
-        com.squareup.okhttp.Call call = postImageRotateFlipCall(request, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = putDrawingRotateFlipCall(request, progressListener, progressRequestListener);
         return call;
 
     }
 
     /**
-     * Rotate and flip existing image and get it from response.
+     * Rotate/flip a drawing. Drawing data is passed as a zero-indexed multipart/form-data content or as raw body stream.
      * 
      * @return File
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public File postImageRotateFlip(PostImageRotateFlipRequest request) throws ApiException {
+    public File putDrawingRotateFlip(PutDrawingRotateFlipRequest request) throws ApiException {
         try {
-            ApiResponse<File> resp = postImageRotateFlipWithHttpInfo(request);
+            ApiResponse<File> resp = putDrawingRotateFlipWithHttpInfo(request);
             return resp.getData();
         }
         catch (ApiException ex) {
             if (ex.getCode() == NotAuth) {
                 apiClient.requestToken();
-                ApiResponse<File> resp = postImageRotateFlipWithHttpInfo(request);
+                ApiResponse<File> resp = putDrawingRotateFlipWithHttpInfo(request);
                 return resp.getData();
             }
             throw ex;
@@ -871,25 +3259,25 @@ public class CadApi {
     }
 
     /**
-     * Rotate and flip existing image and get it from response.
+     * Rotate/flip a drawing. Drawing data is passed as a zero-indexed multipart/form-data content or as raw body stream.
      * 
      * @return ApiResponse&lt;File&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    private ApiResponse<File> postImageRotateFlipWithHttpInfo(PostImageRotateFlipRequest request) throws ApiException {
-        com.squareup.okhttp.Call call = postImageRotateFlipValidateBeforeCall(request, null, null);
+    private ApiResponse<File> putDrawingRotateFlipWithHttpInfo(PutDrawingRotateFlipRequest request) throws ApiException {
+        com.squareup.okhttp.Call call = putDrawingRotateFlipValidateBeforeCall(request, null, null);
         Type localVarReturnType = new TypeToken<File>() { }.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     * Rotate and flip existing image and get it from response. (asynchronously)
+     * Rotate/flip a drawing. Drawing data is passed as a zero-indexed multipart/form-data content or as raw body stream. (asynchronously)
      * 
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call postImageRotateFlipAsync(PostImageRotateFlipRequest request, final ApiCallback<File> callback) throws ApiException {
+    public com.squareup.okhttp.Call putDrawingRotateFlipAsync(PutDrawingRotateFlipRequest request, final ApiCallback<File> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -910,39 +3298,177 @@ public class CadApi {
             };
         }
 
-        com.squareup.okhttp.Call call = postImageRotateFlipValidateBeforeCall(request, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = putDrawingRotateFlipValidateBeforeCall(request, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<File>() { }.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
     /**
-     * Build call for postImageSaveAs
+     * Build call for putDrawingSaveAs
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    private com.squareup.okhttp.Call postImageSaveAsCall(PostImageSaveAsRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call putDrawingSaveAsCall(PutDrawingSaveAsRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/cad/saveAs";
+        String localVarPath = "/cad/saveAs/{outputFormat}"
+            .replaceAll("\\{" + "outputFormat" + "\\}", apiClient.escapeString(request.getoutputFormat().toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "format", request.getFormat());
-        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "rasterOptions", request.getRasterOptions());
-        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "outPath", request.getOutPath());
-        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "storage", request.getStorage());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "outPath", request.getoutPath());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "storage", request.getstorage());
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         
         Map<String, Object> localVarFormParams = new LinkedHashMap<String, Object>();
-        if (request.getDrawingData() != null)
-          localVarFormParams.put("DrawingData", request.getDrawingData());
+        if (request.getdrawingData() != null)
+          localVarFormParams.put("drawingData", request.getdrawingData());
 
         final String[] localVarAccepts = {
-            "multipart/form-data"
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "multipart/form-data", "application/octet-stream"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "JWT" };
+        return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call putDrawingSaveAsValidateBeforeCall(PutDrawingSaveAsRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'drawingData' is set
+        if (request.getdrawingData() == null) {
+          throw new ApiException(BadRequest, "Missing the required parameter 'drawingData' when calling putDrawingSaveAs");
+        }
+        
+        // verify the required parameter 'outputFormat' is set
+        if (request.getoutputFormat() == null) {
+          throw new ApiException(BadRequest, "Missing the required parameter 'outputFormat' when calling putDrawingSaveAs");
+        }
+        
+
+        com.squareup.okhttp.Call call = putDrawingSaveAsCall(request, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Export existing drawing to another format. Drawing data is passed as zero-indexed multipart/form-data content or as raw body stream.             
+     * 
+     * @return File
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public File putDrawingSaveAs(PutDrawingSaveAsRequest request) throws ApiException {
+        try {
+            ApiResponse<File> resp = putDrawingSaveAsWithHttpInfo(request);
+            return resp.getData();
+        }
+        catch (ApiException ex) {
+            if (ex.getCode() == NotAuth) {
+                apiClient.requestToken();
+                ApiResponse<File> resp = putDrawingSaveAsWithHttpInfo(request);
+                return resp.getData();
+            }
+            throw ex;
+        }
+    }
+
+    /**
+     * Export existing drawing to another format. Drawing data is passed as zero-indexed multipart/form-data content or as raw body stream.             
+     * 
+     * @return ApiResponse&lt;File&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    private ApiResponse<File> putDrawingSaveAsWithHttpInfo(PutDrawingSaveAsRequest request) throws ApiException {
+        com.squareup.okhttp.Call call = putDrawingSaveAsValidateBeforeCall(request, null, null);
+        Type localVarReturnType = new TypeToken<File>() { }.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Export existing drawing to another format. Drawing data is passed as zero-indexed multipart/form-data content or as raw body stream.              (asynchronously)
+     * 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call putDrawingSaveAsAsync(PutDrawingSaveAsRequest request, final ApiCallback<File> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = putDrawingSaveAsValidateBeforeCall(request, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<File>() { }.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for putDrawingSvg
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    private com.squareup.okhttp.Call putDrawingSvgCall(PutDrawingSvgRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/cad/svg";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "outPath", request.getoutPath());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "storage", request.getstorage());
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        
+        Map<String, Object> localVarFormParams = new LinkedHashMap<String, Object>();
+        if (request.getdrawingData() != null)
+          localVarFormParams.put("drawingData", request.getdrawingData());
+if (request.getoptions() != null)
+          localVarFormParams.put("options", request.getoptions());
+
+        final String[] localVarAccepts = {
+            "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
@@ -965,44 +3491,39 @@ public class CadApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        String[] localVarAuthNames = new String[] { "JWT" };
+        return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call postImageSaveAsValidateBeforeCall(PostImageSaveAsRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call putDrawingSvgValidateBeforeCall(PutDrawingSvgRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
-        // verify the required parameter 'DrawingData' is set
-        if (request.getDrawingData() == null) {
-          throw new ApiException(BadRequest, "Missing the required parameter 'DrawingData' when calling postImageSaveAs");
-        }
-        
-        // verify the required parameter 'Format' is set
-        if (request.getFormat() == null) {
-          throw new ApiException(BadRequest, "Missing the required parameter 'Format' when calling postImageSaveAs");
+        // verify the required parameter 'drawingData' is set
+        if (request.getdrawingData() == null) {
+          throw new ApiException(BadRequest, "Missing the required parameter 'drawingData' when calling putDrawingSvg");
         }
         
 
-        com.squareup.okhttp.Call call = postImageSaveAsCall(request, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = putDrawingSvgCall(request, progressListener, progressRequestListener);
         return call;
 
     }
 
     /**
-     * Export existing image to another format. Image is passed as request body.
+     * Export drawing to SVG format. Drawing data is passed as zero-indexed multipart/form-data as well as export SVG options serialized as JSON. Order of drawing data and SVG options could vary.
      * 
      * @return File
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public File postImageSaveAs(PostImageSaveAsRequest request) throws ApiException {
+    public File putDrawingSvg(PutDrawingSvgRequest request) throws ApiException {
         try {
-            ApiResponse<File> resp = postImageSaveAsWithHttpInfo(request);
+            ApiResponse<File> resp = putDrawingSvgWithHttpInfo(request);
             return resp.getData();
         }
         catch (ApiException ex) {
             if (ex.getCode() == NotAuth) {
                 apiClient.requestToken();
-                ApiResponse<File> resp = postImageSaveAsWithHttpInfo(request);
+                ApiResponse<File> resp = putDrawingSvgWithHttpInfo(request);
                 return resp.getData();
             }
             throw ex;
@@ -1010,25 +3531,25 @@ public class CadApi {
     }
 
     /**
-     * Export existing image to another format. Image is passed as request body.
+     * Export drawing to SVG format. Drawing data is passed as zero-indexed multipart/form-data as well as export SVG options serialized as JSON. Order of drawing data and SVG options could vary.
      * 
      * @return ApiResponse&lt;File&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    private ApiResponse<File> postImageSaveAsWithHttpInfo(PostImageSaveAsRequest request) throws ApiException {
-        com.squareup.okhttp.Call call = postImageSaveAsValidateBeforeCall(request, null, null);
+    private ApiResponse<File> putDrawingSvgWithHttpInfo(PutDrawingSvgRequest request) throws ApiException {
+        com.squareup.okhttp.Call call = putDrawingSvgValidateBeforeCall(request, null, null);
         Type localVarReturnType = new TypeToken<File>() { }.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     * Export existing image to another format. Image is passed as request body. (asynchronously)
+     * Export drawing to SVG format. Drawing data is passed as zero-indexed multipart/form-data as well as export SVG options serialized as JSON. Order of drawing data and SVG options could vary. (asynchronously)
      * 
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call postImageSaveAsAsync(PostImageSaveAsRequest request, final ApiCallback<File> callback) throws ApiException {
+    public com.squareup.okhttp.Call putDrawingSvgAsync(PutDrawingSvgRequest request, final ApiCallback<File> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1049,7 +3570,275 @@ public class CadApi {
             };
         }
 
-        com.squareup.okhttp.Call call = postImageSaveAsValidateBeforeCall(request, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = putDrawingSvgValidateBeforeCall(request, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<File>() { }.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for putDrawingTiff
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    private com.squareup.okhttp.Call putDrawingTiffCall(PutDrawingTiffRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/cad/tiff";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "outPath", request.getoutPath());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "storage", request.getstorage());
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        
+        Map<String, Object> localVarFormParams = new LinkedHashMap<String, Object>();
+        if (request.getdrawingData() != null)
+          localVarFormParams.put("drawingData", request.getdrawingData());
+if (request.getoptions() != null)
+          localVarFormParams.put("options", request.getoptions());
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "multipart/form-data"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "JWT" };
+        return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call putDrawingTiffValidateBeforeCall(PutDrawingTiffRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'drawingData' is set
+        if (request.getdrawingData() == null) {
+          throw new ApiException(BadRequest, "Missing the required parameter 'drawingData' when calling putDrawingTiff");
+        }
+        
+
+        com.squareup.okhttp.Call call = putDrawingTiffCall(request, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Export drawing to TIFF format. Drawing data is passed as zero-indexed multipart/form-data as well as export TIFF options serialized as JSON. Order of drawing data and TIFF options could vary.
+     * 
+     * @return File
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public File putDrawingTiff(PutDrawingTiffRequest request) throws ApiException {
+        try {
+            ApiResponse<File> resp = putDrawingTiffWithHttpInfo(request);
+            return resp.getData();
+        }
+        catch (ApiException ex) {
+            if (ex.getCode() == NotAuth) {
+                apiClient.requestToken();
+                ApiResponse<File> resp = putDrawingTiffWithHttpInfo(request);
+                return resp.getData();
+            }
+            throw ex;
+        }
+    }
+
+    /**
+     * Export drawing to TIFF format. Drawing data is passed as zero-indexed multipart/form-data as well as export TIFF options serialized as JSON. Order of drawing data and TIFF options could vary.
+     * 
+     * @return ApiResponse&lt;File&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    private ApiResponse<File> putDrawingTiffWithHttpInfo(PutDrawingTiffRequest request) throws ApiException {
+        com.squareup.okhttp.Call call = putDrawingTiffValidateBeforeCall(request, null, null);
+        Type localVarReturnType = new TypeToken<File>() { }.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Export drawing to TIFF format. Drawing data is passed as zero-indexed multipart/form-data as well as export TIFF options serialized as JSON. Order of drawing data and TIFF options could vary. (asynchronously)
+     * 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call putDrawingTiffAsync(PutDrawingTiffRequest request, final ApiCallback<File> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = putDrawingTiffValidateBeforeCall(request, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<File>() { }.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for putDrawingWmf
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    private com.squareup.okhttp.Call putDrawingWmfCall(PutDrawingWmfRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/cad/wmf";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "outPath", request.getoutPath());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "storage", request.getstorage());
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        
+        Map<String, Object> localVarFormParams = new LinkedHashMap<String, Object>();
+        if (request.getdrawingData() != null)
+          localVarFormParams.put("drawingData", request.getdrawingData());
+if (request.getoptions() != null)
+          localVarFormParams.put("options", request.getoptions());
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "multipart/form-data"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "JWT" };
+        return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call putDrawingWmfValidateBeforeCall(PutDrawingWmfRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'drawingData' is set
+        if (request.getdrawingData() == null) {
+          throw new ApiException(BadRequest, "Missing the required parameter 'drawingData' when calling putDrawingWmf");
+        }
+        
+
+        com.squareup.okhttp.Call call = putDrawingWmfCall(request, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Export drawing to WMF format. Drawing data is passed as zero-indexed multipart/form-data as well as export WMF options serialized as JSON. Order of drawing data and WMF options could vary.
+     * 
+     * @return File
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public File putDrawingWmf(PutDrawingWmfRequest request) throws ApiException {
+        try {
+            ApiResponse<File> resp = putDrawingWmfWithHttpInfo(request);
+            return resp.getData();
+        }
+        catch (ApiException ex) {
+            if (ex.getCode() == NotAuth) {
+                apiClient.requestToken();
+                ApiResponse<File> resp = putDrawingWmfWithHttpInfo(request);
+                return resp.getData();
+            }
+            throw ex;
+        }
+    }
+
+    /**
+     * Export drawing to WMF format. Drawing data is passed as zero-indexed multipart/form-data as well as export WMF options serialized as JSON. Order of drawing data and WMF options could vary.
+     * 
+     * @return ApiResponse&lt;File&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    private ApiResponse<File> putDrawingWmfWithHttpInfo(PutDrawingWmfRequest request) throws ApiException {
+        com.squareup.okhttp.Call call = putDrawingWmfValidateBeforeCall(request, null, null);
+        Type localVarReturnType = new TypeToken<File>() { }.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Export drawing to WMF format. Drawing data is passed as zero-indexed multipart/form-data as well as export WMF options serialized as JSON. Order of drawing data and WMF options could vary. (asynchronously)
+     * 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call putDrawingWmfAsync(PutDrawingWmfRequest request, final ApiCallback<File> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = putDrawingWmfValidateBeforeCall(request, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<File>() { }.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

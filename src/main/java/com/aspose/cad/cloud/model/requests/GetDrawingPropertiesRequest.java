@@ -1,6 +1,6 @@
 /*
  * --------------------------------------------------------------------------------------
- * <copyright company="Aspose" file="GetImagePropertiesRequest.java">
+ * <copyright company="Aspose" file="GetDrawingPropertiesRequest.java">
  *   Copyright (c) 2018 Aspose.Cad for Cloud
  * </copyright>
  * <summary>
@@ -27,78 +27,79 @@
 package com.aspose.cad.cloud.model.requests;
 import com.aspose.cad.cloud.model.*;
 import java.io.File;
+import java.util.*;
 
 /*
- * Request model for getImageProperties operation.
+ * Request model for getDrawingProperties operation.
  */
-public class GetImagePropertiesRequest {
+public class GetDrawingPropertiesRequest {
     /*
-     * The image name.
+     * Filename of an input drawing on a storage.
      */
-    private String Name;
+    private String name;
 
     /*
-     * Original drawing folder.
+     * Folder with a drawing to get properties for.
      */
-    private String Folder;
+    private String folder;
 
     /*
-     * File storage, which has to be used.
+     * Your Aspose Cloud Storage name.
      */
-    private String Storage;
+    private String storage;
     
     /*
-     * Initializes a new instance of the getImagePropertiesRequest class.
+     * Initializes a new instance of the getDrawingPropertiesRequest class.
      *  
-     * @param String name The image name.
-     * @param String folder Original drawing folder.
-     * @param String storage File storage, which has to be used.
+     * @param String name Filename of an input drawing on a storage.
+     * @param String folder Folder with a drawing to get properties for.
+     * @param String storage Your Aspose Cloud Storage name.
      */
-    public GetImagePropertiesRequest(String name,  String folder,  String storage) {
-        Name = name;
-        Folder = folder;
-        Storage = storage;
+    public GetDrawingPropertiesRequest(String name,  String folder,  String storage) {
+        name = name;
+        folder = folder;
+        storage = storage;
     }
 
     /*
-     *  Gets The image name.
+     *  Gets Filename of an input drawing on a storage.
      */
-    public String getName() {
-        return Name;
+    public String getname() {
+        return name;
     }
 
     /*
-     * Sets The image name.
+     * Sets Filename of an input drawing on a storage.
      */
-    public void setName(String value) {
-        Name = value;
+    public void setname(String value) {
+        name = value;
     }
 
     /*
-     *  Gets Original drawing folder.
+     *  Gets Folder with a drawing to get properties for.
      */
-    public String getFolder() {
-        return Folder;
+    public String getfolder() {
+        return folder;
     }
 
     /*
-     * Sets Original drawing folder.
+     * Sets Folder with a drawing to get properties for.
      */
-    public void setFolder(String value) {
-        Folder = value;
+    public void setfolder(String value) {
+        folder = value;
     }
 
     /*
-     *  Gets File storage, which has to be used.
+     *  Gets Your Aspose Cloud Storage name.
      */
-    public String getStorage() {
-        return Storage;
+    public String getstorage() {
+        return storage;
     }
 
     /*
-     * Sets File storage, which has to be used.
+     * Sets Your Aspose Cloud Storage name.
      */
-    public void setStorage(String value) {
-        Storage = value;
+    public void setstorage(String value) {
+        storage = value;
     }
 }
