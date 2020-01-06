@@ -1,6 +1,6 @@
 /*
- * --------------------------------------------------------------------------------
- * <copyright company="Aspose">
+ * --------------------------------------------------------------------------------------
+ * <copyright company="Aspose" file="PostDrawingPropertiesRequest.java">
  *   Copyright (c) 2018 Aspose.Cad for Cloud
  * </copyright>
  * <summary>
@@ -22,33 +22,42 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *  SOFTWARE.
  * </summary>
- * --------------------------------------------------------------------------------
+ * --------------------------------------------------------------------------------------
  */
+package com.aspose.cad.cloud.model.requests;
+import com.aspose.cad.cloud.model.*;
+import java.io.File;
+import java.util.*;
 
-package com.aspose.cad.cloud;
-
-
-public class Configuration {
-    private static ApiClient defaultApiClient;
-
-    /**
-     * Get the default API client, which would be used when creating API
-     * instances without providing an API client.
-     *
-     * @return Default API client
+/*
+ * Request model for postDrawingProperties operation.
+ */
+public class PostDrawingPropertiesRequest {
+    /*
+     * Input drawing
      */
-    public static ApiClient getDefaultApiClient() {
-        defaultApiClient = new ApiClient();
-        return defaultApiClient;
+    private File drawingData;
+    
+    /*
+     * Initializes a new instance of the postDrawingPropertiesRequest class.
+     *  
+     * @param File drawingData Input drawing
+     */
+    public PostDrawingPropertiesRequest(File drawingData) {
+        this.drawingData = drawingData;
     }
 
-    /**
-     * Set the default API client, which would be used when creating API
-     * instances without providing an API client.
-     *
-     * @param apiClient API client
+    /*
+     *  Gets Input drawing
      */
-    public static void setDefaultApiClient(ApiClient apiClient) {
-        defaultApiClient = apiClient;
+    public File getdrawingData() {
+        return drawingData;
+    }
+
+    /*
+     * Sets Input drawing
+     */
+    public void setdrawingData(File value) {
+        drawingData = value;
     }
 }

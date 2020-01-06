@@ -30,7 +30,7 @@ package com.aspose.cad.cloud.model;
 import java.util.Objects;
 import java.util.Arrays;
 import com.aspose.cad.cloud.model.CadRasterizationOptionsDTO;
-import com.aspose.cad.cloud.model.ImageOptionsBaseDTO;
+import com.aspose.cad.cloud.model.DrawingOptionsBaseDTO;
 import com.aspose.cad.cloud.model.ResolutionSetting;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -48,7 +48,7 @@ import java.util.List;
  */
 @ApiModel(description = "Export options for TIFF format")
 
-public class TiffOptionsDTO extends ImageOptionsBaseDTO {
+public class TiffOptionsDTO extends DrawingOptionsBaseDTO {
   /**
    * Bytes order (little/big-endian notation)
    */

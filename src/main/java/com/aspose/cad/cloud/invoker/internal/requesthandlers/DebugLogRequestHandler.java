@@ -35,6 +35,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.aspose.cad.cloud.ApiClient;
 import com.aspose.cad.cloud.Configuration;
 
 /**
@@ -46,17 +47,17 @@ public class DebugLogRequestHandler implements IRequestHandler
 	/**
      * The configuration
      */
-    private final Configuration configuration;
+    private final ApiClient apiClient;
     
     private static final Logger logger = Logger.getLogger("com.aspose.cad");
 
     /**
      * Initializes a new instance of the DebugLogRequestHandler class.
-     * @param configuration The configuration.
+     * @param apiClient The configuration.
      */
-    public DebugLogRequestHandler(Configuration configuration)
+    public DebugLogRequestHandler(ApiClient apiClient)
     {
-        this.configuration = configuration;
+        this.apiClient = apiClient;
     }
 
     /**
@@ -76,7 +77,7 @@ public class DebugLogRequestHandler implements IRequestHandler
      */
     public void beforeSend(HttpURLConnection connection, OutputStream streamToSend)
     {
-    	if (this.configuration.getDebugMode())
+    	if (this.apiClient.isDebugging())
         {
             this.logRequest(connection, streamToSend);
         }
@@ -85,12 +86,12 @@ public class DebugLogRequestHandler implements IRequestHandler
     /**
      * Processes the response.
      * @param connection The connection.
-     * @param resultStream The result data.
+     * @param resultData The result data.
      * @throws IOException 
      */
     public void processResponse(HttpURLConnection connection, byte[] resultData) throws IOException
     {
-    	if (this.configuration.getDebugMode())
+    	if (this.apiClient.isDebugging())
         {
             this.logResponse(connection, resultData);
         }
@@ -114,7 +115,7 @@ public class DebugLogRequestHandler implements IRequestHandler
     /**
      * Logs the response.
      * @param connection The connection.
-     * @param resultStream The result data.
+     * @param resultData The result data.
      * @throws IOException
      */
     private void logResponse(HttpURLConnection connection, byte[] resultData) throws IOException

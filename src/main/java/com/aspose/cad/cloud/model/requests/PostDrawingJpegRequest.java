@@ -49,7 +49,7 @@ public class PostDrawingJpegRequest {
     private String folder;
 
     /*
-     * Path to updated file (if this is empty, response contains streamed image).
+     * Path to updated file (if this is empty, response contains streamed file).
      */
     private String outPath;
 
@@ -64,15 +64,15 @@ public class PostDrawingJpegRequest {
      * @param String name Filename of an input drawing on a storage.
      * @param JpegOptionsDTO options Export JPEG options passed as a JSON on a request body.
      * @param String folder Folder with a drawing to process.
-     * @param String outPath Path to updated file (if this is empty, response contains streamed image).
+     * @param String outPath Path to updated file (if this is empty, response contains streamed file).
      * @param String storage Your Aspose Cloud Storage name.
      */
     public PostDrawingJpegRequest(String name,  JpegOptionsDTO options,  String folder,  String outPath,  String storage) {
-        name = name;
-        options = options;
-        folder = folder;
-        outPath = outPath;
-        storage = storage;
+        this.name = name;
+        this.options = options;
+        this.folder = folder;
+        this.outPath = outPath;
+        this.storage = storage;
     }
 
     /*
@@ -118,14 +118,14 @@ public class PostDrawingJpegRequest {
     }
 
     /*
-     *  Gets Path to updated file (if this is empty, response contains streamed image).
+     *  Gets Path to updated file (if this is empty, response contains streamed file).
      */
     public String getoutPath() {
         return outPath;
     }
 
     /*
-     * Sets Path to updated file (if this is empty, response contains streamed image).
+     * Sets Path to updated file (if this is empty, response contains streamed file).
      */
     public void setoutPath(String value) {
         outPath = value;

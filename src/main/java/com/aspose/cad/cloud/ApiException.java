@@ -36,7 +36,7 @@ public class ApiException extends Exception {
     private Map<String, List<String>> responseHeaders = null;
     private String responseBody = null;
 
-    public ApiException() { }
+    public ApiException() {}
 
     public ApiException(Throwable throwable) {
         super(throwable);

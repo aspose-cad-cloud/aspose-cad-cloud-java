@@ -31,6 +31,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 
+import com.aspose.cad.cloud.ApiClient;
 import com.aspose.cad.cloud.invoker.AuthType;
 import com.aspose.cad.cloud.Configuration;
 import com.aspose.cad.cloud.invoker.internal.ApiInvoker;
@@ -46,7 +47,7 @@ public class OAuthRequestHandler implements IRequestHandler
 	/**
      * The configuration
      */
-    private final Configuration configuration;
+    private final ApiClient apiClient;
 
     /**
      * The API invoker
@@ -65,14 +66,14 @@ public class OAuthRequestHandler implements IRequestHandler
 
     /**
      * Initializes a new instance of the OAuthRequestHandler class.
-     * @param configuration The configuration.
+     * @param apiClient The api client.
      */
-    public OAuthRequestHandler(Configuration configuration)
+    public OAuthRequestHandler(ApiClient apiClient)
     {
-        this.configuration = configuration;
+        this.apiClient = apiClient;
 
         IRequestHandler[] requestHandlers = new IRequestHandler[2];
-        requestHandlers[0] = new DebugLogRequestHandler(this.configuration);
+        requestHandlers[0] = new DebugLogRequestHandler(this.apiClient);
         requestHandlers[1] = new ApiExceptionRequestHandler();
         this.apiInvoker = new ApiInvoker(requestHandlers);
     }
@@ -85,11 +86,6 @@ public class OAuthRequestHandler implements IRequestHandler
      */
     public String processUrl(String url) throws Exception
     {
-        if (this.configuration.AuthType != AuthType.OAuth2)
-        {
-            return url;
-        }
-
         if (this.accessToken == null || this.accessToken == "")
         {
             this.requestToken();
@@ -105,28 +101,18 @@ public class OAuthRequestHandler implements IRequestHandler
      */
     public void beforeSend(HttpURLConnection connection, OutputStream streamToSend)
     {
-        if (this.configuration.AuthType != AuthType.OAuth2)
-        {
-            return;
-        }
-        
         connection.setRequestProperty("Authorization", "Bearer " + this.accessToken);
     }
 
     /**
      * Processes the response.
      * @param connection The connection.
-     * @param resultStream The result data.
+     * @param resultData The result data.
      * @throws IOException 
      * @throws Exception 
      */
     public void processResponse(HttpURLConnection connection, byte[] resultData) throws IOException, Exception
     {
-        if (this.configuration.AuthType != AuthType.OAuth2)
-        {
-            return;
-        }
-
         if (connection.getResponseCode() == 401)
         {
             this.refreshToken();
@@ -141,7 +127,7 @@ public class OAuthRequestHandler implements IRequestHandler
      */
     private void refreshToken() throws Exception
     {
-        String requestUrl = this.configuration.getApiBaseUrl() + "oauth2/token";
+        String requestUrl = this.apiClient.getBaseUrl() + "oauth2/token";
 
         String postData = "grant_type=refresh_token";
         postData += "&refresh_token=" + this.refreshToken;
@@ -167,11 +153,11 @@ public class OAuthRequestHandler implements IRequestHandler
     /// </summary>
     private void requestToken() throws Exception
     {
-    	String requestUrl = this.configuration.getApiBaseUrl() + "oauth2/token";
+    	String requestUrl = this.apiClient.getBaseUrl() + "oauth2/token";
 
         String postData = "grant_type=client_credentials";
-        postData += "&client_id=" + this.configuration.AppSid;
-        postData += "&client_secret=" + this.configuration.AppKey;
+        postData += "&client_id=" + this.apiClient.getAppSid();
+        postData += "&client_secret=" + this.apiClient.getAppKey();
 
         byte[] resultData = this.apiInvoker.invokeApi(
                 requestUrl,

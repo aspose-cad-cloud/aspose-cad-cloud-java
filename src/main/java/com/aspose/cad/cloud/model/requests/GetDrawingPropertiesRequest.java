@@ -56,9 +56,9 @@ public class GetDrawingPropertiesRequest {
      * @param String storage Your Aspose Cloud Storage name.
      */
     public GetDrawingPropertiesRequest(String name,  String folder,  String storage) {
-        name = name;
-        folder = folder;
-        storage = storage;
+        this.name = name;
+        this.folder = folder;
+        this.storage = storage;
     }
 
     /*

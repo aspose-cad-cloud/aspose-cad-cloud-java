@@ -39,7 +39,7 @@ public class GetDrawingResizeRequest {
     private String name;
 
     /*
-     * Resulting image format.
+     * Resulting file format.
      */
     private String outputFormat;
 
@@ -59,7 +59,7 @@ public class GetDrawingResizeRequest {
     private String folder;
 
     /*
-     * Path to updated file (if this is empty, response contains streamed image).
+     * Path to updated file (if this is empty, response contains streamed file).
      */
     private String outPath;
 
@@ -72,21 +72,21 @@ public class GetDrawingResizeRequest {
      * Initializes a new instance of the getDrawingResizeRequest class.
      *  
      * @param String name Filename of a drawing.
-     * @param String outputFormat Resulting image format.
+     * @param String outputFormat Resulting file format.
      * @param Integer newWidth New width.
      * @param Integer newHeight New height.
      * @param String folder Folder with a drawing to process.
-     * @param String outPath Path to updated file (if this is empty, response contains streamed image).
+     * @param String outPath Path to updated file (if this is empty, response contains streamed file).
      * @param String storage Your Aspose Cloud Storage name.
      */
     public GetDrawingResizeRequest(String name,  String outputFormat,  Integer newWidth,  Integer newHeight,  String folder,  String outPath,  String storage) {
-        name = name;
-        outputFormat = outputFormat;
-        newWidth = newWidth;
-        newHeight = newHeight;
-        folder = folder;
-        outPath = outPath;
-        storage = storage;
+        this.name = name;
+        this.outputFormat = outputFormat;
+        this.newWidth = newWidth;
+        this.newHeight = newHeight;
+        this.folder = folder;
+        this.outPath = outPath;
+        this.storage = storage;
     }
 
     /*
@@ -104,14 +104,14 @@ public class GetDrawingResizeRequest {
     }
 
     /*
-     *  Gets Resulting image format.
+     *  Gets Resulting file format.
      */
     public String getoutputFormat() {
         return outputFormat;
     }
 
     /*
-     * Sets Resulting image format.
+     * Sets Resulting file format.
      */
     public void setoutputFormat(String value) {
         outputFormat = value;
@@ -160,14 +160,14 @@ public class GetDrawingResizeRequest {
     }
 
     /*
-     *  Gets Path to updated file (if this is empty, response contains streamed image).
+     *  Gets Path to updated file (if this is empty, response contains streamed file).
      */
     public String getoutPath() {
         return outPath;
     }
 
     /*
-     * Sets Path to updated file (if this is empty, response contains streamed image).
+     * Sets Path to updated file (if this is empty, response contains streamed file).
      */
     public void setoutPath(String value) {
         outPath = value;

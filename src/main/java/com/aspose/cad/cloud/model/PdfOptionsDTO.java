@@ -30,7 +30,7 @@ package com.aspose.cad.cloud.model;
 import java.util.Objects;
 import java.util.Arrays;
 import com.aspose.cad.cloud.model.CadRasterizationOptionsDTO;
-import com.aspose.cad.cloud.model.ImageOptionsBaseDTO;
+import com.aspose.cad.cloud.model.DrawingOptionsBaseDTO;
 import com.aspose.cad.cloud.model.PdfDocumentInfo;
 import com.aspose.cad.cloud.model.PdfDocumentOptions;
 import com.aspose.cad.cloud.model.ResolutionSetting;
@@ -49,7 +49,7 @@ import java.util.List;
  */
 @ApiModel(description = "Export options for PDF format")
 
-public class PdfOptionsDTO extends ImageOptionsBaseDTO {
+public class PdfOptionsDTO extends DrawingOptionsBaseDTO {
   @SerializedName("PdfDocumentInfo")
   private PdfDocumentInfo pdfDocumentInfo = null;
 

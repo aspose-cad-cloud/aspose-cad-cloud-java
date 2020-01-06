@@ -2,10 +2,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.aspose</groupId>
-    <artifactId>aspose-cad-cloud</artifactId>
+    <artifactId>aspose.cad-cloud</artifactId>
     <packaging>jar</packaging>
     <name>Aspose.CAD for Cloud Java SDK</name>
-    <version>17.11</version>
+    <version>{releaseVersion}</version>
     <url>https://github.com/aspose-cad-cloud/aspose-cad-cloud-java</url>
     <description>Aspose.CAD for Cloud Java SDK</description>
 	
@@ -38,7 +38,7 @@
 		<maven.compiler.source>1.7</maven.compiler.source>
         <maven.compiler.target>1.7</maven.compiler.target>
 		<javadoc.opts>-Xdoclint:none</javadoc.opts>
-		<releaseVersion>${releaseVersion}</releaseVersion>
+		<releaseVersion>{releaseVersion}</releaseVersion>
     </properties>
     
     <build>

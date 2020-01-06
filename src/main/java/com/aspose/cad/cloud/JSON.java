@@ -35,12 +35,12 @@ import com.google.gson.internal.bind.util.ISO8601Utils;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.google.gson.JsonElement;
+import com.sun.jmx.snmp.Timestamp;
 import io.gsonfire.GsonFireBuilder;
 import io.gsonfire.TypeSelector;
+import org.threeten.bp.*;
 import org.threeten.bp.LocalDate;
-import org.threeten.bp.LocalDateTime;
 import org.threeten.bp.OffsetDateTime;
-import org.threeten.bp.ZoneOffset;
 import org.threeten.bp.format.DateTimeFormatter;
 
 import okio.ByteString;
@@ -48,14 +48,12 @@ import okio.ByteString;
 import java.io.IOException;
 import java.io.StringReader;
 import java.lang.reflect.Type;
-import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.ParsePosition;
 import java.util.Date;
 import java.util.Map;
 import java.util.HashMap;
-import java.util.regex.Pattern;
 
 public class JSON {
     private Gson gson;
@@ -67,14 +65,15 @@ public class JSON {
     private ByteArrayAdapter byteArrayAdapter = new ByteArrayAdapter();
 
     public static GsonBuilder createGson() {
-        GsonFireBuilder fireBuilder = new GsonFireBuilder();
+        GsonFireBuilder fireBuilder = new GsonFireBuilder()
+        ;
         GsonBuilder builder = fireBuilder.createGsonBuilder();
         return builder;
     }
 
     private static String getDiscriminatorValue(JsonElement readElement, String discriminatorField) {
         JsonElement element = readElement.getAsJsonObject().get(discriminatorField);
-        if (null == element) {
+        if(null == element) {
             throw new IllegalArgumentException("missing discriminator field: <" + discriminatorField + ">");
         }
         return element.getAsString();
@@ -82,7 +81,7 @@ public class JSON {
 
     private static Class getClassByDiscriminator(Map classByDiscriminatorValue, String discriminatorValue) {
         Class clazz = (Class) classByDiscriminatorValue.get(discriminatorValue.toUpperCase());
-        if (null == clazz) {
+        if(null == clazz) {
             throw new IllegalArgumentException("cannot determine model class of name: <" + discriminatorValue + ">");
         }
         return clazz;
@@ -149,17 +148,15 @@ public class JSON {
                 // see https://google-gson.googlecode.com/svn/trunk/gson/docs/javadocs/com/google/gson/stream/JsonReader.html#setLenient(boolean)
                 jsonReader.setLenient(true);
                 return gson.fromJson(jsonReader, returnType);
-            }
-            else {
+            } else {
                 return gson.fromJson(body, returnType);
             }
-        }
-        catch (JsonParseException e) {
+        } catch (JsonParseException e) {
             // Fallback processing when failed to parse JSON form response body:
             // return the response body string directly for the String return type;
             if (returnType.equals(String.class))
                 return (T) body;
-            else throw e;
+            else throw (e);
         }
     }
 
@@ -172,8 +169,7 @@ public class JSON {
         public void write(JsonWriter out, byte[] value) throws IOException {
             if (value == null) {
                 out.nullValue();
-            }
-            else {
+            } else {
                 out.value(ByteString.of(value).base64());
             }
         }
@@ -215,8 +211,7 @@ public class JSON {
         public void write(JsonWriter out, OffsetDateTime date) throws IOException {
             if (date == null) {
                 out.nullValue();
-            }
-            else {
+            } else {
                 out.value(formatter.format(date));
             }
         }
@@ -230,10 +225,9 @@ public class JSON {
                 default:
                     String date = in.nextString();
                     if (date.endsWith("+0000")) {
-                        date = date.substring(0, date.length() - 5) + "Z";
+                        date = date.substring(0, date.length()-5) + "Z";
                     }
-
-                    String timeStampString = new Timestamp(Long.valueOf(date.substring(date.indexOf("(") + 1, date.indexOf(")") - 1))).toString();
+                    String timeStampString = new Timestamp(Long.valueOf(date.substring(date.indexOf("(") + 1, date.indexOf(")") -1))).toString();
                     Integer index = timeStampString.indexOf(" ");
                     String dateString = timeStampString.substring(0, index);
                     String[] timeString = timeStampString.substring(index + 1).split(":");
@@ -273,8 +267,7 @@ public class JSON {
         public void write(JsonWriter out, LocalDate date) throws IOException {
             if (date == null) {
                 out.nullValue();
-            }
-            else {
+            } else {
                 out.value(formatter.format(date));
             }
         }
@@ -326,13 +319,11 @@ public class JSON {
         public void write(JsonWriter out, java.sql.Date date) throws IOException {
             if (date == null) {
                 out.nullValue();
-            }
-            else {
+            } else {
                 String value;
                 if (dateFormat != null) {
                     value = dateFormat.format(date);
-                }
-                else {
+                } else {
                     value = date.toString();
                 }
                 out.value(value);
@@ -352,8 +343,7 @@ public class JSON {
                             return new java.sql.Date(dateFormat.parse(date).getTime());
                         }
                         return new java.sql.Date(ISO8601Utils.parse(date, new ParsePosition(0)).getTime());
-                    }
-                    catch (ParseException e) {
+                    } catch (ParseException e) {
                         throw new JsonParseException(e);
                     }
             }
@@ -383,13 +373,11 @@ public class JSON {
         public void write(JsonWriter out, Date date) throws IOException {
             if (date == null) {
                 out.nullValue();
-            }
-            else {
+            } else {
                 String value;
                 if (dateFormat != null) {
                     value = dateFormat.format(date);
-                }
-                else {
+                } else {
                     value = ISO8601Utils.format(date, true);
                 }
                 out.value(value);
@@ -410,13 +398,11 @@ public class JSON {
                                 return dateFormat.parse(date);
                             }
                             return ISO8601Utils.parse(date, new ParsePosition(0));
-                        }
-                        catch (ParseException e) {
+                        } catch (ParseException e) {
                             throw new JsonParseException(e);
                         }
                 }
-            }
-            catch (IllegalArgumentException e) {
+            } catch (IllegalArgumentException e) {
                 throw new JsonParseException(e);
             }
         }

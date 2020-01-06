@@ -30,7 +30,7 @@ package com.aspose.cad.cloud.model;
 import java.util.Objects;
 import java.util.Arrays;
 import com.aspose.cad.cloud.model.CadRasterizationOptionsDTO;
-import com.aspose.cad.cloud.model.ImageOptionsBaseDTO;
+import com.aspose.cad.cloud.model.DrawingOptionsBaseDTO;
 import com.aspose.cad.cloud.model.ResolutionSetting;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -47,7 +47,7 @@ import java.util.List;
  */
 @ApiModel(description = "Export options for BMP format")
 
-public class BmpOptionsDTO extends ImageOptionsBaseDTO {
+public class BmpOptionsDTO extends DrawingOptionsBaseDTO {
   @SerializedName("BitsPerPixel")
   private Integer bitsPerPixel = null;
 

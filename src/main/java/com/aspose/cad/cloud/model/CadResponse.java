@@ -29,6 +29,7 @@ package com.aspose.cad.cloud.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import com.aspose.cad.cloud.model.Cff2Properties;
 import com.aspose.cad.cloud.model.DgnProperties;
 import com.aspose.cad.cloud.model.DwfProperties;
 import com.aspose.cad.cloud.model.DwgProperties;
@@ -46,9 +47,9 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * Represents information about image.
+ * Represents information about a drawing.
  */
-@ApiModel(description = "Represents information about image.")
+@ApiModel(description = "Represents information about a drawing.")
 
 public class CadResponse {
   @SerializedName("Height")
@@ -81,16 +82,19 @@ public class CadResponse {
   @SerializedName("DwfProperties")
   private DwfProperties dwfProperties = null;
 
+  @SerializedName("Cff2Properties")
+  private Cff2Properties cff2Properties = null;
+
   public CadResponse height(Integer height) {
     this.height = height;
     return this;
   }
 
    /**
-   * Gets or sets the height of image.
+   * Gets or sets the height of a drawing.
    * @return height
   **/
-  @ApiModelProperty(required = true, value = "Gets or sets the height of image.")
+  @ApiModelProperty(required = true, value = "Gets or sets the height of a drawing.")
   public Integer getHeight() {
     return height;
   }
@@ -105,10 +109,10 @@ public class CadResponse {
   }
 
    /**
-   * Gets or sets the width of image.
+   * Gets or sets the width of a drawing.
    * @return width
   **/
-  @ApiModelProperty(required = true, value = "Gets or sets the width of image.")
+  @ApiModelProperty(required = true, value = "Gets or sets the width of a drawing.")
   public Integer getWidth() {
     return width;
   }
@@ -261,6 +265,24 @@ public class CadResponse {
     this.dwfProperties = dwfProperties;
   }
 
+  public CadResponse cff2Properties(Cff2Properties cff2Properties) {
+    this.cff2Properties = cff2Properties;
+    return this;
+  }
+
+   /**
+   * Gets or sets the CFF2 properties.
+   * @return cff2Properties
+  **/
+  @ApiModelProperty(value = "Gets or sets the CFF2 properties.")
+  public Cff2Properties getCff2Properties() {
+    return cff2Properties;
+  }
+
+  public void setCff2Properties(Cff2Properties cff2Properties) {
+    this.cff2Properties = cff2Properties;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -280,12 +302,13 @@ public class CadResponse {
         Objects.equals(this.ifcProperties, cadResponse.ifcProperties) &&
         Objects.equals(this.igsProperties, cadResponse.igsProperties) &&
         Objects.equals(this.stlProperties, cadResponse.stlProperties) &&
-        Objects.equals(this.dwfProperties, cadResponse.dwfProperties);
+        Objects.equals(this.dwfProperties, cadResponse.dwfProperties) &&
+        Objects.equals(this.cff2Properties, cadResponse.cff2Properties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(height, width, dwgProperties, dxfProperties, dwtProperties, dgnProperties, ifcProperties, igsProperties, stlProperties, dwfProperties);
+    return Objects.hash(height, width, dwgProperties, dxfProperties, dwtProperties, dgnProperties, ifcProperties, igsProperties, stlProperties, dwfProperties, cff2Properties);
   }
 
 
@@ -304,6 +327,7 @@ public class CadResponse {
     sb.append("    igsProperties: ").append(toIndentedString(igsProperties)).append("\n");
     sb.append("    stlProperties: ").append(toIndentedString(stlProperties)).append("\n");
     sb.append("    dwfProperties: ").append(toIndentedString(dwfProperties)).append("\n");
+    sb.append("    cff2Properties: ").append(toIndentedString(cff2Properties)).append("\n");
     sb.append("}");
     return sb.toString();
   }

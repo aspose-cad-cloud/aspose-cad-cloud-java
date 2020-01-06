@@ -41,10 +41,10 @@ public class PutDrawingGifRequest {
     /*
      * JSON-serialized export options passed as zero-indexed multipart/form-data. Follow #/definitions/GifOptionsDTO model definition.
      */
-    private Map<String, String> options;
+    private String exportOptions;
 
     /*
-     * Path to updated file (if this is empty, response contains streamed image).
+     * Path to updated file (if this is empty, response contains streamed file).
      */
     private String outPath;
 
@@ -57,15 +57,15 @@ public class PutDrawingGifRequest {
      * Initializes a new instance of the putDrawingGifRequest class.
      *  
      * @param File drawingData Input drawing
-     * @param Map&lt;String, String&gt; options JSON-serialized export options passed as zero-indexed multipart/form-data. Follow #/definitions/GifOptionsDTO model definition.
-     * @param String outPath Path to updated file (if this is empty, response contains streamed image).
+     * @param String exportOptions JSON-serialized export options passed as zero-indexed multipart/form-data. Follow #/definitions/GifOptionsDTO model definition.
+     * @param String outPath Path to updated file (if this is empty, response contains streamed file).
      * @param String storage Your Aspose Cloud Storage name.
      */
-    public PutDrawingGifRequest(File drawingData,  Map<String, String> options,  String outPath,  String storage) {
-        drawingData = drawingData;
-        options = options;
-        outPath = outPath;
-        storage = storage;
+    public PutDrawingGifRequest(File drawingData,  String exportOptions,  String outPath,  String storage) {
+        this.drawingData = drawingData;
+        this.exportOptions = exportOptions;
+        this.outPath = outPath;
+        this.storage = storage;
     }
 
     /*
@@ -85,26 +85,26 @@ public class PutDrawingGifRequest {
     /*
      *  Gets JSON-serialized export options passed as zero-indexed multipart/form-data. Follow #/definitions/GifOptionsDTO model definition.
      */
-    public Map<String, String> getoptions() {
-        return options;
+    public String getexportOptions() {
+        return exportOptions;
     }
 
     /*
      * Sets JSON-serialized export options passed as zero-indexed multipart/form-data. Follow #/definitions/GifOptionsDTO model definition.
      */
-    public void setoptions(Map<String, String> value) {
-        options = value;
+    public void setexportOptions(String value) {
+        exportOptions = value;
     }
 
     /*
-     *  Gets Path to updated file (if this is empty, response contains streamed image).
+     *  Gets Path to updated file (if this is empty, response contains streamed file).
      */
     public String getoutPath() {
         return outPath;
     }
 
     /*
-     * Sets Path to updated file (if this is empty, response contains streamed image).
+     * Sets Path to updated file (if this is empty, response contains streamed file).
      */
     public void setoutPath(String value) {
         outPath = value;

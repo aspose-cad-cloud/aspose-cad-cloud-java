@@ -30,7 +30,7 @@ package com.aspose.cad.cloud.model;
 import java.util.Objects;
 import java.util.Arrays;
 import com.aspose.cad.cloud.model.CadRasterizationOptionsDTO;
-import com.aspose.cad.cloud.model.ImageOptionsBaseDTO;
+import com.aspose.cad.cloud.model.DrawingOptionsBaseDTO;
 import com.aspose.cad.cloud.model.RdOptimizerSettings;
 import com.aspose.cad.cloud.model.ResolutionSetting;
 import com.google.gson.TypeAdapter;
@@ -48,7 +48,7 @@ import java.util.List;
  */
 @ApiModel(description = "Export options for JPEG format")
 
-public class JpegOptionsDTO extends ImageOptionsBaseDTO {
+public class JpegOptionsDTO extends DrawingOptionsBaseDTO {
   @SerializedName("Comment")
   private String comment = null;
 
@@ -174,10 +174,10 @@ public class JpegOptionsDTO extends ImageOptionsBaseDTO {
   }
 
    /**
-   * Comment to resulting image
+   * Comment to Resulting file
    * @return comment
   **/
-  @ApiModelProperty(value = "Comment to resulting image")
+  @ApiModelProperty(value = "Comment to Resulting file")
   public String getComment() {
     return comment;
   }

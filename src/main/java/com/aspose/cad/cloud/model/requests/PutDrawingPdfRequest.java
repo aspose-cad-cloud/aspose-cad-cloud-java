@@ -39,14 +39,14 @@ public class PutDrawingPdfRequest {
     private File drawingData;
 
     /*
-     * JSON-serialized export options passed as zero-indexed multipart/form-data. Follow #/definitions/PdfOptionsDTO model definition.
-     */
-    private Map<String, String> options;
-
-    /*
-     * Path to updated file (if this is empty, response contains streamed image).
+     * Path to updated file (if this is empty, response contains streamed file).
      */
     private String outPath;
+
+    /*
+     * JSON-serialized export options passed as zero-indexed multipart/form-data. Follow #/definitions/PdfOptionsDTO model definition.
+     */
+    private String exportOptions;
 
     /*
      * Your Aspose Cloud Storage name.
@@ -57,15 +57,15 @@ public class PutDrawingPdfRequest {
      * Initializes a new instance of the putDrawingPdfRequest class.
      *  
      * @param File drawingData Input drawing
-     * @param Map&lt;String, String&gt; options JSON-serialized export options passed as zero-indexed multipart/form-data. Follow #/definitions/PdfOptionsDTO model definition.
-     * @param String outPath Path to updated file (if this is empty, response contains streamed image).
+     * @param String outPath Path to updated file (if this is empty, response contains streamed file).
+     * @param String exportOptions JSON-serialized export options passed as zero-indexed multipart/form-data. Follow #/definitions/PdfOptionsDTO model definition.
      * @param String storage Your Aspose Cloud Storage name.
      */
-    public PutDrawingPdfRequest(File drawingData,  Map<String, String> options,  String outPath,  String storage) {
-        drawingData = drawingData;
-        options = options;
-        outPath = outPath;
-        storage = storage;
+    public PutDrawingPdfRequest(File drawingData,  String outPath,  String exportOptions,  String storage) {
+        this.drawingData = drawingData;
+        this.outPath = outPath;
+        this.exportOptions = exportOptions;
+        this.storage = storage;
     }
 
     /*
@@ -83,31 +83,31 @@ public class PutDrawingPdfRequest {
     }
 
     /*
-     *  Gets JSON-serialized export options passed as zero-indexed multipart/form-data. Follow #/definitions/PdfOptionsDTO model definition.
-     */
-    public Map<String, String> getoptions() {
-        return options;
-    }
-
-    /*
-     * Sets JSON-serialized export options passed as zero-indexed multipart/form-data. Follow #/definitions/PdfOptionsDTO model definition.
-     */
-    public void setoptions(Map<String, String> value) {
-        options = value;
-    }
-
-    /*
-     *  Gets Path to updated file (if this is empty, response contains streamed image).
+     *  Gets Path to updated file (if this is empty, response contains streamed file).
      */
     public String getoutPath() {
         return outPath;
     }
 
     /*
-     * Sets Path to updated file (if this is empty, response contains streamed image).
+     * Sets Path to updated file (if this is empty, response contains streamed file).
      */
     public void setoutPath(String value) {
         outPath = value;
+    }
+
+    /*
+     *  Gets JSON-serialized export options passed as zero-indexed multipart/form-data. Follow #/definitions/PdfOptionsDTO model definition.
+     */
+    public String getexportOptions() {
+        return exportOptions;
+    }
+
+    /*
+     * Sets JSON-serialized export options passed as zero-indexed multipart/form-data. Follow #/definitions/PdfOptionsDTO model definition.
+     */
+    public void setexportOptions(String value) {
+        exportOptions = value;
     }
 
     /*

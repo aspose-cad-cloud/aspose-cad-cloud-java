@@ -55,7 +55,7 @@ import java.util.Collections;
 public class SaveAsApiTests extends ApiTester {
 
 	private GetDrawingSaveAsRequest getImageSaveAsRequest;
-	private PutDrawingSaveAsRequest postImageSaveAsRequest;
+	private PostDrawingSaveAsRequest postImageSaveAsRequest;
 	
 	@Before
     public void setUp() throws Exception { 
@@ -73,22 +73,25 @@ public class SaveAsApiTests extends ApiTester {
      */
     @Test
     @Parameters({
-			//".dwg, false,",
+			".dwg, false,",
 			".dwg, true,",
-			//".dxf, true,",
-			//".dxf, false,",
-			//".dgn, true,",
-			//".dgn, false,",
-			//".stl, true,",
-			//".stl, false,",
-			//".ifc, true,",
-			//".ifc, false,",
-			//".dwf, true,",
-			//".dwf, false,"
+			".dxf, true,",
+			".dxf, false,",
+			".dgn, true,",
+			".dgn, false,",
+			".stl, true,",
+			".stl, false,",
+			".ifc, true,",
+			".ifc, false,",
+			".dwf, true,",
+			".dwf, false,",
+			".cf2, true,",
+			".cf2, false,",
+			".dwt, true,",
+			".dwt, false,"
 	})
     public void getImageSaveAsTest(String formatExtension, Boolean saveResultToStorage, String... additionalExportFormats) throws Exception {
         String name = null;
-        String outPath = null;
         String folder = CloudTestFolder;
         String storage = DefaultStorage;
 		String outName = null;
@@ -116,8 +119,8 @@ public class SaveAsApiTests extends ApiTester {
 			
 			for (String format : formatsToExport)
             {
-				getImageSaveAsRequest = new GetDrawingSaveAsRequest(name, format, folder, outPath, null);
-				outName = name + "." + format;
+                outName = name + "." + format;
+				getImageSaveAsRequest = new GetDrawingSaveAsRequest(name, format, folder, outName, storage);
 				
 				Method propertiesTester = SaveAsApiTests.class.getDeclaredMethod("getImageSaveAsPropertiesTester", CadResponse.class, CadResponse.class);
 				propertiesTester.setAccessible(true);
@@ -195,7 +198,7 @@ public class SaveAsApiTests extends ApiTester {
 			
 			for (String format : formatsToExport)
             {
-				postImageSaveAsRequest = new PutDrawingSaveAsRequest(imageFile, format, outPath, storage);
+				postImageSaveAsRequest = new PostDrawingSaveAsRequest(imageFile, format, outPath, storage);
 				outName = name + "." + format;
 				
 				Method propertiesTester = SaveAsApiTests.class.getDeclaredMethod("postImageSaveAsPropertiesTester", CadResponse.class, CadResponse.class);
@@ -242,7 +245,7 @@ public class SaveAsApiTests extends ApiTester {
 	{
 	    postImageSaveAsRequest.setdrawingData(imageData);
 		postImageSaveAsRequest.setoutPath(outPath);
-        return CadApi.putDrawingSaveAs(postImageSaveAsRequest);
+        return CadApi.postDrawingSaveAs(postImageSaveAsRequest);
 	}
 	
 	/**

@@ -30,7 +30,7 @@ package com.aspose.cad.cloud.model;
 import java.util.Objects;
 import java.util.Arrays;
 import com.aspose.cad.cloud.model.CadRasterizationOptionsDTO;
-import com.aspose.cad.cloud.model.ImageOptionsBaseDTO;
+import com.aspose.cad.cloud.model.DrawingOptionsBaseDTO;
 import com.aspose.cad.cloud.model.ResolutionSetting;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -47,7 +47,7 @@ import java.util.List;
  */
 @ApiModel(description = "Export options for WMF format")
 
-public class WmfOptionsDTO extends ImageOptionsBaseDTO {
+public class WmfOptionsDTO extends DrawingOptionsBaseDTO {
   @SerializedName("BitsPerPixel")
   private Integer bitsPerPixel = null;
 
@@ -57,10 +57,10 @@ public class WmfOptionsDTO extends ImageOptionsBaseDTO {
   }
 
    /**
-   * Bits per pixel for resulting image
+   * Bits per pixel for Resulting file
    * @return bitsPerPixel
   **/
-  @ApiModelProperty(required = true, value = "Bits per pixel for resulting image")
+  @ApiModelProperty(required = true, value = "Bits per pixel for Resulting file")
   public Integer getBitsPerPixel() {
     return bitsPerPixel;
   }

@@ -1,6 +1,6 @@
 /*
  * --------------------------------------------------------------------------------------
- * <copyright company="Aspose" file="PostDrawingBmpRequest.java">
+ * <copyright company="Aspose" file="PostDrawingRotateFlipRequest.java">
  *   Copyright (c) 2018 Aspose.Cad for Cloud
  * </copyright>
  * <summary>
@@ -30,23 +30,23 @@ import java.io.File;
 import java.util.*;
 
 /*
- * Request model for postDrawingBmp operation.
+ * Request model for postDrawingRotateFlip operation.
  */
-public class PostDrawingBmpRequest {
+public class PostDrawingRotateFlipRequest {
     /*
-     * Filename of an input drawing on a storage.
+     * Input drawing
      */
-    private String name;
+    private File drawingData;
 
     /*
-     * Export BMP options passed as a JSON on a request body.
+     * Resulting file format.
      */
-    private BmpOptionsDTO options;
+    private String outputFormat;
 
     /*
-     * Folder with a drawing to process.
+     * Rotate/flip operation to apply.
      */
-    private String folder;
+    private String rotateFlipType;
 
     /*
      * Path to updated file (if this is empty, response contains streamed file).
@@ -59,62 +59,62 @@ public class PostDrawingBmpRequest {
     private String storage;
     
     /*
-     * Initializes a new instance of the postDrawingBmpRequest class.
+     * Initializes a new instance of the postDrawingRotateFlipRequest class.
      *  
-     * @param String name Filename of an input drawing on a storage.
-     * @param BmpOptionsDTO options Export BMP options passed as a JSON on a request body.
-     * @param String folder Folder with a drawing to process.
+     * @param File drawingData Input drawing
+     * @param String outputFormat Resulting file format.
+     * @param String rotateFlipType Rotate/flip operation to apply.
      * @param String outPath Path to updated file (if this is empty, response contains streamed file).
      * @param String storage Your Aspose Cloud Storage name.
      */
-    public PostDrawingBmpRequest(String name,  BmpOptionsDTO options,  String folder,  String outPath,  String storage) {
-        this.name = name;
-        this.options = options;
-        this.folder = folder;
+    public PostDrawingRotateFlipRequest(File drawingData,  String outputFormat,  String rotateFlipType,  String outPath,  String storage) {
+        this.drawingData = drawingData;
+        this.outputFormat = outputFormat;
+        this.rotateFlipType = rotateFlipType;
         this.outPath = outPath;
         this.storage = storage;
     }
 
     /*
-     *  Gets Filename of an input drawing on a storage.
+     *  Gets Input drawing
      */
-    public String getname() {
-        return name;
+    public File getdrawingData() {
+        return drawingData;
     }
 
     /*
-     * Sets Filename of an input drawing on a storage.
+     * Sets Input drawing
      */
-    public void setname(String value) {
-        name = value;
+    public void setdrawingData(File value) {
+        drawingData = value;
     }
 
     /*
-     *  Gets Export BMP options passed as a JSON on a request body.
+     *  Gets Resulting file format.
      */
-    public BmpOptionsDTO getoptions() {
-        return options;
+    public String getoutputFormat() {
+        return outputFormat;
     }
 
     /*
-     * Sets Export BMP options passed as a JSON on a request body.
+     * Sets Resulting file format.
      */
-    public void setoptions(BmpOptionsDTO value) {
-        options = value;
+    public void setoutputFormat(String value) {
+        outputFormat = value;
     }
 
     /*
-     *  Gets Folder with a drawing to process.
+     *  Gets Rotate/flip operation to apply.
      */
-    public String getfolder() {
-        return folder;
+    public String getrotateFlipType() {
+        return rotateFlipType;
     }
 
     /*
-     * Sets Folder with a drawing to process.
+     * Sets Rotate/flip operation to apply.
      */
-    public void setfolder(String value) {
-        folder = value;
+    public void setrotateFlipType(String value) {
+        rotateFlipType = value;
     }
 
     /*

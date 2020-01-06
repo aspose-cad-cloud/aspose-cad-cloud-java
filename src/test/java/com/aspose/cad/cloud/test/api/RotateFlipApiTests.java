@@ -56,7 +56,7 @@ import java.util.Collections;
 public class RotateFlipApiTests extends ApiTester {
 
 	private GetDrawingRotateFlipRequest getImageRotateFlipRequest;
-	private PutDrawingRotateFlipRequest postImageRotateFlipRequest;
+	private PostDrawingRotateFlipRequest postImageRotateFlipRequest;
 
     private String[] _rotateFlipMethods = new String[]
     {
@@ -190,7 +190,7 @@ public class RotateFlipApiTests extends ApiTester {
                 for (String method : _rotateFlipMethods)
                 {
                     outName = name + "_" + method + "." + format;
-                    postImageRotateFlipRequest = new PutDrawingRotateFlipRequest(imageFile, format, method, outPath, null);
+                    postImageRotateFlipRequest = new PostDrawingRotateFlipRequest(imageFile, format, method, outPath, null);
 
                     Method propertiesTester = RotateFlipApiTests.class.getDeclaredMethod("postImageRotateFlipPropertiesTester", CadResponse.class, CadResponse.class);
                     propertiesTester.setAccessible(true);
@@ -239,7 +239,7 @@ public class RotateFlipApiTests extends ApiTester {
 	{
 	    postImageRotateFlipRequest.setdrawingData(imageData);
 		postImageRotateFlipRequest.setoutPath(outPath);
-        return CadApi.putDrawingRotateFlip(postImageRotateFlipRequest);
+        return CadApi.postDrawingRotateFlip(postImageRotateFlipRequest);
 	}
 	
 	/**

@@ -55,7 +55,7 @@ import java.util.Collections;
 public class ResizeApiTests extends ApiTester {
 
 	private GetDrawingResizeRequest getImageResizeRequest;
-	private PutDrawingResizeRequest postImageResizeRequest;
+	private PostDrawingResizeRequest postImageResizeRequest;
 	
 	@Before
     public void setUp() throws Exception { 
@@ -115,7 +115,7 @@ public class ResizeApiTests extends ApiTester {
 				Method requestInvoker = ResizeApiTests.class.getDeclaredMethod("getImageResizeGetRequestInvoker", String.class, String.class);
 				requestInvoker.setAccessible(true);
 			    this.testGetRequest(
-		            "getImageResizeTest; save result to storage: " + saveResultToStorage, 
+		            "getImageResizeTest; save result to storage: " + saveResultToStorage,
 		            saveResultToStorage,
 		            String.format("Input image: %s; Output format: %s; New width: %s; New height: %s",
 		            		name, format, newWidth, newHeight),
@@ -144,7 +144,7 @@ public class ResizeApiTests extends ApiTester {
 	@Parameters({
 			".dwg, true,"
 	})
-    public void postImageResizeTest(String formatExtension, Boolean saveResultToStorage, String... additionalExportFormats) throws Exception {
+    public void putImageResizeTest(String formatExtension, Boolean saveResultToStorage, String... additionalExportFormats) throws Exception {
     	byte[] imageData = null;
     	File imageFile = null;
 		String name = null;
@@ -180,7 +180,7 @@ public class ResizeApiTests extends ApiTester {
 			
 			for (String format : formatsToExport)
             {
-				postImageResizeRequest = new PutDrawingResizeRequest(imageFile, format, newWidth, newHeight, outPath, storage);
+				postImageResizeRequest = new PostDrawingResizeRequest(imageFile, format, newWidth, newHeight, outPath, storage);
 				outName = name + "_resize." + format;
 				
 				Method propertiesTester = ResizeApiTests.class.getDeclaredMethod("postImageResizePropertiesTester", CadResponse.class, CadResponse.class);
@@ -188,7 +188,7 @@ public class ResizeApiTests extends ApiTester {
 				Method requestInvoker = ResizeApiTests.class.getDeclaredMethod("postImageResizePostRequestInvoker", File.class, String.class);
 				requestInvoker.setAccessible(true);
 			    this.testPostRequest(
-		            "postImageResizeTest; save result to storage: " + saveResultToStorage,  
+		            "postImageResizeTest; save result to storage: " + saveResultToStorage,
 		            saveResultToStorage,
 		            String.format("Input image: %s; Output format: %s; New width: %s; New height: %s",
 		            		name, format, newWidth, newHeight),
@@ -229,7 +229,7 @@ public class ResizeApiTests extends ApiTester {
 	{
 	    postImageResizeRequest.setdrawingData(imageData);
 		postImageResizeRequest.setoutPath(outPath);
-        return CadApi.putDrawingResize(postImageResizeRequest);
+        return CadApi.postDrawingResize(postImageResizeRequest);
 	}
 	
 	/**

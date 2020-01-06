@@ -1,6 +1,6 @@
 /*
  * --------------------------------------------------------------------------------------
- * <copyright company="Aspose" file="PostDrawingBmpRequest.java">
+ * <copyright company="Aspose" file="PostDrawingResizeRequest.java">
  *   Copyright (c) 2018 Aspose.Cad for Cloud
  * </copyright>
  * <summary>
@@ -30,23 +30,28 @@ import java.io.File;
 import java.util.*;
 
 /*
- * Request model for postDrawingBmp operation.
+ * Request model for postDrawingResize operation.
  */
-public class PostDrawingBmpRequest {
+public class PostDrawingResizeRequest {
     /*
-     * Filename of an input drawing on a storage.
+     * Input drawing
      */
-    private String name;
+    private File drawingData;
 
     /*
-     * Export BMP options passed as a JSON on a request body.
+     * Resulting file format.
      */
-    private BmpOptionsDTO options;
+    private String outputFormat;
 
     /*
-     * Folder with a drawing to process.
+     * New width.
      */
-    private String folder;
+    private Integer newWidth;
+
+    /*
+     * New height.
+     */
+    private Integer newHeight;
 
     /*
      * Path to updated file (if this is empty, response contains streamed file).
@@ -59,62 +64,78 @@ public class PostDrawingBmpRequest {
     private String storage;
     
     /*
-     * Initializes a new instance of the postDrawingBmpRequest class.
+     * Initializes a new instance of the postDrawingResizeRequest class.
      *  
-     * @param String name Filename of an input drawing on a storage.
-     * @param BmpOptionsDTO options Export BMP options passed as a JSON on a request body.
-     * @param String folder Folder with a drawing to process.
+     * @param File drawingData Input drawing
+     * @param String outputFormat Resulting file format.
+     * @param Integer newWidth New width.
+     * @param Integer newHeight New height.
      * @param String outPath Path to updated file (if this is empty, response contains streamed file).
      * @param String storage Your Aspose Cloud Storage name.
      */
-    public PostDrawingBmpRequest(String name,  BmpOptionsDTO options,  String folder,  String outPath,  String storage) {
-        this.name = name;
-        this.options = options;
-        this.folder = folder;
+    public PostDrawingResizeRequest(File drawingData,  String outputFormat,  Integer newWidth,  Integer newHeight,  String outPath,  String storage) {
+        this.drawingData = drawingData;
+        this.outputFormat = outputFormat;
+        this.newWidth = newWidth;
+        this.newHeight = newHeight;
         this.outPath = outPath;
         this.storage = storage;
     }
 
     /*
-     *  Gets Filename of an input drawing on a storage.
+     *  Gets Input drawing
      */
-    public String getname() {
-        return name;
+    public File getdrawingData() {
+        return drawingData;
     }
 
     /*
-     * Sets Filename of an input drawing on a storage.
+     * Sets Input drawing
      */
-    public void setname(String value) {
-        name = value;
+    public void setdrawingData(File value) {
+        drawingData = value;
     }
 
     /*
-     *  Gets Export BMP options passed as a JSON on a request body.
+     *  Gets Resulting file format.
      */
-    public BmpOptionsDTO getoptions() {
-        return options;
+    public String getoutputFormat() {
+        return outputFormat;
     }
 
     /*
-     * Sets Export BMP options passed as a JSON on a request body.
+     * Sets Resulting file format.
      */
-    public void setoptions(BmpOptionsDTO value) {
-        options = value;
+    public void setoutputFormat(String value) {
+        outputFormat = value;
     }
 
     /*
-     *  Gets Folder with a drawing to process.
+     *  Gets New width.
      */
-    public String getfolder() {
-        return folder;
+    public Integer getnewWidth() {
+        return newWidth;
     }
 
     /*
-     * Sets Folder with a drawing to process.
+     * Sets New width.
      */
-    public void setfolder(String value) {
-        folder = value;
+    public void setnewWidth(Integer value) {
+        newWidth = value;
+    }
+
+    /*
+     *  Gets New height.
+     */
+    public Integer getnewHeight() {
+        return newHeight;
+    }
+
+    /*
+     * Sets New height.
+     */
+    public void setnewHeight(Integer value) {
+        newHeight = value;
     }
 
     /*
