@@ -211,7 +211,7 @@ public abstract class ApiTester
                 baseUrlHttp = baseUrlHttp.replace("https:", "http:");
             }
 
-            baseUrlHttp = "http://api-qa.aspose.cloud";
+            //baseUrlHttp = "http://api-qa.aspose.cloud";
 
             ApiClient api = new ApiClient()
                     .setApiVersion(apiVersion)
