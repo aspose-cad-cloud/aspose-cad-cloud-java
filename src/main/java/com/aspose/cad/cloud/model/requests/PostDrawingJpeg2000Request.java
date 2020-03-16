@@ -1,4 +1,5 @@
 
+/*
  * --------------------------------------------------------------------------------------
  * <copyright company="Aspose" file="PostDrawingJpeg2000Request.java">
  *   Copyright (c) 2018 Aspose.CAD Cloud
@@ -144,5 +145,4 @@ public class PostDrawingJpeg2000Request {
     public void setstorage(String value) {
         storage = value;
     }
-}
-/*
+}

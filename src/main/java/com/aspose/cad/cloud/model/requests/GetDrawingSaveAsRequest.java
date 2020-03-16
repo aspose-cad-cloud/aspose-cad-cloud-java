@@ -1,4 +1,5 @@
 
+/*
  * --------------------------------------------------------------------------------------
  * <copyright company="Aspose" file="GetDrawingSaveAsRequest.java">
  *   Copyright (c) 2018 Aspose.CAD Cloud
@@ -144,5 +145,4 @@ public class GetDrawingSaveAsRequest {
     public void setstorage(String value) {
         storage = value;
     }
-}
-/*
+}

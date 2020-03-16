@@ -1,4 +1,5 @@
 
+/*
  * --------------------------------------------------------------------------------------
  * <copyright company="Aspose" file="PostDrawingSvgRequest.java">
  *   Copyright (c) 2018 Aspose.CAD Cloud
@@ -144,5 +145,4 @@ public class PostDrawingSvgRequest {
     public void setstorage(String value) {
         storage = value;
     }
-}
-/*
+}

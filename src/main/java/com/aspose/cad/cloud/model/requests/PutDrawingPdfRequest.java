@@ -1,4 +1,5 @@
 
+/*
  * --------------------------------------------------------------------------------------
  * <copyright company="Aspose" file="PutDrawingPdfRequest.java">
  *   Copyright (c) 2018 Aspose.CAD Cloud
@@ -123,5 +124,4 @@ public class PutDrawingPdfRequest {
     public void setstorage(String value) {
         storage = value;
     }
-}
-/*
+}

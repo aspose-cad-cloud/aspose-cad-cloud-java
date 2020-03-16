@@ -1,4 +1,5 @@
 
+/*
  * --------------------------------------------------------------------------------------
  * <copyright company="Aspose" file="PutDrawingBmpRequest.java">
  *   Copyright (c) 2018 Aspose.CAD Cloud
@@ -123,5 +124,4 @@ public class PutDrawingBmpRequest {
     public void setstorage(String value) {
         storage = value;
     }
-}
-/*
+}

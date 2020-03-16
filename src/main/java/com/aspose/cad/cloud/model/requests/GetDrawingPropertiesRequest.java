@@ -1,4 +1,5 @@
 
+/*
  * --------------------------------------------------------------------------------------
  * <copyright company="Aspose" file="GetDrawingPropertiesRequest.java">
  *   Copyright (c) 2018 Aspose.CAD Cloud
@@ -102,5 +103,4 @@ public class GetDrawingPropertiesRequest {
     public void setstorage(String value) {
         storage = value;
     }
-}
-/*
+}

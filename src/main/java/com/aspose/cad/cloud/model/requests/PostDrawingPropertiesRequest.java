@@ -1,4 +1,5 @@
 
+/*
  * --------------------------------------------------------------------------------------
  * <copyright company="Aspose" file="PostDrawingPropertiesRequest.java">
  *   Copyright (c) 2018 Aspose.CAD Cloud
@@ -60,5 +61,4 @@ public class PostDrawingPropertiesRequest {
     public void setdrawingData(File value) {
         drawingData = value;
     }
-}
-/*
+}

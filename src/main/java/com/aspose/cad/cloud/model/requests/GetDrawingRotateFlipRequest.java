@@ -1,4 +1,5 @@
 
+/*
  * --------------------------------------------------------------------------------------
  * <copyright company="Aspose" file="GetDrawingRotateFlipRequest.java">
  *   Copyright (c) 2018 Aspose.CAD Cloud
@@ -165,5 +166,4 @@ public class GetDrawingRotateFlipRequest {
     public void setstorage(String value) {
         storage = value;
     }
-}
-/*
+}
