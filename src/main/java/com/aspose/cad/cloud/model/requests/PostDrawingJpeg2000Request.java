@@ -1,7 +1,7 @@
-/*
+
  * --------------------------------------------------------------------------------------
  * <copyright company="Aspose" file="PostDrawingJpeg2000Request.java">
- *   Copyright (c) 2018 Aspose.Cad for Cloud
+ *   Copyright (c) 2018 Aspose.CAD Cloud
  * </copyright>
  * <summary>
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -145,3 +145,4 @@ public class PostDrawingJpeg2000Request {
         storage = value;
     }
 }
+/*
