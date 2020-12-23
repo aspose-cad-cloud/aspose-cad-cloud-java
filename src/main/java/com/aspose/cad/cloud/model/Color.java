@@ -39,9 +39,8 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * The color of the pixel.
+ * Color
  */
-@ApiModel(description = "The color of the pixel.")
 
 public class Color {
   @SerializedName("R")
@@ -74,10 +73,10 @@ public class Color {
   }
 
    /**
-   * Gets the red component value of this Color structure.
+   * Get R
    * @return R
   **/
-  @ApiModelProperty(required = true, value = "Gets the red component value of this Color structure.")
+  @ApiModelProperty(required = true, value = "")
   public Integer getR() {
     return R;
   }
@@ -92,10 +91,10 @@ public class Color {
   }
 
    /**
-   * Gets the green component value of this Color structure.
+   * Get G
    * @return G
   **/
-  @ApiModelProperty(required = true, value = "Gets the green component value of this Color structure.")
+  @ApiModelProperty(required = true, value = "")
   public Integer getG() {
     return G;
   }
@@ -110,10 +109,10 @@ public class Color {
   }
 
    /**
-   * Gets the blue component value of this Color structure.
+   * Get B
    * @return B
   **/
-  @ApiModelProperty(required = true, value = "Gets the blue component value of this Color structure.")
+  @ApiModelProperty(required = true, value = "")
   public Integer getB() {
     return B;
   }
@@ -128,10 +127,10 @@ public class Color {
   }
 
    /**
-   * Gets the alpha component value of this Color structure.
+   * Get A
    * @return A
   **/
-  @ApiModelProperty(required = true, value = "Gets the alpha component value of this Color structure.")
+  @ApiModelProperty(required = true, value = "")
   public Integer getA() {
     return A;
   }
@@ -146,10 +145,10 @@ public class Color {
   }
 
    /**
-   * Gets a value indicating whether this Color structure is a predefined color. Predefined colors are represented by the elements of the KnownColor enumeration.
+   * Get isKnownColor
    * @return isKnownColor
   **/
-  @ApiModelProperty(required = true, value = "Gets a value indicating whether this Color structure is a predefined color. Predefined colors are represented by the elements of the KnownColor enumeration.")
+  @ApiModelProperty(required = true, value = "")
   public Boolean isisIsKnownColor() {
     return isKnownColor;
   }
@@ -164,10 +163,10 @@ public class Color {
   }
 
    /**
-   * Gets a value indicating whether this Color structure is uninitialized.
+   * Get isEmpty
    * @return isEmpty
   **/
-  @ApiModelProperty(required = true, value = "Gets a value indicating whether this Color structure is uninitialized.")
+  @ApiModelProperty(required = true, value = "")
   public Boolean isisIsEmpty() {
     return isEmpty;
   }
@@ -182,10 +181,10 @@ public class Color {
   }
 
    /**
-   * Gets a value indicating whether this Color structure is a named color or a member of the KnownColor enumeration.
+   * Get isNamedColor
    * @return isNamedColor
   **/
-  @ApiModelProperty(required = true, value = "Gets a value indicating whether this Color structure is a named color or a member of the KnownColor enumeration.")
+  @ApiModelProperty(required = true, value = "")
   public Boolean isisIsNamedColor() {
     return isNamedColor;
   }
@@ -200,10 +199,10 @@ public class Color {
   }
 
    /**
-   * Gets the name of this Color.
+   * Get name
    * @return name
   **/
-  @ApiModelProperty(value = "Gets the name of this Color.")
+  @ApiModelProperty(value = "")
   public String getName() {
     return name;
   }

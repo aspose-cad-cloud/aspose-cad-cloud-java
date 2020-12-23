@@ -29,6 +29,7 @@ package com.aspose.cad.cloud.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import com.aspose.cad.cloud.model.Error;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -37,52 +38,71 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * ResolutionSetting
+ * File upload result
  */
+@ApiModel(description = "File upload result")
 
-public class ResolutionSetting {
-  @SerializedName("HorizontalResolution")
-  private Double horizontalResolution = null;
+public class FilesUploadResult {
+  @SerializedName("Uploaded")
+  private List<String> uploaded = null;
 
-  @SerializedName("VerticalResolution")
-  private Double verticalResolution = null;
+  @SerializedName("Errors")
+  private List<Error> errors = null;
 
-  public ResolutionSetting horizontalResolution(Double horizontalResolution) {
-    this.horizontalResolution = horizontalResolution;
+  public FilesUploadResult uploaded(List<String> uploaded) {
+    this.uploaded = uploaded;
+    return this;
+  }
+
+  public FilesUploadResult addUploadedItem(String uploadedItem) {
+    if (this.uploaded == null) {
+      this.uploaded = new ArrayList<String>();
+    }
+    this.uploaded.add(uploadedItem);
     return this;
   }
 
    /**
-   * Get horizontalResolution
-   * @return horizontalResolution
+   * List of uploaded file names
+   * @return uploaded
   **/
-  @ApiModelProperty(required = true, value = "")
-  public Double getHorizontalResolution() {
-    return horizontalResolution;
+  @ApiModelProperty(value = "List of uploaded file names")
+  public List<String> getUploaded() {
+    return uploaded;
   }
 
-  public void setHorizontalResolution(Double horizontalResolution) {
-    this.horizontalResolution = horizontalResolution;
+  public void setUploaded(List<String> uploaded) {
+    this.uploaded = uploaded;
   }
 
-  public ResolutionSetting verticalResolution(Double verticalResolution) {
-    this.verticalResolution = verticalResolution;
+  public FilesUploadResult errors(List<Error> errors) {
+    this.errors = errors;
+    return this;
+  }
+
+  public FilesUploadResult addErrorsItem(Error errorsItem) {
+    if (this.errors == null) {
+      this.errors = new ArrayList<Error>();
+    }
+    this.errors.add(errorsItem);
     return this;
   }
 
    /**
-   * Get verticalResolution
-   * @return verticalResolution
+   * List of errors.
+   * @return errors
   **/
-  @ApiModelProperty(required = true, value = "")
-  public Double getVerticalResolution() {
-    return verticalResolution;
+  @ApiModelProperty(value = "List of errors.")
+  public List<Error> getErrors() {
+    return errors;
   }
 
-  public void setVerticalResolution(Double verticalResolution) {
-    this.verticalResolution = verticalResolution;
+  public void setErrors(List<Error> errors) {
+    this.errors = errors;
   }
 
 
@@ -94,24 +114,24 @@ public class ResolutionSetting {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ResolutionSetting resolutionSetting = (ResolutionSetting) o;
-    return Objects.equals(this.horizontalResolution, resolutionSetting.horizontalResolution) &&
-        Objects.equals(this.verticalResolution, resolutionSetting.verticalResolution);
+    FilesUploadResult filesUploadResult = (FilesUploadResult) o;
+    return Objects.equals(this.uploaded, filesUploadResult.uploaded) &&
+        Objects.equals(this.errors, filesUploadResult.errors);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(horizontalResolution, verticalResolution);
+    return Objects.hash(uploaded, errors);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ResolutionSetting {\n");
+    sb.append("class FilesUploadResult {\n");
     
-    sb.append("    horizontalResolution: ").append(toIndentedString(horizontalResolution)).append("\n");
-    sb.append("    verticalResolution: ").append(toIndentedString(verticalResolution)).append("\n");
+    sb.append("    uploaded: ").append(toIndentedString(uploaded)).append("\n");
+    sb.append("    errors: ").append(toIndentedString(errors)).append("\n");
     sb.append("}");
     return sb.toString();
   }

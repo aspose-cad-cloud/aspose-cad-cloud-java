@@ -39,50 +39,51 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * ResolutionSetting
+ * Class for disc space information.
  */
+@ApiModel(description = "Class for disc space information.")
 
-public class ResolutionSetting {
-  @SerializedName("HorizontalResolution")
-  private Double horizontalResolution = null;
+public class DiscUsage {
+  @SerializedName("UsedSize")
+  private Long usedSize = null;
 
-  @SerializedName("VerticalResolution")
-  private Double verticalResolution = null;
+  @SerializedName("TotalSize")
+  private Long totalSize = null;
 
-  public ResolutionSetting horizontalResolution(Double horizontalResolution) {
-    this.horizontalResolution = horizontalResolution;
+  public DiscUsage usedSize(Long usedSize) {
+    this.usedSize = usedSize;
     return this;
   }
 
    /**
-   * Get horizontalResolution
-   * @return horizontalResolution
+   * Application used disc space.
+   * @return usedSize
   **/
-  @ApiModelProperty(required = true, value = "")
-  public Double getHorizontalResolution() {
-    return horizontalResolution;
+  @ApiModelProperty(required = true, value = "Application used disc space.")
+  public Long getUsedSize() {
+    return usedSize;
   }
 
-  public void setHorizontalResolution(Double horizontalResolution) {
-    this.horizontalResolution = horizontalResolution;
+  public void setUsedSize(Long usedSize) {
+    this.usedSize = usedSize;
   }
 
-  public ResolutionSetting verticalResolution(Double verticalResolution) {
-    this.verticalResolution = verticalResolution;
+  public DiscUsage totalSize(Long totalSize) {
+    this.totalSize = totalSize;
     return this;
   }
 
    /**
-   * Get verticalResolution
-   * @return verticalResolution
+   * Total disc space.
+   * @return totalSize
   **/
-  @ApiModelProperty(required = true, value = "")
-  public Double getVerticalResolution() {
-    return verticalResolution;
+  @ApiModelProperty(required = true, value = "Total disc space.")
+  public Long getTotalSize() {
+    return totalSize;
   }
 
-  public void setVerticalResolution(Double verticalResolution) {
-    this.verticalResolution = verticalResolution;
+  public void setTotalSize(Long totalSize) {
+    this.totalSize = totalSize;
   }
 
 
@@ -94,24 +95,24 @@ public class ResolutionSetting {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ResolutionSetting resolutionSetting = (ResolutionSetting) o;
-    return Objects.equals(this.horizontalResolution, resolutionSetting.horizontalResolution) &&
-        Objects.equals(this.verticalResolution, resolutionSetting.verticalResolution);
+    DiscUsage discUsage = (DiscUsage) o;
+    return Objects.equals(this.usedSize, discUsage.usedSize) &&
+        Objects.equals(this.totalSize, discUsage.totalSize);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(horizontalResolution, verticalResolution);
+    return Objects.hash(usedSize, totalSize);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ResolutionSetting {\n");
+    sb.append("class DiscUsage {\n");
     
-    sb.append("    horizontalResolution: ").append(toIndentedString(horizontalResolution)).append("\n");
-    sb.append("    verticalResolution: ").append(toIndentedString(verticalResolution)).append("\n");
+    sb.append("    usedSize: ").append(toIndentedString(usedSize)).append("\n");
+    sb.append("    totalSize: ").append(toIndentedString(totalSize)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -39,50 +39,51 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * ResolutionSetting
+ * Object exists
  */
+@ApiModel(description = "Object exists")
 
-public class ResolutionSetting {
-  @SerializedName("HorizontalResolution")
-  private Double horizontalResolution = null;
+public class ObjectExist {
+  @SerializedName("Exists")
+  private Boolean exists = null;
 
-  @SerializedName("VerticalResolution")
-  private Double verticalResolution = null;
+  @SerializedName("IsFolder")
+  private Boolean isFolder = null;
 
-  public ResolutionSetting horizontalResolution(Double horizontalResolution) {
-    this.horizontalResolution = horizontalResolution;
+  public ObjectExist exists(Boolean exists) {
+    this.exists = exists;
     return this;
   }
 
    /**
-   * Get horizontalResolution
-   * @return horizontalResolution
+   * Indicates that the file or folder exists.
+   * @return exists
   **/
-  @ApiModelProperty(required = true, value = "")
-  public Double getHorizontalResolution() {
-    return horizontalResolution;
+  @ApiModelProperty(required = true, value = "Indicates that the file or folder exists.")
+  public Boolean isisExists() {
+    return exists;
   }
 
-  public void setHorizontalResolution(Double horizontalResolution) {
-    this.horizontalResolution = horizontalResolution;
+  public void setExists(Boolean exists) {
+    this.exists = exists;
   }
 
-  public ResolutionSetting verticalResolution(Double verticalResolution) {
-    this.verticalResolution = verticalResolution;
+  public ObjectExist isFolder(Boolean isFolder) {
+    this.isFolder = isFolder;
     return this;
   }
 
    /**
-   * Get verticalResolution
-   * @return verticalResolution
+   * True if it is a folder, false if it is a file.
+   * @return isFolder
   **/
-  @ApiModelProperty(required = true, value = "")
-  public Double getVerticalResolution() {
-    return verticalResolution;
+  @ApiModelProperty(required = true, value = "True if it is a folder, false if it is a file.")
+  public Boolean isisIsFolder() {
+    return isFolder;
   }
 
-  public void setVerticalResolution(Double verticalResolution) {
-    this.verticalResolution = verticalResolution;
+  public void setIsFolder(Boolean isFolder) {
+    this.isFolder = isFolder;
   }
 
 
@@ -94,24 +95,24 @@ public class ResolutionSetting {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ResolutionSetting resolutionSetting = (ResolutionSetting) o;
-    return Objects.equals(this.horizontalResolution, resolutionSetting.horizontalResolution) &&
-        Objects.equals(this.verticalResolution, resolutionSetting.verticalResolution);
+    ObjectExist objectExist = (ObjectExist) o;
+    return Objects.equals(this.exists, objectExist.exists) &&
+        Objects.equals(this.isFolder, objectExist.isFolder);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(horizontalResolution, verticalResolution);
+    return Objects.hash(exists, isFolder);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ResolutionSetting {\n");
+    sb.append("class ObjectExist {\n");
     
-    sb.append("    horizontalResolution: ").append(toIndentedString(horizontalResolution)).append("\n");
-    sb.append("    verticalResolution: ").append(toIndentedString(verticalResolution)).append("\n");
+    sb.append("    exists: ").append(toIndentedString(exists)).append("\n");
+    sb.append("    isFolder: ").append(toIndentedString(isFolder)).append("\n");
     sb.append("}");
     return sb.toString();
   }

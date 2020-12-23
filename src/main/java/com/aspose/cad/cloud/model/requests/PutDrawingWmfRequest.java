@@ -124,4 +124,4 @@ public class PutDrawingWmfRequest {
     public void setstorage(String value) {
         storage = value;
     }
-}
+}

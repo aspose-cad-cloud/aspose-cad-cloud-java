@@ -37,52 +37,54 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import org.threeten.bp.OffsetDateTime;
 
 /**
- * ResolutionSetting
+ * The error details
  */
+@ApiModel(description = "The error details")
 
-public class ResolutionSetting {
-  @SerializedName("HorizontalResolution")
-  private Double horizontalResolution = null;
+public class ErrorDetails {
+  @SerializedName("RequestId")
+  private String requestId = null;
 
-  @SerializedName("VerticalResolution")
-  private Double verticalResolution = null;
+  @SerializedName("Date")
+  private OffsetDateTime date = null;
 
-  public ResolutionSetting horizontalResolution(Double horizontalResolution) {
-    this.horizontalResolution = horizontalResolution;
+  public ErrorDetails requestId(String requestId) {
+    this.requestId = requestId;
     return this;
   }
 
    /**
-   * Get horizontalResolution
-   * @return horizontalResolution
+   * The request id
+   * @return requestId
   **/
-  @ApiModelProperty(required = true, value = "")
-  public Double getHorizontalResolution() {
-    return horizontalResolution;
+  @ApiModelProperty(value = "The request id")
+  public String getRequestId() {
+    return requestId;
   }
 
-  public void setHorizontalResolution(Double horizontalResolution) {
-    this.horizontalResolution = horizontalResolution;
+  public void setRequestId(String requestId) {
+    this.requestId = requestId;
   }
 
-  public ResolutionSetting verticalResolution(Double verticalResolution) {
-    this.verticalResolution = verticalResolution;
+  public ErrorDetails date(OffsetDateTime date) {
+    this.date = date;
     return this;
   }
 
    /**
-   * Get verticalResolution
-   * @return verticalResolution
+   * Date
+   * @return date
   **/
-  @ApiModelProperty(required = true, value = "")
-  public Double getVerticalResolution() {
-    return verticalResolution;
+  @ApiModelProperty(required = true, value = "Date")
+  public OffsetDateTime getDate() {
+    return date;
   }
 
-  public void setVerticalResolution(Double verticalResolution) {
-    this.verticalResolution = verticalResolution;
+  public void setDate(OffsetDateTime date) {
+    this.date = date;
   }
 
 
@@ -94,24 +96,24 @@ public class ResolutionSetting {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ResolutionSetting resolutionSetting = (ResolutionSetting) o;
-    return Objects.equals(this.horizontalResolution, resolutionSetting.horizontalResolution) &&
-        Objects.equals(this.verticalResolution, resolutionSetting.verticalResolution);
+    ErrorDetails errorDetails = (ErrorDetails) o;
+    return Objects.equals(this.requestId, errorDetails.requestId) &&
+        Objects.equals(this.date, errorDetails.date);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(horizontalResolution, verticalResolution);
+    return Objects.hash(requestId, date);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ResolutionSetting {\n");
+    sb.append("class ErrorDetails {\n");
     
-    sb.append("    horizontalResolution: ").append(toIndentedString(horizontalResolution)).append("\n");
-    sb.append("    verticalResolution: ").append(toIndentedString(verticalResolution)).append("\n");
+    sb.append("    requestId: ").append(toIndentedString(requestId)).append("\n");
+    sb.append("    date: ").append(toIndentedString(date)).append("\n");
     sb.append("}");
     return sb.toString();
   }

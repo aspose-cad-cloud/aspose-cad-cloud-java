@@ -29,6 +29,7 @@ package com.aspose.cad.cloud.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import com.aspose.cad.cloud.model.StorageFile;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -37,52 +38,54 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import org.threeten.bp.OffsetDateTime;
 
 /**
- * ResolutionSetting
+ * File Version
  */
+@ApiModel(description = "File Version")
 
-public class ResolutionSetting {
-  @SerializedName("HorizontalResolution")
-  private Double horizontalResolution = null;
+public class FileVersion extends StorageFile {
+  @SerializedName("VersionId")
+  private String versionId = null;
 
-  @SerializedName("VerticalResolution")
-  private Double verticalResolution = null;
+  @SerializedName("IsLatest")
+  private Boolean isLatest = null;
 
-  public ResolutionSetting horizontalResolution(Double horizontalResolution) {
-    this.horizontalResolution = horizontalResolution;
+  public FileVersion versionId(String versionId) {
+    this.versionId = versionId;
     return this;
   }
 
    /**
-   * Get horizontalResolution
-   * @return horizontalResolution
+   * File Version ID.
+   * @return versionId
   **/
-  @ApiModelProperty(required = true, value = "")
-  public Double getHorizontalResolution() {
-    return horizontalResolution;
+  @ApiModelProperty(value = "File Version ID.")
+  public String getVersionId() {
+    return versionId;
   }
 
-  public void setHorizontalResolution(Double horizontalResolution) {
-    this.horizontalResolution = horizontalResolution;
+  public void setVersionId(String versionId) {
+    this.versionId = versionId;
   }
 
-  public ResolutionSetting verticalResolution(Double verticalResolution) {
-    this.verticalResolution = verticalResolution;
+  public FileVersion isLatest(Boolean isLatest) {
+    this.isLatest = isLatest;
     return this;
   }
 
    /**
-   * Get verticalResolution
-   * @return verticalResolution
+   * Specifies whether the file is (true) or is not (false) the latest version of an file.
+   * @return isLatest
   **/
-  @ApiModelProperty(required = true, value = "")
-  public Double getVerticalResolution() {
-    return verticalResolution;
+  @ApiModelProperty(required = true, value = "Specifies whether the file is (true) or is not (false) the latest version of an file.")
+  public Boolean isisIsLatest() {
+    return isLatest;
   }
 
-  public void setVerticalResolution(Double verticalResolution) {
-    this.verticalResolution = verticalResolution;
+  public void setIsLatest(Boolean isLatest) {
+    this.isLatest = isLatest;
   }
 
 
@@ -94,24 +97,25 @@ public class ResolutionSetting {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ResolutionSetting resolutionSetting = (ResolutionSetting) o;
-    return Objects.equals(this.horizontalResolution, resolutionSetting.horizontalResolution) &&
-        Objects.equals(this.verticalResolution, resolutionSetting.verticalResolution);
+    FileVersion fileVersion = (FileVersion) o;
+    return Objects.equals(this.versionId, fileVersion.versionId) &&
+        Objects.equals(this.isLatest, fileVersion.isLatest) &&
+        super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(horizontalResolution, verticalResolution);
+    return Objects.hash(versionId, isLatest, super.hashCode());
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ResolutionSetting {\n");
-    
-    sb.append("    horizontalResolution: ").append(toIndentedString(horizontalResolution)).append("\n");
-    sb.append("    verticalResolution: ").append(toIndentedString(verticalResolution)).append("\n");
+    sb.append("class FileVersion {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    sb.append("    versionId: ").append(toIndentedString(versionId)).append("\n");
+    sb.append("    isLatest: ").append(toIndentedString(isLatest)).append("\n");
     sb.append("}");
     return sb.toString();
   }

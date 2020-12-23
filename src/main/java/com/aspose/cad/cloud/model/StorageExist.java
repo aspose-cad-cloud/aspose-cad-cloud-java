@@ -39,50 +39,30 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * ResolutionSetting
+ * Storage exists
  */
+@ApiModel(description = "Storage exists")
 
-public class ResolutionSetting {
-  @SerializedName("HorizontalResolution")
-  private Double horizontalResolution = null;
+public class StorageExist {
+  @SerializedName("Exists")
+  private Boolean exists = null;
 
-  @SerializedName("VerticalResolution")
-  private Double verticalResolution = null;
-
-  public ResolutionSetting horizontalResolution(Double horizontalResolution) {
-    this.horizontalResolution = horizontalResolution;
+  public StorageExist exists(Boolean exists) {
+    this.exists = exists;
     return this;
   }
 
    /**
-   * Get horizontalResolution
-   * @return horizontalResolution
+   * Shows that the storage exists.             
+   * @return exists
   **/
-  @ApiModelProperty(required = true, value = "")
-  public Double getHorizontalResolution() {
-    return horizontalResolution;
+  @ApiModelProperty(required = true, value = "Shows that the storage exists.             ")
+  public Boolean isisExists() {
+    return exists;
   }
 
-  public void setHorizontalResolution(Double horizontalResolution) {
-    this.horizontalResolution = horizontalResolution;
-  }
-
-  public ResolutionSetting verticalResolution(Double verticalResolution) {
-    this.verticalResolution = verticalResolution;
-    return this;
-  }
-
-   /**
-   * Get verticalResolution
-   * @return verticalResolution
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public Double getVerticalResolution() {
-    return verticalResolution;
-  }
-
-  public void setVerticalResolution(Double verticalResolution) {
-    this.verticalResolution = verticalResolution;
+  public void setExists(Boolean exists) {
+    this.exists = exists;
   }
 
 
@@ -94,24 +74,22 @@ public class ResolutionSetting {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ResolutionSetting resolutionSetting = (ResolutionSetting) o;
-    return Objects.equals(this.horizontalResolution, resolutionSetting.horizontalResolution) &&
-        Objects.equals(this.verticalResolution, resolutionSetting.verticalResolution);
+    StorageExist storageExist = (StorageExist) o;
+    return Objects.equals(this.exists, storageExist.exists);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(horizontalResolution, verticalResolution);
+    return Objects.hash(exists);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ResolutionSetting {\n");
+    sb.append("class StorageExist {\n");
     
-    sb.append("    horizontalResolution: ").append(toIndentedString(horizontalResolution)).append("\n");
-    sb.append("    verticalResolution: ").append(toIndentedString(verticalResolution)).append("\n");
+    sb.append("    exists: ").append(toIndentedString(exists)).append("\n");
     sb.append("}");
     return sb.toString();
   }

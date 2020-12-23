@@ -39,13 +39,12 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * Drawing pen options
+ * PenOptions
  */
-@ApiModel(description = "Drawing pen options")
 
 public class PenOptions {
   /**
-   * Gets or sets the start cap.
+   * Gets or Sets startCap
    */
   @JsonAdapter(StartCapEnum.Adapter.class)
   public enum StartCapEnum {
@@ -113,7 +112,7 @@ public class PenOptions {
   private StartCapEnum startCap = null;
 
   /**
-   * Gets or sets the end cap.
+   * Gets or Sets endCap
    */
   @JsonAdapter(EndCapEnum.Adapter.class)
   public enum EndCapEnum {
@@ -186,10 +185,10 @@ public class PenOptions {
   }
 
    /**
-   * Gets or sets the start cap.
+   * Get startCap
    * @return startCap
   **/
-  @ApiModelProperty(required = true, value = "Gets or sets the start cap.")
+  @ApiModelProperty(required = true, value = "")
   public StartCapEnum getStartCap() {
     return startCap;
   }
@@ -204,10 +203,10 @@ public class PenOptions {
   }
 
    /**
-   * Gets or sets the end cap.
+   * Get endCap
    * @return endCap
   **/
-  @ApiModelProperty(required = true, value = "Gets or sets the end cap.")
+  @ApiModelProperty(required = true, value = "")
   public EndCapEnum getEndCap() {
     return endCap;
   }

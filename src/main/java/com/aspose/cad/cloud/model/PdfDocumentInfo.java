@@ -39,9 +39,8 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * This class represents set of metadata for document description.
+ * PdfDocumentInfo
  */
-@ApiModel(description = "This class represents set of metadata for document description.")
 
 public class PdfDocumentInfo {
   @SerializedName("Keywords")
@@ -62,10 +61,10 @@ public class PdfDocumentInfo {
   }
 
    /**
-   * Gets or sets keywords of the document.
+   * Get keywords
    * @return keywords
   **/
-  @ApiModelProperty(value = "Gets or sets keywords of the document.")
+  @ApiModelProperty(value = "")
   public String getKeywords() {
     return keywords;
   }
@@ -80,10 +79,10 @@ public class PdfDocumentInfo {
   }
 
    /**
-   * Gets or sets title of the document.
+   * Get title
    * @return title
   **/
-  @ApiModelProperty(value = "Gets or sets title of the document.")
+  @ApiModelProperty(value = "")
   public String getTitle() {
     return title;
   }
@@ -98,10 +97,10 @@ public class PdfDocumentInfo {
   }
 
    /**
-   * Gets or sets author of the document.
+   * Get author
    * @return author
   **/
-  @ApiModelProperty(value = "Gets or sets author of the document.")
+  @ApiModelProperty(value = "")
   public String getAuthor() {
     return author;
   }
@@ -116,10 +115,10 @@ public class PdfDocumentInfo {
   }
 
    /**
-   * Gets or sets subject of the document.
+   * Get subject
    * @return subject
   **/
-  @ApiModelProperty(value = "Gets or sets subject of the document.")
+  @ApiModelProperty(value = "")
   public String getSubject() {
     return subject;
   }

@@ -59,6 +59,931 @@ public class CadApi {
     }
 
     /**
+     * Build call for copyFile
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    private com.squareup.okhttp.Call copyFileCall(CopyFileRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/v3.0/cad/storage/file/copy/{srcPath}"
+            .replaceAll("\\{" + "srcPath" + "\\}", apiClient.escapeString(request.getsrcPath().toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "destPath", request.getdestPath());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "srcStorageName", request.getsrcStorageName());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "destStorageName", request.getdestStorageName());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "versionId", request.getversionId());
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        
+        Map<String, Object> localVarFormParams = new LinkedHashMap<String, Object>();
+        
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+		if (localVarFormParams.size() > 0) {
+            localVarContentType = "multipart/form-data";
+        }
+		
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "JWT" };
+        return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call copyFileValidateBeforeCall(CopyFileRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'srcPath' is set
+        if (request.getsrcPath() == null) {
+          throw new ApiException(BadRequest, "Missing the required parameter 'srcPath' when calling copyFile");
+        }
+        
+        // verify the required parameter 'destPath' is set
+        if (request.getdestPath() == null) {
+          throw new ApiException(BadRequest, "Missing the required parameter 'destPath' when calling copyFile");
+        }
+        
+
+        com.squareup.okhttp.Call call = copyFileCall(request, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Copy file
+     * 
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public void copyFile(CopyFileRequest request) throws ApiException {
+        try {
+            copyFileWithHttpInfo(request);
+        }
+        catch (ApiException ex) {
+            if (ex.getCode() == NotAuth) {
+                apiClient.requestToken();
+                copyFileWithHttpInfo(request);
+            }
+            throw ex;
+        }
+    }
+
+    /**
+     * Copy file
+     * 
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    private ApiResponse<Void> copyFileWithHttpInfo(CopyFileRequest request) throws ApiException {
+        com.squareup.okhttp.Call call = copyFileValidateBeforeCall(request, null, null);
+        return apiClient.execute(call);
+    }
+
+    /**
+     * Copy file (asynchronously)
+     * 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call copyFileAsync(CopyFileRequest request, final ApiCallback<Void> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = copyFileValidateBeforeCall(request, progressListener, progressRequestListener);
+        apiClient.executeAsync(call, callback);
+        return call;
+    }
+    /**
+     * Build call for copyFolder
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    private com.squareup.okhttp.Call copyFolderCall(CopyFolderRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/v3.0/cad/storage/folder/copy/{srcPath}"
+            .replaceAll("\\{" + "srcPath" + "\\}", apiClient.escapeString(request.getsrcPath().toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "destPath", request.getdestPath());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "srcStorageName", request.getsrcStorageName());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "destStorageName", request.getdestStorageName());
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        
+        Map<String, Object> localVarFormParams = new LinkedHashMap<String, Object>();
+        
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+		if (localVarFormParams.size() > 0) {
+            localVarContentType = "multipart/form-data";
+        }
+		
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "JWT" };
+        return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call copyFolderValidateBeforeCall(CopyFolderRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'srcPath' is set
+        if (request.getsrcPath() == null) {
+          throw new ApiException(BadRequest, "Missing the required parameter 'srcPath' when calling copyFolder");
+        }
+        
+        // verify the required parameter 'destPath' is set
+        if (request.getdestPath() == null) {
+          throw new ApiException(BadRequest, "Missing the required parameter 'destPath' when calling copyFolder");
+        }
+        
+
+        com.squareup.okhttp.Call call = copyFolderCall(request, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Copy folder
+     * 
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public void copyFolder(CopyFolderRequest request) throws ApiException {
+        try {
+            copyFolderWithHttpInfo(request);
+        }
+        catch (ApiException ex) {
+            if (ex.getCode() == NotAuth) {
+                apiClient.requestToken();
+                copyFolderWithHttpInfo(request);
+            }
+            throw ex;
+        }
+    }
+
+    /**
+     * Copy folder
+     * 
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    private ApiResponse<Void> copyFolderWithHttpInfo(CopyFolderRequest request) throws ApiException {
+        com.squareup.okhttp.Call call = copyFolderValidateBeforeCall(request, null, null);
+        return apiClient.execute(call);
+    }
+
+    /**
+     * Copy folder (asynchronously)
+     * 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call copyFolderAsync(CopyFolderRequest request, final ApiCallback<Void> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = copyFolderValidateBeforeCall(request, progressListener, progressRequestListener);
+        apiClient.executeAsync(call, callback);
+        return call;
+    }
+    /**
+     * Build call for createFolder
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    private com.squareup.okhttp.Call createFolderCall(CreateFolderRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/v3.0/cad/storage/folder/{path}"
+            .replaceAll("\\{" + "path" + "\\}", apiClient.escapeString(request.getpath().toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "storageName", request.getstorageName());
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        
+        Map<String, Object> localVarFormParams = new LinkedHashMap<String, Object>();
+        
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+		if (localVarFormParams.size() > 0) {
+            localVarContentType = "multipart/form-data";
+        }
+		
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "JWT" };
+        return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call createFolderValidateBeforeCall(CreateFolderRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'path' is set
+        if (request.getpath() == null) {
+          throw new ApiException(BadRequest, "Missing the required parameter 'path' when calling createFolder");
+        }
+        
+
+        com.squareup.okhttp.Call call = createFolderCall(request, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Create the folder
+     * 
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public void createFolder(CreateFolderRequest request) throws ApiException {
+        try {
+            createFolderWithHttpInfo(request);
+        }
+        catch (ApiException ex) {
+            if (ex.getCode() == NotAuth) {
+                apiClient.requestToken();
+                createFolderWithHttpInfo(request);
+            }
+            throw ex;
+        }
+    }
+
+    /**
+     * Create the folder
+     * 
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    private ApiResponse<Void> createFolderWithHttpInfo(CreateFolderRequest request) throws ApiException {
+        com.squareup.okhttp.Call call = createFolderValidateBeforeCall(request, null, null);
+        return apiClient.execute(call);
+    }
+
+    /**
+     * Create the folder (asynchronously)
+     * 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call createFolderAsync(CreateFolderRequest request, final ApiCallback<Void> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = createFolderValidateBeforeCall(request, progressListener, progressRequestListener);
+        apiClient.executeAsync(call, callback);
+        return call;
+    }
+    /**
+     * Build call for deleteFile
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    private com.squareup.okhttp.Call deleteFileCall(DeleteFileRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/v3.0/cad/storage/file/{path}"
+            .replaceAll("\\{" + "path" + "\\}", apiClient.escapeString(request.getpath().toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "storageName", request.getstorageName());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "versionId", request.getversionId());
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        
+        Map<String, Object> localVarFormParams = new LinkedHashMap<String, Object>();
+        
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+		if (localVarFormParams.size() > 0) {
+            localVarContentType = "multipart/form-data";
+        }
+		
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "JWT" };
+        return apiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call deleteFileValidateBeforeCall(DeleteFileRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'path' is set
+        if (request.getpath() == null) {
+          throw new ApiException(BadRequest, "Missing the required parameter 'path' when calling deleteFile");
+        }
+        
+
+        com.squareup.okhttp.Call call = deleteFileCall(request, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Delete file
+     * 
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public void deleteFile(DeleteFileRequest request) throws ApiException {
+        try {
+            deleteFileWithHttpInfo(request);
+        }
+        catch (ApiException ex) {
+            if (ex.getCode() == NotAuth) {
+                apiClient.requestToken();
+                deleteFileWithHttpInfo(request);
+            }
+            throw ex;
+        }
+    }
+
+    /**
+     * Delete file
+     * 
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    private ApiResponse<Void> deleteFileWithHttpInfo(DeleteFileRequest request) throws ApiException {
+        com.squareup.okhttp.Call call = deleteFileValidateBeforeCall(request, null, null);
+        return apiClient.execute(call);
+    }
+
+    /**
+     * Delete file (asynchronously)
+     * 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call deleteFileAsync(DeleteFileRequest request, final ApiCallback<Void> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = deleteFileValidateBeforeCall(request, progressListener, progressRequestListener);
+        apiClient.executeAsync(call, callback);
+        return call;
+    }
+    /**
+     * Build call for deleteFolder
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    private com.squareup.okhttp.Call deleteFolderCall(DeleteFolderRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/v3.0/cad/storage/folder/{path}"
+            .replaceAll("\\{" + "path" + "\\}", apiClient.escapeString(request.getpath().toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "storageName", request.getstorageName());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "recursive", request.getrecursive());
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        
+        Map<String, Object> localVarFormParams = new LinkedHashMap<String, Object>();
+        
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+		if (localVarFormParams.size() > 0) {
+            localVarContentType = "multipart/form-data";
+        }
+		
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "JWT" };
+        return apiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call deleteFolderValidateBeforeCall(DeleteFolderRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'path' is set
+        if (request.getpath() == null) {
+          throw new ApiException(BadRequest, "Missing the required parameter 'path' when calling deleteFolder");
+        }
+        
+
+        com.squareup.okhttp.Call call = deleteFolderCall(request, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Delete folder
+     * 
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public void deleteFolder(DeleteFolderRequest request) throws ApiException {
+        try {
+            deleteFolderWithHttpInfo(request);
+        }
+        catch (ApiException ex) {
+            if (ex.getCode() == NotAuth) {
+                apiClient.requestToken();
+                deleteFolderWithHttpInfo(request);
+            }
+            throw ex;
+        }
+    }
+
+    /**
+     * Delete folder
+     * 
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    private ApiResponse<Void> deleteFolderWithHttpInfo(DeleteFolderRequest request) throws ApiException {
+        com.squareup.okhttp.Call call = deleteFolderValidateBeforeCall(request, null, null);
+        return apiClient.execute(call);
+    }
+
+    /**
+     * Delete folder (asynchronously)
+     * 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call deleteFolderAsync(DeleteFolderRequest request, final ApiCallback<Void> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = deleteFolderValidateBeforeCall(request, progressListener, progressRequestListener);
+        apiClient.executeAsync(call, callback);
+        return call;
+    }
+    /**
+     * Build call for downloadFile
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    private com.squareup.okhttp.Call downloadFileCall(DownloadFileRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/v3.0/cad/storage/file/{path}"
+            .replaceAll("\\{" + "path" + "\\}", apiClient.escapeString(request.getpath().toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "storageName", request.getstorageName());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "versionId", request.getversionId());
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        
+        Map<String, Object> localVarFormParams = new LinkedHashMap<String, Object>();
+        
+        final String[] localVarAccepts = {
+            "multipart/form-data"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+		if (localVarFormParams.size() > 0) {
+            localVarContentType = "multipart/form-data";
+        }
+		
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "JWT" };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call downloadFileValidateBeforeCall(DownloadFileRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'path' is set
+        if (request.getpath() == null) {
+          throw new ApiException(BadRequest, "Missing the required parameter 'path' when calling downloadFile");
+        }
+        
+
+        com.squareup.okhttp.Call call = downloadFileCall(request, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Download file
+     * 
+     * @return File
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public File downloadFile(DownloadFileRequest request) throws ApiException {
+        try {
+            ApiResponse<File> resp = downloadFileWithHttpInfo(request);
+            return resp.getData();
+        }
+        catch (ApiException ex) {
+            if (ex.getCode() == NotAuth) {
+                apiClient.requestToken();
+                ApiResponse<File> resp = downloadFileWithHttpInfo(request);
+                return resp.getData();
+            }
+            throw ex;
+        }
+    }
+
+    /**
+     * Download file
+     * 
+     * @return ApiResponse&lt;File&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    private ApiResponse<File> downloadFileWithHttpInfo(DownloadFileRequest request) throws ApiException {
+        com.squareup.okhttp.Call call = downloadFileValidateBeforeCall(request, null, null);
+        Type localVarReturnType = new TypeToken<File>() { }.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Download file (asynchronously)
+     * 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call downloadFileAsync(DownloadFileRequest request, final ApiCallback<File> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = downloadFileValidateBeforeCall(request, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<File>() { }.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for getDiscUsage
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    private com.squareup.okhttp.Call getDiscUsageCall(GetDiscUsageRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/v3.0/cad/storage/disc";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "storageName", request.getstorageName());
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        
+        Map<String, Object> localVarFormParams = new LinkedHashMap<String, Object>();
+        
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+		if (localVarFormParams.size() > 0) {
+            localVarContentType = "multipart/form-data";
+        }
+		
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "JWT" };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call getDiscUsageValidateBeforeCall(GetDiscUsageRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+
+        com.squareup.okhttp.Call call = getDiscUsageCall(request, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Get disc usage
+     * 
+     * @return DiscUsage
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public DiscUsage getDiscUsage(GetDiscUsageRequest request) throws ApiException {
+        try {
+            ApiResponse<DiscUsage> resp = getDiscUsageWithHttpInfo(request);
+            return resp.getData();
+        }
+        catch (ApiException ex) {
+            if (ex.getCode() == NotAuth) {
+                apiClient.requestToken();
+                ApiResponse<DiscUsage> resp = getDiscUsageWithHttpInfo(request);
+                return resp.getData();
+            }
+            throw ex;
+        }
+    }
+
+    /**
+     * Get disc usage
+     * 
+     * @return ApiResponse&lt;DiscUsage&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    private ApiResponse<DiscUsage> getDiscUsageWithHttpInfo(GetDiscUsageRequest request) throws ApiException {
+        com.squareup.okhttp.Call call = getDiscUsageValidateBeforeCall(request, null, null);
+        Type localVarReturnType = new TypeToken<DiscUsage>() { }.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Get disc usage (asynchronously)
+     * 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call getDiscUsageAsync(GetDiscUsageRequest request, final ApiCallback<DiscUsage> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = getDiscUsageValidateBeforeCall(request, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<DiscUsage>() { }.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
      * Build call for getDrawingProperties
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
@@ -69,7 +994,7 @@ public class CadApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/cad/{name}/properties"
+        String localVarPath = "/v3.0/cad/{name}/properties"
             .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(request.getname().toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -204,7 +1129,7 @@ public class CadApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/cad/{name}/resize"
+        String localVarPath = "/v3.0/cad/{name}/resize"
             .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(request.getname().toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -358,7 +1283,7 @@ public class CadApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/cad/{name}/rotateflip"
+        String localVarPath = "/v3.0/cad/{name}/rotateflip"
             .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(request.getname().toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -506,7 +1431,7 @@ public class CadApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/cad/{name}/saveAs/{outputFormat}"
+        String localVarPath = "/v3.0/cad/{name}/saveAs/{outputFormat}"
             .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(request.getname().toString()))
             .replaceAll("\\{" + "outputFormat" + "\\}", apiClient.escapeString(request.getoutputFormat().toString()));
 
@@ -638,6 +1563,682 @@ public class CadApi {
         return call;
     }
     /**
+     * Build call for getFileVersions
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    private com.squareup.okhttp.Call getFileVersionsCall(GetFileVersionsRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/v3.0/cad/storage/version/{path}"
+            .replaceAll("\\{" + "path" + "\\}", apiClient.escapeString(request.getpath().toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "storageName", request.getstorageName());
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        
+        Map<String, Object> localVarFormParams = new LinkedHashMap<String, Object>();
+        
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+		if (localVarFormParams.size() > 0) {
+            localVarContentType = "multipart/form-data";
+        }
+		
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "JWT" };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call getFileVersionsValidateBeforeCall(GetFileVersionsRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'path' is set
+        if (request.getpath() == null) {
+          throw new ApiException(BadRequest, "Missing the required parameter 'path' when calling getFileVersions");
+        }
+        
+
+        com.squareup.okhttp.Call call = getFileVersionsCall(request, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Get file versions
+     * 
+     * @return FileVersions
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public FileVersions getFileVersions(GetFileVersionsRequest request) throws ApiException {
+        try {
+            ApiResponse<FileVersions> resp = getFileVersionsWithHttpInfo(request);
+            return resp.getData();
+        }
+        catch (ApiException ex) {
+            if (ex.getCode() == NotAuth) {
+                apiClient.requestToken();
+                ApiResponse<FileVersions> resp = getFileVersionsWithHttpInfo(request);
+                return resp.getData();
+            }
+            throw ex;
+        }
+    }
+
+    /**
+     * Get file versions
+     * 
+     * @return ApiResponse&lt;FileVersions&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    private ApiResponse<FileVersions> getFileVersionsWithHttpInfo(GetFileVersionsRequest request) throws ApiException {
+        com.squareup.okhttp.Call call = getFileVersionsValidateBeforeCall(request, null, null);
+        Type localVarReturnType = new TypeToken<FileVersions>() { }.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Get file versions (asynchronously)
+     * 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call getFileVersionsAsync(GetFileVersionsRequest request, final ApiCallback<FileVersions> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = getFileVersionsValidateBeforeCall(request, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<FileVersions>() { }.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for getFilesList
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    private com.squareup.okhttp.Call getFilesListCall(GetFilesListRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/v3.0/cad/storage/folder/{path}"
+            .replaceAll("\\{" + "path" + "\\}", apiClient.escapeString(request.getpath().toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "storageName", request.getstorageName());
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        
+        Map<String, Object> localVarFormParams = new LinkedHashMap<String, Object>();
+        
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+		if (localVarFormParams.size() > 0) {
+            localVarContentType = "multipart/form-data";
+        }
+		
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "JWT" };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call getFilesListValidateBeforeCall(GetFilesListRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'path' is set
+        if (request.getpath() == null) {
+          throw new ApiException(BadRequest, "Missing the required parameter 'path' when calling getFilesList");
+        }
+        
+
+        com.squareup.okhttp.Call call = getFilesListCall(request, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Get all files and folders within a folder
+     * 
+     * @return FilesList
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public FilesList getFilesList(GetFilesListRequest request) throws ApiException {
+        try {
+            ApiResponse<FilesList> resp = getFilesListWithHttpInfo(request);
+            return resp.getData();
+        }
+        catch (ApiException ex) {
+            if (ex.getCode() == NotAuth) {
+                apiClient.requestToken();
+                ApiResponse<FilesList> resp = getFilesListWithHttpInfo(request);
+                return resp.getData();
+            }
+            throw ex;
+        }
+    }
+
+    /**
+     * Get all files and folders within a folder
+     * 
+     * @return ApiResponse&lt;FilesList&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    private ApiResponse<FilesList> getFilesListWithHttpInfo(GetFilesListRequest request) throws ApiException {
+        com.squareup.okhttp.Call call = getFilesListValidateBeforeCall(request, null, null);
+        Type localVarReturnType = new TypeToken<FilesList>() { }.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Get all files and folders within a folder (asynchronously)
+     * 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call getFilesListAsync(GetFilesListRequest request, final ApiCallback<FilesList> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = getFilesListValidateBeforeCall(request, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<FilesList>() { }.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for moveFile
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    private com.squareup.okhttp.Call moveFileCall(MoveFileRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/v3.0/cad/storage/file/move/{srcPath}"
+            .replaceAll("\\{" + "srcPath" + "\\}", apiClient.escapeString(request.getsrcPath().toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "destPath", request.getdestPath());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "srcStorageName", request.getsrcStorageName());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "destStorageName", request.getdestStorageName());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "versionId", request.getversionId());
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        
+        Map<String, Object> localVarFormParams = new LinkedHashMap<String, Object>();
+        
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+		if (localVarFormParams.size() > 0) {
+            localVarContentType = "multipart/form-data";
+        }
+		
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "JWT" };
+        return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call moveFileValidateBeforeCall(MoveFileRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'srcPath' is set
+        if (request.getsrcPath() == null) {
+          throw new ApiException(BadRequest, "Missing the required parameter 'srcPath' when calling moveFile");
+        }
+        
+        // verify the required parameter 'destPath' is set
+        if (request.getdestPath() == null) {
+          throw new ApiException(BadRequest, "Missing the required parameter 'destPath' when calling moveFile");
+        }
+        
+
+        com.squareup.okhttp.Call call = moveFileCall(request, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Move file
+     * 
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public void moveFile(MoveFileRequest request) throws ApiException {
+        try {
+            moveFileWithHttpInfo(request);
+        }
+        catch (ApiException ex) {
+            if (ex.getCode() == NotAuth) {
+                apiClient.requestToken();
+                moveFileWithHttpInfo(request);
+            }
+            throw ex;
+        }
+    }
+
+    /**
+     * Move file
+     * 
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    private ApiResponse<Void> moveFileWithHttpInfo(MoveFileRequest request) throws ApiException {
+        com.squareup.okhttp.Call call = moveFileValidateBeforeCall(request, null, null);
+        return apiClient.execute(call);
+    }
+
+    /**
+     * Move file (asynchronously)
+     * 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call moveFileAsync(MoveFileRequest request, final ApiCallback<Void> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = moveFileValidateBeforeCall(request, progressListener, progressRequestListener);
+        apiClient.executeAsync(call, callback);
+        return call;
+    }
+    /**
+     * Build call for moveFolder
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    private com.squareup.okhttp.Call moveFolderCall(MoveFolderRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/v3.0/cad/storage/folder/move/{srcPath}"
+            .replaceAll("\\{" + "srcPath" + "\\}", apiClient.escapeString(request.getsrcPath().toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "destPath", request.getdestPath());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "srcStorageName", request.getsrcStorageName());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "destStorageName", request.getdestStorageName());
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        
+        Map<String, Object> localVarFormParams = new LinkedHashMap<String, Object>();
+        
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+		if (localVarFormParams.size() > 0) {
+            localVarContentType = "multipart/form-data";
+        }
+		
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "JWT" };
+        return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call moveFolderValidateBeforeCall(MoveFolderRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'srcPath' is set
+        if (request.getsrcPath() == null) {
+          throw new ApiException(BadRequest, "Missing the required parameter 'srcPath' when calling moveFolder");
+        }
+        
+        // verify the required parameter 'destPath' is set
+        if (request.getdestPath() == null) {
+          throw new ApiException(BadRequest, "Missing the required parameter 'destPath' when calling moveFolder");
+        }
+        
+
+        com.squareup.okhttp.Call call = moveFolderCall(request, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Move folder
+     * 
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public void moveFolder(MoveFolderRequest request) throws ApiException {
+        try {
+            moveFolderWithHttpInfo(request);
+        }
+        catch (ApiException ex) {
+            if (ex.getCode() == NotAuth) {
+                apiClient.requestToken();
+                moveFolderWithHttpInfo(request);
+            }
+            throw ex;
+        }
+    }
+
+    /**
+     * Move folder
+     * 
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    private ApiResponse<Void> moveFolderWithHttpInfo(MoveFolderRequest request) throws ApiException {
+        com.squareup.okhttp.Call call = moveFolderValidateBeforeCall(request, null, null);
+        return apiClient.execute(call);
+    }
+
+    /**
+     * Move folder (asynchronously)
+     * 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call moveFolderAsync(MoveFolderRequest request, final ApiCallback<Void> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = moveFolderValidateBeforeCall(request, progressListener, progressRequestListener);
+        apiClient.executeAsync(call, callback);
+        return call;
+    }
+    /**
+     * Build call for objectExists
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    private com.squareup.okhttp.Call objectExistsCall(ObjectExistsRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/v3.0/cad/storage/exist/{path}"
+            .replaceAll("\\{" + "path" + "\\}", apiClient.escapeString(request.getpath().toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "storageName", request.getstorageName());
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "versionId", request.getversionId());
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        
+        Map<String, Object> localVarFormParams = new LinkedHashMap<String, Object>();
+        
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+		if (localVarFormParams.size() > 0) {
+            localVarContentType = "multipart/form-data";
+        }
+		
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "JWT" };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call objectExistsValidateBeforeCall(ObjectExistsRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'path' is set
+        if (request.getpath() == null) {
+          throw new ApiException(BadRequest, "Missing the required parameter 'path' when calling objectExists");
+        }
+        
+
+        com.squareup.okhttp.Call call = objectExistsCall(request, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Check if file or folder exists
+     * 
+     * @return ObjectExist
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ObjectExist objectExists(ObjectExistsRequest request) throws ApiException {
+        try {
+            ApiResponse<ObjectExist> resp = objectExistsWithHttpInfo(request);
+            return resp.getData();
+        }
+        catch (ApiException ex) {
+            if (ex.getCode() == NotAuth) {
+                apiClient.requestToken();
+                ApiResponse<ObjectExist> resp = objectExistsWithHttpInfo(request);
+                return resp.getData();
+            }
+            throw ex;
+        }
+    }
+
+    /**
+     * Check if file or folder exists
+     * 
+     * @return ApiResponse&lt;ObjectExist&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    private ApiResponse<ObjectExist> objectExistsWithHttpInfo(ObjectExistsRequest request) throws ApiException {
+        com.squareup.okhttp.Call call = objectExistsValidateBeforeCall(request, null, null);
+        Type localVarReturnType = new TypeToken<ObjectExist>() { }.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Check if file or folder exists (asynchronously)
+     * 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call objectExistsAsync(ObjectExistsRequest request, final ApiCallback<ObjectExist> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = objectExistsValidateBeforeCall(request, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<ObjectExist>() { }.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
      * Build call for postDrawingBmp
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
@@ -648,7 +2249,7 @@ public class CadApi {
         Object localVarPostBody = request.getoptions();
 
         // create path and map variables
-        String localVarPath = "/cad/{name}/bmp"
+        String localVarPath = "/v3.0/cad/{name}/bmp"
             .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(request.getname().toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -789,7 +2390,7 @@ public class CadApi {
         Object localVarPostBody = request.getoptions();
 
         // create path and map variables
-        String localVarPath = "/cad/{name}/gif"
+        String localVarPath = "/v3.0/cad/{name}/gif"
             .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(request.getname().toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -930,7 +2531,7 @@ public class CadApi {
         Object localVarPostBody = request.getoptions();
 
         // create path and map variables
-        String localVarPath = "/cad/{name}/jpeg"
+        String localVarPath = "/v3.0/cad/{name}/jpeg"
             .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(request.getname().toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -1071,7 +2672,7 @@ public class CadApi {
         Object localVarPostBody = request.getoptions();
 
         // create path and map variables
-        String localVarPath = "/cad/{name}/jpeg2000"
+        String localVarPath = "/v3.0/cad/{name}/jpeg2000"
             .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(request.getname().toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -1212,7 +2813,7 @@ public class CadApi {
         Object localVarPostBody = request.getoptions();
 
         // create path and map variables
-        String localVarPath = "/cad/{name}/pdf"
+        String localVarPath = "/v3.0/cad/{name}/pdf"
             .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(request.getname().toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -1353,7 +2954,7 @@ public class CadApi {
         Object localVarPostBody = request.getoptions();
 
         // create path and map variables
-        String localVarPath = "/cad/{name}/png"
+        String localVarPath = "/v3.0/cad/{name}/png"
             .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(request.getname().toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -1494,7 +3095,7 @@ public class CadApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/cad/properties";
+        String localVarPath = "/v3.0/cad/properties";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1628,7 +3229,7 @@ public class CadApi {
         Object localVarPostBody = request.getoptions();
 
         // create path and map variables
-        String localVarPath = "/cad/{name}/psd"
+        String localVarPath = "/v3.0/cad/{name}/psd"
             .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(request.getname().toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -1769,7 +3370,7 @@ public class CadApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/cad/resize";
+        String localVarPath = "/v3.0/cad/resize";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1923,7 +3524,7 @@ public class CadApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/cad/rotateflip";
+        String localVarPath = "/v3.0/cad/rotateflip";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -2071,7 +3672,7 @@ public class CadApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/cad/saveAs/{outputFormat}"
+        String localVarPath = "/v3.0/cad/saveAs/{outputFormat}"
             .replaceAll("\\{" + "outputFormat" + "\\}", apiClient.escapeString(request.getoutputFormat().toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -2213,7 +3814,7 @@ public class CadApi {
         Object localVarPostBody = request.getoptions();
 
         // create path and map variables
-        String localVarPath = "/cad/{name}/svg"
+        String localVarPath = "/v3.0/cad/{name}/svg"
             .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(request.getname().toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -2354,7 +3955,7 @@ public class CadApi {
         Object localVarPostBody = request.getoptions();
 
         // create path and map variables
-        String localVarPath = "/cad/{name}/tiff"
+        String localVarPath = "/v3.0/cad/{name}/tiff"
             .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(request.getname().toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -2495,7 +4096,7 @@ public class CadApi {
         Object localVarPostBody = request.getoptions();
 
         // create path and map variables
-        String localVarPath = "/cad/{name}/wmf"
+        String localVarPath = "/v3.0/cad/{name}/wmf"
             .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(request.getname().toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -2636,7 +4237,7 @@ public class CadApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/cad/bmp";
+        String localVarPath = "/v3.0/cad/bmp";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -2774,7 +4375,7 @@ if (request.getexportOptions() != null)
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/cad/gif";
+        String localVarPath = "/v3.0/cad/gif";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -2912,7 +4513,7 @@ if (request.getexportOptions() != null)
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/cad/jpeg";
+        String localVarPath = "/v3.0/cad/jpeg";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -3050,7 +4651,7 @@ if (request.getexportOptions() != null)
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/cad/jpeg2000";
+        String localVarPath = "/v3.0/cad/jpeg2000";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -3188,7 +4789,7 @@ if (request.getexportOptions() != null)
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/cad/pdf";
+        String localVarPath = "/v3.0/cad/pdf";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -3326,7 +4927,7 @@ if (request.getexportOptions() != null)
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/cad/png";
+        String localVarPath = "/v3.0/cad/png";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -3464,7 +5065,7 @@ if (request.getexportOptions() != null)
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/cad/psd";
+        String localVarPath = "/v3.0/cad/psd";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -3602,7 +5203,7 @@ if (request.getexportOptions() != null)
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/cad/svg";
+        String localVarPath = "/v3.0/cad/svg";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -3740,7 +5341,7 @@ if (request.getexportOptions() != null)
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/cad/tiff";
+        String localVarPath = "/v3.0/cad/tiff";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -3878,7 +5479,7 @@ if (request.getexportOptions() != null)
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/cad/wmf";
+        String localVarPath = "/v3.0/cad/wmf";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -4002,6 +5603,280 @@ if (request.getexportOptions() != null)
 
         com.squareup.okhttp.Call call = putDrawingWmfValidateBeforeCall(request, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<File>() { }.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for storageExists
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    private com.squareup.okhttp.Call storageExistsCall(StorageExistsRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/v3.0/cad/storage/{storageName}/exist"
+            .replaceAll("\\{" + "storageName" + "\\}", apiClient.escapeString(request.getstorageName().toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        
+        Map<String, Object> localVarFormParams = new LinkedHashMap<String, Object>();
+        
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+		if (localVarFormParams.size() > 0) {
+            localVarContentType = "multipart/form-data";
+        }
+		
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "JWT" };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call storageExistsValidateBeforeCall(StorageExistsRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'storageName' is set
+        if (request.getstorageName() == null) {
+          throw new ApiException(BadRequest, "Missing the required parameter 'storageName' when calling storageExists");
+        }
+        
+
+        com.squareup.okhttp.Call call = storageExistsCall(request, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Check if storage exists
+     * 
+     * @return StorageExist
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public StorageExist storageExists(StorageExistsRequest request) throws ApiException {
+        try {
+            ApiResponse<StorageExist> resp = storageExistsWithHttpInfo(request);
+            return resp.getData();
+        }
+        catch (ApiException ex) {
+            if (ex.getCode() == NotAuth) {
+                apiClient.requestToken();
+                ApiResponse<StorageExist> resp = storageExistsWithHttpInfo(request);
+                return resp.getData();
+            }
+            throw ex;
+        }
+    }
+
+    /**
+     * Check if storage exists
+     * 
+     * @return ApiResponse&lt;StorageExist&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    private ApiResponse<StorageExist> storageExistsWithHttpInfo(StorageExistsRequest request) throws ApiException {
+        com.squareup.okhttp.Call call = storageExistsValidateBeforeCall(request, null, null);
+        Type localVarReturnType = new TypeToken<StorageExist>() { }.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Check if storage exists (asynchronously)
+     * 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call storageExistsAsync(StorageExistsRequest request, final ApiCallback<StorageExist> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = storageExistsValidateBeforeCall(request, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<StorageExist>() { }.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for uploadFile
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    private com.squareup.okhttp.Call uploadFileCall(UploadFileRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/v3.0/cad/storage/file/{path}"
+            .replaceAll("\\{" + "path" + "\\}", apiClient.escapeString(request.getpath().toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        localVarPath = addParameterToQuery(localVarQueryParams, localVarPath, "storageName", request.getstorageName());
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        
+        Map<String, Object> localVarFormParams = new LinkedHashMap<String, Object>();
+        if (request.getFile() != null)
+          localVarFormParams.put("File", request.getFile());
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "multipart/form-data"
+        };
+        String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+		if (localVarFormParams.size() > 0) {
+            localVarContentType = "multipart/form-data";
+        }
+		
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "JWT" };
+        return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call uploadFileValidateBeforeCall(UploadFileRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'path' is set
+        if (request.getpath() == null) {
+          throw new ApiException(BadRequest, "Missing the required parameter 'path' when calling uploadFile");
+        }
+        
+        // verify the required parameter 'File' is set
+        if (request.getFile() == null) {
+          throw new ApiException(BadRequest, "Missing the required parameter 'File' when calling uploadFile");
+        }
+        
+
+        com.squareup.okhttp.Call call = uploadFileCall(request, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Upload file
+     * 
+     * @return FilesUploadResult
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public FilesUploadResult uploadFile(UploadFileRequest request) throws ApiException {
+        try {
+            ApiResponse<FilesUploadResult> resp = uploadFileWithHttpInfo(request);
+            return resp.getData();
+        }
+        catch (ApiException ex) {
+            if (ex.getCode() == NotAuth) {
+                apiClient.requestToken();
+                ApiResponse<FilesUploadResult> resp = uploadFileWithHttpInfo(request);
+                return resp.getData();
+            }
+            throw ex;
+        }
+    }
+
+    /**
+     * Upload file
+     * 
+     * @return ApiResponse&lt;FilesUploadResult&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    private ApiResponse<FilesUploadResult> uploadFileWithHttpInfo(UploadFileRequest request) throws ApiException {
+        com.squareup.okhttp.Call call = uploadFileValidateBeforeCall(request, null, null);
+        Type localVarReturnType = new TypeToken<FilesUploadResult>() { }.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Upload file (asynchronously)
+     * 
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call uploadFileAsync(UploadFileRequest request, final ApiCallback<FilesUploadResult> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = uploadFileValidateBeforeCall(request, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<FilesUploadResult>() { }.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

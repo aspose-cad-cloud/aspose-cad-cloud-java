@@ -29,6 +29,7 @@ package com.aspose.cad.cloud.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import com.aspose.cad.cloud.model.*;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -39,13 +40,12 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * The PDF options.
+ * PdfDocumentOptions
  */
-@ApiModel(description = "The PDF options.")
 
 public class PdfDocumentOptions {
   /**
-   * Desired conformance level for generated PDF document. Important note: This option should not be changed after PdfDocument object is constructed. Default is Pdf15.
+   * Gets or Sets compliance
    */
   @JsonAdapter(ComplianceEnum.Adapter.class)
   public enum ComplianceEnum {
@@ -96,16 +96,11 @@ public class PdfDocumentOptions {
   @SerializedName("Compliance")
   private ComplianceEnum compliance = null;
 
-  public PdfDocumentOptions compliance(ComplianceEnum compliance) {
-    this.compliance = compliance;
-    return this;
-  }
-
    /**
-   * Desired conformance level for generated PDF document. Important note: This option should not be changed after PdfDocument object is constructed. Default is Pdf15.
+   * Get compliance
    * @return compliance
   **/
-  @ApiModelProperty(required = true, value = "Desired conformance level for generated PDF document. Important note: This option should not be changed after PdfDocument object is constructed. Default is Pdf15.")
+  @ApiModelProperty(required = true, value = "")
   public ComplianceEnum getCompliance() {
     return compliance;
   }
@@ -113,7 +108,6 @@ public class PdfDocumentOptions {
   public void setCompliance(ComplianceEnum compliance) {
     this.compliance = compliance;
   }
-
 
   @Override
   public boolean equals(java.lang.Object o) {

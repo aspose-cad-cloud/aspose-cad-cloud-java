@@ -45,7 +45,7 @@ public class PostDrawingRotateFlipRequest {
     private String outputFormat;
 
     /*
-     * Rotate/flip operation to apply.
+     * Rotate/flip operation to apply. Possible values: RotateNoneFlipNone, Rotate90FlipNone, Rotate180FlipNone, Rotate270FlipNone, RotateNoneFlipX, Rotate90FlipX, Rotate180FlipX, Rotate270FlipX, RotateNoneFlipY, Rotate90FlipY, Rotate180FlipY, Rotate270FlipY, RotateNoneFlipXY, Rotate90FlipXY, Rotate180FlipXY, Rotate270FlipXY
      */
     private String rotateFlipType;
 
@@ -64,7 +64,7 @@ public class PostDrawingRotateFlipRequest {
      *  
      * @param File drawingData Input drawing
      * @param String outputFormat Resulting file format.
-     * @param String rotateFlipType Rotate/flip operation to apply.
+     * @param String rotateFlipType Rotate/flip operation to apply. Possible values: RotateNoneFlipNone, Rotate90FlipNone, Rotate180FlipNone, Rotate270FlipNone, RotateNoneFlipX, Rotate90FlipX, Rotate180FlipX, Rotate270FlipX, RotateNoneFlipY, Rotate90FlipY, Rotate180FlipY, Rotate270FlipY, RotateNoneFlipXY, Rotate90FlipXY, Rotate180FlipXY, Rotate270FlipXY
      * @param String outPath Path to updated file (if this is empty, response contains streamed file).
      * @param String storage Your Aspose Cloud Storage name.
      */
@@ -105,14 +105,14 @@ public class PostDrawingRotateFlipRequest {
     }
 
     /*
-     *  Gets Rotate/flip operation to apply.
+     *  Gets Rotate/flip operation to apply. Possible values: RotateNoneFlipNone, Rotate90FlipNone, Rotate180FlipNone, Rotate270FlipNone, RotateNoneFlipX, Rotate90FlipX, Rotate180FlipX, Rotate270FlipX, RotateNoneFlipY, Rotate90FlipY, Rotate180FlipY, Rotate270FlipY, RotateNoneFlipXY, Rotate90FlipXY, Rotate180FlipXY, Rotate270FlipXY
      */
     public String getrotateFlipType() {
         return rotateFlipType;
     }
 
     /*
-     * Sets Rotate/flip operation to apply.
+     * Sets Rotate/flip operation to apply. Possible values: RotateNoneFlipNone, Rotate90FlipNone, Rotate180FlipNone, Rotate270FlipNone, RotateNoneFlipX, Rotate90FlipX, Rotate180FlipX, Rotate270FlipX, RotateNoneFlipY, Rotate90FlipY, Rotate180FlipY, Rotate270FlipY, RotateNoneFlipXY, Rotate90FlipXY, Rotate180FlipXY, Rotate270FlipXY
      */
     public void setrotateFlipType(String value) {
         rotateFlipType = value;

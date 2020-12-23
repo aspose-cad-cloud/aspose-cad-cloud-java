@@ -28,12 +28,12 @@ package com.aspose.cad.cloud.test.api;
 
 import com.aspose.cad.cloud.ApiResponse;
 import com.aspose.cad.cloud.model.CadResponse;
+import com.aspose.cad.cloud.model.StorageFile;
 import com.aspose.cad.cloud.model.requests.*;
 import com.aspose.cad.cloud.*;
 import com.aspose.cad.cloud.test.base.ApiTester;
 import com.aspose.cad.cloud.test.base.StorageFileInfo;
 
-import com.aspose.storage.model.FileResponse;
 import junitparams.*;
 
 import org.junit.Test;
@@ -94,7 +94,7 @@ public class ResizeApiTests extends ApiTester {
             }
         }
 		
-		for (FileResponse inputFile : InputTestFiles)
+		for (StorageFile inputFile : InputTestFiles)
 		{
 			if (inputFile.getName().endsWith(formatExtension))
             {
@@ -165,7 +165,7 @@ public class ResizeApiTests extends ApiTester {
             }
         }
 		
-		for (FileResponse inputFile : InputTestFiles)
+		for (StorageFile inputFile : InputTestFiles)
 		{
 			if (inputFile.getName().endsWith(formatExtension))
             {

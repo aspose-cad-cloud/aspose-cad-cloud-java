@@ -29,6 +29,7 @@ package com.aspose.cad.cloud.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import com.aspose.cad.cloud.model.FileVersion;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -37,52 +38,42 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * ResolutionSetting
+ * File versions FileVersion.
  */
+@ApiModel(description = "File versions FileVersion.")
 
-public class ResolutionSetting {
-  @SerializedName("HorizontalResolution")
-  private Double horizontalResolution = null;
+public class FileVersions {
+  @SerializedName("Value")
+  private List<FileVersion> value = null;
 
-  @SerializedName("VerticalResolution")
-  private Double verticalResolution = null;
+  public FileVersions value(List<FileVersion> value) {
+    this.value = value;
+    return this;
+  }
 
-  public ResolutionSetting horizontalResolution(Double horizontalResolution) {
-    this.horizontalResolution = horizontalResolution;
+  public FileVersions addValueItem(FileVersion valueItem) {
+    if (this.value == null) {
+      this.value = new ArrayList<FileVersion>();
+    }
+    this.value.add(valueItem);
     return this;
   }
 
    /**
-   * Get horizontalResolution
-   * @return horizontalResolution
+   * File versions FileVersion.
+   * @return value
   **/
-  @ApiModelProperty(required = true, value = "")
-  public Double getHorizontalResolution() {
-    return horizontalResolution;
+  @ApiModelProperty(value = "File versions FileVersion.")
+  public List<FileVersion> getValue() {
+    return value;
   }
 
-  public void setHorizontalResolution(Double horizontalResolution) {
-    this.horizontalResolution = horizontalResolution;
-  }
-
-  public ResolutionSetting verticalResolution(Double verticalResolution) {
-    this.verticalResolution = verticalResolution;
-    return this;
-  }
-
-   /**
-   * Get verticalResolution
-   * @return verticalResolution
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public Double getVerticalResolution() {
-    return verticalResolution;
-  }
-
-  public void setVerticalResolution(Double verticalResolution) {
-    this.verticalResolution = verticalResolution;
+  public void setValue(List<FileVersion> value) {
+    this.value = value;
   }
 
 
@@ -94,24 +85,22 @@ public class ResolutionSetting {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ResolutionSetting resolutionSetting = (ResolutionSetting) o;
-    return Objects.equals(this.horizontalResolution, resolutionSetting.horizontalResolution) &&
-        Objects.equals(this.verticalResolution, resolutionSetting.verticalResolution);
+    FileVersions fileVersions = (FileVersions) o;
+    return Objects.equals(this.value, fileVersions.value);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(horizontalResolution, verticalResolution);
+    return Objects.hash(value);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ResolutionSetting {\n");
+    sb.append("class FileVersions {\n");
     
-    sb.append("    horizontalResolution: ").append(toIndentedString(horizontalResolution)).append("\n");
-    sb.append("    verticalResolution: ").append(toIndentedString(verticalResolution)).append("\n");
+    sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("}");
     return sb.toString();
   }

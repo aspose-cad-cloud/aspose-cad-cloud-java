@@ -39,13 +39,12 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * Represents graphics options for embedded bitmap.
+ * GraphicsOptions
  */
-@ApiModel(description = "Represents graphics options for embedded bitmap.")
 
 public class GraphicsOptions {
   /**
-   * Gets or sets text rendering hint.
+   * Gets or Sets textRenderingHint
    */
   @JsonAdapter(TextRenderingHintEnum.Adapter.class)
   public enum TextRenderingHintEnum {
@@ -103,7 +102,7 @@ public class GraphicsOptions {
   private TextRenderingHintEnum textRenderingHint = null;
 
   /**
-   * Gets or sets smoothing mode.
+   * Gets or Sets smoothingMode
    */
   @JsonAdapter(SmoothingModeEnum.Adapter.class)
   public enum SmoothingModeEnum {
@@ -161,7 +160,7 @@ public class GraphicsOptions {
   private SmoothingModeEnum smoothingMode = null;
 
   /**
-   * Gets or sets interpolation mode.
+   * Gets or Sets interpolationMode
    */
   @JsonAdapter(InterpolationModeEnum.Adapter.class)
   public enum InterpolationModeEnum {
@@ -230,10 +229,10 @@ public class GraphicsOptions {
   }
 
    /**
-   * Gets or sets text rendering hint.
+   * Get textRenderingHint
    * @return textRenderingHint
   **/
-  @ApiModelProperty(required = true, value = "Gets or sets text rendering hint.")
+  @ApiModelProperty(required = true, value = "")
   public TextRenderingHintEnum getTextRenderingHint() {
     return textRenderingHint;
   }
@@ -248,10 +247,10 @@ public class GraphicsOptions {
   }
 
    /**
-   * Gets or sets smoothing mode.
+   * Get smoothingMode
    * @return smoothingMode
   **/
-  @ApiModelProperty(required = true, value = "Gets or sets smoothing mode.")
+  @ApiModelProperty(required = true, value = "")
   public SmoothingModeEnum getSmoothingMode() {
     return smoothingMode;
   }
@@ -266,10 +265,10 @@ public class GraphicsOptions {
   }
 
    /**
-   * Gets or sets interpolation mode.
+   * Get interpolationMode
    * @return interpolationMode
   **/
-  @ApiModelProperty(required = true, value = "Gets or sets interpolation mode.")
+  @ApiModelProperty(required = true, value = "")
   public InterpolationModeEnum getInterpolationMode() {
     return interpolationMode;
   }

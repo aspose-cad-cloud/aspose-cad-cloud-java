@@ -44,13 +44,11 @@ import com.aspose.cad.cloud.invoker.AuthType;
 import com.aspose.cad.cloud.invoker.JSON;
 import com.aspose.cad.cloud.invoker.internal.SerializationHelper;
 import com.aspose.cad.cloud.invoker.internal.StreamHelper;
-import com.aspose.storage.model.FileResponse;
-import com.aspose.storage.model.FilesResponse;
+import com.aspose.cad.cloud.model.*;
+import com.aspose.cad.cloud.model.requests.*;
+
 import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
-
-import com.aspose.storage.model.MoveFileResponse;
-import com.aspose.storage.model.ResponseMessage;
 
 /**
  * API tester base class.
@@ -105,17 +103,12 @@ public abstract class ApiTester
     /**
      * Input test files info
      */
-    protected List<FileResponse> InputTestFiles;
+    protected List<StorageFile> InputTestFiles;
 
     /**
      * Aspose.cad API
      */
     protected com.aspose.cad.cloud.api.CadApi CadApi;
-
-    /**
-     * Aspose.Storage API
-     */
-    protected com.aspose.storage.api.StorageApi StorageApi;
 
     /**
      * The basic export formats
@@ -155,7 +148,7 @@ public abstract class ApiTester
      */
     protected static boolean IsTestDataUploaded = false;
 
-    private static List<FileResponse> _testFiles;
+    private static List<StorageFile> _testFiles;
 
     /**
      * Creates the API instances using default access parameters.
@@ -224,8 +217,8 @@ public abstract class ApiTester
             api.setDebugging(false);
 
             CadApi = new com.aspose.cad.cloud.api.CadApi(api);
-            StorageApi = new com.aspose.storage.api.StorageApi(baseUrlHttp + "/v1.1", appKey, appSid, debug);
-            //StorageApi.getInvoker().addDefaultHeader("Content-Length", "0");
+
+            //CadApi.getInvoker().addDefaultHeader("Content-Length", "0");
             InputTestFiles = fetchInputTestFilesInfo();
     }
 
@@ -375,9 +368,9 @@ public abstract class ApiTester
      */
     protected Boolean checkInputFileExists(String inputFileName)
     {
-        for (FileResponse storageFileInfo : InputTestFiles)
+        for (StorageFile StorageFileInfo : InputTestFiles)
         {
-            if (storageFileInfo.getName().equals(inputFileName))
+            if (StorageFileInfo.getName().equals(inputFileName))
             {
                 return true;
             }
@@ -394,10 +387,10 @@ public abstract class ApiTester
      * @return The storage file information.
      * @throws Exception 
      */
-    protected FileResponse getStorageFileInfo(String folder, String fileName,
+    protected StorageFile getStorageFileInfo(String folder, String fileName,
         String storage) throws Exception
     {
-        FilesResponse fileListResponse = StorageApi.GetListFiles(folder, storage);
+        FilesList fileListResponse = CadApi.getFilesList(new GetFilesListRequest(folder, storage));
         //Assert.assertEquals((int)fileListResponse.getCode(), 200);
         //InputStream stream = fileListResponse.getInputStream();
         //byte[] stringBytes = StreamHelper.readAsBytes(stream);
@@ -405,11 +398,11 @@ public abstract class ApiTester
         
         //String responseString = new String(stringBytes);
         //FilesList references = SerializationHelper.deserialize(responseString, FilesList.class);
-        for (FileResponse storageFileInfo : fileListResponse.getFiles())
+        for (StorageFile StorageFileInfo : fileListResponse.getValue())
         {
-            if (storageFileInfo.getName().equals(fileName))
+            if (StorageFileInfo.getName().equals(fileName))
             {
-                return storageFileInfo;
+                return StorageFileInfo;
             }
         }
 
@@ -421,15 +414,15 @@ public abstract class ApiTester
      * @return The input test files info.
      * @throws Exception 
      */
-    private List<FileResponse> fetchInputTestFilesInfo() throws Exception
+    private List<StorageFile> fetchInputTestFilesInfo() throws Exception
     {
         if (!IsTestDataUploaded) {
-            if (!StorageApi.GetIsExist(CloudTestFolder, null, DefaultStorage).getFileExist().getIsExist()) {
-                StorageApi.PutCreateFolder(CloudTestFolder, DefaultStorage, DefaultStorage);
+            if (!CadApi.objectExists(new ObjectExistsRequest(CloudTestFolder, DefaultStorage, null)).isisExists()) {
+                CadApi.createFolder(new CreateFolderRequest(CloudTestFolder, DefaultStorage));
             }
 
-            if (!StorageApi.GetIsExist(CloudReferencesFolder, null, DefaultStorage).getFileExist().getIsExist()) {
-                StorageApi.PutCreateFolder(CloudReferencesFolder, DefaultStorage, DefaultStorage);
+            if (!CadApi.objectExists(new ObjectExistsRequest(CloudReferencesFolder, DefaultStorage, null)).isisExists()) {
+                CadApi.createFolder(new CreateFolderRequest(CloudReferencesFolder, DefaultStorage));
             }
 
 
@@ -444,20 +437,20 @@ public abstract class ApiTester
                     continue;
                 }
 
-                if (ForceTestDataUpload || !StorageApi.GetIsExist(CloudTestFolder + "/" + file.getName(), null, DefaultStorage).getFileExist().getIsExist()) {
-                    StorageApi.PutCreate(CloudTestFolder + "/" + file.getName(), null, DefaultStorage, file);
+                if (ForceTestDataUpload || !CadApi.objectExists(new ObjectExistsRequest(CloudTestFolder + "/" + file.getName(), DefaultStorage, null)).isisExists()) {
+                    CadApi.uploadFile(new UploadFileRequest(CloudTestFolder + "/" + file.getName(), file, DefaultStorage));
                 }
             }
 
-            FilesResponse filesResponse = StorageApi.GetListFiles(CloudTestFolder, DefaultStorage);
-            //Assert.assertEquals((int)filesResponse.getCode(), 200);
-            //InputStream stream = filesResponse.getInputStream();
+            FilesList FilesList = CadApi.getFilesList(new GetFilesListRequest(CloudTestFolder, DefaultStorage));
+            //Assert.assertEquals((int)FilesList.getCode(), 200);
+            //InputStream stream = FilesList.getInputStream();
             //byte[] stringBytes = StreamHelper.readAsBytes(stream);
             //stream.close();
 
             //String responseString = new String(stringBytes);
             //FilesList filesList = SerializationHelper.deserialize(responseString, FilesList.class);
-            _testFiles = filesResponse.getFiles();
+            _testFiles = FilesList.getValue();
             IsTestDataUploaded = true;
         }
 
@@ -502,7 +495,7 @@ public abstract class ApiTester
      */
     private long obtainPostResponseLength(String inputPath, String outPath, String storage, Method requestInvoker) throws Exception
     {
-        File inputDownloadResponse = StorageApi.GetDownload(inputPath, "", storage);
+        File inputDownloadResponse = CadApi.downloadFile(new DownloadFileRequest(inputPath, storage, null));
         File responseObject = (File)requestInvoker.invoke(this, inputDownloadResponse, outPath);
         return responseObject.length();
     }
@@ -565,13 +558,13 @@ public abstract class ApiTester
             {
                 outPath = folder + "/" + resultFileName;
                 // remove output file from the storage (if exists)
-                if (StorageApi.GetIsExist(outPath, "", storage).getFileExist().getIsExist())
+                if (CadApi.objectExists(new ObjectExistsRequest(outPath, storage, null)).isisExists())
                 {
-                    StorageApi.DeleteFile(outPath, "", storage);
+                    CadApi.deleteFile(new DeleteFileRequest(outPath, storage, null));
                 }
             }
 
-            FileResponse referenceInfo = getStorageFileInfo(referencePath, resultFileName, storage);
+            StorageFile referenceInfo = getStorageFileInfo(referencePath, resultFileName, storage);
             if (referenceInfo == null && !AutoRecoverReference)
             {
                 throw new Exception(
@@ -584,7 +577,7 @@ public abstract class ApiTester
             
             if (saveResultToStorage)
             {
-                FileResponse resultInfo = getStorageFileInfo(folder, resultFileName, storage);
+                StorageFile resultInfo = getStorageFileInfo(folder, resultFileName, storage);
                 if (resultInfo == null)
                 {
                     throw new Exception(
@@ -622,16 +615,18 @@ public abstract class ApiTester
         }
         finally
         {
-            if (saveResultToStorage && !passed && this.AutoRecoverReference && StorageApi.GetIsExist(outPath, "", storage).getFileExist().getIsExist())
+            if (saveResultToStorage && !passed && this.AutoRecoverReference 
+                && CadApi.objectExists(new ObjectExistsRequest(outPath, storage, null)).isisExists())
             {
-                File download = StorageApi.GetDownload(outPath, null, storage);
+                File download = CadApi.downloadFile(new DownloadFileRequest(outPath, storage, null));
 
-                ResponseMessage moveFileResponse = StorageApi.PutCreate(referencePath + "/" + resultFileName, null, storage, download);
-                Assert.assertEquals(moveFileResponse.getStatus(), "OK");
+                FilesUploadResult moveStorageFile = CadApi.uploadFile(new UploadFileRequest(referencePath + "/" + resultFileName, download, storage));
+                Assert.assertEquals(moveStorageFile.getErrors() == null || moveStorageFile.getErrors().size() == 0, true);
             }
-            else if (saveResultToStorage && this.RemoveResult && StorageApi.GetIsExist(outPath, "", storage).getFileExist().getIsExist())
+            else if (saveResultToStorage 
+                        && this.RemoveResult && CadApi.objectExists(new ObjectExistsRequest(outPath, storage, null)).isisExists())
             {
-                StorageApi.DeleteFile(outPath, "", storage);
+                CadApi.deleteFile(new DeleteFileRequest(outPath, storage, null));
             }
 
             System.out.println("Test passed: " + passed);

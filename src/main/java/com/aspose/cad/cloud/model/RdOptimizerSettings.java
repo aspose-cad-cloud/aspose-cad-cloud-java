@@ -39,9 +39,8 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * RD optimizer settings class
+ * RdOptimizerSettings
  */
-@ApiModel(description = "RD optimizer settings class")
 
 public class RdOptimizerSettings {
   @SerializedName("BppScale")
@@ -71,10 +70,10 @@ public class RdOptimizerSettings {
   }
 
    /**
-   * Gets or sets the BPP (bits per pixel) scale factor.
+   * Get bppScale
    * @return bppScale
   **/
-  @ApiModelProperty(required = true, value = "Gets or sets the BPP (bits per pixel) scale factor.")
+  @ApiModelProperty(required = true, value = "")
   public Integer getBppScale() {
     return bppScale;
   }
@@ -89,10 +88,10 @@ public class RdOptimizerSettings {
   }
 
    /**
-   * Gets or sets the maximum R value for consideration in  in bits per pixel
+   * Get bppMax
    * @return bppMax
   **/
-  @ApiModelProperty(required = true, value = "Gets or sets the maximum R value for consideration in  in bits per pixel")
+  @ApiModelProperty(required = true, value = "")
   public Double getBppMax() {
     return bppMax;
   }
@@ -107,10 +106,10 @@ public class RdOptimizerSettings {
   }
 
    /**
-   * Gets or sets the maximum quantization value.
+   * Get maxQ
    * @return maxQ
   **/
-  @ApiModelProperty(required = true, value = "Gets or sets the maximum quantization value.")
+  @ApiModelProperty(required = true, value = "")
   public Integer getMaxQ() {
     return maxQ;
   }
@@ -125,10 +124,10 @@ public class RdOptimizerSettings {
   }
 
    /**
-   * Gets the minimum allowed quantization value.
+   * Get minQ
    * @return minQ
   **/
-  @ApiModelProperty(required = true, value = "Gets the minimum allowed quantization value.")
+  @ApiModelProperty(required = true, value = "")
   public Integer getMinQ() {
     return minQ;
   }
@@ -143,10 +142,10 @@ public class RdOptimizerSettings {
   }
 
    /**
-   * Gets the maximum pixel value.
+   * Get maxPixelValue
    * @return maxPixelValue
   **/
-  @ApiModelProperty(required = true, value = "Gets the maximum pixel value.")
+  @ApiModelProperty(required = true, value = "")
   public Integer getMaxPixelValue() {
     return maxPixelValue;
   }
@@ -161,10 +160,10 @@ public class RdOptimizerSettings {
   }
 
    /**
-   * Gets the PSNR maximum expected value.
+   * Get psnrMax
    * @return psnrMax
   **/
-  @ApiModelProperty(required = true, value = "Gets the PSNR maximum expected value.")
+  @ApiModelProperty(required = true, value = "")
   public Integer getPsnrMax() {
     return psnrMax;
   }
@@ -179,10 +178,10 @@ public class RdOptimizerSettings {
   }
 
    /**
-   * Gets the maximum R value for consideration.
+   * Get discretizedBppMax
    * @return discretizedBppMax
   **/
-  @ApiModelProperty(required = true, value = "Gets the maximum R value for consideration.")
+  @ApiModelProperty(required = true, value = "")
   public Integer getDiscretizedBppMax() {
     return discretizedBppMax;
   }

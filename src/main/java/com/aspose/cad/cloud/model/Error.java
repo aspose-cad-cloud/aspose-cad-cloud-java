@@ -29,6 +29,7 @@ package com.aspose.cad.cloud.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import com.aspose.cad.cloud.model.ErrorDetails;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -39,50 +40,93 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * ResolutionSetting
+ * Error
  */
+@ApiModel(description = "Error")
 
-public class ResolutionSetting {
-  @SerializedName("HorizontalResolution")
-  private Double horizontalResolution = null;
+public class Error {
+  @SerializedName("Code")
+  private String code = null;
 
-  @SerializedName("VerticalResolution")
-  private Double verticalResolution = null;
+  @SerializedName("Message")
+  private String message = null;
 
-  public ResolutionSetting horizontalResolution(Double horizontalResolution) {
-    this.horizontalResolution = horizontalResolution;
+  @SerializedName("Description")
+  private String description = null;
+
+  @SerializedName("InnerError")
+  private ErrorDetails innerError = null;
+
+  public Error code(String code) {
+    this.code = code;
     return this;
   }
 
    /**
-   * Get horizontalResolution
-   * @return horizontalResolution
+   * Code             
+   * @return code
   **/
-  @ApiModelProperty(required = true, value = "")
-  public Double getHorizontalResolution() {
-    return horizontalResolution;
+  @ApiModelProperty(value = "Code             ")
+  public String getCode() {
+    return code;
   }
 
-  public void setHorizontalResolution(Double horizontalResolution) {
-    this.horizontalResolution = horizontalResolution;
+  public void setCode(String code) {
+    this.code = code;
   }
 
-  public ResolutionSetting verticalResolution(Double verticalResolution) {
-    this.verticalResolution = verticalResolution;
+  public Error message(String message) {
+    this.message = message;
     return this;
   }
 
    /**
-   * Get verticalResolution
-   * @return verticalResolution
+   * Message             
+   * @return message
   **/
-  @ApiModelProperty(required = true, value = "")
-  public Double getVerticalResolution() {
-    return verticalResolution;
+  @ApiModelProperty(value = "Message             ")
+  public String getMessage() {
+    return message;
   }
 
-  public void setVerticalResolution(Double verticalResolution) {
-    this.verticalResolution = verticalResolution;
+  public void setMessage(String message) {
+    this.message = message;
+  }
+
+  public Error description(String description) {
+    this.description = description;
+    return this;
+  }
+
+   /**
+   * Description             
+   * @return description
+  **/
+  @ApiModelProperty(value = "Description             ")
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
+  public Error innerError(ErrorDetails innerError) {
+    this.innerError = innerError;
+    return this;
+  }
+
+   /**
+   * Inner Error             
+   * @return innerError
+  **/
+  @ApiModelProperty(value = "Inner Error             ")
+  public ErrorDetails getInnerError() {
+    return innerError;
+  }
+
+  public void setInnerError(ErrorDetails innerError) {
+    this.innerError = innerError;
   }
 
 
@@ -94,24 +138,28 @@ public class ResolutionSetting {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ResolutionSetting resolutionSetting = (ResolutionSetting) o;
-    return Objects.equals(this.horizontalResolution, resolutionSetting.horizontalResolution) &&
-        Objects.equals(this.verticalResolution, resolutionSetting.verticalResolution);
+    Error error = (Error) o;
+    return Objects.equals(this.code, error.code) &&
+        Objects.equals(this.message, error.message) &&
+        Objects.equals(this.description, error.description) &&
+        Objects.equals(this.innerError, error.innerError);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(horizontalResolution, verticalResolution);
+    return Objects.hash(code, message, description, innerError);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ResolutionSetting {\n");
+    sb.append("class Error {\n");
     
-    sb.append("    horizontalResolution: ").append(toIndentedString(horizontalResolution)).append("\n");
-    sb.append("    verticalResolution: ").append(toIndentedString(verticalResolution)).append("\n");
+    sb.append("    code: ").append(toIndentedString(code)).append("\n");
+    sb.append("    message: ").append(toIndentedString(message)).append("\n");
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    innerError: ").append(toIndentedString(innerError)).append("\n");
     sb.append("}");
     return sb.toString();
   }

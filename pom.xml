@@ -284,14 +284,7 @@
             <version>1.1.1</version>
             <scope>test</scope>
         </dependency>
-		
-        <dependency>
-      		<groupId>com.aspose</groupId>
-      		<artifactId>aspose-cloud-storage</artifactId>
-      		<version>1.0.2</version>
-      		<scope>compile</scope>
-		</dependency>
-		
+	
 		<dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
