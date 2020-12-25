@@ -96,6 +96,11 @@ public class PdfDocumentOptions {
   @SerializedName("Compliance")
   private ComplianceEnum compliance = null;
 
+  public PdfDocumentOptions compliance(ComplianceEnum compliance) {
+    this.compliance = compliance;
+    return this;
+  }
+
    /**
    * Get compliance
    * @return compliance

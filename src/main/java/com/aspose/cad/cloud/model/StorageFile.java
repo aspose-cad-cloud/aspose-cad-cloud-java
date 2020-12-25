@@ -160,12 +160,12 @@ public class StorageFile {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    StorageFile StorageFile = (StorageFile) o;
-    return Objects.equals(this.name, StorageFile.name) &&
-        Objects.equals(this.isFolder, StorageFile.isFolder) &&
-        Objects.equals(this.modifiedDate, StorageFile.modifiedDate) &&
-        Objects.equals(this.size, StorageFile.size) &&
-        Objects.equals(this.path, StorageFile.path);
+    StorageFile storageFile = (StorageFile) o;
+    return Objects.equals(this.name, storageFile.name) &&
+        Objects.equals(this.isFolder, storageFile.isFolder) &&
+        Objects.equals(this.modifiedDate, storageFile.modifiedDate) &&
+        Objects.equals(this.size, storageFile.size) &&
+        Objects.equals(this.path, storageFile.path);
   }
 
   @Override

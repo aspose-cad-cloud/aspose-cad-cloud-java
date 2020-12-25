@@ -69,7 +69,7 @@ public class CadApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/v3.0/cad/storage/file/copy/{srcPath}"
+        String localVarPath = "/cad/storage/file/copy/{srcPath}"
             .replaceAll("\\{" + "srcPath" + "\\}", apiClient.escapeString(request.getsrcPath().toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -206,7 +206,7 @@ public class CadApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/v3.0/cad/storage/folder/copy/{srcPath}"
+        String localVarPath = "/cad/storage/folder/copy/{srcPath}"
             .replaceAll("\\{" + "srcPath" + "\\}", apiClient.escapeString(request.getsrcPath().toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -342,7 +342,7 @@ public class CadApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/v3.0/cad/storage/folder/{path}"
+        String localVarPath = "/cad/storage/folder/{path}"
             .replaceAll("\\{" + "path" + "\\}", apiClient.escapeString(request.getpath().toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -471,7 +471,7 @@ public class CadApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/v3.0/cad/storage/file/{path}"
+        String localVarPath = "/cad/storage/file/{path}"
             .replaceAll("\\{" + "path" + "\\}", apiClient.escapeString(request.getpath().toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -601,7 +601,7 @@ public class CadApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/v3.0/cad/storage/folder/{path}"
+        String localVarPath = "/cad/storage/folder/{path}"
             .replaceAll("\\{" + "path" + "\\}", apiClient.escapeString(request.getpath().toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -731,7 +731,7 @@ public class CadApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/v3.0/cad/storage/file/{path}"
+        String localVarPath = "/cad/storage/file/{path}"
             .replaceAll("\\{" + "path" + "\\}", apiClient.escapeString(request.getpath().toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -866,7 +866,7 @@ public class CadApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/v3.0/cad/storage/disc";
+        String localVarPath = "/cad/storage/disc";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -994,7 +994,7 @@ public class CadApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/v3.0/cad/{name}/properties"
+        String localVarPath = "/cad/{name}/properties"
             .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(request.getname().toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -1129,7 +1129,7 @@ public class CadApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/v3.0/cad/{name}/resize"
+        String localVarPath = "/cad/{name}/resize"
             .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(request.getname().toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -1283,7 +1283,7 @@ public class CadApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/v3.0/cad/{name}/rotateflip"
+        String localVarPath = "/cad/{name}/rotateflip"
             .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(request.getname().toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -1431,7 +1431,7 @@ public class CadApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/v3.0/cad/{name}/saveAs/{outputFormat}"
+        String localVarPath = "/cad/{name}/saveAs/{outputFormat}"
             .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(request.getname().toString()))
             .replaceAll("\\{" + "outputFormat" + "\\}", apiClient.escapeString(request.getoutputFormat().toString()));
 
@@ -1573,7 +1573,7 @@ public class CadApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/v3.0/cad/storage/version/{path}"
+        String localVarPath = "/cad/storage/version/{path}"
             .replaceAll("\\{" + "path" + "\\}", apiClient.escapeString(request.getpath().toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -1707,7 +1707,7 @@ public class CadApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/v3.0/cad/storage/folder/{path}"
+        String localVarPath = "/cad/storage/folder/{path}"
             .replaceAll("\\{" + "path" + "\\}", apiClient.escapeString(request.getpath().toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -1841,7 +1841,7 @@ public class CadApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/v3.0/cad/storage/file/move/{srcPath}"
+        String localVarPath = "/cad/storage/file/move/{srcPath}"
             .replaceAll("\\{" + "srcPath" + "\\}", apiClient.escapeString(request.getsrcPath().toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -1978,7 +1978,7 @@ public class CadApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/v3.0/cad/storage/folder/move/{srcPath}"
+        String localVarPath = "/cad/storage/folder/move/{srcPath}"
             .replaceAll("\\{" + "srcPath" + "\\}", apiClient.escapeString(request.getsrcPath().toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -2114,7 +2114,7 @@ public class CadApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/v3.0/cad/storage/exist/{path}"
+        String localVarPath = "/cad/storage/exist/{path}"
             .replaceAll("\\{" + "path" + "\\}", apiClient.escapeString(request.getpath().toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -2249,7 +2249,7 @@ public class CadApi {
         Object localVarPostBody = request.getoptions();
 
         // create path and map variables
-        String localVarPath = "/v3.0/cad/{name}/bmp"
+        String localVarPath = "/cad/{name}/bmp"
             .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(request.getname().toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -2390,7 +2390,7 @@ public class CadApi {
         Object localVarPostBody = request.getoptions();
 
         // create path and map variables
-        String localVarPath = "/v3.0/cad/{name}/gif"
+        String localVarPath = "/cad/{name}/gif"
             .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(request.getname().toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -2531,7 +2531,7 @@ public class CadApi {
         Object localVarPostBody = request.getoptions();
 
         // create path and map variables
-        String localVarPath = "/v3.0/cad/{name}/jpeg"
+        String localVarPath = "/cad/{name}/jpeg"
             .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(request.getname().toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -2672,7 +2672,7 @@ public class CadApi {
         Object localVarPostBody = request.getoptions();
 
         // create path and map variables
-        String localVarPath = "/v3.0/cad/{name}/jpeg2000"
+        String localVarPath = "/cad/{name}/jpeg2000"
             .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(request.getname().toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -2813,7 +2813,7 @@ public class CadApi {
         Object localVarPostBody = request.getoptions();
 
         // create path and map variables
-        String localVarPath = "/v3.0/cad/{name}/pdf"
+        String localVarPath = "/cad/{name}/pdf"
             .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(request.getname().toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -2954,7 +2954,7 @@ public class CadApi {
         Object localVarPostBody = request.getoptions();
 
         // create path and map variables
-        String localVarPath = "/v3.0/cad/{name}/png"
+        String localVarPath = "/cad/{name}/png"
             .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(request.getname().toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -3095,7 +3095,7 @@ public class CadApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/v3.0/cad/properties";
+        String localVarPath = "/cad/properties";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -3229,7 +3229,7 @@ public class CadApi {
         Object localVarPostBody = request.getoptions();
 
         // create path and map variables
-        String localVarPath = "/v3.0/cad/{name}/psd"
+        String localVarPath = "/cad/{name}/psd"
             .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(request.getname().toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -3370,7 +3370,7 @@ public class CadApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/v3.0/cad/resize";
+        String localVarPath = "/cad/resize";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -3524,7 +3524,7 @@ public class CadApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/v3.0/cad/rotateflip";
+        String localVarPath = "/cad/rotateflip";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -3672,7 +3672,7 @@ public class CadApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/v3.0/cad/saveAs/{outputFormat}"
+        String localVarPath = "/cad/saveAs/{outputFormat}"
             .replaceAll("\\{" + "outputFormat" + "\\}", apiClient.escapeString(request.getoutputFormat().toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -3814,7 +3814,7 @@ public class CadApi {
         Object localVarPostBody = request.getoptions();
 
         // create path and map variables
-        String localVarPath = "/v3.0/cad/{name}/svg"
+        String localVarPath = "/cad/{name}/svg"
             .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(request.getname().toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -3955,7 +3955,7 @@ public class CadApi {
         Object localVarPostBody = request.getoptions();
 
         // create path and map variables
-        String localVarPath = "/v3.0/cad/{name}/tiff"
+        String localVarPath = "/cad/{name}/tiff"
             .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(request.getname().toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -4096,7 +4096,7 @@ public class CadApi {
         Object localVarPostBody = request.getoptions();
 
         // create path and map variables
-        String localVarPath = "/v3.0/cad/{name}/wmf"
+        String localVarPath = "/cad/{name}/wmf"
             .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(request.getname().toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -4237,7 +4237,7 @@ public class CadApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/v3.0/cad/bmp";
+        String localVarPath = "/cad/bmp";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -4375,7 +4375,7 @@ if (request.getexportOptions() != null)
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/v3.0/cad/gif";
+        String localVarPath = "/cad/gif";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -4513,7 +4513,7 @@ if (request.getexportOptions() != null)
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/v3.0/cad/jpeg";
+        String localVarPath = "/cad/jpeg";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -4651,7 +4651,7 @@ if (request.getexportOptions() != null)
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/v3.0/cad/jpeg2000";
+        String localVarPath = "/cad/jpeg2000";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -4789,7 +4789,7 @@ if (request.getexportOptions() != null)
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/v3.0/cad/pdf";
+        String localVarPath = "/cad/pdf";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -4927,7 +4927,7 @@ if (request.getexportOptions() != null)
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/v3.0/cad/png";
+        String localVarPath = "/cad/png";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -5065,7 +5065,7 @@ if (request.getexportOptions() != null)
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/v3.0/cad/psd";
+        String localVarPath = "/cad/psd";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -5203,7 +5203,7 @@ if (request.getexportOptions() != null)
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/v3.0/cad/svg";
+        String localVarPath = "/cad/svg";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -5341,7 +5341,7 @@ if (request.getexportOptions() != null)
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/v3.0/cad/tiff";
+        String localVarPath = "/cad/tiff";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -5479,7 +5479,7 @@ if (request.getexportOptions() != null)
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/v3.0/cad/wmf";
+        String localVarPath = "/cad/wmf";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -5617,7 +5617,7 @@ if (request.getexportOptions() != null)
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/v3.0/cad/storage/{storageName}/exist"
+        String localVarPath = "/cad/storage/{storageName}/exist"
             .replaceAll("\\{" + "storageName" + "\\}", apiClient.escapeString(request.getstorageName().toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -5750,7 +5750,7 @@ if (request.getexportOptions() != null)
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/v3.0/cad/storage/file/{path}"
+        String localVarPath = "/cad/storage/file/{path}"
             .replaceAll("\\{" + "path" + "\\}", apiClient.escapeString(request.getpath().toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
