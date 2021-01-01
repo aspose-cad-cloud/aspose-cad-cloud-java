@@ -1,7 +1,7 @@
-# Aspose.CAD for Cloud Java SDK
-[Aspose.CAD for Cloud](https://products.aspose.cloud/CAD/cloud) is a true REST API that enables you to perform a wide range of drawing processing operations including manipulation and conversion in the cloud, with zero initial costs. Our Cloud SDKs are wrappers around REST API in various programming languages, allowing you to process images in language of your choice quickly and easily, gaining all benefits of strong types and IDE highlights. 
+# Aspose.CAD Cloud Java SDK
+[Aspose.CAD Cloud](https://products.aspose.cloud/CAD/cloud) is a true REST API that enables you to perform a wide range of drawing processing operations including manipulation and conversion in the cloud, with zero initial costs. Our Cloud SDKs are wrappers around REST API in various programming languages, allowing you to process images in language of your choice quickly and easily, gaining all benefits of strong types and IDE highlights. 
 
-This repository contains Aspose.CAD for Cloud Java SDK source code. This SDK allows you to work with Aspose.CAD for Cloud REST APIs in your Java applications quickly and easily, with zero initial cost.
+This repository contains Aspose.CAD Cloud Java SDK source code. This SDK allows you to work with Aspose.CAD Cloud REST APIs in your Java applications quickly and easily, with zero initial cost.
 
 To use this SDK, you will need App SID and App Key which can be looked up at [Aspose Cloud Dashboard](https://dashboard.aspose.cloud/#/apps) (free registration in Aspose Cloud is required for this).
 
@@ -77,7 +77,7 @@ class MyApiWrapper
 Tests from this repo are intended for internal usage only.
 
 # Licensing
-All Aspose.CAD for Cloud SDKs, helper scripts and templates are licensed under [MIT License](LICENSE).
+All Aspose.CAD Cloud SDKs, helper scripts and templates are licensed under [MIT License](LICENSE).
 
 ## Contact Us
 Your feedback is very important to us. Please feel free to contact via
