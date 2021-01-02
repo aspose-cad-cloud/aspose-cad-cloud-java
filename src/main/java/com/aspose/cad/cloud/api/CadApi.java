@@ -85,7 +85,7 @@ public class CadApi
      * Initializes a new instance of the CadApi class for on-premise deployment service usage.
      *  @param baseUrl The base URL.
      *  @param apiVersion API version.
-     *  @param debug If debug mode is enabled.
+     *  @param debugMode If debug mode is enabled.
      * @throws Exception 
      */
     public CadApi(String baseUrl, String apiVersion, Boolean debugMode) throws Exception

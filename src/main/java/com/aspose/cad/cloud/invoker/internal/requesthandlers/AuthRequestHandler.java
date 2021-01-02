@@ -74,7 +74,6 @@ public class AuthRequestHandler implements IRequestHandler
      * Processes the URL.
      * @param url The URL.
      * @return Processed URL.
-     * @throws Exception 
      */
     public String processUrl(String url)
     {
