@@ -28,7 +28,6 @@
 
 package com.aspose.cad.cloud.invoker;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-01-02T03:37:48.807+02:00")
 public class Pair {
     private String name = "";
     private String value = "";

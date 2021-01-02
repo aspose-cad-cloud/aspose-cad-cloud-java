@@ -26,7 +26,6 @@
 */
 package com.aspose.cad.cloud.test.api;
 
-import com.aspose.cad.cloud.ApiResponse;
 import com.aspose.cad.cloud.model.CadResponse;
 import com.aspose.cad.cloud.model.StorageFile;
 import com.aspose.cad.cloud.model.requests.*;
