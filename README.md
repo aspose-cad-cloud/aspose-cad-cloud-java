@@ -1,7 +1,7 @@
 # Aspose.CAD Cloud Java SDK
-[Aspose.CAD Cloud](https://products.aspose.cloud/cad) is a true [REST API](https://apireference.aspose.cloud/cad/) that enables you to perform a wide range of CAD and BIM drawings processing operations including manipulation, export and conversion in a cloud, with zero initial costs.
+[Aspose.CAD Cloud](https://products.aspose.cloud/cad) is a true [REST API](https://apireference.aspose.cloud/cad/) that enables you to perform a wide range of CAD and BIM drawings processing operations including manipulation, editing, export and conversion in a cloud, with zero initial costs.
 
-This repository contains Aspose.CAD Cloud SDK for Java source code. This SDK allows you to perform a wide range of CAD drawing processing operations based on Aspose.CAD Cloud API with all benefits of strong types and IDE highlights.
+This repository contains [Aspose.CAD Cloud Java SDK](https://products.aspose.cloud/cad/java) source code which is written in Java. This SDK allows you to work with Aspose.CAD Cloud REST APIs in your Node.js applications quickly and easily, with zero initial cost and gain all benefits of strong types and IDE highlights.
 
 # Key Features
 
@@ -10,10 +10,47 @@ This repository contains Aspose.CAD Cloud SDK for Java source code. This SDK all
 * Convert CAD drawing to high quality raster images
 * Convert CAD drawing to high quality vector files like SVG and WMF
 * Modify and convert CAD drawing to DXF
+* Modify and convert CAD drawing to DWF
 * Select and modify specific entities
+* Retrieve & update drawing properties and metadata
 * Select and convert specific layouts
 * Select and convert specific layers
 * Track the file conversion process
+
+#### Drawing Formats Support
+Export the following drawing to various formats (generally supported ones are BMP, PSD, JPEG, TIFF, GIF, PNG, JPEG2000, SVG, WMF and PDF):
+* DWG
+* DXF
+* DWF
+* DWFX
+* DWT
+* STL
+* IGS
+* DGN
+* OBJ
+* CF2
+
+Process options, change and return drawings in the same format:
+* DXF
+* DWF
+
+Output formats to export:
+* BMP
+* PSD
+* JPEG
+* TIFF
+* GIF
+* PNG
+* JPEG2000 (JP2, J2K)
+* SVG
+* WMF
+* PDF
+
+#### Supported CAD Operations
+* Export 
+* Resize
+* Crop
+* Rotate and Flip
 
 Look at [API Reference](https://apireference.aspose.cloud/cad/) for full API specification.
 
@@ -73,7 +110,7 @@ The details about key differences and deployment process is described on the ded
 
 ### Prerequisites
 
-To use Aspose CAD for Cloud .NET SDK you need to register an account with [Aspose Cloud](https://www.aspose.cloud/) and lookup/create App Key and SID at [Cloud Dashboard](https://dashboard.aspose.cloud/#/apps). There is free quota available. For more details, see [Aspose Cloud Pricing](https://purchase.aspose.cloud/pricing).
+To use Aspose CAD for Cloud Java SDK you need to register an account with [Aspose Cloud](https://www.aspose.cloud/) and lookup/create App Key and SID at [Cloud Dashboard](https://dashboard.aspose.cloud/#/apps). There is free quota available. For more details, see [Aspose Cloud Pricing](https://purchase.aspose.cloud/pricing).
 
 The solution is updated using [code generator](https://github.com/aspose-CAD-cloud/aspose-CAD-cloud-codegen).
 
@@ -96,14 +133,14 @@ class MyApiWrapper
         GetDrawingSaveAsRequest getSaveRequest = new GetDrawingSaveAsRequest("inputDrawing.dxf", "png", "InputFolder", "ResultFolder/resultDrawing.png", "Storage Name");
         
         // returns empty response data value, saves result to storage
-        CADApi.getDrawingSaveAs(getSaveRequest);
+        cadApi.getDrawingSaveAs(getSaveRequest);
         
         GetDrawingSaveAsRequest getStreamRequest = new GetDrawingSaveAsRequest("inputDrawing.dwg", "png", "InputFolder", null, null);
         
         // returns resulting image bytes
-        byte[] apiResponse = CADApi.getDrawingSaveAs(getStreamRequest);
+        byte[] apiResponse = cadApi.getDrawingSaveAs(getStreamRequest);
     
-        // another option is to use POST request and send image in a stream, if it's not present in your storage   
+        // another option is to use POST request and send drawing as a stream, if it's not present in your storage   
         InputStream inputStream = null;
         byte[] inputBytes = null;
         try
@@ -124,12 +161,12 @@ class MyApiWrapper
         PostDrawingSaveAsRequest postSaveRequest = new PostDrawingSaveAsRequest(inputBytes, "png", "ResultFolder/resultDrawing.png", "My Storage");
         	
         // returns empty response data value, saves result to storage
-        CADApi.postDrawingSaveAs(postSaveRequest);
+        cadApi.postDrawingSaveAs(postSaveRequest);
         
         PostDrawingSaveAsRequest postStreamRequest = new PostDrawingSaveAsRequest(inputBytes, "png", null, "My Storage");
         	
         // returns resulting image bytes
-        byte[] bytesResponse = CADApi.postDrawingSaveAs(postStreamRequest);
+        byte[] bytesResponse = cadApi.postDrawingSaveAs(postStreamRequest);
     }
 }
 
