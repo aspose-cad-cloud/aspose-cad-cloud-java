@@ -109,7 +109,7 @@ public class ResizeApiTests extends ApiTester {
 			
 			for (String format : formatsToExport)
             {
-				getImageResizeRequest = new GetDrawingResizeRequest(name, format, newWidth, newHeight, folder, storage, outPath);
+				getImageResizeRequest = new GetDrawingResizeRequest(name, format, newWidth, newHeight, folder, outPath, storage);
 				outName = name + "_resize." + format;
 				
 				Method propertiesTester = ResizeApiTests.class.getDeclaredMethod("getImageResizePropertiesTester", CadResponse.class, CadResponse.class);

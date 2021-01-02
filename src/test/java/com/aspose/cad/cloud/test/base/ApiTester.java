@@ -461,9 +461,9 @@ public abstract class ApiTester
     	Object responseObject = requestInvoker.invoke(this, inputFileName, outPath);
 
     	Assert.assertNotNull(responseObject);
-    	File response = (File)responseObject;
+    	byte[] response = (byte[])responseObject;
 
-    	return response.length();
+    	return response.length;
 
     	//if (outPath == null || outPath.equals(""))
         //{
