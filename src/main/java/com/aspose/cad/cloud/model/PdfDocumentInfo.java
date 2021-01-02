@@ -1,58 +1,57 @@
 /*
- * --------------------------------------------------------------------------------
- * <copyright company="Aspose">
- *   Copyright (c) 2018 Aspose.CAD Cloud
- * </copyright>
- * <summary>
- *   Permission is hereby granted, free of charge, to any person obtaining a copy
- *  of this software and associated documentation files (the "Software"), to deal
- *  in the Software without restriction, including without limitation the rights
- *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- *  copies of the Software, and to permit persons to whom the Software is
- *  furnished to do so, subject to the following conditions:
- * 
- *  The above copyright notice and this permission notice shall be included in all
- *  copies or substantial portions of the Software.
- * 
- *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- *  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- *  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- *  SOFTWARE.
- * </summary>
- * --------------------------------------------------------------------------------
- */
+* --------------------------------------------------------------------------------------------------------------------
+* <copyright company="Aspose" file="PdfDocumentInfo.java">
+*   Copyright (c) 2018-2020 Aspose Pty Ltd. All rights reserved.
+* </copyright>
+* <summary>
+*   Permission is hereby granted, free of charge, to any person obtaining a copy
+*  of this software and associated documentation files (the "Software"), to deal
+*  in the Software without restriction, including without limitation the rights
+*  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+*  copies of the Software, and to permit persons to whom the Software is
+*  furnished to do so, subject to the following conditions:
+* 
+*  The above copyright notice and this permission notice shall be included in all
+*  copies or substantial portions of the Software.
+* 
+*  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+*  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+*  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+*  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+*  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+*  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+*  SOFTWARE.
+* </summary>
+* --------------------------------------------------------------------------------------------------------------------
+*/
+
 
 package com.aspose.cad.cloud.model;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import org.apache.commons.lang3.ObjectUtils;
+import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.*;
+import com.google.gson.stream.*;
+import com.google.gson.annotations.*;
 
 /**
  * PdfDocumentInfo
  */
-
 public class PdfDocumentInfo {
-  @SerializedName("Keywords")
+  @JsonProperty("keywords")
   private String keywords = null;
 
-  @SerializedName("Title")
+  @JsonProperty("title")
   private String title = null;
 
-  @SerializedName("Author")
+  @JsonProperty("author")
   private String author = null;
 
-  @SerializedName("Subject")
+  @JsonProperty("subject")
   private String subject = null;
 
   public PdfDocumentInfo keywords(String keywords) {
@@ -60,14 +59,13 @@ public class PdfDocumentInfo {
     return this;
   }
 
-   /**
+  /**
    * Get keywords
    * @return keywords
   **/
-  @ApiModelProperty(value = "")
   public String getKeywords() {
     return keywords;
-  }
+  }  
 
   public void setKeywords(String keywords) {
     this.keywords = keywords;
@@ -78,14 +76,13 @@ public class PdfDocumentInfo {
     return this;
   }
 
-   /**
+  /**
    * Get title
    * @return title
   **/
-  @ApiModelProperty(value = "")
   public String getTitle() {
     return title;
-  }
+  }  
 
   public void setTitle(String title) {
     this.title = title;
@@ -96,14 +93,13 @@ public class PdfDocumentInfo {
     return this;
   }
 
-   /**
+  /**
    * Get author
    * @return author
   **/
-  @ApiModelProperty(value = "")
   public String getAuthor() {
     return author;
-  }
+  }  
 
   public void setAuthor(String author) {
     this.author = author;
@@ -114,14 +110,13 @@ public class PdfDocumentInfo {
     return this;
   }
 
-   /**
+  /**
    * Get subject
    * @return subject
   **/
-  @ApiModelProperty(value = "")
   public String getSubject() {
     return subject;
-  }
+  }  
 
   public void setSubject(String subject) {
     this.subject = subject;
@@ -130,22 +125,22 @@ public class PdfDocumentInfo {
 
   @Override
   public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
+  if (this == o) {
+    return true;
+  }
+  if (o == null || getClass() != o.getClass()) {
+    return false;
+  }
     PdfDocumentInfo pdfDocumentInfo = (PdfDocumentInfo) o;
-    return Objects.equals(this.keywords, pdfDocumentInfo.keywords) &&
-        Objects.equals(this.title, pdfDocumentInfo.title) &&
-        Objects.equals(this.author, pdfDocumentInfo.author) &&
-        Objects.equals(this.subject, pdfDocumentInfo.subject);
+    return ObjectUtils.equals(this.keywords, pdfDocumentInfo.keywords) &&
+    ObjectUtils.equals(this.title, pdfDocumentInfo.title) &&
+    ObjectUtils.equals(this.author, pdfDocumentInfo.author) &&
+    ObjectUtils.equals(this.subject, pdfDocumentInfo.subject);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(keywords, title, author, subject);
+    return ObjectUtils.hashCodeMulti(keywords, title, author, subject);
   }
 
 

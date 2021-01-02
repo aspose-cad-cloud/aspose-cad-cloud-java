@@ -1,47 +1,46 @@
 /*
- * --------------------------------------------------------------------------------
- * <copyright company="Aspose">
- *   Copyright (c) 2018 Aspose.CAD Cloud
- * </copyright>
- * <summary>
- *   Permission is hereby granted, free of charge, to any person obtaining a copy
- *  of this software and associated documentation files (the "Software"), to deal
- *  in the Software without restriction, including without limitation the rights
- *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- *  copies of the Software, and to permit persons to whom the Software is
- *  furnished to do so, subject to the following conditions:
- * 
- *  The above copyright notice and this permission notice shall be included in all
- *  copies or substantial portions of the Software.
- * 
- *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- *  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- *  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- *  SOFTWARE.
- * </summary>
- * --------------------------------------------------------------------------------
- */
+* --------------------------------------------------------------------------------------------------------------------
+* <copyright company="Aspose" file="PenOptions.java">
+*   Copyright (c) 2018-2020 Aspose Pty Ltd. All rights reserved.
+* </copyright>
+* <summary>
+*   Permission is hereby granted, free of charge, to any person obtaining a copy
+*  of this software and associated documentation files (the "Software"), to deal
+*  in the Software without restriction, including without limitation the rights
+*  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+*  copies of the Software, and to permit persons to whom the Software is
+*  furnished to do so, subject to the following conditions:
+* 
+*  The above copyright notice and this permission notice shall be included in all
+*  copies or substantial portions of the Software.
+* 
+*  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+*  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+*  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+*  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+*  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+*  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+*  SOFTWARE.
+* </summary>
+* --------------------------------------------------------------------------------------------------------------------
+*/
+
 
 package com.aspose.cad.cloud.model;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import org.apache.commons.lang3.ObjectUtils;
+import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.*;
+import com.google.gson.stream.*;
+import com.google.gson.annotations.*;
 
 /**
  * PenOptions
  */
-
 public class PenOptions {
   /**
    * Gets or Sets startCap
@@ -108,7 +107,7 @@ public class PenOptions {
     }
   }
 
-  @SerializedName("StartCap")
+  @JsonProperty("startCap")
   private StartCapEnum startCap = null;
 
   /**
@@ -176,7 +175,7 @@ public class PenOptions {
     }
   }
 
-  @SerializedName("EndCap")
+  @JsonProperty("endCap")
   private EndCapEnum endCap = null;
 
   public PenOptions startCap(StartCapEnum startCap) {
@@ -184,14 +183,13 @@ public class PenOptions {
     return this;
   }
 
-   /**
+  /**
    * Get startCap
    * @return startCap
   **/
-  @ApiModelProperty(required = true, value = "")
   public StartCapEnum getStartCap() {
     return startCap;
-  }
+  }  
 
   public void setStartCap(StartCapEnum startCap) {
     this.startCap = startCap;
@@ -202,14 +200,13 @@ public class PenOptions {
     return this;
   }
 
-   /**
+  /**
    * Get endCap
    * @return endCap
   **/
-  @ApiModelProperty(required = true, value = "")
   public EndCapEnum getEndCap() {
     return endCap;
-  }
+  }  
 
   public void setEndCap(EndCapEnum endCap) {
     this.endCap = endCap;
@@ -218,20 +215,20 @@ public class PenOptions {
 
   @Override
   public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
+  if (this == o) {
+    return true;
+  }
+  if (o == null || getClass() != o.getClass()) {
+    return false;
+  }
     PenOptions penOptions = (PenOptions) o;
-    return Objects.equals(this.startCap, penOptions.startCap) &&
-        Objects.equals(this.endCap, penOptions.endCap);
+    return ObjectUtils.equals(this.startCap, penOptions.startCap) &&
+    ObjectUtils.equals(this.endCap, penOptions.endCap);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(startCap, endCap);
+    return ObjectUtils.hashCodeMulti(startCap, endCap);
   }
 
 

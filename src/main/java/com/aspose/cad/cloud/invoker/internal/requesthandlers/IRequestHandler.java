@@ -1,7 +1,7 @@
 /*
 * --------------------------------------------------------------------------------------------------------------------
 * <copyright company="Aspose" file="IRequestHandler.java">
-*   Copyright (c) 2018 Aspose.CAD Cloud
+*   Copyright (c) 2018-2019 Aspose Pty Ltd.
 * </copyright>
 * <summary>
 *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -37,23 +37,24 @@ import java.net.URISyntaxException;
  */
 public interface IRequestHandler
 {
-	/**
-	 * Processes the URL.
-	 * @param url The URL.
-	 * @return Processed URL.
-	 * @throws URISyntaxException 
-	 * @throws IllegalArgumentException 
-	 * @throws IOException 
-	 * @throws Exception 
-	 */
+    /**
+     * Processes the URL.
+     * @param url The URL.
+     * @return Processed URL.
+     * @throws URISyntaxException 
+     * @throws IllegalArgumentException 
+     * @throws IOException 
+     * @throws Exception 
+     */
     String processUrl(String url) throws IllegalArgumentException, URISyntaxException, IOException, Exception;
 
     /**
      * Processes parameters before sending.
      * @param connection The connection.
      * @param streamToSend The stream to send.
+     * @throws Exception 
      */
-    void beforeSend(HttpURLConnection connection, OutputStream streamToSend);
+    void beforeSend(HttpURLConnection connection, OutputStream streamToSend) throws Exception;
 
     /**
      * Processes the response.

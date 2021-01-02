@@ -1,70 +1,69 @@
 /*
- * --------------------------------------------------------------------------------
- * <copyright company="Aspose">
- *   Copyright (c) 2018 Aspose.CAD Cloud
- * </copyright>
- * <summary>
- *   Permission is hereby granted, free of charge, to any person obtaining a copy
- *  of this software and associated documentation files (the "Software"), to deal
- *  in the Software without restriction, including without limitation the rights
- *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- *  copies of the Software, and to permit persons to whom the Software is
- *  furnished to do so, subject to the following conditions:
- * 
- *  The above copyright notice and this permission notice shall be included in all
- *  copies or substantial portions of the Software.
- * 
- *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- *  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- *  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- *  SOFTWARE.
- * </summary>
- * --------------------------------------------------------------------------------
- */
+* --------------------------------------------------------------------------------------------------------------------
+* <copyright company="Aspose" file="Color.java">
+*   Copyright (c) 2018-2020 Aspose Pty Ltd. All rights reserved.
+* </copyright>
+* <summary>
+*   Permission is hereby granted, free of charge, to any person obtaining a copy
+*  of this software and associated documentation files (the "Software"), to deal
+*  in the Software without restriction, including without limitation the rights
+*  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+*  copies of the Software, and to permit persons to whom the Software is
+*  furnished to do so, subject to the following conditions:
+* 
+*  The above copyright notice and this permission notice shall be included in all
+*  copies or substantial portions of the Software.
+* 
+*  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+*  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+*  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+*  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+*  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+*  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+*  SOFTWARE.
+* </summary>
+* --------------------------------------------------------------------------------------------------------------------
+*/
+
 
 package com.aspose.cad.cloud.model;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import org.apache.commons.lang3.ObjectUtils;
+import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.*;
+import com.google.gson.stream.*;
+import com.google.gson.annotations.*;
 
 /**
  * Color
  */
-
 public class Color {
-  @SerializedName("R")
+  @JsonProperty("R")
   private Integer R = null;
 
-  @SerializedName("G")
+  @JsonProperty("G")
   private Integer G = null;
 
-  @SerializedName("B")
+  @JsonProperty("B")
   private Integer B = null;
 
-  @SerializedName("A")
+  @JsonProperty("A")
   private Integer A = null;
 
-  @SerializedName("IsKnownColor")
+  @JsonProperty("isKnownColor")
   private Boolean isKnownColor = null;
 
-  @SerializedName("IsEmpty")
+  @JsonProperty("isEmpty")
   private Boolean isEmpty = null;
 
-  @SerializedName("IsNamedColor")
+  @JsonProperty("isNamedColor")
   private Boolean isNamedColor = null;
 
-  @SerializedName("Name")
+  @JsonProperty("name")
   private String name = null;
 
   public Color R(Integer R) {
@@ -72,14 +71,13 @@ public class Color {
     return this;
   }
 
-   /**
+  /**
    * Get R
    * @return R
   **/
-  @ApiModelProperty(required = true, value = "")
   public Integer getR() {
     return R;
-  }
+  }  
 
   public void setR(Integer R) {
     this.R = R;
@@ -90,14 +88,13 @@ public class Color {
     return this;
   }
 
-   /**
+  /**
    * Get G
    * @return G
   **/
-  @ApiModelProperty(required = true, value = "")
   public Integer getG() {
     return G;
-  }
+  }  
 
   public void setG(Integer G) {
     this.G = G;
@@ -108,14 +105,13 @@ public class Color {
     return this;
   }
 
-   /**
+  /**
    * Get B
    * @return B
   **/
-  @ApiModelProperty(required = true, value = "")
   public Integer getB() {
     return B;
-  }
+  }  
 
   public void setB(Integer B) {
     this.B = B;
@@ -126,14 +122,13 @@ public class Color {
     return this;
   }
 
-   /**
+  /**
    * Get A
    * @return A
   **/
-  @ApiModelProperty(required = true, value = "")
   public Integer getA() {
     return A;
-  }
+  }  
 
   public void setA(Integer A) {
     this.A = A;
@@ -144,14 +139,13 @@ public class Color {
     return this;
   }
 
-   /**
+  /**
    * Get isKnownColor
    * @return isKnownColor
   **/
-  @ApiModelProperty(required = true, value = "")
-  public Boolean isisIsKnownColor() {
+  public Boolean isIsKnownColor() {
     return isKnownColor;
-  }
+  }  
 
   public void setIsKnownColor(Boolean isKnownColor) {
     this.isKnownColor = isKnownColor;
@@ -162,14 +156,13 @@ public class Color {
     return this;
   }
 
-   /**
+  /**
    * Get isEmpty
    * @return isEmpty
   **/
-  @ApiModelProperty(required = true, value = "")
-  public Boolean isisIsEmpty() {
+  public Boolean isIsEmpty() {
     return isEmpty;
-  }
+  }  
 
   public void setIsEmpty(Boolean isEmpty) {
     this.isEmpty = isEmpty;
@@ -180,14 +173,13 @@ public class Color {
     return this;
   }
 
-   /**
+  /**
    * Get isNamedColor
    * @return isNamedColor
   **/
-  @ApiModelProperty(required = true, value = "")
-  public Boolean isisIsNamedColor() {
+  public Boolean isIsNamedColor() {
     return isNamedColor;
-  }
+  }  
 
   public void setIsNamedColor(Boolean isNamedColor) {
     this.isNamedColor = isNamedColor;
@@ -198,14 +190,13 @@ public class Color {
     return this;
   }
 
-   /**
+  /**
    * Get name
    * @return name
   **/
-  @ApiModelProperty(value = "")
   public String getName() {
     return name;
-  }
+  }  
 
   public void setName(String name) {
     this.name = name;
@@ -214,26 +205,26 @@ public class Color {
 
   @Override
   public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
+  if (this == o) {
+    return true;
+  }
+  if (o == null || getClass() != o.getClass()) {
+    return false;
+  }
     Color color = (Color) o;
-    return Objects.equals(this.R, color.R) &&
-        Objects.equals(this.G, color.G) &&
-        Objects.equals(this.B, color.B) &&
-        Objects.equals(this.A, color.A) &&
-        Objects.equals(this.isKnownColor, color.isKnownColor) &&
-        Objects.equals(this.isEmpty, color.isEmpty) &&
-        Objects.equals(this.isNamedColor, color.isNamedColor) &&
-        Objects.equals(this.name, color.name);
+    return ObjectUtils.equals(this.R, color.R) &&
+    ObjectUtils.equals(this.G, color.G) &&
+    ObjectUtils.equals(this.B, color.B) &&
+    ObjectUtils.equals(this.A, color.A) &&
+    ObjectUtils.equals(this.isKnownColor, color.isKnownColor) &&
+    ObjectUtils.equals(this.isEmpty, color.isEmpty) &&
+    ObjectUtils.equals(this.isNamedColor, color.isNamedColor) &&
+    ObjectUtils.equals(this.name, color.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(R, G, B, A, isKnownColor, isEmpty, isNamedColor, name);
+    return ObjectUtils.hashCodeMulti(R, G, B, A, isKnownColor, isEmpty, isNamedColor, name);
   }
 
 

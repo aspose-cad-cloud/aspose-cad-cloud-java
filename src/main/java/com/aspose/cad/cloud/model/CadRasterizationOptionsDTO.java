@@ -1,121 +1,66 @@
 /*
- * --------------------------------------------------------------------------------
- * <copyright company="Aspose">
- *   Copyright (c) 2018 Aspose.CAD Cloud
- * </copyright>
- * <summary>
- *   Permission is hereby granted, free of charge, to any person obtaining a copy
- *  of this software and associated documentation files (the "Software"), to deal
- *  in the Software without restriction, including without limitation the rights
- *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- *  copies of the Software, and to permit persons to whom the Software is
- *  furnished to do so, subject to the following conditions:
- * 
- *  The above copyright notice and this permission notice shall be included in all
- *  copies or substantial portions of the Software.
- * 
- *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- *  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- *  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- *  SOFTWARE.
- * </summary>
- * --------------------------------------------------------------------------------
- */
+* --------------------------------------------------------------------------------------------------------------------
+* <copyright company="Aspose" file="CadRasterizationOptionsDTO.java">
+*   Copyright (c) 2018-2020 Aspose Pty Ltd. All rights reserved.
+* </copyright>
+* <summary>
+*   Permission is hereby granted, free of charge, to any person obtaining a copy
+*  of this software and associated documentation files (the "Software"), to deal
+*  in the Software without restriction, including without limitation the rights
+*  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+*  copies of the Software, and to permit persons to whom the Software is
+*  furnished to do so, subject to the following conditions:
+* 
+*  The above copyright notice and this permission notice shall be included in all
+*  copies or substantial portions of the Software.
+* 
+*  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+*  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+*  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+*  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+*  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+*  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+*  SOFTWARE.
+* </summary>
+* --------------------------------------------------------------------------------------------------------------------
+*/
+
 
 package com.aspose.cad.cloud.model;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.aspose.cad.cloud.model.Color;
-import com.aspose.cad.cloud.model.GraphicsOptions;
-import com.aspose.cad.cloud.model.PenOptions;
-import com.aspose.cad.cloud.model.VectorRasterizationOptionsDTO;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import org.apache.commons.lang3.ObjectUtils;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.*;
+import com.google.gson.stream.*;
+import com.google.gson.annotations.*;
 
 /**
  * Raster export options
  */
-@ApiModel(description = "Raster export options")
-
 public class CadRasterizationOptionsDTO extends VectorRasterizationOptionsDTO {
-  @SerializedName("Zoom")
+  @JsonProperty("zoom")
   private Double zoom = null;
 
-  @SerializedName("PenOptions")
+  @JsonProperty("penOptions")
   private PenOptions penOptions = null;
 
-  @SerializedName("AutomaticLayoutsScaling")
+  @JsonProperty("automaticLayoutsScaling")
   private Boolean automaticLayoutsScaling = null;
 
-  @SerializedName("Layers")
+  @JsonProperty("layers")
   private List<String> layers = null;
 
-  @SerializedName("Layouts")
+  @JsonProperty("layouts")
   private List<String> layouts = null;
 
-  /**
-   * Drawing mode
-   */
-  @JsonAdapter(DrawTypeEnum.Adapter.class)
-  public enum DrawTypeEnum {
-    USEDRAWCOLOR("UseDrawColor"),
-    
-    USEOBJECTCOLOR("UseObjectColor");
+  @JsonProperty("drawType")
+  private Object drawType = null;
 
-    private String value;
-
-    DrawTypeEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static DrawTypeEnum fromValue(String text) {
-      for (DrawTypeEnum b : DrawTypeEnum.values()) {
-        if (String.valueOf(b.value).equals(text)) {
-          return b;
-        }
-      }
-      return null;
-    }
-
-    public static class Adapter extends TypeAdapter<DrawTypeEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final DrawTypeEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public DrawTypeEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
-        return DrawTypeEnum.fromValue(String.valueOf(value));
-      }
-    }
-  }
-
-  @SerializedName("DrawType")
-  private DrawTypeEnum drawType = null;
-
-  @SerializedName("NoScaling")
+  @JsonProperty("noScaling")
   private Boolean noScaling = null;
 
   public CadRasterizationOptionsDTO zoom(Double zoom) {
@@ -123,14 +68,13 @@ public class CadRasterizationOptionsDTO extends VectorRasterizationOptionsDTO {
     return this;
   }
 
-   /**
+  /**
    * Zoom factor
    * @return zoom
   **/
-  @ApiModelProperty(required = true, value = "Zoom factor")
   public Double getZoom() {
     return zoom;
-  }
+  }  
 
   public void setZoom(Double zoom) {
     this.zoom = zoom;
@@ -141,14 +85,13 @@ public class CadRasterizationOptionsDTO extends VectorRasterizationOptionsDTO {
     return this;
   }
 
-   /**
+  /**
    * Pen options
    * @return penOptions
   **/
-  @ApiModelProperty(value = "Pen options")
   public PenOptions getPenOptions() {
     return penOptions;
-  }
+  }  
 
   public void setPenOptions(PenOptions penOptions) {
     this.penOptions = penOptions;
@@ -159,14 +102,13 @@ public class CadRasterizationOptionsDTO extends VectorRasterizationOptionsDTO {
     return this;
   }
 
-   /**
+  /**
    * Determines whether layout has to be scaled automatically
    * @return automaticLayoutsScaling
   **/
-  @ApiModelProperty(required = true, value = "Determines whether layout has to be scaled automatically")
-  public Boolean isisAutomaticLayoutsScaling() {
+  public Boolean isAutomaticLayoutsScaling() {
     return automaticLayoutsScaling;
-  }
+  }  
 
   public void setAutomaticLayoutsScaling(Boolean automaticLayoutsScaling) {
     this.automaticLayoutsScaling = automaticLayoutsScaling;
@@ -185,14 +127,13 @@ public class CadRasterizationOptionsDTO extends VectorRasterizationOptionsDTO {
     return this;
   }
 
-   /**
+  /**
    * Layers to export
    * @return layers
   **/
-  @ApiModelProperty(value = "Layers to export")
   public List<String> getLayers() {
     return layers;
-  }
+  }  
 
   public void setLayers(List<String> layers) {
     this.layers = layers;
@@ -211,34 +152,32 @@ public class CadRasterizationOptionsDTO extends VectorRasterizationOptionsDTO {
     return this;
   }
 
-   /**
+  /**
    * Layouts to export
    * @return layouts
   **/
-  @ApiModelProperty(value = "Layouts to export")
   public List<String> getLayouts() {
     return layouts;
-  }
+  }  
 
   public void setLayouts(List<String> layouts) {
     this.layouts = layouts;
   }
 
-  public CadRasterizationOptionsDTO drawType(DrawTypeEnum drawType) {
+  public CadRasterizationOptionsDTO drawType(Object drawType) {
     this.drawType = drawType;
     return this;
   }
 
-   /**
+  /**
    * Drawing mode
    * @return drawType
   **/
-  @ApiModelProperty(required = true, value = "Drawing mode")
-  public DrawTypeEnum getDrawType() {
+  public Object getDrawType() {
     return drawType;
-  }
+  }  
 
-  public void setDrawType(DrawTypeEnum drawType) {
+  public void setDrawType(Object drawType) {
     this.drawType = drawType;
   }
 
@@ -247,14 +186,13 @@ public class CadRasterizationOptionsDTO extends VectorRasterizationOptionsDTO {
     return this;
   }
 
-   /**
+  /**
    * Determines whether scaling has to be turned off
    * @return noScaling
   **/
-  @ApiModelProperty(required = true, value = "Determines whether scaling has to be turned off")
-  public Boolean isisNoScaling() {
+  public Boolean isNoScaling() {
     return noScaling;
-  }
+  }  
 
   public void setNoScaling(Boolean noScaling) {
     this.noScaling = noScaling;
@@ -263,26 +201,26 @@ public class CadRasterizationOptionsDTO extends VectorRasterizationOptionsDTO {
 
   @Override
   public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
+  if (this == o) {
+    return true;
+  }
+  if (o == null || getClass() != o.getClass()) {
+    return false;
+  }
     CadRasterizationOptionsDTO cadRasterizationOptionsDTO = (CadRasterizationOptionsDTO) o;
-    return Objects.equals(this.zoom, cadRasterizationOptionsDTO.zoom) &&
-        Objects.equals(this.penOptions, cadRasterizationOptionsDTO.penOptions) &&
-        Objects.equals(this.automaticLayoutsScaling, cadRasterizationOptionsDTO.automaticLayoutsScaling) &&
-        Objects.equals(this.layers, cadRasterizationOptionsDTO.layers) &&
-        Objects.equals(this.layouts, cadRasterizationOptionsDTO.layouts) &&
-        Objects.equals(this.drawType, cadRasterizationOptionsDTO.drawType) &&
-        Objects.equals(this.noScaling, cadRasterizationOptionsDTO.noScaling) &&
-        super.equals(o);
+    return ObjectUtils.equals(this.zoom, cadRasterizationOptionsDTO.zoom) &&
+    ObjectUtils.equals(this.penOptions, cadRasterizationOptionsDTO.penOptions) &&
+    ObjectUtils.equals(this.automaticLayoutsScaling, cadRasterizationOptionsDTO.automaticLayoutsScaling) &&
+    ObjectUtils.equals(this.layers, cadRasterizationOptionsDTO.layers) &&
+    ObjectUtils.equals(this.layouts, cadRasterizationOptionsDTO.layouts) &&
+    ObjectUtils.equals(this.drawType, cadRasterizationOptionsDTO.drawType) &&
+    ObjectUtils.equals(this.noScaling, cadRasterizationOptionsDTO.noScaling) &&
+    super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(zoom, penOptions, automaticLayoutsScaling, layers, layouts, drawType, noScaling, super.hashCode());
+    return ObjectUtils.hashCodeMulti(zoom, penOptions, automaticLayoutsScaling, layers, layouts, drawType, noScaling, super.hashCode());
   }
 
 

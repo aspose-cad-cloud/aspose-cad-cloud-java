@@ -1,7 +1,7 @@
 /*
 * --------------------------------------------------------------------------------------------------------------------
 * <copyright company="Aspose" file="SerializationHelper.java">
-*   Copyright (c) 2018 Aspose.CAD Cloud
+*   Copyright (c) 2018-2019 Aspose Pty Ltd.
 * </copyright>
 * <summary>
 *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -27,8 +27,8 @@
 
 package com.aspose.cad.cloud.invoker.internal;
 
-import java.io.StringReader;
-import javax.xml.bind.JAXBContext;
+import org.simpleframework.xml.Serializer;
+import org.simpleframework.xml.core.Persister;
 
 import com.aspose.cad.cloud.invoker.JSON;
 import com.aspose.cad.cloud.invoker.ApiException;
@@ -38,13 +38,12 @@ import com.aspose.cad.cloud.invoker.ApiException;
  */
 public class SerializationHelper
 {
-	/**
-	 * Serializes the specified object.
-	 * @param obj The object.
-	 * @return Serialized object.
-	 */
-    public static String serialize(Object obj)
-    {
+    /**
+     * Serializes the specified object.
+     * @param obj The object.
+     * @return Serialized object.
+     */
+    public static String serialize(Object obj) throws Exception {
         try
         {
             return JSON.serialize(obj);
@@ -61,24 +60,22 @@ public class SerializationHelper
      * @param returnType Return type.
      * @return Deserialized JSON string.
      */
-    public static <T> T deserialize(String jsonString, Class<T> returnType)
-    {
+    public static <T> T deserialize(String jsonString, Class<T> returnType) throws Exception {
         try
         {
-        	if (jsonString.startsWith("{") || jsonString.startsWith("["))
+            if (jsonString.startsWith("{") || jsonString.startsWith("["))
             {
-            	return JSON.deserialize(jsonString, returnType);
+                return JSON.deserialize(jsonString, returnType);
             }
             else
             {
-            	JAXBContext context = JAXBContext.newInstance(returnType);
-            	StringReader reader = new StringReader(jsonString);
-            	return (T)context.createUnmarshaller().unmarshal(reader);
+                Serializer serializer = new Persister();
+                return serializer.read(returnType, jsonString);
             }
         }
         catch (Exception e)
         {
-        	throw new ApiException(500, e.getMessage());
+            throw new ApiException(500, e.getMessage());
         }
     }        
 }

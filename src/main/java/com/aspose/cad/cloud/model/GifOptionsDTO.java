@@ -1,72 +1,66 @@
 /*
- * --------------------------------------------------------------------------------
- * <copyright company="Aspose">
- *   Copyright (c) 2018 Aspose.CAD Cloud
- * </copyright>
- * <summary>
- *   Permission is hereby granted, free of charge, to any person obtaining a copy
- *  of this software and associated documentation files (the "Software"), to deal
- *  in the Software without restriction, including without limitation the rights
- *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- *  copies of the Software, and to permit persons to whom the Software is
- *  furnished to do so, subject to the following conditions:
- * 
- *  The above copyright notice and this permission notice shall be included in all
- *  copies or substantial portions of the Software.
- * 
- *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- *  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- *  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- *  SOFTWARE.
- * </summary>
- * --------------------------------------------------------------------------------
- */
+* --------------------------------------------------------------------------------------------------------------------
+* <copyright company="Aspose" file="GifOptionsDTO.java">
+*   Copyright (c) 2018-2020 Aspose Pty Ltd. All rights reserved.
+* </copyright>
+* <summary>
+*   Permission is hereby granted, free of charge, to any person obtaining a copy
+*  of this software and associated documentation files (the "Software"), to deal
+*  in the Software without restriction, including without limitation the rights
+*  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+*  copies of the Software, and to permit persons to whom the Software is
+*  furnished to do so, subject to the following conditions:
+* 
+*  The above copyright notice and this permission notice shall be included in all
+*  copies or substantial portions of the Software.
+* 
+*  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+*  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+*  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+*  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+*  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+*  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+*  SOFTWARE.
+* </summary>
+* --------------------------------------------------------------------------------------------------------------------
+*/
+
 
 package com.aspose.cad.cloud.model;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.aspose.cad.cloud.model.CadRasterizationOptionsDTO;
-import com.aspose.cad.cloud.model.DrawingOptionsBaseDTO;
-import com.aspose.cad.cloud.model.ResolutionSetting;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import org.apache.commons.lang3.ObjectUtils;
+import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.*;
+import com.google.gson.stream.*;
+import com.google.gson.annotations.*;
 
 /**
  * Export options for GIF format
  */
-@ApiModel(description = "Export options for GIF format")
-
 public class GifOptionsDTO extends DrawingOptionsBaseDTO {
-  @SerializedName("DoPaletteCorrection")
+  @JsonProperty("doPaletteCorrection")
   private Boolean doPaletteCorrection = null;
 
-  @SerializedName("ColorResolution")
+  @JsonProperty("colorResolution")
   private Integer colorResolution = null;
 
-  @SerializedName("IsPaletteSorted")
+  @JsonProperty("isPaletteSorted")
   private Boolean isPaletteSorted = null;
 
-  @SerializedName("PixelAspectRatio")
+  @JsonProperty("pixelAspectRatio")
   private Integer pixelAspectRatio = null;
 
-  @SerializedName("BackgroundColorIndex")
+  @JsonProperty("backgroundColorIndex")
   private Integer backgroundColorIndex = null;
 
-  @SerializedName("HasTrailer")
+  @JsonProperty("hasTrailer")
   private Boolean hasTrailer = null;
 
-  @SerializedName("Interlaced")
+  @JsonProperty("interlaced")
   private Boolean interlaced = null;
 
   public GifOptionsDTO doPaletteCorrection(Boolean doPaletteCorrection) {
@@ -74,14 +68,13 @@ public class GifOptionsDTO extends DrawingOptionsBaseDTO {
     return this;
   }
 
-   /**
+  /**
    * Determines whether to do auto-correction of a palette
    * @return doPaletteCorrection
   **/
-  @ApiModelProperty(required = true, value = "Determines whether to do auto-correction of a palette")
-  public Boolean isisDoPaletteCorrection() {
+  public Boolean isDoPaletteCorrection() {
     return doPaletteCorrection;
-  }
+  }  
 
   public void setDoPaletteCorrection(Boolean doPaletteCorrection) {
     this.doPaletteCorrection = doPaletteCorrection;
@@ -92,14 +85,13 @@ public class GifOptionsDTO extends DrawingOptionsBaseDTO {
     return this;
   }
 
-   /**
+  /**
    * Color resolution
    * @return colorResolution
   **/
-  @ApiModelProperty(required = true, value = "Color resolution")
   public Integer getColorResolution() {
     return colorResolution;
-  }
+  }  
 
   public void setColorResolution(Integer colorResolution) {
     this.colorResolution = colorResolution;
@@ -110,14 +102,13 @@ public class GifOptionsDTO extends DrawingOptionsBaseDTO {
     return this;
   }
 
-   /**
+  /**
    * Determines whether a palette is sorted
    * @return isPaletteSorted
   **/
-  @ApiModelProperty(required = true, value = "Determines whether a palette is sorted")
-  public Boolean isisIsPaletteSorted() {
+  public Boolean isIsPaletteSorted() {
     return isPaletteSorted;
-  }
+  }  
 
   public void setIsPaletteSorted(Boolean isPaletteSorted) {
     this.isPaletteSorted = isPaletteSorted;
@@ -128,14 +119,13 @@ public class GifOptionsDTO extends DrawingOptionsBaseDTO {
     return this;
   }
 
-   /**
+  /**
    * Pixel aspect ration
    * @return pixelAspectRatio
   **/
-  @ApiModelProperty(required = true, value = "Pixel aspect ration")
   public Integer getPixelAspectRatio() {
     return pixelAspectRatio;
-  }
+  }  
 
   public void setPixelAspectRatio(Integer pixelAspectRatio) {
     this.pixelAspectRatio = pixelAspectRatio;
@@ -146,14 +136,13 @@ public class GifOptionsDTO extends DrawingOptionsBaseDTO {
     return this;
   }
 
-   /**
+  /**
    * Background color index
    * @return backgroundColorIndex
   **/
-  @ApiModelProperty(required = true, value = "Background color index")
   public Integer getBackgroundColorIndex() {
     return backgroundColorIndex;
-  }
+  }  
 
   public void setBackgroundColorIndex(Integer backgroundColorIndex) {
     this.backgroundColorIndex = backgroundColorIndex;
@@ -164,14 +153,13 @@ public class GifOptionsDTO extends DrawingOptionsBaseDTO {
     return this;
   }
 
-   /**
+  /**
    * Determines whether image has to have a trailer
    * @return hasTrailer
   **/
-  @ApiModelProperty(required = true, value = "Determines whether image has to have a trailer")
-  public Boolean isisHasTrailer() {
+  public Boolean isHasTrailer() {
     return hasTrailer;
-  }
+  }  
 
   public void setHasTrailer(Boolean hasTrailer) {
     this.hasTrailer = hasTrailer;
@@ -182,14 +170,13 @@ public class GifOptionsDTO extends DrawingOptionsBaseDTO {
     return this;
   }
 
-   /**
+  /**
    * Determines whether an image has to be interlaced
    * @return interlaced
   **/
-  @ApiModelProperty(required = true, value = "Determines whether an image has to be interlaced")
-  public Boolean isisInterlaced() {
+  public Boolean isInterlaced() {
     return interlaced;
-  }
+  }  
 
   public void setInterlaced(Boolean interlaced) {
     this.interlaced = interlaced;
@@ -198,26 +185,26 @@ public class GifOptionsDTO extends DrawingOptionsBaseDTO {
 
   @Override
   public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
+  if (this == o) {
+    return true;
+  }
+  if (o == null || getClass() != o.getClass()) {
+    return false;
+  }
     GifOptionsDTO gifOptionsDTO = (GifOptionsDTO) o;
-    return Objects.equals(this.doPaletteCorrection, gifOptionsDTO.doPaletteCorrection) &&
-        Objects.equals(this.colorResolution, gifOptionsDTO.colorResolution) &&
-        Objects.equals(this.isPaletteSorted, gifOptionsDTO.isPaletteSorted) &&
-        Objects.equals(this.pixelAspectRatio, gifOptionsDTO.pixelAspectRatio) &&
-        Objects.equals(this.backgroundColorIndex, gifOptionsDTO.backgroundColorIndex) &&
-        Objects.equals(this.hasTrailer, gifOptionsDTO.hasTrailer) &&
-        Objects.equals(this.interlaced, gifOptionsDTO.interlaced) &&
-        super.equals(o);
+    return ObjectUtils.equals(this.doPaletteCorrection, gifOptionsDTO.doPaletteCorrection) &&
+    ObjectUtils.equals(this.colorResolution, gifOptionsDTO.colorResolution) &&
+    ObjectUtils.equals(this.isPaletteSorted, gifOptionsDTO.isPaletteSorted) &&
+    ObjectUtils.equals(this.pixelAspectRatio, gifOptionsDTO.pixelAspectRatio) &&
+    ObjectUtils.equals(this.backgroundColorIndex, gifOptionsDTO.backgroundColorIndex) &&
+    ObjectUtils.equals(this.hasTrailer, gifOptionsDTO.hasTrailer) &&
+    ObjectUtils.equals(this.interlaced, gifOptionsDTO.interlaced) &&
+    super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(doPaletteCorrection, colorResolution, isPaletteSorted, pixelAspectRatio, backgroundColorIndex, hasTrailer, interlaced, super.hashCode());
+    return ObjectUtils.hashCodeMulti(doPaletteCorrection, colorResolution, isPaletteSorted, pixelAspectRatio, backgroundColorIndex, hasTrailer, interlaced, super.hashCode());
   }
 
 

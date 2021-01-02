@@ -1,68 +1,63 @@
 /*
- * --------------------------------------------------------------------------------
- * <copyright company="Aspose">
- *   Copyright (c) 2018 Aspose.CAD Cloud
- * </copyright>
- * <summary>
- *   Permission is hereby granted, free of charge, to any person obtaining a copy
- *  of this software and associated documentation files (the "Software"), to deal
- *  in the Software without restriction, including without limitation the rights
- *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- *  copies of the Software, and to permit persons to whom the Software is
- *  furnished to do so, subject to the following conditions:
- * 
- *  The above copyright notice and this permission notice shall be included in all
- *  copies or substantial portions of the Software.
- * 
- *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- *  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- *  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- *  SOFTWARE.
- * </summary>
- * --------------------------------------------------------------------------------
- */
+* --------------------------------------------------------------------------------------------------------------------
+* <copyright company="Aspose" file="VectorRasterizationOptionsDTO.java">
+*   Copyright (c) 2018-2020 Aspose Pty Ltd. All rights reserved.
+* </copyright>
+* <summary>
+*   Permission is hereby granted, free of charge, to any person obtaining a copy
+*  of this software and associated documentation files (the "Software"), to deal
+*  in the Software without restriction, including without limitation the rights
+*  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+*  copies of the Software, and to permit persons to whom the Software is
+*  furnished to do so, subject to the following conditions:
+* 
+*  The above copyright notice and this permission notice shall be included in all
+*  copies or substantial portions of the Software.
+* 
+*  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+*  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+*  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+*  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+*  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+*  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+*  SOFTWARE.
+* </summary>
+* --------------------------------------------------------------------------------------------------------------------
+*/
+
 
 package com.aspose.cad.cloud.model;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.aspose.cad.cloud.model.Color;
-import com.aspose.cad.cloud.model.GraphicsOptions;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import org.apache.commons.lang3.ObjectUtils;
+import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.*;
+import com.google.gson.stream.*;
+import com.google.gson.annotations.*;
 
 /**
  * Base raster export options class
  */
-@ApiModel(description = "Base raster export options class")
-
-
 public class VectorRasterizationOptionsDTO {
-  @SerializedName("BorderX")
+  @JsonProperty("borderX")
   private Double borderX = null;
 
-  @SerializedName("BorderY")
+  @JsonProperty("borderY")
   private Double borderY = null;
 
-  @SerializedName("PageHeight")
+  @JsonProperty("pageHeight")
   private Double pageHeight = null;
 
-  @SerializedName("PageWidth")
+  @JsonProperty("pageWidth")
   private Double pageWidth = null;
 
-  @SerializedName("BackgroundColor")
+  @JsonProperty("backgroundColor")
   private Color backgroundColor = null;
 
-  @SerializedName("DrawColor")
+  @JsonProperty("drawColor")
   private Color drawColor = null;
 
   /**
@@ -152,13 +147,13 @@ public class VectorRasterizationOptionsDTO {
     }
   }
 
-  @SerializedName("UnitType")
+  @JsonProperty("unitType")
   private UnitTypeEnum unitType = null;
 
-  @SerializedName("ContentAsBitmap")
+  @JsonProperty("contentAsBitmap")
   private Boolean contentAsBitmap = null;
 
-  @SerializedName("GraphicsOptions")
+  @JsonProperty("graphicsOptions")
   private GraphicsOptions graphicsOptions = null;
 
   public VectorRasterizationOptionsDTO borderX(Double borderX) {
@@ -166,14 +161,13 @@ public class VectorRasterizationOptionsDTO {
     return this;
   }
 
-   /**
+  /**
    * Gets or sets the border X.
    * @return borderX
   **/
-  @ApiModelProperty(required = true, value = "Gets or sets the border X.")
   public Double getBorderX() {
     return borderX;
-  }
+  }  
 
   public void setBorderX(Double borderX) {
     this.borderX = borderX;
@@ -184,14 +178,13 @@ public class VectorRasterizationOptionsDTO {
     return this;
   }
 
-   /**
+  /**
    * Gets or sets the border Y.
    * @return borderY
   **/
-  @ApiModelProperty(required = true, value = "Gets or sets the border Y.")
   public Double getBorderY() {
     return borderY;
-  }
+  }  
 
   public void setBorderY(Double borderY) {
     this.borderY = borderY;
@@ -202,14 +195,13 @@ public class VectorRasterizationOptionsDTO {
     return this;
   }
 
-   /**
+  /**
    * Gets or sets the page height.
    * @return pageHeight
   **/
-  @ApiModelProperty(required = true, value = "Gets or sets the page height.")
   public Double getPageHeight() {
     return pageHeight;
-  }
+  }  
 
   public void setPageHeight(Double pageHeight) {
     this.pageHeight = pageHeight;
@@ -220,14 +212,13 @@ public class VectorRasterizationOptionsDTO {
     return this;
   }
 
-   /**
+  /**
    * Gets or sets the page width.
    * @return pageWidth
   **/
-  @ApiModelProperty(required = true, value = "Gets or sets the page width.")
   public Double getPageWidth() {
     return pageWidth;
-  }
+  }  
 
   public void setPageWidth(Double pageWidth) {
     this.pageWidth = pageWidth;
@@ -238,14 +229,13 @@ public class VectorRasterizationOptionsDTO {
     return this;
   }
 
-   /**
+  /**
    * Gets or sets a background color.
    * @return backgroundColor
   **/
-  @ApiModelProperty(required = true, value = "Gets or sets a background color.")
   public Color getBackgroundColor() {
     return backgroundColor;
-  }
+  }  
 
   public void setBackgroundColor(Color backgroundColor) {
     this.backgroundColor = backgroundColor;
@@ -256,14 +246,13 @@ public class VectorRasterizationOptionsDTO {
     return this;
   }
 
-   /**
+  /**
    * Gets or sets a foreground color.
    * @return drawColor
   **/
-  @ApiModelProperty(required = true, value = "Gets or sets a foreground color.")
   public Color getDrawColor() {
     return drawColor;
-  }
+  }  
 
   public void setDrawColor(Color drawColor) {
     this.drawColor = drawColor;
@@ -274,14 +263,13 @@ public class VectorRasterizationOptionsDTO {
     return this;
   }
 
-   /**
+  /**
    * Get unitType
    * @return unitType
   **/
-  @ApiModelProperty(required = true, value = "")
   public UnitTypeEnum getUnitType() {
     return unitType;
-  }
+  }  
 
   public void setUnitType(UnitTypeEnum unitType) {
     this.unitType = unitType;
@@ -292,14 +280,13 @@ public class VectorRasterizationOptionsDTO {
     return this;
   }
 
-   /**
+  /**
    * Gets or sets a value indicating whether content of a drawing is represented as image inside Pdf. Applicable only for CAD to Pdf export. Default is false.
    * @return contentAsBitmap
   **/
-  @ApiModelProperty(required = true, value = "Gets or sets a value indicating whether content of a drawing is represented as image inside Pdf. Applicable only for CAD to Pdf export. Default is false.")
-  public Boolean isisContentAsBitmap() {
+  public Boolean isContentAsBitmap() {
     return contentAsBitmap;
-  }
+  }  
 
   public void setContentAsBitmap(Boolean contentAsBitmap) {
     this.contentAsBitmap = contentAsBitmap;
@@ -310,14 +297,13 @@ public class VectorRasterizationOptionsDTO {
     return this;
   }
 
-   /**
+  /**
    * Gets or sets options to render bitmap inside pdf (if ContentAsBitmap is set to true).
    * @return graphicsOptions
   **/
-  @ApiModelProperty(value = "Gets or sets options to render bitmap inside pdf (if ContentAsBitmap is set to true).")
   public GraphicsOptions getGraphicsOptions() {
     return graphicsOptions;
-  }
+  }  
 
   public void setGraphicsOptions(GraphicsOptions graphicsOptions) {
     this.graphicsOptions = graphicsOptions;
@@ -326,27 +312,27 @@ public class VectorRasterizationOptionsDTO {
 
   @Override
   public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
+  if (this == o) {
+    return true;
+  }
+  if (o == null || getClass() != o.getClass()) {
+    return false;
+  }
     VectorRasterizationOptionsDTO vectorRasterizationOptionsDTO = (VectorRasterizationOptionsDTO) o;
-    return Objects.equals(this.borderX, vectorRasterizationOptionsDTO.borderX) &&
-        Objects.equals(this.borderY, vectorRasterizationOptionsDTO.borderY) &&
-        Objects.equals(this.pageHeight, vectorRasterizationOptionsDTO.pageHeight) &&
-        Objects.equals(this.pageWidth, vectorRasterizationOptionsDTO.pageWidth) &&
-        Objects.equals(this.backgroundColor, vectorRasterizationOptionsDTO.backgroundColor) &&
-        Objects.equals(this.drawColor, vectorRasterizationOptionsDTO.drawColor) &&
-        Objects.equals(this.unitType, vectorRasterizationOptionsDTO.unitType) &&
-        Objects.equals(this.contentAsBitmap, vectorRasterizationOptionsDTO.contentAsBitmap) &&
-        Objects.equals(this.graphicsOptions, vectorRasterizationOptionsDTO.graphicsOptions);
+    return ObjectUtils.equals(this.borderX, vectorRasterizationOptionsDTO.borderX) &&
+    ObjectUtils.equals(this.borderY, vectorRasterizationOptionsDTO.borderY) &&
+    ObjectUtils.equals(this.pageHeight, vectorRasterizationOptionsDTO.pageHeight) &&
+    ObjectUtils.equals(this.pageWidth, vectorRasterizationOptionsDTO.pageWidth) &&
+    ObjectUtils.equals(this.backgroundColor, vectorRasterizationOptionsDTO.backgroundColor) &&
+    ObjectUtils.equals(this.drawColor, vectorRasterizationOptionsDTO.drawColor) &&
+    ObjectUtils.equals(this.unitType, vectorRasterizationOptionsDTO.unitType) &&
+    ObjectUtils.equals(this.contentAsBitmap, vectorRasterizationOptionsDTO.contentAsBitmap) &&
+    ObjectUtils.equals(this.graphicsOptions, vectorRasterizationOptionsDTO.graphicsOptions);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(borderX, borderY, pageHeight, pageWidth, backgroundColor, drawColor, unitType, contentAsBitmap, graphicsOptions);
+    return ObjectUtils.hashCodeMulti(borderX, borderY, pageHeight, pageWidth, backgroundColor, drawColor, unitType, contentAsBitmap, graphicsOptions);
   }
 
 

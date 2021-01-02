@@ -1,67 +1,66 @@
 /*
- * --------------------------------------------------------------------------------
- * <copyright company="Aspose">
- *   Copyright (c) 2018 Aspose.CAD Cloud
- * </copyright>
- * <summary>
- *   Permission is hereby granted, free of charge, to any person obtaining a copy
- *  of this software and associated documentation files (the "Software"), to deal
- *  in the Software without restriction, including without limitation the rights
- *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- *  copies of the Software, and to permit persons to whom the Software is
- *  furnished to do so, subject to the following conditions:
- * 
- *  The above copyright notice and this permission notice shall be included in all
- *  copies or substantial portions of the Software.
- * 
- *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- *  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- *  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- *  SOFTWARE.
- * </summary>
- * --------------------------------------------------------------------------------
- */
+* --------------------------------------------------------------------------------------------------------------------
+* <copyright company="Aspose" file="RdOptimizerSettings.java">
+*   Copyright (c) 2018-2020 Aspose Pty Ltd. All rights reserved.
+* </copyright>
+* <summary>
+*   Permission is hereby granted, free of charge, to any person obtaining a copy
+*  of this software and associated documentation files (the "Software"), to deal
+*  in the Software without restriction, including without limitation the rights
+*  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+*  copies of the Software, and to permit persons to whom the Software is
+*  furnished to do so, subject to the following conditions:
+* 
+*  The above copyright notice and this permission notice shall be included in all
+*  copies or substantial portions of the Software.
+* 
+*  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+*  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+*  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+*  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+*  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+*  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+*  SOFTWARE.
+* </summary>
+* --------------------------------------------------------------------------------------------------------------------
+*/
+
 
 package com.aspose.cad.cloud.model;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import org.apache.commons.lang3.ObjectUtils;
+import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.*;
+import com.google.gson.stream.*;
+import com.google.gson.annotations.*;
 
 /**
  * RdOptimizerSettings
  */
-
 public class RdOptimizerSettings {
-  @SerializedName("BppScale")
+  @JsonProperty("bppScale")
   private Integer bppScale = null;
 
-  @SerializedName("BppMax")
+  @JsonProperty("bppMax")
   private Double bppMax = null;
 
-  @SerializedName("MaxQ")
+  @JsonProperty("maxQ")
   private Integer maxQ = null;
 
-  @SerializedName("MinQ")
+  @JsonProperty("minQ")
   private Integer minQ = null;
 
-  @SerializedName("MaxPixelValue")
+  @JsonProperty("maxPixelValue")
   private Integer maxPixelValue = null;
 
-  @SerializedName("PsnrMax")
+  @JsonProperty("psnrMax")
   private Integer psnrMax = null;
 
-  @SerializedName("DiscretizedBppMax")
+  @JsonProperty("discretizedBppMax")
   private Integer discretizedBppMax = null;
 
   public RdOptimizerSettings bppScale(Integer bppScale) {
@@ -69,14 +68,13 @@ public class RdOptimizerSettings {
     return this;
   }
 
-   /**
+  /**
    * Get bppScale
    * @return bppScale
   **/
-  @ApiModelProperty(required = true, value = "")
   public Integer getBppScale() {
     return bppScale;
-  }
+  }  
 
   public void setBppScale(Integer bppScale) {
     this.bppScale = bppScale;
@@ -87,14 +85,13 @@ public class RdOptimizerSettings {
     return this;
   }
 
-   /**
+  /**
    * Get bppMax
    * @return bppMax
   **/
-  @ApiModelProperty(required = true, value = "")
   public Double getBppMax() {
     return bppMax;
-  }
+  }  
 
   public void setBppMax(Double bppMax) {
     this.bppMax = bppMax;
@@ -105,14 +102,13 @@ public class RdOptimizerSettings {
     return this;
   }
 
-   /**
+  /**
    * Get maxQ
    * @return maxQ
   **/
-  @ApiModelProperty(required = true, value = "")
   public Integer getMaxQ() {
     return maxQ;
-  }
+  }  
 
   public void setMaxQ(Integer maxQ) {
     this.maxQ = maxQ;
@@ -123,14 +119,13 @@ public class RdOptimizerSettings {
     return this;
   }
 
-   /**
+  /**
    * Get minQ
    * @return minQ
   **/
-  @ApiModelProperty(required = true, value = "")
   public Integer getMinQ() {
     return minQ;
-  }
+  }  
 
   public void setMinQ(Integer minQ) {
     this.minQ = minQ;
@@ -141,14 +136,13 @@ public class RdOptimizerSettings {
     return this;
   }
 
-   /**
+  /**
    * Get maxPixelValue
    * @return maxPixelValue
   **/
-  @ApiModelProperty(required = true, value = "")
   public Integer getMaxPixelValue() {
     return maxPixelValue;
-  }
+  }  
 
   public void setMaxPixelValue(Integer maxPixelValue) {
     this.maxPixelValue = maxPixelValue;
@@ -159,14 +153,13 @@ public class RdOptimizerSettings {
     return this;
   }
 
-   /**
+  /**
    * Get psnrMax
    * @return psnrMax
   **/
-  @ApiModelProperty(required = true, value = "")
   public Integer getPsnrMax() {
     return psnrMax;
-  }
+  }  
 
   public void setPsnrMax(Integer psnrMax) {
     this.psnrMax = psnrMax;
@@ -177,14 +170,13 @@ public class RdOptimizerSettings {
     return this;
   }
 
-   /**
+  /**
    * Get discretizedBppMax
    * @return discretizedBppMax
   **/
-  @ApiModelProperty(required = true, value = "")
   public Integer getDiscretizedBppMax() {
     return discretizedBppMax;
-  }
+  }  
 
   public void setDiscretizedBppMax(Integer discretizedBppMax) {
     this.discretizedBppMax = discretizedBppMax;
@@ -193,25 +185,25 @@ public class RdOptimizerSettings {
 
   @Override
   public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
+  if (this == o) {
+    return true;
+  }
+  if (o == null || getClass() != o.getClass()) {
+    return false;
+  }
     RdOptimizerSettings rdOptimizerSettings = (RdOptimizerSettings) o;
-    return Objects.equals(this.bppScale, rdOptimizerSettings.bppScale) &&
-        Objects.equals(this.bppMax, rdOptimizerSettings.bppMax) &&
-        Objects.equals(this.maxQ, rdOptimizerSettings.maxQ) &&
-        Objects.equals(this.minQ, rdOptimizerSettings.minQ) &&
-        Objects.equals(this.maxPixelValue, rdOptimizerSettings.maxPixelValue) &&
-        Objects.equals(this.psnrMax, rdOptimizerSettings.psnrMax) &&
-        Objects.equals(this.discretizedBppMax, rdOptimizerSettings.discretizedBppMax);
+    return ObjectUtils.equals(this.bppScale, rdOptimizerSettings.bppScale) &&
+    ObjectUtils.equals(this.bppMax, rdOptimizerSettings.bppMax) &&
+    ObjectUtils.equals(this.maxQ, rdOptimizerSettings.maxQ) &&
+    ObjectUtils.equals(this.minQ, rdOptimizerSettings.minQ) &&
+    ObjectUtils.equals(this.maxPixelValue, rdOptimizerSettings.maxPixelValue) &&
+    ObjectUtils.equals(this.psnrMax, rdOptimizerSettings.psnrMax) &&
+    ObjectUtils.equals(this.discretizedBppMax, rdOptimizerSettings.discretizedBppMax);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(bppScale, bppMax, maxQ, minQ, maxPixelValue, psnrMax, discretizedBppMax);
+    return ObjectUtils.hashCodeMulti(bppScale, bppMax, maxQ, minQ, maxPixelValue, psnrMax, discretizedBppMax);
   }
 
 

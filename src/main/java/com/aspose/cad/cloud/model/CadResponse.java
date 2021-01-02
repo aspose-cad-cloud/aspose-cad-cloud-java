@@ -1,88 +1,78 @@
 /*
- * --------------------------------------------------------------------------------
- * <copyright company="Aspose">
- *   Copyright (c) 2018 Aspose.CAD Cloud
- * </copyright>
- * <summary>
- *   Permission is hereby granted, free of charge, to any person obtaining a copy
- *  of this software and associated documentation files (the "Software"), to deal
- *  in the Software without restriction, including without limitation the rights
- *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- *  copies of the Software, and to permit persons to whom the Software is
- *  furnished to do so, subject to the following conditions:
- * 
- *  The above copyright notice and this permission notice shall be included in all
- *  copies or substantial portions of the Software.
- * 
- *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- *  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- *  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- *  SOFTWARE.
- * </summary>
- * --------------------------------------------------------------------------------
- */
+* --------------------------------------------------------------------------------------------------------------------
+* <copyright company="Aspose" file="CadResponse.java">
+*   Copyright (c) 2018-2020 Aspose Pty Ltd. All rights reserved.
+* </copyright>
+* <summary>
+*   Permission is hereby granted, free of charge, to any person obtaining a copy
+*  of this software and associated documentation files (the "Software"), to deal
+*  in the Software without restriction, including without limitation the rights
+*  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+*  copies of the Software, and to permit persons to whom the Software is
+*  furnished to do so, subject to the following conditions:
+* 
+*  The above copyright notice and this permission notice shall be included in all
+*  copies or substantial portions of the Software.
+* 
+*  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+*  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+*  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+*  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+*  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+*  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+*  SOFTWARE.
+* </summary>
+* --------------------------------------------------------------------------------------------------------------------
+*/
+
 
 package com.aspose.cad.cloud.model;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.aspose.cad.cloud.model.Cff2Properties;
-import com.aspose.cad.cloud.model.DgnProperties;
-import com.aspose.cad.cloud.model.DwfProperties;
-import com.aspose.cad.cloud.model.DwgProperties;
-import com.aspose.cad.cloud.model.DxfProperties;
-import com.aspose.cad.cloud.model.IfcProperties;
-import com.aspose.cad.cloud.model.IgsProperties;
-import com.aspose.cad.cloud.model.StlProperties;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import org.apache.commons.lang3.ObjectUtils;
+import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.*;
+import com.google.gson.stream.*;
+import com.google.gson.annotations.*;
 
 /**
  * Represents information about a drawing.
  */
-@ApiModel(description = "Represents information about a drawing.")
-
 public class CadResponse {
-  @SerializedName("Height")
+  @JsonProperty("height")
   private Integer height = null;
 
-  @SerializedName("Width")
+  @JsonProperty("width")
   private Integer width = null;
 
-  @SerializedName("DwgProperties")
+  @JsonProperty("dwgProperties")
   private DwgProperties dwgProperties = null;
 
-  @SerializedName("DxfProperties")
+  @JsonProperty("dxfProperties")
   private DxfProperties dxfProperties = null;
 
-  @SerializedName("DwtProperties")
+  @JsonProperty("dwtProperties")
   private DwgProperties dwtProperties = null;
 
-  @SerializedName("DgnProperties")
+  @JsonProperty("dgnProperties")
   private DgnProperties dgnProperties = null;
 
-  @SerializedName("IfcProperties")
+  @JsonProperty("ifcProperties")
   private IfcProperties ifcProperties = null;
 
-  @SerializedName("IgsProperties")
+  @JsonProperty("igsProperties")
   private IgsProperties igsProperties = null;
 
-  @SerializedName("StlProperties")
+  @JsonProperty("stlProperties")
   private StlProperties stlProperties = null;
 
-  @SerializedName("DwfProperties")
+  @JsonProperty("dwfProperties")
   private DwfProperties dwfProperties = null;
 
-  @SerializedName("Cff2Properties")
+  @JsonProperty("cff2Properties")
   private Cff2Properties cff2Properties = null;
 
   public CadResponse height(Integer height) {
@@ -90,14 +80,13 @@ public class CadResponse {
     return this;
   }
 
-   /**
+  /**
    * Gets or sets the height of a drawing.
    * @return height
   **/
-  @ApiModelProperty(required = true, value = "Gets or sets the height of a drawing.")
   public Integer getHeight() {
     return height;
-  }
+  }  
 
   public void setHeight(Integer height) {
     this.height = height;
@@ -108,14 +97,13 @@ public class CadResponse {
     return this;
   }
 
-   /**
+  /**
    * Gets or sets the width of a drawing.
    * @return width
   **/
-  @ApiModelProperty(required = true, value = "Gets or sets the width of a drawing.")
   public Integer getWidth() {
     return width;
-  }
+  }  
 
   public void setWidth(Integer width) {
     this.width = width;
@@ -126,14 +114,13 @@ public class CadResponse {
     return this;
   }
 
-   /**
+  /**
    * Gets or sets the DWG properties.
    * @return dwgProperties
   **/
-  @ApiModelProperty(value = "Gets or sets the DWG properties.")
   public DwgProperties getDwgProperties() {
     return dwgProperties;
-  }
+  }  
 
   public void setDwgProperties(DwgProperties dwgProperties) {
     this.dwgProperties = dwgProperties;
@@ -144,14 +131,13 @@ public class CadResponse {
     return this;
   }
 
-   /**
+  /**
    * Gets or sets the DXF properties.
    * @return dxfProperties
   **/
-  @ApiModelProperty(value = "Gets or sets the DXF properties.")
   public DxfProperties getDxfProperties() {
     return dxfProperties;
-  }
+  }  
 
   public void setDxfProperties(DxfProperties dxfProperties) {
     this.dxfProperties = dxfProperties;
@@ -162,14 +148,13 @@ public class CadResponse {
     return this;
   }
 
-   /**
+  /**
    * Gets or sets the DWT properties.
    * @return dwtProperties
   **/
-  @ApiModelProperty(value = "Gets or sets the DWT properties.")
   public DwgProperties getDwtProperties() {
     return dwtProperties;
-  }
+  }  
 
   public void setDwtProperties(DwgProperties dwtProperties) {
     this.dwtProperties = dwtProperties;
@@ -180,14 +165,13 @@ public class CadResponse {
     return this;
   }
 
-   /**
+  /**
    * Gets or sets the DGN properties.
    * @return dgnProperties
   **/
-  @ApiModelProperty(value = "Gets or sets the DGN properties.")
   public DgnProperties getDgnProperties() {
     return dgnProperties;
-  }
+  }  
 
   public void setDgnProperties(DgnProperties dgnProperties) {
     this.dgnProperties = dgnProperties;
@@ -198,14 +182,13 @@ public class CadResponse {
     return this;
   }
 
-   /**
+  /**
    * Gets or sets the IFC properties.
    * @return ifcProperties
   **/
-  @ApiModelProperty(value = "Gets or sets the IFC properties.")
   public IfcProperties getIfcProperties() {
     return ifcProperties;
-  }
+  }  
 
   public void setIfcProperties(IfcProperties ifcProperties) {
     this.ifcProperties = ifcProperties;
@@ -216,14 +199,13 @@ public class CadResponse {
     return this;
   }
 
-   /**
+  /**
    * Gets or sets the IGS properties.
    * @return igsProperties
   **/
-  @ApiModelProperty(value = "Gets or sets the IGS properties.")
   public IgsProperties getIgsProperties() {
     return igsProperties;
-  }
+  }  
 
   public void setIgsProperties(IgsProperties igsProperties) {
     this.igsProperties = igsProperties;
@@ -234,14 +216,13 @@ public class CadResponse {
     return this;
   }
 
-   /**
+  /**
    * Gets or sets the STL properties.
    * @return stlProperties
   **/
-  @ApiModelProperty(value = "Gets or sets the STL properties.")
   public StlProperties getStlProperties() {
     return stlProperties;
-  }
+  }  
 
   public void setStlProperties(StlProperties stlProperties) {
     this.stlProperties = stlProperties;
@@ -252,14 +233,13 @@ public class CadResponse {
     return this;
   }
 
-   /**
+  /**
    * Gets or sets the DWF properties.
    * @return dwfProperties
   **/
-  @ApiModelProperty(value = "Gets or sets the DWF properties.")
   public DwfProperties getDwfProperties() {
     return dwfProperties;
-  }
+  }  
 
   public void setDwfProperties(DwfProperties dwfProperties) {
     this.dwfProperties = dwfProperties;
@@ -270,14 +250,13 @@ public class CadResponse {
     return this;
   }
 
-   /**
+  /**
    * Gets or sets the CFF2 properties.
    * @return cff2Properties
   **/
-  @ApiModelProperty(value = "Gets or sets the CFF2 properties.")
   public Cff2Properties getCff2Properties() {
     return cff2Properties;
-  }
+  }  
 
   public void setCff2Properties(Cff2Properties cff2Properties) {
     this.cff2Properties = cff2Properties;
@@ -286,29 +265,29 @@ public class CadResponse {
 
   @Override
   public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
+  if (this == o) {
+    return true;
+  }
+  if (o == null || getClass() != o.getClass()) {
+    return false;
+  }
     CadResponse cadResponse = (CadResponse) o;
-    return Objects.equals(this.height, cadResponse.height) &&
-        Objects.equals(this.width, cadResponse.width) &&
-        Objects.equals(this.dwgProperties, cadResponse.dwgProperties) &&
-        Objects.equals(this.dxfProperties, cadResponse.dxfProperties) &&
-        Objects.equals(this.dwtProperties, cadResponse.dwtProperties) &&
-        Objects.equals(this.dgnProperties, cadResponse.dgnProperties) &&
-        Objects.equals(this.ifcProperties, cadResponse.ifcProperties) &&
-        Objects.equals(this.igsProperties, cadResponse.igsProperties) &&
-        Objects.equals(this.stlProperties, cadResponse.stlProperties) &&
-        Objects.equals(this.dwfProperties, cadResponse.dwfProperties) &&
-        Objects.equals(this.cff2Properties, cadResponse.cff2Properties);
+    return ObjectUtils.equals(this.height, cadResponse.height) &&
+    ObjectUtils.equals(this.width, cadResponse.width) &&
+    ObjectUtils.equals(this.dwgProperties, cadResponse.dwgProperties) &&
+    ObjectUtils.equals(this.dxfProperties, cadResponse.dxfProperties) &&
+    ObjectUtils.equals(this.dwtProperties, cadResponse.dwtProperties) &&
+    ObjectUtils.equals(this.dgnProperties, cadResponse.dgnProperties) &&
+    ObjectUtils.equals(this.ifcProperties, cadResponse.ifcProperties) &&
+    ObjectUtils.equals(this.igsProperties, cadResponse.igsProperties) &&
+    ObjectUtils.equals(this.stlProperties, cadResponse.stlProperties) &&
+    ObjectUtils.equals(this.dwfProperties, cadResponse.dwfProperties) &&
+    ObjectUtils.equals(this.cff2Properties, cadResponse.cff2Properties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(height, width, dwgProperties, dxfProperties, dwtProperties, dgnProperties, ifcProperties, igsProperties, stlProperties, dwfProperties, cff2Properties);
+    return ObjectUtils.hashCodeMulti(height, width, dwgProperties, dxfProperties, dwtProperties, dgnProperties, ifcProperties, igsProperties, stlProperties, dwfProperties, cff2Properties);
   }
 
 

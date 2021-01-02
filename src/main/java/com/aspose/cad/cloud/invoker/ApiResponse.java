@@ -1,7 +1,7 @@
 /*
 * --------------------------------------------------------------------------------------------------------------------
-* <copyright company="Aspose" file="ApiResponse.java">
-*   Copyright (c) 2018 Aspose.CAD Cloud
+* <copyright company="Aspose" file=".java">
+*   Copyright (c) 2018-2020 Aspose Pty Ltd. All rights reserved.
 * </copyright>
 * <summary>
 *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -10,10 +10,10 @@
 *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 *  copies of the Software, and to permit persons to whom the Software is
 *  furnished to do so, subject to the following conditions:
-*
+* 
 *  The above copyright notice and this permission notice shall be included in all
 *  copies or substantial portions of the Software.
-*
+* 
 *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -24,49 +24,51 @@
 * </summary>
 * --------------------------------------------------------------------------------------------------------------------
 */
+
+
 package com.aspose.cad.cloud.invoker;
 
-import com.aspose.cad.cloud.model.CadResponse;
-import com.aspose.cad.cloud.SaaSposeResponse;
+import java.util.List;
+import java.util.Map;
 
 /**
- * Represents CAD for Cloud response.
- * @author User
+ * API response returned by API call.
  *
+ * @param <T> The type of data that is deserialized from response body
  */
-public class ApiResponse
-{
-	private byte[] responseData;
+public class ApiResponse<T> {
+    final private int statusCode;
+    final private Map<String, List<String>> headers;
+    final private T data;
 
-	private SaaSposeResponse saasposeResponse;
+    /**
+     * @param statusCode The status code of HTTP response
+     * @param headers The headers of HTTP response
+     */
+    public ApiResponse(int statusCode, Map<String, List<String>> headers) {
+        this(statusCode, headers, null);
+    }
 
-	private CadResponse cadResponse;
+    /**
+     * @param statusCode The status code of HTTP response
+     * @param headers The headers of HTTP response
+     * @param data The object deserialized from response bod
+     */
+    public ApiResponse(int statusCode, Map<String, List<String>> headers, T data) {
+        this.statusCode = statusCode;
+        this.headers = headers;
+        this.data = data;
+    }
 
-	/**
-	 *
-	 * @param responseData The response data that represents image bytes in most cases (if present).
-	 * @param saasposeResponse Old API format response (if present).
-	 * @param cadResponse Regular API format response (if present).
-	 */
-	public ApiResponse(byte[] responseData, SaaSposeResponse saasposeResponse, CadResponse cadResponse)
-	{
-		this.responseData = responseData;
-		this.saasposeResponse = saasposeResponse;
-		this.cadResponse = cadResponse;
-	}
+    public int getStatusCode() {
+        return statusCode;
+    }
 
-	public byte[] getResponseData()
-	{
-		return this.responseData;
-	}
+    public Map<String, List<String>> getHeaders() {
+        return headers;
+    }
 
-	public SaaSposeResponse getSaaSposeResponse()
-	{
-		return this.saasposeResponse;
-	}
-
-	public CadResponse getCadResponse()
-	{
-		return this.cadResponse;
-	}
+    public T getData() {
+        return data;
+    }
 }

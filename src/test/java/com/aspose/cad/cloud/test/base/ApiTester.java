@@ -40,7 +40,6 @@ import java.util.concurrent.Callable;
 
 import com.aspose.cad.cloud.ApiClient;
 import com.aspose.cad.cloud.invoker.ApiResponse;
-import com.aspose.cad.cloud.invoker.AuthType;
 import com.aspose.cad.cloud.invoker.JSON;
 import com.aspose.cad.cloud.invoker.internal.SerializationHelper;
 import com.aspose.cad.cloud.invoker.internal.StreamHelper;
@@ -141,7 +140,7 @@ public abstract class ApiTester
     /**
      *  Forces test data to upload to cloud
      */
-    protected final boolean ForceTestDataUpload = false;
+    protected final boolean ForceTestDataUpload = true;
 
     /**
      * Ensures test data is uploaded only once
@@ -156,7 +155,7 @@ public abstract class ApiTester
      */
     protected void createApiInstances() throws Exception
     {
-        this.createApiInstances(AppKey, AppSid, BaseUrl, "v3.0", AuthType.OAuth2, true);
+        this.createApiInstances(AppKey, AppSid, BaseUrl, "v3.0", true);
     }
     
     /**
@@ -165,11 +164,10 @@ public abstract class ApiTester
      * @param appSid The application SID.
      * @param baseUrl The base URL.
      * @param apiVersion The API version.
-     * @param authType Type of the authentication.
      * @param debug If set to true, debug.
      * @throws Exception 
      */
-    protected void createApiInstances(String appKey, String appSid, String baseUrl, String apiVersion, AuthType authType, Boolean debug) throws Exception
+    protected void createApiInstances(String appKey, String appSid, String baseUrl, String apiVersion, Boolean debug) throws Exception
     {
             if (appKey.equals(AppKey) || appSid.equals(AppSid) || baseUrl == null || baseUrl.equals(""))
             {
@@ -199,24 +197,14 @@ public abstract class ApiTester
             }
 
             String baseUrlHttp = baseUrl;
-            if (baseUrlHttp.startsWith("https:"))
+            if (baseUrlHttp.startsWith("http:"))
             {
-                baseUrlHttp = baseUrlHttp.replace("https:", "http:");
+                baseUrlHttp = baseUrlHttp.replace("http:", "https:");
             }
 
             //baseUrlHttp = "http://api-qa.aspose.cloud";
 
-            ApiClient api = new ApiClient()
-                    .setApiVersion(apiVersion)
-                    .setAppKey(appKey)
-                    .setAppSid(appSid)
-                    .setBaseUrl(baseUrl)
-                    .setDebugging(debug);
-            //new Configuration() appKey, appSid, baseUrl, apiVersion, authType, debug
-
-            api.setDebugging(false);
-
-            CadApi = new com.aspose.cad.cloud.api.CadApi(api);
+            CadApi = new com.aspose.cad.cloud.api.CadApi(appKey, appSid, baseUrl, apiVersion, debug);
 
             //CadApi.getInvoker().addDefaultHeader("Content-Length", "0");
             InputTestFiles = fetchInputTestFilesInfo();
@@ -417,11 +405,13 @@ public abstract class ApiTester
     private List<StorageFile> fetchInputTestFilesInfo() throws Exception
     {
         if (!IsTestDataUploaded) {
-            if (!CadApi.objectExists(new ObjectExistsRequest(CloudTestFolder, DefaultStorage, null)).isisExists()) {
+            ObjectExistsRequest req = new ObjectExistsRequest(CloudTestFolder, DefaultStorage, null);
+            ObjectExist resp = CadApi.objectExists(req);
+            if (!resp.isExists()) {
                 CadApi.createFolder(new CreateFolderRequest(CloudTestFolder, DefaultStorage));
             }
 
-            if (!CadApi.objectExists(new ObjectExistsRequest(CloudReferencesFolder, DefaultStorage, null)).isisExists()) {
+            if (!CadApi.objectExists(new ObjectExistsRequest(CloudReferencesFolder, DefaultStorage, null)).isExists()) {
                 CadApi.createFolder(new CreateFolderRequest(CloudReferencesFolder, DefaultStorage));
             }
 
@@ -437,8 +427,8 @@ public abstract class ApiTester
                     continue;
                 }
 
-                if (ForceTestDataUpload || !CadApi.objectExists(new ObjectExistsRequest(CloudTestFolder + "/" + file.getName(), DefaultStorage, null)).isisExists()) {
-                    CadApi.uploadFile(new UploadFileRequest(CloudTestFolder + "/" + file.getName(), file, DefaultStorage));
+                if (ForceTestDataUpload || !CadApi.objectExists(new ObjectExistsRequest(CloudTestFolder + "/" + file.getName(), DefaultStorage, null)).isExists()) {
+                    CadApi.uploadFile(new UploadFileRequest(CloudTestFolder + "/" + file.getName(), FileUtils.readFileToByteArray(file), DefaultStorage));
                 }
             }
 
@@ -495,9 +485,9 @@ public abstract class ApiTester
      */
     private long obtainPostResponseLength(String inputPath, String outPath, String storage, Method requestInvoker) throws Exception
     {
-        File inputDownloadResponse = CadApi.downloadFile(new DownloadFileRequest(inputPath, storage, null));
-        File responseObject = (File)requestInvoker.invoke(this, inputDownloadResponse, outPath);
-        return responseObject.length();
+        byte[] inputDownloadResponse = CadApi.downloadFile(new DownloadFileRequest(inputPath, storage, null));
+        byte[] responseObject = (byte[])requestInvoker.invoke(this, inputDownloadResponse, outPath);
+        return responseObject.length;
     }
 
     /**
@@ -558,7 +548,7 @@ public abstract class ApiTester
             {
                 outPath = folder + "/" + resultFileName;
                 // remove output file from the storage (if exists)
-                if (CadApi.objectExists(new ObjectExistsRequest(outPath, storage, null)).isisExists())
+                if (CadApi.objectExists(new ObjectExistsRequest(outPath, storage, null)).isExists())
                 {
                     CadApi.deleteFile(new DeleteFileRequest(outPath, storage, null));
                 }
@@ -616,15 +606,15 @@ public abstract class ApiTester
         finally
         {
             if (saveResultToStorage && !passed && this.AutoRecoverReference 
-                && CadApi.objectExists(new ObjectExistsRequest(outPath, storage, null)).isisExists())
+                && CadApi.objectExists(new ObjectExistsRequest(outPath, storage, null)).isExists())
             {
-                File download = CadApi.downloadFile(new DownloadFileRequest(outPath, storage, null));
+                byte[] download = CadApi.downloadFile(new DownloadFileRequest(outPath, storage, null));
 
                 FilesUploadResult moveStorageFile = CadApi.uploadFile(new UploadFileRequest(referencePath + "/" + resultFileName, download, storage));
                 Assert.assertEquals(moveStorageFile.getErrors() == null || moveStorageFile.getErrors().size() == 0, true);
             }
             else if (saveResultToStorage 
-                        && this.RemoveResult && CadApi.objectExists(new ObjectExistsRequest(outPath, storage, null)).isisExists())
+                        && this.RemoveResult && CadApi.objectExists(new ObjectExistsRequest(outPath, storage, null)).isExists())
             {
                 CadApi.deleteFile(new DeleteFileRequest(outPath, storage, null));
             }

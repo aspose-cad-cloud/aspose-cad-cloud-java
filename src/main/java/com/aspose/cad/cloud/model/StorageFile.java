@@ -1,64 +1,60 @@
 /*
- * --------------------------------------------------------------------------------
- * <copyright company="Aspose">
- *   Copyright (c) 2018 Aspose.CAD Cloud
- * </copyright>
- * <summary>
- *   Permission is hereby granted, free of charge, to any person obtaining a copy
- *  of this software and associated documentation files (the "Software"), to deal
- *  in the Software without restriction, including without limitation the rights
- *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- *  copies of the Software, and to permit persons to whom the Software is
- *  furnished to do so, subject to the following conditions:
- * 
- *  The above copyright notice and this permission notice shall be included in all
- *  copies or substantial portions of the Software.
- * 
- *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- *  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- *  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- *  SOFTWARE.
- * </summary>
- * --------------------------------------------------------------------------------
- */
+* --------------------------------------------------------------------------------------------------------------------
+* <copyright company="Aspose" file="StorageFile.java">
+*   Copyright (c) 2018-2020 Aspose Pty Ltd. All rights reserved.
+* </copyright>
+* <summary>
+*   Permission is hereby granted, free of charge, to any person obtaining a copy
+*  of this software and associated documentation files (the "Software"), to deal
+*  in the Software without restriction, including without limitation the rights
+*  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+*  copies of the Software, and to permit persons to whom the Software is
+*  furnished to do so, subject to the following conditions:
+* 
+*  The above copyright notice and this permission notice shall be included in all
+*  copies or substantial portions of the Software.
+* 
+*  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+*  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+*  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+*  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+*  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+*  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+*  SOFTWARE.
+* </summary>
+* --------------------------------------------------------------------------------------------------------------------
+*/
+
 
 package com.aspose.cad.cloud.model;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import org.threeten.bp.OffsetDateTime;
+import org.apache.commons.lang3.ObjectUtils;
+import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.*;
+import com.google.gson.stream.*;
+import com.google.gson.annotations.*;
 
 /**
  * File or folder information
  */
-@ApiModel(description = "File or folder information")
-
-
 public class StorageFile {
-  @SerializedName("Name")
+  @JsonProperty("name")
   private String name = null;
 
-  @SerializedName("IsFolder")
+  @JsonProperty("isFolder")
   private Boolean isFolder = null;
 
-  @SerializedName("ModifiedDate")
-  private OffsetDateTime modifiedDate = null;
+  @JsonProperty("modifiedDate")
+  private Date modifiedDate = null;
 
-  @SerializedName("Size")
+  @JsonProperty("size")
   private Long size = null;
 
-  @SerializedName("Path")
+  @JsonProperty("path")
   private String path = null;
 
   public StorageFile name(String name) {
@@ -66,14 +62,13 @@ public class StorageFile {
     return this;
   }
 
-   /**
+  /**
    * File or folder name.
    * @return name
   **/
-  @ApiModelProperty(value = "File or folder name.")
   public String getName() {
     return name;
-  }
+  }  
 
   public void setName(String name) {
     this.name = name;
@@ -84,34 +79,32 @@ public class StorageFile {
     return this;
   }
 
-   /**
+  /**
    * True if it is a folder.
    * @return isFolder
   **/
-  @ApiModelProperty(required = true, value = "True if it is a folder.")
-  public Boolean isisIsFolder() {
+  public Boolean isIsFolder() {
     return isFolder;
-  }
+  }  
 
   public void setIsFolder(Boolean isFolder) {
     this.isFolder = isFolder;
   }
 
-  public StorageFile modifiedDate(OffsetDateTime modifiedDate) {
+  public StorageFile modifiedDate(Date modifiedDate) {
     this.modifiedDate = modifiedDate;
     return this;
   }
 
-   /**
+  /**
    * File or folder last modified DateTime.
    * @return modifiedDate
   **/
-  @ApiModelProperty(value = "File or folder last modified DateTime.")
-  public OffsetDateTime getModifiedDate() {
+  public Date getModifiedDate() {
     return modifiedDate;
-  }
+  }  
 
-  public void setModifiedDate(OffsetDateTime modifiedDate) {
+  public void setModifiedDate(Date modifiedDate) {
     this.modifiedDate = modifiedDate;
   }
 
@@ -120,14 +113,13 @@ public class StorageFile {
     return this;
   }
 
-   /**
+  /**
    * File or folder size.
    * @return size
   **/
-  @ApiModelProperty(required = true, value = "File or folder size.")
   public Long getSize() {
     return size;
-  }
+  }  
 
   public void setSize(Long size) {
     this.size = size;
@@ -138,14 +130,13 @@ public class StorageFile {
     return this;
   }
 
-   /**
+  /**
    * File or folder path.
    * @return path
   **/
-  @ApiModelProperty(value = "File or folder path.")
   public String getPath() {
     return path;
-  }
+  }  
 
   public void setPath(String path) {
     this.path = path;
@@ -154,23 +145,23 @@ public class StorageFile {
 
   @Override
   public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
+  if (this == o) {
+    return true;
+  }
+  if (o == null || getClass() != o.getClass()) {
+    return false;
+  }
     StorageFile storageFile = (StorageFile) o;
-    return Objects.equals(this.name, storageFile.name) &&
-        Objects.equals(this.isFolder, storageFile.isFolder) &&
-        Objects.equals(this.modifiedDate, storageFile.modifiedDate) &&
-        Objects.equals(this.size, storageFile.size) &&
-        Objects.equals(this.path, storageFile.path);
+    return ObjectUtils.equals(this.name, storageFile.name) &&
+    ObjectUtils.equals(this.isFolder, storageFile.isFolder) &&
+    ObjectUtils.equals(this.modifiedDate, storageFile.modifiedDate) &&
+    ObjectUtils.equals(this.size, storageFile.size) &&
+    ObjectUtils.equals(this.path, storageFile.path);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, isFolder, modifiedDate, size, path);
+    return ObjectUtils.hashCodeMulti(name, isFolder, modifiedDate, size, path);
   }
 
 

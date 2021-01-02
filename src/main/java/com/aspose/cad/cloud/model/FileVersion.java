@@ -1,55 +1,51 @@
 /*
- * --------------------------------------------------------------------------------
- * <copyright company="Aspose">
- *   Copyright (c) 2018 Aspose.CAD Cloud
- * </copyright>
- * <summary>
- *   Permission is hereby granted, free of charge, to any person obtaining a copy
- *  of this software and associated documentation files (the "Software"), to deal
- *  in the Software without restriction, including without limitation the rights
- *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- *  copies of the Software, and to permit persons to whom the Software is
- *  furnished to do so, subject to the following conditions:
- * 
- *  The above copyright notice and this permission notice shall be included in all
- *  copies or substantial portions of the Software.
- * 
- *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- *  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- *  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- *  SOFTWARE.
- * </summary>
- * --------------------------------------------------------------------------------
- */
+* --------------------------------------------------------------------------------------------------------------------
+* <copyright company="Aspose" file="FileVersion.java">
+*   Copyright (c) 2018-2020 Aspose Pty Ltd. All rights reserved.
+* </copyright>
+* <summary>
+*   Permission is hereby granted, free of charge, to any person obtaining a copy
+*  of this software and associated documentation files (the "Software"), to deal
+*  in the Software without restriction, including without limitation the rights
+*  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+*  copies of the Software, and to permit persons to whom the Software is
+*  furnished to do so, subject to the following conditions:
+* 
+*  The above copyright notice and this permission notice shall be included in all
+*  copies or substantial portions of the Software.
+* 
+*  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+*  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+*  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+*  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+*  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+*  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+*  SOFTWARE.
+* </summary>
+* --------------------------------------------------------------------------------------------------------------------
+*/
+
 
 package com.aspose.cad.cloud.model;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.aspose.cad.cloud.model.StorageFile;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import org.threeten.bp.OffsetDateTime;
+import org.apache.commons.lang3.ObjectUtils;
+import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.*;
+import com.google.gson.stream.*;
+import com.google.gson.annotations.*;
 
 /**
  * File Version
  */
-@ApiModel(description = "File Version")
-
 public class FileVersion extends StorageFile {
-  @SerializedName("VersionId")
+  @JsonProperty("versionId")
   private String versionId = null;
 
-  @SerializedName("IsLatest")
+  @JsonProperty("isLatest")
   private Boolean isLatest = null;
 
   public FileVersion versionId(String versionId) {
@@ -57,14 +53,13 @@ public class FileVersion extends StorageFile {
     return this;
   }
 
-   /**
+  /**
    * File Version ID.
    * @return versionId
   **/
-  @ApiModelProperty(value = "File Version ID.")
   public String getVersionId() {
     return versionId;
-  }
+  }  
 
   public void setVersionId(String versionId) {
     this.versionId = versionId;
@@ -75,14 +70,13 @@ public class FileVersion extends StorageFile {
     return this;
   }
 
-   /**
+  /**
    * Specifies whether the file is (true) or is not (false) the latest version of an file.
    * @return isLatest
   **/
-  @ApiModelProperty(required = true, value = "Specifies whether the file is (true) or is not (false) the latest version of an file.")
-  public Boolean isisIsLatest() {
+  public Boolean isIsLatest() {
     return isLatest;
-  }
+  }  
 
   public void setIsLatest(Boolean isLatest) {
     this.isLatest = isLatest;
@@ -91,21 +85,21 @@ public class FileVersion extends StorageFile {
 
   @Override
   public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
+  if (this == o) {
+    return true;
+  }
+  if (o == null || getClass() != o.getClass()) {
+    return false;
+  }
     FileVersion fileVersion = (FileVersion) o;
-    return Objects.equals(this.versionId, fileVersion.versionId) &&
-        Objects.equals(this.isLatest, fileVersion.isLatest) &&
-        super.equals(o);
+    return ObjectUtils.equals(this.versionId, fileVersion.versionId) &&
+    ObjectUtils.equals(this.isLatest, fileVersion.isLatest) &&
+    super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(versionId, isLatest, super.hashCode());
+    return ObjectUtils.hashCodeMulti(versionId, isLatest, super.hashCode());
   }
 
 

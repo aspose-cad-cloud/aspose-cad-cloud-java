@@ -1,7 +1,7 @@
 /*
 * --------------------------------------------------------------------------------------------------------------------
 * <copyright company="Aspose" file="FileInfo.java">
-*   Copyright (c) 2018 Aspose.CAD Cloud
+*   Copyright (c) 2018-2019 Aspose Pty Ltd.
 * </copyright>
 * <summary>
 *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -32,9 +32,9 @@ package com.aspose.cad.cloud.invoker.internal;
  */
 public class FileInfo
 {
-	/**
-	 * The name of file
-	 */
+    /**
+     * The name of file
+     */
     public String Name;
 
     /**

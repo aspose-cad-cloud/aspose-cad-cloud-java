@@ -1,34 +1,33 @@
 /*
- * --------------------------------------------------------------------------------
- * <copyright company="Aspose">
- *   Copyright (c) 2018 Aspose.CAD Cloud
- * </copyright>
- * <summary>
- *   Permission is hereby granted, free of charge, to any person obtaining a copy
- *  of this software and associated documentation files (the "Software"), to deal
- *  in the Software without restriction, including without limitation the rights
- *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- *  copies of the Software, and to permit persons to whom the Software is
- *  furnished to do so, subject to the following conditions:
- * 
- *  The above copyright notice and this permission notice shall be included in all
- *  copies or substantial portions of the Software.
- * 
- *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- *  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- *  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- *  SOFTWARE.
- * </summary>
- * --------------------------------------------------------------------------------
- */
+* --------------------------------------------------------------------------------------------------------------------
+* <copyright company="Aspose" file=".java">
+*   Copyright (c) 2018-2020 Aspose Pty Ltd. All rights reserved.
+* </copyright>
+* <summary>
+*   Permission is hereby granted, free of charge, to any person obtaining a copy
+*  of this software and associated documentation files (the "Software"), to deal
+*  in the Software without restriction, including without limitation the rights
+*  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+*  copies of the Software, and to permit persons to whom the Software is
+*  furnished to do so, subject to the following conditions:
+* 
+*  The above copyright notice and this permission notice shall be included in all
+*  copies or substantial portions of the Software.
+* 
+*  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+*  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+*  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+*  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+*  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+*  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+*  SOFTWARE.
+* </summary>
+* --------------------------------------------------------------------------------------------------------------------
+*/
+
+
 package com.aspose.cad.cloud;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import com.squareup.okhttp.*;
 import com.squareup.okhttp.internal.http.HttpMethod;
 import com.squareup.okhttp.logging.HttpLoggingInterceptor;
@@ -44,9 +43,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.net.URLConnection;
 import java.net.URLEncoder;
@@ -64,144 +60,72 @@ import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.aspose.cad.cloud.auth.Authentication;
+import com.aspose.cad.cloud.auth.HttpBasicAuth;
+import com.aspose.cad.cloud.auth.ApiKeyAuth;
+import com.aspose.cad.cloud.auth.OAuth;
+
 public class ApiClient {
 
-    private String apiVersion = "v3.0";
-    private String baseUrl = "https://api.aspose.cloud";
-	private String basePath = baseUrl + "/" + apiVersion;
-	private String clientVersion = "20.11";
+    private String basePath = "https://api.aspose.cloud/v3.0";
     private boolean debugging = false;
     private Map<String, String> defaultHeaderMap = new HashMap<String, String>();
     private String tempFolderPath = null;
+
+    private Map<String, Authentication> authentications;
+
+    private DateFormat dateFormat;
+    private DateFormat datetimeFormat;
+    private boolean lenientDatetimeFormat;
+    private int dateLength;
+
+    private InputStream sslCaCert;
+    private boolean verifyingSsl;
+    private KeyManager[] keyManagers;
 
     private OkHttpClient httpClient;
     private JSON json;
 
     private HttpLoggingInterceptor loggingInterceptor;
 
-    private String accessToken;
-    private String refreshToken;
-    private String appKey;
-    private String appSid;
-
     /*
      * Constructor for ApiClient
      */
     public ApiClient() {
         httpClient = new OkHttpClient();
-        httpClient.setProtocols(Arrays.asList(Protocol.HTTP_1_1));
-        
+
+
+        verifyingSsl = true;
 
         json = new JSON();
 
         // Set default User-Agent.
-         setUserAgent("Swagger-Codegen/20.11/java");
-        addDefaultHeader("x-aspose-client", "java sdk");
-        addDefaultHeader("x-aspose-client-version", clientVersion);
-        setConnectTimeout(5 * 60 * 1000);
-        setReadTimeout(5 * 60 * 1000);
+        setUserAgent("Swagger-Codegen/19.9/java");
+
+        // Setup authentications (key: authentication name, value: authentication).
+        authentications = new HashMap<String, Authentication>();
+        authentications.put("JWT", new OAuth());
+        // Prevent the authentications from being modified.
+        authentications = Collections.unmodifiableMap(authentications);
     }
 
-     /**
-     * Get App Key
-     *
-     * @return App Key
-     */
-    public String getAppKey() 
-    {
-        return appKey;
-    }
-    
-    /**
-     * Set App Key
-     *
-     * @param appKey App Key
-     */
-    public ApiClient setAppKey(String appKey) 
-    {
-        this.appKey = appKey;
-		return this;
-    }
-    
-     /**
-     * Get App Sid
-     *
-     * @return App Sid
-     */
-    public String getAppSid() 
-    {
-        return appSid;
-    }
-    
-    /**
-     * Set App Sid
-     *
-     * @param appSid App Sid
-     */
-    public ApiClient setAppSid(String appSid) 
-    {
-        this.appSid = appSid;
-		return this;
-    }
-	
-    /**
-     * Get ApiVersion
-     *
-     * @return Api Version
-     */
-    public String getApiVersion() {
-        return apiVersion;
-	}
-	
-    /**
-     * Set ApiVersion
-     *
-     * @param apiVersion Api Version
-     */
-    public ApiClient setApiVersion(String apiVersion) {
-        this.apiVersion = apiVersion;
-		return this;
-	}
-    
-    
     /**
      * Get base path
      *
-     * @return Base path
+     * @return Baes path
      */
     public String getBasePath() {
         return basePath;
-    }
-	
-    /**
-     * Set BaseUrl
-     *
-     * @param baseUrl Base Url
-     */
-    public ApiClient setBaseUrl(String baseUrl) {
-        this.baseUrl = baseUrl;
-		this.basePath = baseUrl + "/" + this.apiVersion;
-		return this;
-    }
-	
-	/**
-     * Get base api url
-     *
-     * @return Base api url
-     */
-    public String getBaseUrl() {
-        return this.baseUrl;
     }
 
     /**
      * Set base path
      *
-     * @param basePath Base path of the URL (e.g https://api.aspose.cloud/v1.1
+     * @param basePath Base path of the URL (e.g https://api.aspose.cloud/v3.0
      * @return An instance of OkHttpClient
      */
     public ApiClient setBasePath(String basePath) {
         this.basePath = basePath;
-		this.baseUrl = basePath.replace("/v1.1", "").replace("/v1", "").replace("/v2", "").replace("/v3", "");
         return this;
     }
 
@@ -245,33 +169,191 @@ public class ApiClient {
         return this;
     }
 
+    /**
+     * True if isVerifyingSsl flag is on
+     *
+     * @return True if isVerifySsl flag is on
+     */
+    public boolean isVerifyingSsl() {
+        return verifyingSsl;
+    }
+
+    /**
+     * Configure whether to verify certificate and hostname when making https requests.
+     * Default to true.
+     * NOTE: Do NOT set to false in production code, otherwise you would face multiple types of cryptographic attacks.
+     *
+     * @param verifyingSsl True to verify TLS/SSL connection
+     * @return ApiClient
+     */
+    public ApiClient setVerifyingSsl(boolean verifyingSsl) {
+        this.verifyingSsl = verifyingSsl;
+        applySslSettings();
+        return this;
+    }
+
+    /**
+     * Get SSL CA cert.
+     *
+     * @return Input stream to the SSL CA cert
+     */
+    public InputStream getSslCaCert() {
+        return sslCaCert;
+    }
+
+    /**
+     * Configure the CA certificate to be trusted when making https requests.
+     * Use null to reset to default.
+     *
+     * @param sslCaCert input stream for SSL CA cert
+     * @return ApiClient
+     */
+    public ApiClient setSslCaCert(InputStream sslCaCert) {
+        this.sslCaCert = sslCaCert;
+        applySslSettings();
+        return this;
+    }
+
+    public KeyManager[] getKeyManagers() {
+        return keyManagers;
+    }
+
+    /**
+     * Configure client keys to use for authorization in an SSL session.
+     * Use null to reset to default.
+     *
+     * @param managers The KeyManagers to use
+     * @return ApiClient
+     */
+    public ApiClient setKeyManagers(KeyManager[] managers) {
+        this.keyManagers = managers;
+        applySslSettings();
+        return this;
+    }
+
+    public DateFormat getDateFormat() {
+        return dateFormat;
+    }
+
+    public ApiClient setDateFormat(DateFormat dateFormat) {
+        this.json.setDateFormat(dateFormat);
+        return this;
+    }
+
+    public ApiClient setSqlDateFormat(DateFormat dateFormat) {
+        this.json.setSqlDateFormat(dateFormat);
+        return this;
+    }
+
+    public ApiClient setOffsetDateTimeFormat(DateTimeFormatter dateFormat) {
+        this.json.setOffsetDateTimeFormat(dateFormat);
+        return this;
+    }
+
+    public ApiClient setLocalDateFormat(DateTimeFormatter dateFormat) {
+        this.json.setLocalDateFormat(dateFormat);
+        return this;
+    }
+
     public ApiClient setLenientOnJson(boolean lenientOnJson) {
         this.json.setLenientOnJson(lenientOnJson);
         return this;
     }
 
     /**
-     * Set access token for the OAuth2 authentication.
+     * Get authentications (key: authentication name, value: authentication).
      *
-     * @param accessToken Access token
+     * @return Map of authentication objects
      */
-    public ApiClient setAccessToken(String accessToken) 
-    {
-        this.accessToken = accessToken;
-		return this;
+    public Map<String, Authentication> getAuthentications() {
+        return authentications;
     }
 
     /**
-     * Set refresh token for the OAuth2 authentication.
+     * Get authentication for the given name.
      *
-     * @param refreshToken Access token
+     * @param authName The authentication name
+     * @return The authentication, null if not found
      */
-    public ApiClient setRefreshToken(String refreshToken) 
-    {
-        this.refreshToken = refreshToken;
-		return this;
+    public Authentication getAuthentication(String authName) {
+        return authentications.get(authName);
     }
-    
+
+    /**
+     * Helper method to set username for the first HTTP basic authentication.
+     *
+     * @param username Username
+     */
+    public void setUsername(String username) {
+        for (Authentication auth : authentications.values()) {
+            if (auth instanceof HttpBasicAuth) {
+                ((HttpBasicAuth) auth).setUsername(username);
+                return;
+            }
+        }
+        throw new RuntimeException("No HTTP basic authentication configured!");
+    }
+
+    /**
+     * Helper method to set password for the first HTTP basic authentication.
+     *
+     * @param password Password
+     */
+    public void setPassword(String password) {
+        for (Authentication auth : authentications.values()) {
+            if (auth instanceof HttpBasicAuth) {
+                ((HttpBasicAuth) auth).setPassword(password);
+                return;
+            }
+        }
+        throw new RuntimeException("No HTTP basic authentication configured!");
+    }
+
+    /**
+     * Helper method to set API key value for the first API key authentication.
+     *
+     * @param apiKey API key
+     */
+    public void setApiKey(String apiKey) {
+        for (Authentication auth : authentications.values()) {
+            if (auth instanceof ApiKeyAuth) {
+                ((ApiKeyAuth) auth).setApiKey(apiKey);
+                return;
+            }
+        }
+        throw new RuntimeException("No API key authentication configured!");
+    }
+
+    /**
+     * Helper method to set API key prefix for the first API key authentication.
+     *
+     * @param apiKeyPrefix API key prefix
+     */
+    public void setApiKeyPrefix(String apiKeyPrefix) {
+        for (Authentication auth : authentications.values()) {
+            if (auth instanceof ApiKeyAuth) {
+                ((ApiKeyAuth) auth).setApiKeyPrefix(apiKeyPrefix);
+                return;
+            }
+        }
+        throw new RuntimeException("No API key authentication configured!");
+    }
+
+    /**
+     * Helper method to set access token for the first OAuth2 authentication.
+     *
+     * @param accessToken Access token
+     */
+    public void setAccessToken(String accessToken) {
+        for (Authentication auth : authentications.values()) {
+            if (auth instanceof OAuth) {
+                ((OAuth) auth).setAccessToken(accessToken);
+                return;
+            }
+        }
+        throw new RuntimeException("No OAuth2 authentication configured!");
+    }
+
     /**
      * Set the User-Agent header's value (by adding to the default header map).
      *
@@ -338,7 +420,7 @@ public class ApiClient {
     }
 
     /**
-     * Set the temporary folder path (for downloading files)
+     * Set the tempoaray folder path (for downloading files)
      *
      * @param tempFolderPath Temporary folder path
      * @return ApiClient
@@ -360,57 +442,12 @@ public class ApiClient {
     /**
      * Sets the connect timeout (in milliseconds).
      * A value of 0 means no timeout, otherwise values must be between 1 and
-     * {@link Integer#MAX_VALUE}.
      *
      * @param connectionTimeout connection timeout in milliseconds
      * @return Api client
      */
     public ApiClient setConnectTimeout(int connectionTimeout) {
         httpClient.setConnectTimeout(connectionTimeout, TimeUnit.MILLISECONDS);
-        return this;
-    }
-
-    /**
-     * Get read timeout (in milliseconds).
-     *
-     * @return Timeout in milliseconds
-     */
-    public int getReadTimeout() {
-        return httpClient.getReadTimeout();
-    }
-
-    /**
-     * Sets the read timeout (in milliseconds).
-     * A value of 0 means no timeout, otherwise values must be between 1 and
-     * {@link Integer#MAX_VALUE}.
-     *
-     * @param readTimeout read timeout in milliseconds
-     * @return Api client
-     */
-    public ApiClient setReadTimeout(int readTimeout) {
-        httpClient.setReadTimeout(readTimeout, TimeUnit.MILLISECONDS);
-        return this;
-    }
-
-    /**
-     * Get write timeout (in milliseconds).
-     *
-     * @return Timeout in milliseconds
-     */
-    public int getWriteTimeout() {
-        return httpClient.getWriteTimeout();
-    }
-
-    /**
-     * Sets the write timeout (in milliseconds).
-     * A value of 0 means no timeout, otherwise values must be between 1 and
-     * {@link Integer#MAX_VALUE}.
-     *
-     * @param writeTimeout connection timeout in milliseconds
-     * @return Api client
-     */
-    public ApiClient setWriteTimeout(int writeTimeout) {
-        httpClient.setWriteTimeout(writeTimeout, TimeUnit.MILLISECONDS);
         return this;
     }
 
@@ -897,7 +934,8 @@ public class ApiClient {
      * @throws ApiException If fail to serialize the request body object
      */
     public Request buildRequest(String path, String method, List<Pair> queryParams, List<Pair> collectionQueryParams, Object body, Map<String, String> headerParams, Map<String, Object> formParams, String[] authNames, ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        addOAuthAuthentication(headerParams);
+        updateParamsForAuth(authNames, queryParams, headerParams);
+
         final String url = buildUrl(path, queryParams, collectionQueryParams);
         final Request.Builder reqBuilder = new Request.Builder().url(url);
         processHeaderParams(headerParams, reqBuilder);
@@ -1006,6 +1044,21 @@ public class ApiClient {
     }
 
     /**
+     * Update query and header parameters based on authentication settings.
+     *
+     * @param authNames The authentications to apply
+     * @param queryParams  List of query parameters
+     * @param headerParams  Map of header parameters
+     */
+    public void updateParamsForAuth(String[] authNames, List<Pair> queryParams, Map<String, String> headerParams) {
+        for (String authName : authNames) {
+            Authentication auth = authentications.get(authName);
+            if (auth == null) throw new RuntimeException("Authentication undefined: " + authName);
+            auth.applyToParams(queryParams, headerParams);
+        }
+    }
+
+    /**
      * Build a form-encoding request body with the given form parameters.
      *
      * @param formParams Form parameters in the form of Map
@@ -1057,84 +1110,67 @@ public class ApiClient {
         }
     }
 
-     /**
-     * Request OAuth token
-     */
-    public void requestToken() throws ApiException
-    {
-        try {
-            RequestBody requestBody = new FormEncodingBuilder()
-                    .addEncoded("grant_type", "client_credentials")
-                    .addEncoded("client_id", getAppSid())
-                    .addEncoded("client_secret", getAppKey())
-                    .build();
-
-            String url = baseUrl + "/connect/token";
-            Request request = new Request.Builder()
-                    .url(url)
-                    .post(requestBody)
-                    .addHeader("Content-Type", " application/x-www-form-urlencoded")
-                    .build();
-
-            Response response = httpClient.newCall(request).execute();
-            GetAccessTokenResult result = json.deserialize(response.body().string(), GetAccessTokenResult.class);
-            setAccessToken(result.access_token).setRefreshToken(result.refresh_token);
-        }
-        catch (Exception ex)
-        {
-            throw new ApiException(ex);
-        }
-    }
-
     /**
-     * Refresh OAuth token. OBSOLETE DO NOT USE
+     * Apply SSL related settings to httpClient according to the current values of
+     * verifyingSsl and sslCaCert.
      */
-    public void refreshToken() throws ApiException
-    {
+    private void applySslSettings() {
         try {
-            RequestBody requestBody = new FormEncodingBuilder()
-                    .addEncoded("grant_type", "refresh_token")
-                    .addEncoded("refresh_token", this.refreshToken)
-                    .build();
+            TrustManager[] trustManagers = null;
+            HostnameVerifier hostnameVerifier = null;
+            if (!verifyingSsl) {
+                TrustManager trustAll = new X509TrustManager() {
+                    @Override
+                    public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {}
+                    @Override
+                    public void checkServerTrusted(X509Certificate[] chain, String authType) throws CertificateException {}
+                    @Override
+                    public X509Certificate[] getAcceptedIssuers() { return null; }
+                };
+                SSLContext sslContext = SSLContext.getInstance("TLS");
+                trustManagers = new TrustManager[]{ trustAll };
+                hostnameVerifier = new HostnameVerifier() {
+                    @Override
+                    public boolean verify(String hostname, SSLSession session) { return true; }
+                };
+            } else if (sslCaCert != null) {
+                char[] password = null; // Any password will work.
+                CertificateFactory certificateFactory = CertificateFactory.getInstance("X.509");
+                Collection<? extends Certificate> certificates = certificateFactory.generateCertificates(sslCaCert);
+                if (certificates.isEmpty()) {
+                    throw new IllegalArgumentException("expected non-empty set of trusted certificates");
+                }
+                KeyStore caKeyStore = newEmptyKeyStore(password);
+                int index = 0;
+                for (Certificate certificate : certificates) {
+                    String certificateAlias = "ca" + Integer.toString(index++);
+                    caKeyStore.setCertificateEntry(certificateAlias, certificate);
+                }
+                TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
+                trustManagerFactory.init(caKeyStore);
+                trustManagers = trustManagerFactory.getTrustManagers();
+            }
 
-            String url = baseUrl + "/connect/token";
-            Request request = new Request.Builder()
-                    .url(url)
-                    .post(requestBody)
-                    .addHeader("Content-Type", " application/x-www-form-urlencoded")
-                    .build();
-
-            Response response = httpClient.newCall(request).execute();
-            GetAccessTokenResult result = json.deserialize(response.body().string(), GetAccessTokenResult.class);
-            setAccessToken(result.access_token).setRefreshToken(result.refresh_token);
-        }
-        catch (Exception ex)
-        {
-            throw new ApiException(ex);
+            if (keyManagers != null || trustManagers != null) {
+                SSLContext sslContext = SSLContext.getInstance("TLS");
+                sslContext.init(keyManagers, trustManagers, new SecureRandom());
+                httpClient.setSslSocketFactory(sslContext.getSocketFactory());
+            } else {
+                httpClient.setSslSocketFactory(null);
+            }
+            httpClient.setHostnameVerifier(hostnameVerifier);
+        } catch (GeneralSecurityException e) {
+            throw new RuntimeException(e);
         }
     }
-    
-    
-     /**
-     * Add OAuth2 header
-     *
-     * @param headerParams Map of request headers
-     */
-    private void addOAuthAuthentication(Map<String, String> headerParams) throws ApiException
-    {
-        if (null == accessToken) {
-            requestToken();
-        }
-        headerParams.put("Authorization", "Bearer " + accessToken);
-    }
 
-    
-    /**
-    * GetAccessTokenResult class
-    */
-    private class GetAccessTokenResult
-    {
-        public String access_token;
-        public String refresh_token;
+    private KeyStore newEmptyKeyStore(char[] password) throws GeneralSecurityException {
+        try {
+            KeyStore keyStore = KeyStore.getInstance(KeyStore.getDefaultType());
+            keyStore.load(null, password);
+            return keyStore;
+        } catch (IOException e) {
+            throw new AssertionError(e);
+        }
     }
 }

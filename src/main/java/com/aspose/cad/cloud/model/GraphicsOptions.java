@@ -1,47 +1,46 @@
 /*
- * --------------------------------------------------------------------------------
- * <copyright company="Aspose">
- *   Copyright (c) 2018 Aspose.CAD Cloud
- * </copyright>
- * <summary>
- *   Permission is hereby granted, free of charge, to any person obtaining a copy
- *  of this software and associated documentation files (the "Software"), to deal
- *  in the Software without restriction, including without limitation the rights
- *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- *  copies of the Software, and to permit persons to whom the Software is
- *  furnished to do so, subject to the following conditions:
- * 
- *  The above copyright notice and this permission notice shall be included in all
- *  copies or substantial portions of the Software.
- * 
- *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- *  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- *  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- *  SOFTWARE.
- * </summary>
- * --------------------------------------------------------------------------------
- */
+* --------------------------------------------------------------------------------------------------------------------
+* <copyright company="Aspose" file="GraphicsOptions.java">
+*   Copyright (c) 2018-2020 Aspose Pty Ltd. All rights reserved.
+* </copyright>
+* <summary>
+*   Permission is hereby granted, free of charge, to any person obtaining a copy
+*  of this software and associated documentation files (the "Software"), to deal
+*  in the Software without restriction, including without limitation the rights
+*  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+*  copies of the Software, and to permit persons to whom the Software is
+*  furnished to do so, subject to the following conditions:
+* 
+*  The above copyright notice and this permission notice shall be included in all
+*  copies or substantial portions of the Software.
+* 
+*  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+*  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+*  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+*  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+*  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+*  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+*  SOFTWARE.
+* </summary>
+* --------------------------------------------------------------------------------------------------------------------
+*/
+
 
 package com.aspose.cad.cloud.model;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import org.apache.commons.lang3.ObjectUtils;
+import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.*;
+import com.google.gson.stream.*;
+import com.google.gson.annotations.*;
 
 /**
  * GraphicsOptions
  */
-
 public class GraphicsOptions {
   /**
    * Gets or Sets textRenderingHint
@@ -98,7 +97,7 @@ public class GraphicsOptions {
     }
   }
 
-  @SerializedName("TextRenderingHint")
+  @JsonProperty("textRenderingHint")
   private TextRenderingHintEnum textRenderingHint = null;
 
   /**
@@ -156,7 +155,7 @@ public class GraphicsOptions {
     }
   }
 
-  @SerializedName("SmoothingMode")
+  @JsonProperty("smoothingMode")
   private SmoothingModeEnum smoothingMode = null;
 
   /**
@@ -220,7 +219,7 @@ public class GraphicsOptions {
     }
   }
 
-  @SerializedName("InterpolationMode")
+  @JsonProperty("interpolationMode")
   private InterpolationModeEnum interpolationMode = null;
 
   public GraphicsOptions textRenderingHint(TextRenderingHintEnum textRenderingHint) {
@@ -228,14 +227,13 @@ public class GraphicsOptions {
     return this;
   }
 
-   /**
+  /**
    * Get textRenderingHint
    * @return textRenderingHint
   **/
-  @ApiModelProperty(required = true, value = "")
   public TextRenderingHintEnum getTextRenderingHint() {
     return textRenderingHint;
-  }
+  }  
 
   public void setTextRenderingHint(TextRenderingHintEnum textRenderingHint) {
     this.textRenderingHint = textRenderingHint;
@@ -246,14 +244,13 @@ public class GraphicsOptions {
     return this;
   }
 
-   /**
+  /**
    * Get smoothingMode
    * @return smoothingMode
   **/
-  @ApiModelProperty(required = true, value = "")
   public SmoothingModeEnum getSmoothingMode() {
     return smoothingMode;
-  }
+  }  
 
   public void setSmoothingMode(SmoothingModeEnum smoothingMode) {
     this.smoothingMode = smoothingMode;
@@ -264,14 +261,13 @@ public class GraphicsOptions {
     return this;
   }
 
-   /**
+  /**
    * Get interpolationMode
    * @return interpolationMode
   **/
-  @ApiModelProperty(required = true, value = "")
   public InterpolationModeEnum getInterpolationMode() {
     return interpolationMode;
-  }
+  }  
 
   public void setInterpolationMode(InterpolationModeEnum interpolationMode) {
     this.interpolationMode = interpolationMode;
@@ -280,21 +276,21 @@ public class GraphicsOptions {
 
   @Override
   public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
+  if (this == o) {
+    return true;
+  }
+  if (o == null || getClass() != o.getClass()) {
+    return false;
+  }
     GraphicsOptions graphicsOptions = (GraphicsOptions) o;
-    return Objects.equals(this.textRenderingHint, graphicsOptions.textRenderingHint) &&
-        Objects.equals(this.smoothingMode, graphicsOptions.smoothingMode) &&
-        Objects.equals(this.interpolationMode, graphicsOptions.interpolationMode);
+    return ObjectUtils.equals(this.textRenderingHint, graphicsOptions.textRenderingHint) &&
+    ObjectUtils.equals(this.smoothingMode, graphicsOptions.smoothingMode) &&
+    ObjectUtils.equals(this.interpolationMode, graphicsOptions.interpolationMode);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(textRenderingHint, smoothingMode, interpolationMode);
+    return ObjectUtils.hashCodeMulti(textRenderingHint, smoothingMode, interpolationMode);
   }
 
 

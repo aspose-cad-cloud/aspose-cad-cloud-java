@@ -36,6 +36,8 @@ import com.aspose.cad.cloud.test.base.StorageFileInfo;
 
 import junitparams.*;
 
+import org.apache.commons.io.FileUtils;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.Assert;
@@ -198,12 +200,12 @@ public class SaveAsApiTests extends ApiTester {
 			
 			for (String format : formatsToExport)
             {
-				postImageSaveAsRequest = new PostDrawingSaveAsRequest(imageFile, format, outPath, storage);
+				postImageSaveAsRequest = new PostDrawingSaveAsRequest(FileUtils.readFileToByteArray(imageFile), format, outPath, storage);
 				outName = name + "." + format;
 				
 				Method propertiesTester = SaveAsApiTests.class.getDeclaredMethod("postImageSaveAsPropertiesTester", CadResponse.class, CadResponse.class);
 				propertiesTester.setAccessible(true);
-				Method requestInvoker = SaveAsApiTests.class.getDeclaredMethod("postImageSaveAsPostRequestInvoker", File.class, String.class);
+				Method requestInvoker = SaveAsApiTests.class.getDeclaredMethod("postImageSaveAsPostRequestInvoker", byte[].class, String.class);
 				requestInvoker.setAccessible(true);
 			    this.testPostRequest(
 		            "postImageSaveAsTest; save result to storage: " + saveResultToStorage,  
@@ -227,10 +229,10 @@ public class SaveAsApiTests extends ApiTester {
 	 * @return API response
 	 * @throws Exception 
 	 */
-	private File getImageSaveAsGetRequestInvoker(String name, String outPath) throws Exception
+	private byte[] getImageSaveAsGetRequestInvoker(String name, String outPath) throws Exception
 	{
-		getImageSaveAsRequest.setname(name);
-		getImageSaveAsRequest.setoutPath(outPath);
+		getImageSaveAsRequest.name = name;
+		getImageSaveAsRequest.outPath = outPath;
         return CadApi.getDrawingSaveAs(getImageSaveAsRequest);
 	}
 	
@@ -241,10 +243,10 @@ public class SaveAsApiTests extends ApiTester {
 	 * @return API response
 	 * @throws Exception 
 	 */
-	private File postImageSaveAsPostRequestInvoker(File imageData, String outPath) throws Exception
+	private byte[] postImageSaveAsPostRequestInvoker(byte[] imageData, String outPath) throws Exception
 	{
-	    postImageSaveAsRequest.setdrawingData(imageData);
-		postImageSaveAsRequest.setoutPath(outPath);
+	    postImageSaveAsRequest.drawingData = imageData;
+		postImageSaveAsRequest.outPath = outPath;
         return CadApi.postDrawingSaveAs(postImageSaveAsRequest);
 	}
 	
