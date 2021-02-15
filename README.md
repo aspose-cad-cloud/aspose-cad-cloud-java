@@ -84,63 +84,16 @@ To use Aspose CAD for Cloud Java SDK you need to register an account with [Aspos
 
 The solution is updated using [code generator](https://github.com/aspose-CAD-cloud/aspose-CAD-cloud-codegen).
 
-# Example
+## Convert Drawing to PDF in Java
+
 ```java
-// optional parameters are base URL, API version and debug mode
-// default base URL is https://api.aspose.cloud/
-// default API version is v3.0
-// default debug mode is false
-// authentication type is OAuth2.0 (bearer JWT token)
-class MyApiWrapper
-{
-    void MyApiCall()
-    {
-        CadApi cadApi = new CadApi("yourAppKey", "yourAppSID");
+	// Get your ClientId and ClientSecret from https://dashboard.aspose.cloud (free registration required).
 
-        // this GET request converts drawing files
-        // nullable parameters are input file folder, Aspose storage name (if you have more than one storage and want to use non-default one), rasterization options and output file path
-        // if output file path is not set, resulting image is returned in a stream; otherwise, it's saved at the specified path in the storage and null is returned
-        GetDrawingSaveAsRequest getSaveRequest = new GetDrawingSaveAsRequest("inputDrawing.dxf", "png", "InputFolder", "ResultFolder/resultDrawing.png", "Storage Name");
+	CadApi cadApi = new CadApi("MY_CLIENT_SECRET", "MY_CLIENT_ID");
 
-        // returns empty response data value, saves result to storage
-        cadApi.getDrawingSaveAs(getSaveRequest);
+	GetDrawingSaveAsRequest getSaveRequest = new GetDrawingSaveAsRequest("sample.dxf", "pdf", "InputFolder", "output.pdf", "Storage Name");
 
-        GetDrawingSaveAsRequest getStreamRequest = new GetDrawingSaveAsRequest("inputDrawing.dwg", "png", "InputFolder", null, null);
-
-        // returns resulting image bytes
-        byte[] apiResponse = cadApi.getDrawingSaveAs(getStreamRequest);
-
-        // another option is to use POST request and send drawing as a stream, if it's not present in your storage   
-        InputStream inputStream = null;
-        byte[] inputBytes = null;
-        try
-        {
-        	File inputFile = new File("D:\\test\\localInputDrawing.dwg");
-        	inputBytes = new byte[(int) inputFile.length()];
-        	inputStream = new FileInputStream(inputFile);
-        	inputStream.read(inputBytes);
-        }
-        finally
-        {
-        	if (inputStream != null)
-        	{
-        		inputStream.close();
-        	}
-        }
-
-        PostDrawingSaveAsRequest postSaveRequest = new PostDrawingSaveAsRequest(inputBytes, "png", "ResultFolder/resultDrawing.png", "My Storage");
-
-        // returns empty response data value, saves result to storage
-        cadApi.postDrawingSaveAs(postSaveRequest);
-
-        PostDrawingSaveAsRequest postStreamRequest = new PostDrawingSaveAsRequest(inputBytes, "png", null, "My Storage");
-
-        // returns resulting image bytes
-        byte[] bytesResponse = cadApi.postDrawingSaveAs(postStreamRequest);
-    }
-}
-
-// other requests typically follow the same principles
+	cadApi.getDrawingSaveAs(getSaveRequest);
 ```
 
 # Tests
@@ -156,7 +109,7 @@ We generate our SDKs in different languages so you may check if yours is availab
 
 | .NET | Java | PHP | Python | Ruby | Node.js |
 |---|---|---|---|---|---|
-| [GitHub](https://github.com/aspose-cad-cloud/aspose-cad-cloud-dotnet) | [GitHub](https://github.com/aspose-cad-cloud/aspose-cad-cloud-java) | [GitHub](https://github.com/aspose-cad-cloud/aspose-cad-cloud-php) | [GitHub](https://github.com/aspose-cad-cloud/aspose-cad-cloud-python) | [GitHub](https://github.com/aspose-cad-cloud/aspose-cad-cloud-ruby)  | [GitHub](https://github.com/aspose-cad-cloud/aspose-cad-cloud-node) |
-| [NuGet](https://www.nuget.org/packages/Aspose.cad-Cloud/) | [Maven](https://repository.aspose.cloud/webapp/#/artifacts/browse/tree/General/repo/com/aspose/aspose-cad-cloud) | [Composer](https://packagist.org/packages/aspose/aspose-cad-cloud) | [PIP](https://pypi.org/project/aspose.cad-cloud/) | [GEM](https://rubygems.org/gems/aspose_cad_cloud)  | [NPM](https://www.npmjs.com/package/aspose-cad-cloud) |
+| [GitHub](https://github.com/aspose-cad-cloud/aspose-cad-cloud-dotnet) | [GitHub](https://github.com/aspose-cad-cloud/aspose-cad-cloud-java) | [GitHub](https://github.com/aspose-cad-cloud/aspose-cad-cloud-php) | [GitHub](https://github.com/aspose-cad-cloud/aspose-cad-cloud-python) | [GitHub](https://github.com/aspose-cad-cloud/aspose-cad-cloud-ruby)  | [GitHub](https://github.com/aspose-cad-cloud/aspose-cad-cloud-nodejs) |
+| [NuGet](https://www.nuget.org/packages/Aspose.cad-Cloud/) | [Maven](https://repository.aspose.cloud/webapp/#/artifacts/browse/tree/General/repo/com/aspose/aspose-cad-cloud) | [Composer](https://packagist.org/packages/aspose/aspose-cad-cloud) | [PIP](https://pypi.org/project/aspose.cad-cloud/) | [GEM](https://rubygems.org/gems/aspose_cad_cloud)  | [NPM](https://www.npmjs.com/package/@asposecloud/aspose-cad-cloud) |
 
 [Product Page](https://products.aspose.cloud/cad/java) | [Documentation](https://docs.aspose.cloud/display/cadcloud/Home) | [API Reference](https://apireference.aspose.cloud/cad/) | [Code Samples](https://github.com/aspose-cad-cloud/aspose-cad-cloud-java) | [Blog](https://blog.aspose.cloud/category/cad/) | [Free Support](https://forum.aspose.cloud/c/cad) | [Free Trial](https://dashboard.aspose.cloud/#/apps)|
