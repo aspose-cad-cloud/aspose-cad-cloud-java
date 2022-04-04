@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **compliance** | [**ComplianceEnum**](#ComplianceEnum) |  | 
+**digitalSignatureDetails** | [**PdfDigitalSignatureDetailsCore**](PdfDigitalSignatureDetailsCore.md) |  |  [optional]
 
 
 <a name="ComplianceEnum"></a>

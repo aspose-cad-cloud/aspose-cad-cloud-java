@@ -42,13 +42,66 @@ import com.google.gson.annotations.*;
  * Export options for SVG format
  */
 public class SvgOptionsDTO extends DrawingOptionsBaseDTO {
+  /**
+   * Color type
+   */
+  @JsonAdapter(ColorTypeEnum.Adapter.class)
+  public enum ColorTypeEnum {
+    GRAYSCALE("Grayscale"),
+    
+    YCBCR("YCbCr"),
+    
+    CMYK("Cmyk"),
+    
+    YCCK("Ycck"),
+    
+    RGB("Rgb");
+
+    private String value;
+
+    ColorTypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static ColorTypeEnum fromValue(String text) {
+      for (ColorTypeEnum b : ColorTypeEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<ColorTypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final ColorTypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public ColorTypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return ColorTypeEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
   @JsonProperty("colorType")
-  private Object colorType = null;
+  private ColorTypeEnum colorType = null;
 
   @JsonProperty("textAsShapes")
   private Boolean textAsShapes = null;
 
-  public SvgOptionsDTO colorType(Object colorType) {
+  public SvgOptionsDTO colorType(ColorTypeEnum colorType) {
     this.colorType = colorType;
     return this;
   }
@@ -57,11 +110,11 @@ public class SvgOptionsDTO extends DrawingOptionsBaseDTO {
    * Color type
    * @return colorType
   **/
-  public Object getColorType() {
+  public ColorTypeEnum getColorType() {
     return colorType;
   }  
 
-  public void setColorType(Object colorType) {
+  public void setColorType(ColorTypeEnum colorType) {
     this.colorType = colorType;
   }
 

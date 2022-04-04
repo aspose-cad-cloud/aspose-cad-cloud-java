@@ -1,6 +1,6 @@
 /*
 * --------------------------------------------------------------------------------------------------------------------
-* <copyright company="Aspose" file="Cff2Properties.java">
+* <copyright company="Aspose" file="KeySizes.java">
 *   Copyright (c) 2018-2020 Aspose Pty Ltd. All rights reserved.
 * </copyright>
 * <summary>
@@ -39,9 +39,69 @@ import com.google.gson.stream.*;
 import com.google.gson.annotations.*;
 
 /**
- * Represents information about CFF2 drawing.
+ * KeySizes
  */
-public class Cff2Properties {
+public class KeySizes {
+  @JsonProperty("minSize")
+  private Integer minSize = null;
+
+  @JsonProperty("maxSize")
+  private Integer maxSize = null;
+
+  @JsonProperty("skipSize")
+  private Integer skipSize = null;
+
+  public KeySizes minSize(Integer minSize) {
+    this.minSize = minSize;
+    return this;
+  }
+
+  /**
+   * Get minSize
+   * @return minSize
+  **/
+  public Integer getMinSize() {
+    return minSize;
+  }  
+
+  public void setMinSize(Integer minSize) {
+    this.minSize = minSize;
+  }
+
+  public KeySizes maxSize(Integer maxSize) {
+    this.maxSize = maxSize;
+    return this;
+  }
+
+  /**
+   * Get maxSize
+   * @return maxSize
+  **/
+  public Integer getMaxSize() {
+    return maxSize;
+  }  
+
+  public void setMaxSize(Integer maxSize) {
+    this.maxSize = maxSize;
+  }
+
+  public KeySizes skipSize(Integer skipSize) {
+    this.skipSize = skipSize;
+    return this;
+  }
+
+  /**
+   * Get skipSize
+   * @return skipSize
+  **/
+  public Integer getSkipSize() {
+    return skipSize;
+  }  
+
+  public void setSkipSize(Integer skipSize) {
+    this.skipSize = skipSize;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -51,20 +111,26 @@ public class Cff2Properties {
   if (o == null || getClass() != o.getClass()) {
     return false;
   }
-    return true;
+    KeySizes keySizes = (KeySizes) o;
+    return ObjectUtils.equals(this.minSize, keySizes.minSize) &&
+    ObjectUtils.equals(this.maxSize, keySizes.maxSize) &&
+    ObjectUtils.equals(this.skipSize, keySizes.skipSize);
   }
 
   @Override
   public int hashCode() {
-    return ObjectUtils.hashCodeMulti();
+    return ObjectUtils.hashCodeMulti(minSize, maxSize, skipSize);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Cff2Properties {\n");
+    sb.append("class KeySizes {\n");
     
+    sb.append("    minSize: ").append(toIndentedString(minSize)).append("\n");
+    sb.append("    maxSize: ").append(toIndentedString(maxSize)).append("\n");
+    sb.append("    skipSize: ").append(toIndentedString(skipSize)).append("\n");
     sb.append("}");
     return sb.toString();
   }

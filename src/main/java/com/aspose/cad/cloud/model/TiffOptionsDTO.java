@@ -42,22 +42,302 @@ import com.google.gson.annotations.*;
  * Export options for TIFF format
  */
 public class TiffOptionsDTO extends DrawingOptionsBaseDTO {
+  /**
+   * Bytes order (little/big-endian notation)
+   */
+  @JsonAdapter(ByteOrderEnum.Adapter.class)
+  public enum ByteOrderEnum {
+    LITTLEENDIAN("LittleEndian"),
+    
+    BIGENDIAN("BigEndian");
+
+    private String value;
+
+    ByteOrderEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static ByteOrderEnum fromValue(String text) {
+      for (ByteOrderEnum b : ByteOrderEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<ByteOrderEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final ByteOrderEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public ByteOrderEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return ByteOrderEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
   @JsonProperty("byteOrder")
-  private Object byteOrder = null;
+  private ByteOrderEnum byteOrder = null;
+
+  /**
+   * Compression level
+   */
+  @JsonAdapter(CompressionEnum.Adapter.class)
+  public enum CompressionEnum {
+    NONE("None"),
+    
+    CCITTRLE("CcittRle"),
+    
+    CCITTFAX3("CcittFax3"),
+    
+    CCITTFAX4("CcittFax4"),
+    
+    LZW("Lzw"),
+    
+    OJPEG("Ojpeg"),
+    
+    JPEG("Jpeg"),
+    
+    ADOBEDEFLATE("AdobeDeflate"),
+    
+    NEXT("Next"),
+    
+    CCITTRLEW("CcittRleW"),
+    
+    PACKBITS("Packbits"),
+    
+    THUNDERSCAN("Thunderscan"),
+    
+    IT8CTPAD("It8Ctpad"),
+    
+    IT8LW("It8Lw"),
+    
+    IT8MP("It8Mp"),
+    
+    IT8BL("It8Bl"),
+    
+    PIXARFILM("PixarFilm"),
+    
+    PIXARLOG("PixarLog"),
+    
+    DEFLATE("Deflate"),
+    
+    DCS("Dcs"),
+    
+    JBIG("Jbig"),
+    
+    SGILOG("Sgilog"),
+    
+    SGILOG24("Sgilog24"),
+    
+    JP2000("Jp2000");
+
+    private String value;
+
+    CompressionEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static CompressionEnum fromValue(String text) {
+      for (CompressionEnum b : CompressionEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<CompressionEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final CompressionEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public CompressionEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return CompressionEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
 
   @JsonProperty("compression")
-  private Object compression = null;
+  private CompressionEnum compression = null;
+
+  /**
+   * Expected TIFF sub-format
+   */
+  @JsonAdapter(ExpectedFormatEnum.Adapter.class)
+  public enum ExpectedFormatEnum {
+    DEFAULT("Default"),
+    
+    TIFFLZWBW("TiffLzwBw"),
+    
+    TIFFLZWRGB("TiffLzwRgb"),
+    
+    TIFFLZWRGBA("TiffLzwRgba"),
+    
+    TIFFLZWCMYK("TiffLzwCmyk"),
+    
+    TIFFCCITTFAX3("TiffCcittFax3"),
+    
+    TIFFCCITTFAX4("TiffCcittFax4"),
+    
+    TIFFDEFLATEBW("TiffDeflateBw"),
+    
+    TIFFDEFLATERGB("TiffDeflateRgb"),
+    
+    TIFFDEFLATERGBA("TiffDeflateRgba"),
+    
+    TIFFCCITRLE("TiffCcitRle"),
+    
+    TIFFJPEGRGB("TiffJpegRgb"),
+    
+    TIFFJPEGYCBCR("TiffJpegYCbCr"),
+    
+    TIFFNOCOMPRESSIONBW("TiffNoCompressionBw"),
+    
+    TIFFNOCOMPRESSIONRGB("TiffNoCompressionRgb"),
+    
+    TIFFNOCOMPRESSIONRGBA("TiffNoCompressionRgba");
+
+    private String value;
+
+    ExpectedFormatEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static ExpectedFormatEnum fromValue(String text) {
+      for (ExpectedFormatEnum b : ExpectedFormatEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<ExpectedFormatEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final ExpectedFormatEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public ExpectedFormatEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return ExpectedFormatEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
 
   @JsonProperty("expectedFormat")
-  private Object expectedFormat = null;
+  private ExpectedFormatEnum expectedFormat = null;
 
   @JsonProperty("bitsPerSample")
   private List<Integer> bitsPerSample = null;
 
-  @JsonProperty("photometric")
-  private Object photometric = null;
+  /**
+   * Photometric options
+   */
+  @JsonAdapter(PhotometricEnum.Adapter.class)
+  public enum PhotometricEnum {
+    MINISWHITE("MinIsWhite"),
+    
+    MINISBLACK("MinIsBlack"),
+    
+    RGB("Rgb"),
+    
+    PALETTE("Palette"),
+    
+    MASK("Mask"),
+    
+    SEPARATED("Separated"),
+    
+    YCBCR("Ycbcr"),
+    
+    CIELAB("Cielab"),
+    
+    ICCLAB("Icclab"),
+    
+    ITULAB("Itulab"),
+    
+    LOGL("Logl"),
+    
+    LOGLUV("Logluv");
 
-  public TiffOptionsDTO byteOrder(Object byteOrder) {
+    private String value;
+
+    PhotometricEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static PhotometricEnum fromValue(String text) {
+      for (PhotometricEnum b : PhotometricEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<PhotometricEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final PhotometricEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public PhotometricEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return PhotometricEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
+  @JsonProperty("photometric")
+  private PhotometricEnum photometric = null;
+
+  public TiffOptionsDTO byteOrder(ByteOrderEnum byteOrder) {
     this.byteOrder = byteOrder;
     return this;
   }
@@ -66,15 +346,15 @@ public class TiffOptionsDTO extends DrawingOptionsBaseDTO {
    * Bytes order (little/big-endian notation)
    * @return byteOrder
   **/
-  public Object getByteOrder() {
+  public ByteOrderEnum getByteOrder() {
     return byteOrder;
   }  
 
-  public void setByteOrder(Object byteOrder) {
+  public void setByteOrder(ByteOrderEnum byteOrder) {
     this.byteOrder = byteOrder;
   }
 
-  public TiffOptionsDTO compression(Object compression) {
+  public TiffOptionsDTO compression(CompressionEnum compression) {
     this.compression = compression;
     return this;
   }
@@ -83,15 +363,15 @@ public class TiffOptionsDTO extends DrawingOptionsBaseDTO {
    * Compression level
    * @return compression
   **/
-  public Object getCompression() {
+  public CompressionEnum getCompression() {
     return compression;
   }  
 
-  public void setCompression(Object compression) {
+  public void setCompression(CompressionEnum compression) {
     this.compression = compression;
   }
 
-  public TiffOptionsDTO expectedFormat(Object expectedFormat) {
+  public TiffOptionsDTO expectedFormat(ExpectedFormatEnum expectedFormat) {
     this.expectedFormat = expectedFormat;
     return this;
   }
@@ -100,11 +380,11 @@ public class TiffOptionsDTO extends DrawingOptionsBaseDTO {
    * Expected TIFF sub-format
    * @return expectedFormat
   **/
-  public Object getExpectedFormat() {
+  public ExpectedFormatEnum getExpectedFormat() {
     return expectedFormat;
   }  
 
-  public void setExpectedFormat(Object expectedFormat) {
+  public void setExpectedFormat(ExpectedFormatEnum expectedFormat) {
     this.expectedFormat = expectedFormat;
   }
 
@@ -133,7 +413,7 @@ public class TiffOptionsDTO extends DrawingOptionsBaseDTO {
     this.bitsPerSample = bitsPerSample;
   }
 
-  public TiffOptionsDTO photometric(Object photometric) {
+  public TiffOptionsDTO photometric(PhotometricEnum photometric) {
     this.photometric = photometric;
     return this;
   }
@@ -142,11 +422,11 @@ public class TiffOptionsDTO extends DrawingOptionsBaseDTO {
    * Photometric options
    * @return photometric
   **/
-  public Object getPhotometric() {
+  public PhotometricEnum getPhotometric() {
     return photometric;
   }  
 
-  public void setPhotometric(Object photometric) {
+  public void setPhotometric(PhotometricEnum photometric) {
     this.photometric = photometric;
   }
 

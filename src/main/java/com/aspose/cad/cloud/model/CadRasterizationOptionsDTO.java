@@ -57,8 +57,55 @@ public class CadRasterizationOptionsDTO extends VectorRasterizationOptionsDTO {
   @JsonProperty("layouts")
   private List<String> layouts = null;
 
+  /**
+   * Drawing mode
+   */
+  @JsonAdapter(DrawTypeEnum.Adapter.class)
+  public enum DrawTypeEnum {
+    USEDRAWCOLOR("UseDrawColor"),
+    
+    USEOBJECTCOLOR("UseObjectColor");
+
+    private String value;
+
+    DrawTypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static DrawTypeEnum fromValue(String text) {
+      for (DrawTypeEnum b : DrawTypeEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<DrawTypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final DrawTypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public DrawTypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return DrawTypeEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
   @JsonProperty("drawType")
-  private Object drawType = null;
+  private DrawTypeEnum drawType = null;
 
   @JsonProperty("noScaling")
   private Boolean noScaling = null;
@@ -164,7 +211,7 @@ public class CadRasterizationOptionsDTO extends VectorRasterizationOptionsDTO {
     this.layouts = layouts;
   }
 
-  public CadRasterizationOptionsDTO drawType(Object drawType) {
+  public CadRasterizationOptionsDTO drawType(DrawTypeEnum drawType) {
     this.drawType = drawType;
     return this;
   }
@@ -173,11 +220,11 @@ public class CadRasterizationOptionsDTO extends VectorRasterizationOptionsDTO {
    * Drawing mode
    * @return drawType
   **/
-  public Object getDrawType() {
+  public DrawTypeEnum getDrawType() {
     return drawType;
   }  
 
-  public void setDrawType(Object drawType) {
+  public void setDrawType(DrawTypeEnum drawType) {
     this.drawType = drawType;
   }
 

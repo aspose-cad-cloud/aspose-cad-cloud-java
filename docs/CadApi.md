@@ -466,6 +466,96 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](API_README.md#documentation-for-api-endpoints) [[Back to Model list]](API_README.md#documentation-for-models) [[Back to API_README]](API_README.md)
 
+<a name="postDrawingDXF"></a>
+## **postDrawingDXF**
+> byte[] postDrawingDXF(PostDrawingDXFRequest request)
+
+Export an existing drawing to DXF format with export settings specified.
+
+### **PostDrawingDXFRequest** Parameters
+```java
+PostDrawingDXFRequest(
+    String name, 
+    DxfOptionsDTO options, 
+    String folder, 
+    String outPath, 
+    String storage)
+```
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **name** | **String**| Filename of an input drawing on a storage. |
+ **options** | [**DxfOptionsDTO**](DxfOptionsDTO.md)| Export DXF options passed as a JSON on a request body. |
+ **folder** | **String**| Folder with a drawing to process. | [optional]
+ **outPath** | **String**| Path to updated file (if this is empty, response contains streamed file). | [optional]
+ **storage** | **String**| Your Aspose Cloud Storage name. | [optional]
+
+### Return type
+
+**byte[]**
+
+[[Back to top]](#) [[Back to API list]](API_README.md#documentation-for-api-endpoints) [[Back to Model list]](API_README.md#documentation-for-models) [[Back to API_README]](API_README.md)
+
+<a name="postDrawingDwf"></a>
+## **postDrawingDwf**
+> byte[] postDrawingDwf(PostDrawingDwfRequest request)
+
+Export an existing drawing to Dwf format with export settings specified.
+
+### **PostDrawingDwfRequest** Parameters
+```java
+PostDrawingDwfRequest(
+    String name, 
+    DwfOptionsDTO options, 
+    String folder, 
+    String outPath, 
+    String storage)
+```
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **name** | **String**| Filename of an input drawing on a storage. |
+ **options** | [**DwfOptionsDTO**](DwfOptionsDTO.md)| Export Dwf options passed as a JSON on a request body. |
+ **folder** | **String**| Folder with a drawing to process. | [optional]
+ **outPath** | **String**| Path to updated file (if this is empty, response contains streamed file). | [optional]
+ **storage** | **String**| Your Aspose Cloud Storage name. | [optional]
+
+### Return type
+
+**byte[]**
+
+[[Back to top]](#) [[Back to API list]](API_README.md#documentation-for-api-endpoints) [[Back to Model list]](API_README.md#documentation-for-models) [[Back to API_README]](API_README.md)
+
+<a name="postDrawingFbx"></a>
+## **postDrawingFbx**
+> byte[] postDrawingFbx(PostDrawingFbxRequest request)
+
+Export an existing drawing to Fbx format with export settings specified.
+
+### **PostDrawingFbxRequest** Parameters
+```java
+PostDrawingFbxRequest(
+    String name, 
+    FbxOptionsDTO options, 
+    String folder, 
+    String outPath, 
+    String storage)
+```
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **name** | **String**| Filename of an input drawing on a storage. |
+ **options** | [**FbxOptionsDTO**](FbxOptionsDTO.md)| Export Fbx options passed as a JSON on a request body. |
+ **folder** | **String**| Folder with a drawing to process. | [optional]
+ **outPath** | **String**| Path to updated file (if this is empty, response contains streamed file). | [optional]
+ **storage** | **String**| Your Aspose Cloud Storage name. | [optional]
+
+### Return type
+
+**byte[]**
+
+[[Back to top]](#) [[Back to API list]](API_README.md#documentation-for-api-endpoints) [[Back to Model list]](API_README.md#documentation-for-models) [[Back to API_README]](API_README.md)
+
 <a name="postDrawingGif"></a>
 ## **postDrawingGif**
 > byte[] postDrawingGif(PostDrawingGifRequest request)
@@ -546,6 +636,36 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **String**| Filename of an input drawing on a storage. |
  **options** | [**Jpeg2000OptionsDTO**](Jpeg2000OptionsDTO.md)| Export JPEG2000 options passed as a JSON on a request body. |
+ **folder** | **String**| Folder with a drawing to process. | [optional]
+ **outPath** | **String**| Path to updated file (if this is empty, response contains streamed file). | [optional]
+ **storage** | **String**| Your Aspose Cloud Storage name. | [optional]
+
+### Return type
+
+**byte[]**
+
+[[Back to top]](#) [[Back to API list]](API_README.md#documentation-for-api-endpoints) [[Back to Model list]](API_README.md#documentation-for-models) [[Back to API_README]](API_README.md)
+
+<a name="postDrawingObj"></a>
+## **postDrawingObj**
+> byte[] postDrawingObj(PostDrawingObjRequest request)
+
+Export an existing drawing to Obj format with export settings specified.
+
+### **PostDrawingObjRequest** Parameters
+```java
+PostDrawingObjRequest(
+    String name, 
+    ObjOptionsDTO options, 
+    String folder, 
+    String outPath, 
+    String storage)
+```
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **name** | **String**| Filename of an input drawing on a storage. |
+ **options** | [**ObjOptionsDTO**](ObjOptionsDTO.md)| Export Obj options passed as a JSON on a request body. |
  **folder** | **String**| Folder with a drawing to process. | [optional]
  **outPath** | **String**| Path to updated file (if this is empty, response contains streamed file). | [optional]
  **storage** | **String**| Your Aspose Cloud Storage name. | [optional]
@@ -876,6 +996,90 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](API_README.md#documentation-for-api-endpoints) [[Back to Model list]](API_README.md#documentation-for-models) [[Back to API_README]](API_README.md)
 
+<a name="putDrawingDXF"></a>
+## **putDrawingDXF**
+> byte[] putDrawingDXF(PutDrawingDXFRequest request)
+
+Export drawing to DXF format. Drawing data is passed as zero-indexed multipart/form-data as well as export DXF options serialized as JSON. Order of drawing data and DXF options could vary.
+
+### **PutDrawingDXFRequest** Parameters
+```java
+PutDrawingDXFRequest(
+    byte[] drawingData, 
+    String outPath, 
+    String exportOptions, 
+    String storage)
+```
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **drawingData** | **byte[]**| Input drawing |
+ **outPath** | **String**| Path to updated file (if this is empty, response contains streamed file). | [optional]
+ **exportOptions** | **String**| JSON-serialized export options passed as zero-indexed multipart/form-data. Follow #/definitions/DxfOptionsDTO model definition. | [optional]
+ **storage** | **String**| Your Aspose Cloud Storage name. | [optional]
+
+### Return type
+
+**byte[]**
+
+[[Back to top]](#) [[Back to API list]](API_README.md#documentation-for-api-endpoints) [[Back to Model list]](API_README.md#documentation-for-models) [[Back to API_README]](API_README.md)
+
+<a name="putDrawingDwf"></a>
+## **putDrawingDwf**
+> byte[] putDrawingDwf(PutDrawingDwfRequest request)
+
+Export drawing to Dwf format. Drawing data is passed as zero-indexed multipart/form-data as well as export Dwf options serialized as JSON. Order of drawing data and Dwf options could vary.
+
+### **PutDrawingDwfRequest** Parameters
+```java
+PutDrawingDwfRequest(
+    byte[] drawingData, 
+    String outPath, 
+    String exportOptions, 
+    String storage)
+```
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **drawingData** | **byte[]**| Input drawing |
+ **outPath** | **String**| Path to updated file (if this is empty, response contains streamed file). | [optional]
+ **exportOptions** | **String**| JSON-serialized export options passed as zero-indexed multipart/form-data. Follow #/definitions/DwfOptionsDTO model definition. | [optional]
+ **storage** | **String**| Your Aspose Cloud Storage name. | [optional]
+
+### Return type
+
+**byte[]**
+
+[[Back to top]](#) [[Back to API list]](API_README.md#documentation-for-api-endpoints) [[Back to Model list]](API_README.md#documentation-for-models) [[Back to API_README]](API_README.md)
+
+<a name="putDrawingFbx"></a>
+## **putDrawingFbx**
+> byte[] putDrawingFbx(PutDrawingFbxRequest request)
+
+Export drawing to Fbx format. Drawing data is passed as zero-indexed multipart/form-data as well as export Fbx options serialized as JSON. Order of drawing data and Fbx options could vary.
+
+### **PutDrawingFbxRequest** Parameters
+```java
+PutDrawingFbxRequest(
+    byte[] drawingData, 
+    String outPath, 
+    String exportOptions, 
+    String storage)
+```
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **drawingData** | **byte[]**| Input drawing |
+ **outPath** | **String**| Path to updated file (if this is empty, response contains streamed file). | [optional]
+ **exportOptions** | **String**| JSON-serialized export options passed as zero-indexed multipart/form-data. Follow #/definitions/FbxOptionsDTO model definition. | [optional]
+ **storage** | **String**| Your Aspose Cloud Storage name. | [optional]
+
+### Return type
+
+**byte[]**
+
+[[Back to top]](#) [[Back to API list]](API_README.md#documentation-for-api-endpoints) [[Back to Model list]](API_README.md#documentation-for-models) [[Back to API_README]](API_README.md)
+
 <a name="putDrawingGif"></a>
 ## **putDrawingGif**
 > byte[] putDrawingGif(PutDrawingGifRequest request)
@@ -952,6 +1156,34 @@ Name | Type | Description  | Notes
  **drawingData** | **byte[]**| Input drawing |
  **outPath** | **String**| Path to updated file (if this is empty, response contains streamed file). | [optional]
  **exportOptions** | **String**| JSON-serialized export options passed as zero-indexed multipart/form-data. Follow #/definitions/Jpeg2000OptionsDTO model definition. | [optional]
+ **storage** | **String**| Your Aspose Cloud Storage name. | [optional]
+
+### Return type
+
+**byte[]**
+
+[[Back to top]](#) [[Back to API list]](API_README.md#documentation-for-api-endpoints) [[Back to Model list]](API_README.md#documentation-for-models) [[Back to API_README]](API_README.md)
+
+<a name="putDrawingObj"></a>
+## **putDrawingObj**
+> byte[] putDrawingObj(PutDrawingObjRequest request)
+
+Export drawing to Obj format. Drawing data is passed as zero-indexed multipart/form-data as well as export Obj options serialized as JSON. Order of drawing data and Obj options could vary.
+
+### **PutDrawingObjRequest** Parameters
+```java
+PutDrawingObjRequest(
+    byte[] drawingData, 
+    String outPath, 
+    String exportOptions, 
+    String storage)
+```
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **drawingData** | **byte[]**| Input drawing |
+ **outPath** | **String**| Path to updated file (if this is empty, response contains streamed file). | [optional]
+ **exportOptions** | **String**| JSON-serialized export options passed as zero-indexed multipart/form-data. Follow #/definitions/ObjOptionsDTO model definition. | [optional]
  **storage** | **String**| Your Aspose Cloud Storage name. | [optional]
 
 ### Return type

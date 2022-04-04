@@ -42,8 +42,83 @@ import com.google.gson.annotations.*;
  * Image options base class
  */
 public class DrawingOptionsBaseDTO {
+  /**
+   * Resulting rotation operation
+   */
+  @JsonAdapter(RotationEnum.Adapter.class)
+  public enum RotationEnum {
+    ROTATENONEFLIPNONE("RotateNoneFlipNone"),
+    
+    ROTATE90FLIPNONE("Rotate90FlipNone"),
+    
+    ROTATE180FLIPNONE("Rotate180FlipNone"),
+    
+    ROTATE270FLIPNONE("Rotate270FlipNone"),
+    
+    ROTATENONEFLIPX("RotateNoneFlipX"),
+    
+    ROTATE90FLIPX("Rotate90FlipX"),
+    
+    ROTATE180FLIPX("Rotate180FlipX"),
+    
+    ROTATE270FLIPX("Rotate270FlipX"),
+    
+    ROTATENONEFLIPY("RotateNoneFlipY"),
+    
+    ROTATE90FLIPY("Rotate90FlipY"),
+    
+    ROTATE180FLIPY("Rotate180FlipY"),
+    
+    ROTATE270FLIPY("Rotate270FlipY"),
+    
+    ROTATENONEFLIPXY("RotateNoneFlipXY"),
+    
+    ROTATE90FLIPXY("Rotate90FlipXY"),
+    
+    ROTATE180FLIPXY("Rotate180FlipXY"),
+    
+    ROTATE270FLIPXY("Rotate270FlipXY");
+
+    private String value;
+
+    RotationEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static RotationEnum fromValue(String text) {
+      for (RotationEnum b : RotationEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<RotationEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final RotationEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public RotationEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return RotationEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
   @JsonProperty("rotation")
-  private Object rotation = null;
+  private RotationEnum rotation = null;
 
   @JsonProperty("layers")
   private List<String> layers = null;
@@ -54,7 +129,7 @@ public class DrawingOptionsBaseDTO {
   @JsonProperty("vectorRasterizationOptions")
   private CadRasterizationOptionsDTO vectorRasterizationOptions = null;
 
-  public DrawingOptionsBaseDTO rotation(Object rotation) {
+  public DrawingOptionsBaseDTO rotation(RotationEnum rotation) {
     this.rotation = rotation;
     return this;
   }
@@ -63,11 +138,11 @@ public class DrawingOptionsBaseDTO {
    * Resulting rotation operation
    * @return rotation
   **/
-  public Object getRotation() {
+  public RotationEnum getRotation() {
     return rotation;
   }  
 
-  public void setRotation(Object rotation) {
+  public void setRotation(RotationEnum rotation) {
     this.rotation = rotation;
   }
 

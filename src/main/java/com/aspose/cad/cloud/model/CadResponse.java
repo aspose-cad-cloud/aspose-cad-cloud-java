@@ -72,8 +72,17 @@ public class CadResponse {
   @JsonProperty("dwfProperties")
   private DwfProperties dwfProperties = null;
 
-  @JsonProperty("cff2Properties")
-  private Cff2Properties cff2Properties = null;
+  @JsonProperty("cf2Properties")
+  private Cf2Properties cf2Properties = null;
+
+  @JsonProperty("fbxProperties")
+  private FbxProperties fbxProperties = null;
+
+  @JsonProperty("objProperties")
+  private ObjProperties objProperties = null;
+
+  @JsonProperty("pltProperties")
+  private PltProperties pltProperties = null;
 
   public CadResponse height(Integer height) {
     this.height = height;
@@ -245,21 +254,72 @@ public class CadResponse {
     this.dwfProperties = dwfProperties;
   }
 
-  public CadResponse cff2Properties(Cff2Properties cff2Properties) {
-    this.cff2Properties = cff2Properties;
+  public CadResponse cf2Properties(Cf2Properties cf2Properties) {
+    this.cf2Properties = cf2Properties;
     return this;
   }
 
   /**
-   * Gets or sets the CFF2 properties.
-   * @return cff2Properties
+   * Gets or sets the Cf2 properties.
+   * @return cf2Properties
   **/
-  public Cff2Properties getCff2Properties() {
-    return cff2Properties;
+  public Cf2Properties getCf2Properties() {
+    return cf2Properties;
   }  
 
-  public void setCff2Properties(Cff2Properties cff2Properties) {
-    this.cff2Properties = cff2Properties;
+  public void setCf2Properties(Cf2Properties cf2Properties) {
+    this.cf2Properties = cf2Properties;
+  }
+
+  public CadResponse fbxProperties(FbxProperties fbxProperties) {
+    this.fbxProperties = fbxProperties;
+    return this;
+  }
+
+  /**
+   * Gets or sets the Cf2 properties.
+   * @return fbxProperties
+  **/
+  public FbxProperties getFbxProperties() {
+    return fbxProperties;
+  }  
+
+  public void setFbxProperties(FbxProperties fbxProperties) {
+    this.fbxProperties = fbxProperties;
+  }
+
+  public CadResponse objProperties(ObjProperties objProperties) {
+    this.objProperties = objProperties;
+    return this;
+  }
+
+  /**
+   * Gets or sets the FBX properties.
+   * @return objProperties
+  **/
+  public ObjProperties getObjProperties() {
+    return objProperties;
+  }  
+
+  public void setObjProperties(ObjProperties objProperties) {
+    this.objProperties = objProperties;
+  }
+
+  public CadResponse pltProperties(PltProperties pltProperties) {
+    this.pltProperties = pltProperties;
+    return this;
+  }
+
+  /**
+   * Gets or sets the Cf2 properties.
+   * @return pltProperties
+  **/
+  public PltProperties getPltProperties() {
+    return pltProperties;
+  }  
+
+  public void setPltProperties(PltProperties pltProperties) {
+    this.pltProperties = pltProperties;
   }
 
 
@@ -282,12 +342,15 @@ public class CadResponse {
     ObjectUtils.equals(this.igsProperties, cadResponse.igsProperties) &&
     ObjectUtils.equals(this.stlProperties, cadResponse.stlProperties) &&
     ObjectUtils.equals(this.dwfProperties, cadResponse.dwfProperties) &&
-    ObjectUtils.equals(this.cff2Properties, cadResponse.cff2Properties);
+    ObjectUtils.equals(this.cf2Properties, cadResponse.cf2Properties) &&
+    ObjectUtils.equals(this.fbxProperties, cadResponse.fbxProperties) &&
+    ObjectUtils.equals(this.objProperties, cadResponse.objProperties) &&
+    ObjectUtils.equals(this.pltProperties, cadResponse.pltProperties);
   }
 
   @Override
   public int hashCode() {
-    return ObjectUtils.hashCodeMulti(height, width, dwgProperties, dxfProperties, dwtProperties, dgnProperties, ifcProperties, igsProperties, stlProperties, dwfProperties, cff2Properties);
+    return ObjectUtils.hashCodeMulti(height, width, dwgProperties, dxfProperties, dwtProperties, dgnProperties, ifcProperties, igsProperties, stlProperties, dwfProperties, cf2Properties, fbxProperties, objProperties, pltProperties);
   }
 
 
@@ -306,7 +369,10 @@ public class CadResponse {
     sb.append("    igsProperties: ").append(toIndentedString(igsProperties)).append("\n");
     sb.append("    stlProperties: ").append(toIndentedString(stlProperties)).append("\n");
     sb.append("    dwfProperties: ").append(toIndentedString(dwfProperties)).append("\n");
-    sb.append("    cff2Properties: ").append(toIndentedString(cff2Properties)).append("\n");
+    sb.append("    cf2Properties: ").append(toIndentedString(cf2Properties)).append("\n");
+    sb.append("    fbxProperties: ").append(toIndentedString(fbxProperties)).append("\n");
+    sb.append("    objProperties: ").append(toIndentedString(objProperties)).append("\n");
+    sb.append("    pltProperties: ").append(toIndentedString(pltProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }

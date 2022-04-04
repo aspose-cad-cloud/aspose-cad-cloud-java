@@ -45,11 +45,115 @@ public class JpegOptionsDTO extends DrawingOptionsBaseDTO {
   @JsonProperty("comment")
   private String comment = null;
 
+  /**
+   * Compression type
+   */
+  @JsonAdapter(CompressionTypeEnum.Adapter.class)
+  public enum CompressionTypeEnum {
+    BASELINE("Baseline"),
+    
+    PROGRESSIVE("Progressive"),
+    
+    LOSSLESS("Lossless"),
+    
+    JPEGLS("JpegLs");
+
+    private String value;
+
+    CompressionTypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static CompressionTypeEnum fromValue(String text) {
+      for (CompressionTypeEnum b : CompressionTypeEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<CompressionTypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final CompressionTypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public CompressionTypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return CompressionTypeEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
   @JsonProperty("compressionType")
-  private Object compressionType = null;
+  private CompressionTypeEnum compressionType = null;
+
+  /**
+   * Color type
+   */
+  @JsonAdapter(ColorTypeEnum.Adapter.class)
+  public enum ColorTypeEnum {
+    GRAYSCALE("Grayscale"),
+    
+    YCBCR("YCbCr"),
+    
+    CMYK("Cmyk"),
+    
+    YCCK("Ycck"),
+    
+    RGB("Rgb");
+
+    private String value;
+
+    ColorTypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static ColorTypeEnum fromValue(String text) {
+      for (ColorTypeEnum b : ColorTypeEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<ColorTypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final ColorTypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public ColorTypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return ColorTypeEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
 
   @JsonProperty("colorType")
-  private Object colorType = null;
+  private ColorTypeEnum colorType = null;
 
   @JsonProperty("quality")
   private Integer quality = null;
@@ -74,7 +178,7 @@ public class JpegOptionsDTO extends DrawingOptionsBaseDTO {
     this.comment = comment;
   }
 
-  public JpegOptionsDTO compressionType(Object compressionType) {
+  public JpegOptionsDTO compressionType(CompressionTypeEnum compressionType) {
     this.compressionType = compressionType;
     return this;
   }
@@ -83,15 +187,15 @@ public class JpegOptionsDTO extends DrawingOptionsBaseDTO {
    * Compression type
    * @return compressionType
   **/
-  public Object getCompressionType() {
+  public CompressionTypeEnum getCompressionType() {
     return compressionType;
   }  
 
-  public void setCompressionType(Object compressionType) {
+  public void setCompressionType(CompressionTypeEnum compressionType) {
     this.compressionType = compressionType;
   }
 
-  public JpegOptionsDTO colorType(Object colorType) {
+  public JpegOptionsDTO colorType(ColorTypeEnum colorType) {
     this.colorType = colorType;
     return this;
   }
@@ -100,11 +204,11 @@ public class JpegOptionsDTO extends DrawingOptionsBaseDTO {
    * Color type
    * @return colorType
   **/
-  public Object getColorType() {
+  public ColorTypeEnum getColorType() {
     return colorType;
   }  
 
-  public void setColorType(Object colorType) {
+  public void setColorType(ColorTypeEnum colorType) {
     this.colorType = colorType;
   }
 

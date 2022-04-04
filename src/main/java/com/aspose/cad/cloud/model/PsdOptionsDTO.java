@@ -45,11 +45,121 @@ public class PsdOptionsDTO extends DrawingOptionsBaseDTO {
   @JsonProperty("version")
   private Integer version = null;
 
+  /**
+   * Compression method
+   */
+  @JsonAdapter(CompressionMethodEnum.Adapter.class)
+  public enum CompressionMethodEnum {
+    RAW("Raw"),
+    
+    RLE("RLE"),
+    
+    ZIPWITHOUTPREDICTION("ZipWithoutPrediction"),
+    
+    ZIPWITHPREDICTION("ZipWithPrediction");
+
+    private String value;
+
+    CompressionMethodEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static CompressionMethodEnum fromValue(String text) {
+      for (CompressionMethodEnum b : CompressionMethodEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<CompressionMethodEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final CompressionMethodEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public CompressionMethodEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return CompressionMethodEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
   @JsonProperty("compressionMethod")
-  private Object compressionMethod = null;
+  private CompressionMethodEnum compressionMethod = null;
+
+  /**
+   * Color mode
+   */
+  @JsonAdapter(ColorModeEnum.Adapter.class)
+  public enum ColorModeEnum {
+    BITMAP("Bitmap"),
+    
+    GRAYSCALE("Grayscale"),
+    
+    INDEXED("Indexed"),
+    
+    RGB("Rgb"),
+    
+    CMYK("Cmyk"),
+    
+    MULTICHANNEL("Multichannel"),
+    
+    DUOTONE("Duotone"),
+    
+    LAB("Lab");
+
+    private String value;
+
+    ColorModeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static ColorModeEnum fromValue(String text) {
+      for (ColorModeEnum b : ColorModeEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<ColorModeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final ColorModeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public ColorModeEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return ColorModeEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
 
   @JsonProperty("colorMode")
-  private Object colorMode = null;
+  private ColorModeEnum colorMode = null;
 
   @JsonProperty("channelBitsCount")
   private Integer channelBitsCount = null;
@@ -74,7 +184,7 @@ public class PsdOptionsDTO extends DrawingOptionsBaseDTO {
     this.version = version;
   }
 
-  public PsdOptionsDTO compressionMethod(Object compressionMethod) {
+  public PsdOptionsDTO compressionMethod(CompressionMethodEnum compressionMethod) {
     this.compressionMethod = compressionMethod;
     return this;
   }
@@ -83,15 +193,15 @@ public class PsdOptionsDTO extends DrawingOptionsBaseDTO {
    * Compression method
    * @return compressionMethod
   **/
-  public Object getCompressionMethod() {
+  public CompressionMethodEnum getCompressionMethod() {
     return compressionMethod;
   }  
 
-  public void setCompressionMethod(Object compressionMethod) {
+  public void setCompressionMethod(CompressionMethodEnum compressionMethod) {
     this.compressionMethod = compressionMethod;
   }
 
-  public PsdOptionsDTO colorMode(Object colorMode) {
+  public PsdOptionsDTO colorMode(ColorModeEnum colorMode) {
     this.colorMode = colorMode;
     return this;
   }
@@ -100,11 +210,11 @@ public class PsdOptionsDTO extends DrawingOptionsBaseDTO {
    * Color mode
    * @return colorMode
   **/
-  public Object getColorMode() {
+  public ColorModeEnum getColorMode() {
     return colorMode;
   }  
 
-  public void setColorMode(Object colorMode) {
+  public void setColorMode(ColorModeEnum colorMode) {
     this.colorMode = colorMode;
   }
 

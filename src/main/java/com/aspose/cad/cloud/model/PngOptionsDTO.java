@@ -42,14 +42,122 @@ import com.google.gson.annotations.*;
  * Export options for PNG format
  */
 public class PngOptionsDTO extends DrawingOptionsBaseDTO {
+  /**
+   * Color type
+   */
+  @JsonAdapter(ColorTypeEnum.Adapter.class)
+  public enum ColorTypeEnum {
+    GRAYSCALE("Grayscale"),
+    
+    TRUECOLOR("Truecolor"),
+    
+    INDEXEDCOLOR("IndexedColor"),
+    
+    GRAYSCALEWITHALPHA("GrayscaleWithAlpha"),
+    
+    TRUECOLORWITHALPHA("TruecolorWithAlpha");
+
+    private String value;
+
+    ColorTypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static ColorTypeEnum fromValue(String text) {
+      for (ColorTypeEnum b : ColorTypeEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<ColorTypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final ColorTypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public ColorTypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return ColorTypeEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
   @JsonProperty("colorType")
-  private Object colorType = null;
+  private ColorTypeEnum colorType = null;
 
   @JsonProperty("progressive")
   private Boolean progressive = null;
 
+  /**
+   * Filter type
+   */
+  @JsonAdapter(FilterTypeEnum.Adapter.class)
+  public enum FilterTypeEnum {
+    NONE("None"),
+    
+    SUB("Sub"),
+    
+    UP("Up"),
+    
+    AVG("Avg"),
+    
+    PAETH("Paeth"),
+    
+    ADAPTIVE("Adaptive");
+
+    private String value;
+
+    FilterTypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static FilterTypeEnum fromValue(String text) {
+      for (FilterTypeEnum b : FilterTypeEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<FilterTypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final FilterTypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public FilterTypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return FilterTypeEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
   @JsonProperty("filterType")
-  private Object filterType = null;
+  private FilterTypeEnum filterType = null;
 
   @JsonProperty("compressionLevel")
   private Integer compressionLevel = null;
@@ -57,7 +165,7 @@ public class PngOptionsDTO extends DrawingOptionsBaseDTO {
   @JsonProperty("bitDepth")
   private Integer bitDepth = null;
 
-  public PngOptionsDTO colorType(Object colorType) {
+  public PngOptionsDTO colorType(ColorTypeEnum colorType) {
     this.colorType = colorType;
     return this;
   }
@@ -66,11 +174,11 @@ public class PngOptionsDTO extends DrawingOptionsBaseDTO {
    * Color type
    * @return colorType
   **/
-  public Object getColorType() {
+  public ColorTypeEnum getColorType() {
     return colorType;
   }  
 
-  public void setColorType(Object colorType) {
+  public void setColorType(ColorTypeEnum colorType) {
     this.colorType = colorType;
   }
 
@@ -91,7 +199,7 @@ public class PngOptionsDTO extends DrawingOptionsBaseDTO {
     this.progressive = progressive;
   }
 
-  public PngOptionsDTO filterType(Object filterType) {
+  public PngOptionsDTO filterType(FilterTypeEnum filterType) {
     this.filterType = filterType;
     return this;
   }
@@ -100,11 +208,11 @@ public class PngOptionsDTO extends DrawingOptionsBaseDTO {
    * Filter type
    * @return filterType
   **/
-  public Object getFilterType() {
+  public FilterTypeEnum getFilterType() {
     return filterType;
   }  
 
-  public void setFilterType(Object filterType) {
+  public void setFilterType(FilterTypeEnum filterType) {
     this.filterType = filterType;
   }
 

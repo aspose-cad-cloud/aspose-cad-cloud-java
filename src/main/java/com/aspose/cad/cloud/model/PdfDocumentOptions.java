@@ -94,6 +94,9 @@ public class PdfDocumentOptions {
   @JsonProperty("compliance")
   private ComplianceEnum compliance = null;
 
+  @JsonProperty("digitalSignatureDetails")
+  private PdfDigitalSignatureDetailsCore digitalSignatureDetails = null;
+
   public PdfDocumentOptions compliance(ComplianceEnum compliance) {
     this.compliance = compliance;
     return this;
@@ -111,6 +114,23 @@ public class PdfDocumentOptions {
     this.compliance = compliance;
   }
 
+  public PdfDocumentOptions digitalSignatureDetails(PdfDigitalSignatureDetailsCore digitalSignatureDetails) {
+    this.digitalSignatureDetails = digitalSignatureDetails;
+    return this;
+  }
+
+  /**
+   * Get digitalSignatureDetails
+   * @return digitalSignatureDetails
+  **/
+  public PdfDigitalSignatureDetailsCore getDigitalSignatureDetails() {
+    return digitalSignatureDetails;
+  }  
+
+  public void setDigitalSignatureDetails(PdfDigitalSignatureDetailsCore digitalSignatureDetails) {
+    this.digitalSignatureDetails = digitalSignatureDetails;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -121,12 +141,13 @@ public class PdfDocumentOptions {
     return false;
   }
     PdfDocumentOptions pdfDocumentOptions = (PdfDocumentOptions) o;
-    return ObjectUtils.equals(this.compliance, pdfDocumentOptions.compliance);
+    return ObjectUtils.equals(this.compliance, pdfDocumentOptions.compliance) &&
+    ObjectUtils.equals(this.digitalSignatureDetails, pdfDocumentOptions.digitalSignatureDetails);
   }
 
   @Override
   public int hashCode() {
-    return ObjectUtils.hashCodeMulti(compliance);
+    return ObjectUtils.hashCodeMulti(compliance, digitalSignatureDetails);
   }
 
 
@@ -136,6 +157,7 @@ public class PdfDocumentOptions {
     sb.append("class PdfDocumentOptions {\n");
     
     sb.append("    compliance: ").append(toIndentedString(compliance)).append("\n");
+    sb.append("    digitalSignatureDetails: ").append(toIndentedString(digitalSignatureDetails)).append("\n");
     sb.append("}");
     return sb.toString();
   }

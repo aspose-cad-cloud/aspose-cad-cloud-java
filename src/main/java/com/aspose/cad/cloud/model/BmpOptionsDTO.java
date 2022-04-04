@@ -45,8 +45,67 @@ public class BmpOptionsDTO extends DrawingOptionsBaseDTO {
   @JsonProperty("bitsPerPixel")
   private Integer bitsPerPixel = null;
 
+  /**
+   * Compression type
+   */
+  @JsonAdapter(CompressionEnum.Adapter.class)
+  public enum CompressionEnum {
+    RGB("Rgb"),
+    
+    RLE8("Rle8"),
+    
+    RLE4("Rle4"),
+    
+    BITFIELDS("Bitfields"),
+    
+    JPEG("Jpeg"),
+    
+    PNG("Png"),
+    
+    ALPHABITFIELDS("AlphaBitfields"),
+    
+    DXT1("Dxt1");
+
+    private String value;
+
+    CompressionEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static CompressionEnum fromValue(String text) {
+      for (CompressionEnum b : CompressionEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<CompressionEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final CompressionEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public CompressionEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return CompressionEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
   @JsonProperty("compression")
-  private Object compression = null;
+  private CompressionEnum compression = null;
 
   public BmpOptionsDTO bitsPerPixel(Integer bitsPerPixel) {
     this.bitsPerPixel = bitsPerPixel;
@@ -65,7 +124,7 @@ public class BmpOptionsDTO extends DrawingOptionsBaseDTO {
     this.bitsPerPixel = bitsPerPixel;
   }
 
-  public BmpOptionsDTO compression(Object compression) {
+  public BmpOptionsDTO compression(CompressionEnum compression) {
     this.compression = compression;
     return this;
   }
@@ -74,11 +133,11 @@ public class BmpOptionsDTO extends DrawingOptionsBaseDTO {
    * Compression type
    * @return compression
   **/
-  public Object getCompression() {
+  public CompressionEnum getCompression() {
     return compression;
   }  
 
-  public void setCompression(Object compression) {
+  public void setCompression(CompressionEnum compression) {
     this.compression = compression;
   }
 

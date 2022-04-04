@@ -803,6 +803,126 @@ public class CadApi
     }
   
     /**
+     * Export an existing drawing to DXF format with export settings specified.
+     * 
+     * @param request Holds parameters for this request invocation.
+     * @return byte[]
+     * @throws Exception 
+     */
+    public byte[] postDrawingDXF(PostDrawingDXFRequest request) throws Exception 
+    {
+       // verify the required parameter 'request.name' is set
+      if (request.name== null) {
+        throw new ApiException(400, "Missing the required parameter 'request.name' when calling postDrawingDXF");
+      }
+       // verify the required parameter 'request.options' is set
+      if (request.options== null) {
+        throw new ApiException(400, "Missing the required parameter 'request.options' when calling postDrawingDXF");
+      }
+      // create path and map variables
+      String resourcePath = this.Configuration.getApiRootUrl() + "/cad/{name}/dxf";
+      
+      HashMap<String, Object> formParams = new HashMap<String, Object>();
+      resourcePath = UrlHelper.addPathParameter(resourcePath, "name", request.name);
+      
+      resourcePath = UrlHelper.addQueryParameterToUrl(resourcePath, "folder", request.folder);
+      resourcePath = UrlHelper.addQueryParameterToUrl(resourcePath, "outPath", request.outPath);
+      resourcePath = UrlHelper.addQueryParameterToUrl(resourcePath, "storage", request.storage);
+      
+      String postBody = SerializationHelper.serialize(request.options);
+      
+      byte[] response = this.apiInvoker.invokeApi(
+          resourcePath, 
+          "POST", 
+          postBody, 
+          null, 
+          formParams);
+          
+      return response;
+      
+    }
+  
+    /**
+     * Export an existing drawing to Dwf format with export settings specified.
+     * 
+     * @param request Holds parameters for this request invocation.
+     * @return byte[]
+     * @throws Exception 
+     */
+    public byte[] postDrawingDwf(PostDrawingDwfRequest request) throws Exception 
+    {
+       // verify the required parameter 'request.name' is set
+      if (request.name== null) {
+        throw new ApiException(400, "Missing the required parameter 'request.name' when calling postDrawingDwf");
+      }
+       // verify the required parameter 'request.options' is set
+      if (request.options== null) {
+        throw new ApiException(400, "Missing the required parameter 'request.options' when calling postDrawingDwf");
+      }
+      // create path and map variables
+      String resourcePath = this.Configuration.getApiRootUrl() + "/cad/{name}/dwf";
+      
+      HashMap<String, Object> formParams = new HashMap<String, Object>();
+      resourcePath = UrlHelper.addPathParameter(resourcePath, "name", request.name);
+      
+      resourcePath = UrlHelper.addQueryParameterToUrl(resourcePath, "folder", request.folder);
+      resourcePath = UrlHelper.addQueryParameterToUrl(resourcePath, "outPath", request.outPath);
+      resourcePath = UrlHelper.addQueryParameterToUrl(resourcePath, "storage", request.storage);
+      
+      String postBody = SerializationHelper.serialize(request.options);
+      
+      byte[] response = this.apiInvoker.invokeApi(
+          resourcePath, 
+          "POST", 
+          postBody, 
+          null, 
+          formParams);
+          
+      return response;
+      
+    }
+  
+    /**
+     * Export an existing drawing to Fbx format with export settings specified.
+     * 
+     * @param request Holds parameters for this request invocation.
+     * @return byte[]
+     * @throws Exception 
+     */
+    public byte[] postDrawingFbx(PostDrawingFbxRequest request) throws Exception 
+    {
+       // verify the required parameter 'request.name' is set
+      if (request.name== null) {
+        throw new ApiException(400, "Missing the required parameter 'request.name' when calling postDrawingFbx");
+      }
+       // verify the required parameter 'request.options' is set
+      if (request.options== null) {
+        throw new ApiException(400, "Missing the required parameter 'request.options' when calling postDrawingFbx");
+      }
+      // create path and map variables
+      String resourcePath = this.Configuration.getApiRootUrl() + "/cad/{name}/fbx";
+      
+      HashMap<String, Object> formParams = new HashMap<String, Object>();
+      resourcePath = UrlHelper.addPathParameter(resourcePath, "name", request.name);
+      
+      resourcePath = UrlHelper.addQueryParameterToUrl(resourcePath, "folder", request.folder);
+      resourcePath = UrlHelper.addQueryParameterToUrl(resourcePath, "outPath", request.outPath);
+      resourcePath = UrlHelper.addQueryParameterToUrl(resourcePath, "storage", request.storage);
+      
+      String postBody = SerializationHelper.serialize(request.options);
+      
+      byte[] response = this.apiInvoker.invokeApi(
+          resourcePath, 
+          "POST", 
+          postBody, 
+          null, 
+          formParams);
+          
+      return response;
+      
+    }
+  
+    /**
      * Export an existing drawing into GIF format with export settings specified.
      * 
      * @param request Holds parameters for this request invocation.
@@ -901,6 +1021,46 @@ public class CadApi
       }
       // create path and map variables
       String resourcePath = this.Configuration.getApiRootUrl() + "/cad/{name}/jpeg2000";
+      
+      HashMap<String, Object> formParams = new HashMap<String, Object>();
+      resourcePath = UrlHelper.addPathParameter(resourcePath, "name", request.name);
+      
+      resourcePath = UrlHelper.addQueryParameterToUrl(resourcePath, "folder", request.folder);
+      resourcePath = UrlHelper.addQueryParameterToUrl(resourcePath, "outPath", request.outPath);
+      resourcePath = UrlHelper.addQueryParameterToUrl(resourcePath, "storage", request.storage);
+      
+      String postBody = SerializationHelper.serialize(request.options);
+      
+      byte[] response = this.apiInvoker.invokeApi(
+          resourcePath, 
+          "POST", 
+          postBody, 
+          null, 
+          formParams);
+          
+      return response;
+      
+    }
+  
+    /**
+     * Export an existing drawing to Obj format with export settings specified.
+     * 
+     * @param request Holds parameters for this request invocation.
+     * @return byte[]
+     * @throws Exception 
+     */
+    public byte[] postDrawingObj(PostDrawingObjRequest request) throws Exception 
+    {
+       // verify the required parameter 'request.name' is set
+      if (request.name== null) {
+        throw new ApiException(400, "Missing the required parameter 'request.name' when calling postDrawingObj");
+      }
+       // verify the required parameter 'request.options' is set
+      if (request.options== null) {
+        throw new ApiException(400, "Missing the required parameter 'request.options' when calling postDrawingObj");
+      }
+      // create path and map variables
+      String resourcePath = this.Configuration.getApiRootUrl() + "/cad/{name}/obj";
       
       HashMap<String, Object> formParams = new HashMap<String, Object>();
       resourcePath = UrlHelper.addPathParameter(resourcePath, "name", request.name);
@@ -1379,6 +1539,123 @@ public class CadApi
     }
   
     /**
+     * Export drawing to DXF format. Drawing data is passed as zero-indexed multipart/form-data as well as export DXF options serialized as JSON. Order of drawing data and DXF options could vary.
+     * 
+     * @param request Holds parameters for this request invocation.
+     * @return byte[]
+     * @throws Exception 
+     */
+    public byte[] putDrawingDXF(PutDrawingDXFRequest request) throws Exception 
+    {
+       // verify the required parameter 'request.drawingData' is set
+      if (request.drawingData== null) {
+        throw new ApiException(400, "Missing the required parameter 'request.drawingData' when calling putDrawingDXF");
+      }
+      // create path and map variables
+      String resourcePath = this.Configuration.getApiRootUrl() + "/cad/dxf";
+      
+      HashMap<String, Object> formParams = new HashMap<String, Object>();
+      
+      resourcePath = UrlHelper.addQueryParameterToUrl(resourcePath, "outPath", request.outPath);
+      resourcePath = UrlHelper.addQueryParameterToUrl(resourcePath, "storage", request.storage);
+      
+            if (request.drawingData != null) 
+      {
+          formParams.put("drawingData", this.apiInvoker.toFileInfo(request.drawingData, "drawingData"));
+      }if (request.exportOptions != null) 
+      {
+          formParams.put("exportOptions", request.exportOptions);
+      }
+      byte[] response = this.apiInvoker.invokeApi(
+          resourcePath, 
+          "PUT", 
+          null, 
+          null, 
+          formParams);
+          
+      return response;
+      
+    }
+  
+    /**
+     * Export drawing to Dwf format. Drawing data is passed as zero-indexed multipart/form-data as well as export Dwf options serialized as JSON. Order of drawing data and Dwf options could vary.
+     * 
+     * @param request Holds parameters for this request invocation.
+     * @return byte[]
+     * @throws Exception 
+     */
+    public byte[] putDrawingDwf(PutDrawingDwfRequest request) throws Exception 
+    {
+       // verify the required parameter 'request.drawingData' is set
+      if (request.drawingData== null) {
+        throw new ApiException(400, "Missing the required parameter 'request.drawingData' when calling putDrawingDwf");
+      }
+      // create path and map variables
+      String resourcePath = this.Configuration.getApiRootUrl() + "/cad/dwf";
+      
+      HashMap<String, Object> formParams = new HashMap<String, Object>();
+      
+      resourcePath = UrlHelper.addQueryParameterToUrl(resourcePath, "outPath", request.outPath);
+      resourcePath = UrlHelper.addQueryParameterToUrl(resourcePath, "storage", request.storage);
+      
+            if (request.drawingData != null) 
+      {
+          formParams.put("drawingData", this.apiInvoker.toFileInfo(request.drawingData, "drawingData"));
+      }if (request.exportOptions != null) 
+      {
+          formParams.put("exportOptions", request.exportOptions);
+      }
+      byte[] response = this.apiInvoker.invokeApi(
+          resourcePath, 
+          "PUT", 
+          null, 
+          null, 
+          formParams);
+          
+      return response;
+      
+    }
+  
+    /**
+     * Export drawing to Fbx format. Drawing data is passed as zero-indexed multipart/form-data as well as export Fbx options serialized as JSON. Order of drawing data and Fbx options could vary.
+     * 
+     * @param request Holds parameters for this request invocation.
+     * @return byte[]
+     * @throws Exception 
+     */
+    public byte[] putDrawingFbx(PutDrawingFbxRequest request) throws Exception 
+    {
+       // verify the required parameter 'request.drawingData' is set
+      if (request.drawingData== null) {
+        throw new ApiException(400, "Missing the required parameter 'request.drawingData' when calling putDrawingFbx");
+      }
+      // create path and map variables
+      String resourcePath = this.Configuration.getApiRootUrl() + "/cad/fbx";
+      
+      HashMap<String, Object> formParams = new HashMap<String, Object>();
+      
+      resourcePath = UrlHelper.addQueryParameterToUrl(resourcePath, "outPath", request.outPath);
+      resourcePath = UrlHelper.addQueryParameterToUrl(resourcePath, "storage", request.storage);
+      
+            if (request.drawingData != null) 
+      {
+          formParams.put("drawingData", this.apiInvoker.toFileInfo(request.drawingData, "drawingData"));
+      }if (request.exportOptions != null) 
+      {
+          formParams.put("exportOptions", request.exportOptions);
+      }
+      byte[] response = this.apiInvoker.invokeApi(
+          resourcePath, 
+          "PUT", 
+          null, 
+          null, 
+          formParams);
+          
+      return response;
+      
+    }
+  
+    /**
      * Export drawing to GIF format. Drawing data is passed as zero-indexed multipart/form-data as well as export GIF options serialized as JSON. Order of drawing data and GIF options could vary.
      * 
      * @param request Holds parameters for this request invocation.
@@ -1471,6 +1748,45 @@ public class CadApi
       }
       // create path and map variables
       String resourcePath = this.Configuration.getApiRootUrl() + "/cad/jpeg2000";
+      
+      HashMap<String, Object> formParams = new HashMap<String, Object>();
+      
+      resourcePath = UrlHelper.addQueryParameterToUrl(resourcePath, "outPath", request.outPath);
+      resourcePath = UrlHelper.addQueryParameterToUrl(resourcePath, "storage", request.storage);
+      
+            if (request.drawingData != null) 
+      {
+          formParams.put("drawingData", this.apiInvoker.toFileInfo(request.drawingData, "drawingData"));
+      }if (request.exportOptions != null) 
+      {
+          formParams.put("exportOptions", request.exportOptions);
+      }
+      byte[] response = this.apiInvoker.invokeApi(
+          resourcePath, 
+          "PUT", 
+          null, 
+          null, 
+          formParams);
+          
+      return response;
+      
+    }
+  
+    /**
+     * Export drawing to Obj format. Drawing data is passed as zero-indexed multipart/form-data as well as export Obj options serialized as JSON. Order of drawing data and Obj options could vary.
+     * 
+     * @param request Holds parameters for this request invocation.
+     * @return byte[]
+     * @throws Exception 
+     */
+    public byte[] putDrawingObj(PutDrawingObjRequest request) throws Exception 
+    {
+       // verify the required parameter 'request.drawingData' is set
+      if (request.drawingData== null) {
+        throw new ApiException(400, "Missing the required parameter 'request.drawingData' when calling putDrawingObj");
+      }
+      // create path and map variables
+      String resourcePath = this.Configuration.getApiRootUrl() + "/cad/obj";
       
       HashMap<String, Object> formParams = new HashMap<String, Object>();
       
