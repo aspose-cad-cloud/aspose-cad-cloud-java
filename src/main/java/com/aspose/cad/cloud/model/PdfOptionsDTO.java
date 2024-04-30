@@ -46,7 +46,7 @@ public class PdfOptionsDTO extends DrawingOptionsBaseDTO {
   private PdfDocumentInfo pdfDocumentInfo = null;
 
   @JsonProperty("corePdfOptions")
-  private PdfDocumentOptions corePdfOptions = null;
+  private PdfDocumentOptionsDTO corePdfOptions = null;
 
   public PdfOptionsDTO pdfDocumentInfo(PdfDocumentInfo pdfDocumentInfo) {
     this.pdfDocumentInfo = pdfDocumentInfo;
@@ -65,7 +65,7 @@ public class PdfOptionsDTO extends DrawingOptionsBaseDTO {
     this.pdfDocumentInfo = pdfDocumentInfo;
   }
 
-  public PdfOptionsDTO corePdfOptions(PdfDocumentOptions corePdfOptions) {
+  public PdfOptionsDTO corePdfOptions(PdfDocumentOptionsDTO corePdfOptions) {
     this.corePdfOptions = corePdfOptions;
     return this;
   }
@@ -74,11 +74,11 @@ public class PdfOptionsDTO extends DrawingOptionsBaseDTO {
    * Core PDF rendering options
    * @return corePdfOptions
   **/
-  public PdfDocumentOptions getCorePdfOptions() {
+  public PdfDocumentOptionsDTO getCorePdfOptions() {
     return corePdfOptions;
   }  
 
-  public void setCorePdfOptions(PdfDocumentOptions corePdfOptions) {
+  public void setCorePdfOptions(PdfDocumentOptionsDTO corePdfOptions) {
     this.corePdfOptions = corePdfOptions;
   }
 

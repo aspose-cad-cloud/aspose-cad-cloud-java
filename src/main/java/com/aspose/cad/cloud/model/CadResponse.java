@@ -84,6 +84,9 @@ public class CadResponse {
   @JsonProperty("pltProperties")
   private PltProperties pltProperties = null;
 
+  @JsonProperty("stpProperties")
+  private StpProperties stpProperties = null;
+
   public CadResponse height(Integer height) {
     this.height = height;
     return this;
@@ -322,6 +325,23 @@ public class CadResponse {
     this.pltProperties = pltProperties;
   }
 
+  public CadResponse stpProperties(StpProperties stpProperties) {
+    this.stpProperties = stpProperties;
+    return this;
+  }
+
+  /**
+   * Gets or sets the STP properties.
+   * @return stpProperties
+  **/
+  public StpProperties getStpProperties() {
+    return stpProperties;
+  }  
+
+  public void setStpProperties(StpProperties stpProperties) {
+    this.stpProperties = stpProperties;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -345,12 +365,13 @@ public class CadResponse {
     ObjectUtils.equals(this.cf2Properties, cadResponse.cf2Properties) &&
     ObjectUtils.equals(this.fbxProperties, cadResponse.fbxProperties) &&
     ObjectUtils.equals(this.objProperties, cadResponse.objProperties) &&
-    ObjectUtils.equals(this.pltProperties, cadResponse.pltProperties);
+    ObjectUtils.equals(this.pltProperties, cadResponse.pltProperties) &&
+    ObjectUtils.equals(this.stpProperties, cadResponse.stpProperties);
   }
 
   @Override
   public int hashCode() {
-    return ObjectUtils.hashCodeMulti(height, width, dwgProperties, dxfProperties, dwtProperties, dgnProperties, ifcProperties, igsProperties, stlProperties, dwfProperties, cf2Properties, fbxProperties, objProperties, pltProperties);
+    return ObjectUtils.hashCodeMulti(height, width, dwgProperties, dxfProperties, dwtProperties, dgnProperties, ifcProperties, igsProperties, stlProperties, dwfProperties, cf2Properties, fbxProperties, objProperties, pltProperties, stpProperties);
   }
 
 
@@ -373,6 +394,7 @@ public class CadResponse {
     sb.append("    fbxProperties: ").append(toIndentedString(fbxProperties)).append("\n");
     sb.append("    objProperties: ").append(toIndentedString(objProperties)).append("\n");
     sb.append("    pltProperties: ").append(toIndentedString(pltProperties)).append("\n");
+    sb.append("    stpProperties: ").append(toIndentedString(stpProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }

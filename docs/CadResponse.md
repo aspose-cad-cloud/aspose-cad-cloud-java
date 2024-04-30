@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **fbxProperties** | [**FbxProperties**](FbxProperties.md) | Gets or sets the Cf2 properties. |  [optional]
 **objProperties** | [**ObjProperties**](ObjProperties.md) | Gets or sets the FBX properties. |  [optional]
 **pltProperties** | [**PltProperties**](PltProperties.md) | Gets or sets the Cf2 properties. |  [optional]
+**stpProperties** | [**StpProperties**](StpProperties.md) | Gets or sets the STP properties. |  [optional]
 
 
 [[Back to Model list]](API_README.md#documentation-for-models) [[Back to API list]](API_README.md#documentation-for-api-endpoints) [[Back to API_README]](API_README.md)
