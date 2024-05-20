@@ -44,7 +44,7 @@ public class CadApi
     /**
      * Current SDK version
      */
-    public static final String Version = "20.11";
+    public static final String Version = "24.1";
 
     /**
      * The configuration
@@ -172,10 +172,10 @@ public class CadApi
      * Convert CAD drawing to DXF, DWG, DGN, DWF, DWFX, IFC, STL, STP, STEP, CGM, GLB, GLTF, DWT, IGES, PLT, CF2, OBJ, HPGL, IGS, PCL, FBX, PDF, SVG format.
      * 
      * @param request Holds parameters for this request invocation.
-     * @return File
+     * @return byte[]
      * @throws Exception 
      */
-    public File convert(ConvertRequest request) throws Exception 
+    public byte[] convert(ConvertRequest request) throws Exception 
     {
        // verify the required parameter 'request.outputFormat' is set
       if (request.outputFormat== null) {
@@ -200,13 +200,8 @@ public class CadApi
           null, 
           formParams);
           
+      return response;
       
-      if (response == null)
-      {
-          return null;
-      }
-      
-      return SerializationHelper.deserialize(new String(response), File.class);
     }
   
     /**
@@ -434,23 +429,18 @@ public class CadApi
           null, 
           formParams);
           
+      return response;
       
-      if (response == null)
-      {
-          return null;
-      }
-      
-      return SerializationHelper.deserialize(new String(response), byte[].class);
     }
   
     /**
      * Extract Metadata from CAD drawing to txt, xml or json file.
      * 
      * @param request Holds parameters for this request invocation.
-     * @return File
+     * @return byte[]
      * @throws Exception 
      */
-    public File extractMetadata(ExtractMetadataRequest request) throws Exception 
+    public byte[] extractMetadata(ExtractMetadataRequest request) throws Exception 
     {
        // verify the required parameter 'request.outputFormat' is set
       if (request.outputFormat== null) {
@@ -474,23 +464,18 @@ public class CadApi
           null, 
           formParams);
           
+      return response;
       
-      if (response == null)
-      {
-          return null;
-      }
-      
-      return SerializationHelper.deserialize(new String(response), File.class);
     }
   
     /**
      * Extract Text from CAD drawing to txt file
      * 
      * @param request Holds parameters for this request invocation.
-     * @return File
+     * @return byte[]
      * @throws Exception 
      */
-    public File extractText(ExtractTextRequest request) throws Exception 
+    public byte[] extractText(ExtractTextRequest request) throws Exception 
     {
       // create path and map variables
       String resourcePath = this.Configuration.getApiRootUrl() + "/cad/ExtractText";
@@ -509,13 +494,8 @@ public class CadApi
           null, 
           formParams);
           
+      return response;
       
-      if (response == null)
-      {
-          return null;
-      }
-      
-      return SerializationHelper.deserialize(new String(response), File.class);
     }
   
     /**
@@ -917,10 +897,10 @@ public class CadApi
      * Convert bitmap image to DXF, DWG, DGN, DWF, DWFX, IFC, STL, STP, STEP, CGM, GLB, GLTF, DWT, IGES, PLT, CF2, OBJ, HPGL, IGS, PCL, FBX, SVG format.
      * 
      * @param request Holds parameters for this request invocation.
-     * @return File
+     * @return byte[]
      * @throws Exception 
      */
-    public File paperToCad(PaperToCadRequest request) throws Exception 
+    public byte[] paperToCad(PaperToCadRequest request) throws Exception 
     {
        // verify the required parameter 'request.outputFormat' is set
       if (request.outputFormat== null) {
@@ -944,13 +924,8 @@ public class CadApi
           null, 
           formParams);
           
+      return response;
       
-      if (response == null)
-      {
-          return null;
-      }
-      
-      return SerializationHelper.deserialize(new String(response), File.class);
     }
   
     /**
@@ -2872,10 +2847,10 @@ public class CadApi
      * Save Metadata
      * 
      * @param request Holds parameters for this request invocation.
-     * @return File
+     * @return byte[]
      * @throws Exception 
      */
-    public File putEditMetadata(PutEditMetadataRequest request) throws Exception 
+    public byte[] putEditMetadata(PutEditMetadataRequest request) throws Exception 
     {
       // create path and map variables
       String resourcePath = this.Configuration.getApiRootUrl() + "/cad/EditMetadata";
@@ -2897,13 +2872,8 @@ public class CadApi
           null, 
           formParams);
           
+      return response;
       
-      if (response == null)
-      {
-          return null;
-      }
-      
-      return SerializationHelper.deserialize(new String(response), File.class);
     }
   
     /**
@@ -2992,10 +2962,10 @@ public class CadApi
      * Return file for viewer
      * 
      * @param request Holds parameters for this request invocation.
-     * @return File
+     * @return byte[]
      * @throws Exception 
      */
-    public File viewer(ViewerRequest request) throws Exception 
+    public byte[] viewer(ViewerRequest request) throws Exception 
     {
        // verify the required parameter 'request.outputFormat' is set
       if (request.outputFormat== null) {
@@ -3019,23 +2989,18 @@ public class CadApi
           null, 
           formParams);
           
+      return response;
       
-      if (response == null)
-      {
-          return null;
-      }
-      
-      return SerializationHelper.deserialize(new String(response), File.class);
     }
   
     /**
      * Add watermark to drawing
      * 
      * @param request Holds parameters for this request invocation.
-     * @return File
+     * @return byte[]
      * @throws Exception 
      */
-    public File watermark(WatermarkRequest request) throws Exception 
+    public byte[] watermark(WatermarkRequest request) throws Exception 
     {
        // verify the required parameter 'request.outputFormat' is set
       if (request.outputFormat== null) {
@@ -3063,13 +3028,8 @@ public class CadApi
           null, 
           formParams);
           
+      return response;
       
-      if (response == null)
-      {
-          return null;
-      }
-      
-      return SerializationHelper.deserialize(new String(response), File.class);
     }
   
 }

@@ -35,7 +35,7 @@ public class ApiError {
     /**
      * API error
      */
-    public com.aspose.cad.cloud.model.Error error;
+    public com.aspose.cad.cloud.model.ErrorModel error;
     
     /**
      * ApiError constrcutor.

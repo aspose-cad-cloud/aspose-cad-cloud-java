@@ -42,7 +42,7 @@ Add Aspose CAD Cloud repository to your pom.xml.
             <repository>
                 <id>asposeJavaAPI</id>
                 <name>Aspose Java API</name>
-                <url>https://repository.aspose.cloud/repo/</url>
+                <url>https://releases.aspose.cloud/java/repo/</url>
                 <snapshots>
                     <enabled>false</enabled>
                 </snapshots>
@@ -65,7 +65,7 @@ Add Aspose.CAD Cloud Java SDK as a dependency.
     <dependency>
         <groupId>com.aspose</groupId>
         <artifactId>aspose-cad-cloud</artifactId>
-        <version>20.11</version>
+        <version>24.1</version>
     </dependency>
 </dependencies>
 ```
