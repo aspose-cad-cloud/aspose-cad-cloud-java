@@ -46,7 +46,7 @@ public class FilesUploadResult {
   private List<String> uploaded = null;
 
   @JsonProperty("errors")
-  private List<Error> errors = null;
+  private List<ErrorModel> errors = null;
 
   public FilesUploadResult uploaded(List<String> uploaded) {
     this.uploaded = uploaded;
@@ -73,14 +73,14 @@ public class FilesUploadResult {
     this.uploaded = uploaded;
   }
 
-  public FilesUploadResult errors(List<Error> errors) {
+  public FilesUploadResult errors(List<ErrorModel> errors) {
     this.errors = errors;
     return this;
   }
 
-  public FilesUploadResult addErrorsItem(Error errorsItem) {
+  public FilesUploadResult addErrorsItem(ErrorModel errorsItem) {
     if (this.errors == null) {
-      this.errors = new ArrayList<Error>();
+      this.errors = new ArrayList<ErrorModel>();
     }
     this.errors.add(errorsItem);
     return this;
@@ -90,11 +90,11 @@ public class FilesUploadResult {
    * List of errors.
    * @return errors
   **/
-  public List<Error> getErrors() {
+  public List<ErrorModel> getErrors() {
     return errors;
   }  
 
-  public void setErrors(List<Error> errors) {
+  public void setErrors(List<ErrorModel> errors) {
     this.errors = errors;
   }
 

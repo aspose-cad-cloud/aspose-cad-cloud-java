@@ -2,7 +2,7 @@
 
 <a name="convert"></a>
 ## **convert**
-> [File](File.md) convert(ConvertRequest request)
+> byte[] convert(ConvertRequest request)
 
 Convert CAD drawing to DXF, DWG, DGN, DWF, DWFX, IFC, STL, STP, STEP, CGM, GLB, GLTF, DWT, IGES, PLT, CF2, OBJ, HPGL, IGS, PCL, FBX, PDF, SVG format.
 
@@ -22,7 +22,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**File**](File.md)
+**byte[]**
 
 [[Back to top]](#) [[Back to API list]](API_README.md#documentation-for-api-endpoints) [[Back to Model list]](API_README.md#documentation-for-models) [[Back to API_README]](API_README.md)
 
@@ -210,7 +210,7 @@ Name | Type | Description  | Notes
 
 <a name="extractMetadata"></a>
 ## **extractMetadata**
-> [File](File.md) extractMetadata(ExtractMetadataRequest request)
+> byte[] extractMetadata(ExtractMetadataRequest request)
 
 Extract Metadata from CAD drawing to txt, xml or json file.
 
@@ -228,13 +228,13 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**File**](File.md)
+**byte[]**
 
 [[Back to top]](#) [[Back to API list]](API_README.md#documentation-for-api-endpoints) [[Back to Model list]](API_README.md#documentation-for-models) [[Back to API_README]](API_README.md)
 
 <a name="extractText"></a>
 ## **extractText**
-> [File](File.md) extractText(ExtractTextRequest request)
+> byte[] extractText(ExtractTextRequest request)
 
 Extract Text from CAD drawing to txt file
 
@@ -250,7 +250,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**File**](File.md)
+**byte[]**
 
 [[Back to top]](#) [[Back to API list]](API_README.md#documentation-for-api-endpoints) [[Back to Model list]](API_README.md#documentation-for-models) [[Back to API_README]](API_README.md)
 
@@ -532,7 +532,7 @@ Name | Type | Description  | Notes
 
 <a name="paperToCad"></a>
 ## **paperToCad**
-> [File](File.md) paperToCad(PaperToCadRequest request)
+> byte[] paperToCad(PaperToCadRequest request)
 
 Convert bitmap image to DXF, DWG, DGN, DWF, DWFX, IFC, STL, STP, STEP, CGM, GLB, GLTF, DWT, IGES, PLT, CF2, OBJ, HPGL, IGS, PCL, FBX, SVG format.
 
@@ -550,7 +550,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**File**](File.md)
+**byte[]**
 
 [[Back to top]](#) [[Back to API list]](API_README.md#documentation-for-api-endpoints) [[Back to Model list]](API_README.md#documentation-for-models) [[Back to API_README]](API_README.md)
 
@@ -1944,7 +1944,7 @@ Name | Type | Description  | Notes
 
 <a name="putEditMetadata"></a>
 ## **putEditMetadata**
-> [File](File.md) putEditMetadata(PutEditMetadataRequest request)
+> byte[] putEditMetadata(PutEditMetadataRequest request)
 
 Save Metadata
 
@@ -1962,7 +1962,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**File**](File.md)
+**byte[]**
 
 [[Back to top]](#) [[Back to API list]](API_README.md#documentation-for-api-endpoints) [[Back to Model list]](API_README.md#documentation-for-models) [[Back to API_README]](API_README.md)
 
@@ -2016,7 +2016,7 @@ Name | Type | Description  | Notes
 
 <a name="viewer"></a>
 ## **viewer**
-> [File](File.md) viewer(ViewerRequest request)
+> byte[] viewer(ViewerRequest request)
 
 Return file for viewer
 
@@ -2034,13 +2034,13 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**File**](File.md)
+**byte[]**
 
 [[Back to top]](#) [[Back to API list]](API_README.md#documentation-for-api-endpoints) [[Back to Model list]](API_README.md#documentation-for-models) [[Back to API_README]](API_README.md)
 
 <a name="watermark"></a>
 ## **watermark**
-> [File](File.md) watermark(WatermarkRequest request)
+> byte[] watermark(WatermarkRequest request)
 
 Add watermark to drawing
 
@@ -2062,7 +2062,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**File**](File.md)
+**byte[]**
 
 [[Back to top]](#) [[Back to API list]](API_README.md#documentation-for-api-endpoints) [[Back to Model list]](API_README.md#documentation-for-models) [[Back to API_README]](API_README.md)
 
