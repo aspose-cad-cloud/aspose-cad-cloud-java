@@ -44,7 +44,7 @@ public class CadApi
     /**
      * Current SDK version
      */
-    public static final String Version = "24.1";
+    public static final String Version = "24.5";
 
     /**
      * The configuration
@@ -169,7 +169,7 @@ public class CadApi
     }
     
     /**
-     * Convert CAD drawing to DXF, DWG, DGN, DWF, DWFX, IFC, STL, STP, STEP, CGM, GLB, GLTF, DWT, IGES, PLT, CF2, OBJ, HPGL, IGS, PCL, FBX, PDF, SVG format.
+     * Convert CAD drawing to DXF, DWG, DGN, DWF, DWFX, DRC, IFC, STL, STP, STEP, CGM, GLB, GLTF, DWT, IGES, PLT, CF2, OBJ, HPGL, IGS, PCL, FBX, PDF, SVG format.
      * 
      * @param request Holds parameters for this request invocation.
      * @return byte[]
@@ -894,7 +894,7 @@ public class CadApi
     }
   
     /**
-     * Convert bitmap image to DXF, DWG, DGN, DWF, DWFX, IFC, STL, STP, STEP, CGM, GLB, GLTF, DWT, IGES, PLT, CF2, OBJ, HPGL, IGS, PCL, FBX, SVG format.
+     * Convert bitmap image to DXF, DWG, DGN, DWF, DWFX, DRC, IFC, STL, STP, STEP, CGM, GLB, GLTF, DWT, IGES, PLT, CF2, OBJ, HPGL, IGS, PCL, FBX, SVG format.
      * 
      * @param request Holds parameters for this request invocation.
      * @return byte[]
@@ -1067,6 +1067,46 @@ public class CadApi
       }
       // create path and map variables
       String resourcePath = this.Configuration.getApiRootUrl() + "/cad/{name}/dicom";
+      
+      HashMap<String, Object> formParams = new HashMap<String, Object>();
+      resourcePath = UrlHelper.addPathParameter(resourcePath, "name", request.name);
+      
+      resourcePath = UrlHelper.addQueryParameterToUrl(resourcePath, "folder", request.folder);
+      resourcePath = UrlHelper.addQueryParameterToUrl(resourcePath, "outPath", request.outPath);
+      resourcePath = UrlHelper.addQueryParameterToUrl(resourcePath, "storage", request.storage);
+      
+      String postBody = SerializationHelper.serialize(request.options);
+      
+      byte[] response = this.apiInvoker.invokeApi(
+          resourcePath, 
+          "POST", 
+          postBody, 
+          null, 
+          formParams);
+          
+      return response;
+      
+    }
+  
+    /**
+     * Export an existing drawing to Draco format with export settings specified.
+     * 
+     * @param request Holds parameters for this request invocation.
+     * @return byte[]
+     * @throws Exception 
+     */
+    public byte[] postDrawingDraco(PostDrawingDracoRequest request) throws Exception 
+    {
+       // verify the required parameter 'request.name' is set
+      if (request.name== null) {
+        throw new ApiException(400, "Missing the required parameter 'request.name' when calling postDrawingDraco");
+      }
+       // verify the required parameter 'request.options' is set
+      if (request.options== null) {
+        throw new ApiException(400, "Missing the required parameter 'request.options' when calling postDrawingDraco");
+      }
+      // create path and map variables
+      String resourcePath = this.Configuration.getApiRootUrl() + "/cad/{name}/drc";
       
       HashMap<String, Object> formParams = new HashMap<String, Object>();
       resourcePath = UrlHelper.addPathParameter(resourcePath, "name", request.name);
@@ -2117,6 +2157,45 @@ public class CadApi
       }
       // create path and map variables
       String resourcePath = this.Configuration.getApiRootUrl() + "/cad/dicom";
+      
+      HashMap<String, Object> formParams = new HashMap<String, Object>();
+      
+      resourcePath = UrlHelper.addQueryParameterToUrl(resourcePath, "outPath", request.outPath);
+      resourcePath = UrlHelper.addQueryParameterToUrl(resourcePath, "storage", request.storage);
+      
+            if (request.drawingData != null) 
+      {
+          formParams.put("drawingData", this.apiInvoker.toFileInfo(request.drawingData, "drawingData"));
+      }if (request.exportOptions != null) 
+      {
+          formParams.put("exportOptions", request.exportOptions);
+      }
+      byte[] response = this.apiInvoker.invokeApi(
+          resourcePath, 
+          "PUT", 
+          null, 
+          null, 
+          formParams);
+          
+      return response;
+      
+    }
+  
+    /**
+     * Export drawing to Draco format. Drawing data is passed as zero-indexed multipart/form-data as well as export Draco options serialized as JSON. Order of drawing data and Draco options could vary.
+     * 
+     * @param request Holds parameters for this request invocation.
+     * @return byte[]
+     * @throws Exception 
+     */
+    public byte[] putDrawingDraco(PutDrawingDracoRequest request) throws Exception 
+    {
+       // verify the required parameter 'request.drawingData' is set
+      if (request.drawingData== null) {
+        throw new ApiException(400, "Missing the required parameter 'request.drawingData' when calling putDrawingDraco");
+      }
+      // create path and map variables
+      String resourcePath = this.Configuration.getApiRootUrl() + "/cad/drc";
       
       HashMap<String, Object> formParams = new HashMap<String, Object>();
       
