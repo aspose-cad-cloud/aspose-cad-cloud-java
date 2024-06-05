@@ -1,6 +1,6 @@
 /*
 * --------------------------------------------------------------------------------------------------------------------
-* <copyright company="Aspose" file="PaperToCadRequest.java">
+* <copyright company="Aspose" file="DracoOptionsDTO.java">
 *   Copyright (c) 2018-2020 Aspose Pty Ltd. All rights reserved.
 * </copyright>
 * <summary>
@@ -25,33 +25,60 @@
 * --------------------------------------------------------------------------------------------------------------------
 */
 
-package com.aspose.cad.cloud.model.requests;
 
-import com.aspose.cad.cloud.model.*;
+package com.aspose.cad.cloud.model;
+
+import java.io.IOException;
+import org.apache.commons.lang3.ObjectUtils;
+import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.*;
+import com.google.gson.stream.*;
+import com.google.gson.annotations.*;
 
 /**
-* Class that holds parameters for PaperToCad request invocation.
-**/   
-public class PaperToCadRequest
-{
-    /**
-    * Initializes a new instance of the PaperToCadRequest class.   
-    * @param outputFormat Output DXF, DWG, DGN, DWF, DWFX, DRC, IFC, STL, STP, STEP, CGM, GLB, GLTF, DWT, IGES, PLT, CF2, OBJ, HPGL, IGS, PCL, FBX, SVG file format.
-    * @param drawing Form-data file
-    **/
-    public PaperToCadRequest(String outputFormat, byte[] drawing)             
-    {
-        this.outputFormat = outputFormat;
-        this.drawing = drawing;
-    }
-        
-    /**
-    * Output DXF, DWG, DGN, DWF, DWFX, DRC, IFC, STL, STP, STEP, CGM, GLB, GLTF, DWT, IGES, PLT, CF2, OBJ, HPGL, IGS, PCL, FBX, SVG file format.
-    **/
-    public String outputFormat;
+ * Export options for Draco format
+ */
+public class DracoOptionsDTO extends DrawingOptionsBaseDTO {
 
-    /**
-    * Form-data file
-    **/
-    public byte[] drawing;
+  @Override
+  public boolean equals(java.lang.Object o) {
+  if (this == o) {
+    return true;
+  }
+  if (o == null || getClass() != o.getClass()) {
+    return false;
+  }
+    return true;
+  }
+
+  @Override
+  public int hashCode() {
+    return ObjectUtils.hashCodeMulti(super.hashCode());
+  }
+
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class DracoOptionsDTO {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(java.lang.Object o) {
+    if (o == null) {
+      return "null";
+    }
+    return o.toString().replace("\n", "\n    ");
+  }
+
 }
+

@@ -1,6 +1,6 @@
 /*
 * --------------------------------------------------------------------------------------------------------------------
-* <copyright company="Aspose" file="ConvertRequest.java">
+* <copyright company="Aspose" file="PutDrawingDracoRequest.java">
 *   Copyright (c) 2018-2020 Aspose Pty Ltd. All rights reserved.
 * </copyright>
 * <summary>
@@ -30,35 +30,42 @@ package com.aspose.cad.cloud.model.requests;
 import com.aspose.cad.cloud.model.*;
 
 /**
-* Class that holds parameters for Convert request invocation.
+* Class that holds parameters for PutDrawingDraco request invocation.
 **/   
-public class ConvertRequest
+public class PutDrawingDracoRequest
 {
     /**
-    * Initializes a new instance of the ConvertRequest class.   
-    * @param outputFormat Output DXF, DWG, DGN, DWF, DWFX, DRC, IFC, STL, STP, STEP, CGM, GLB, GLTF, DWT, IGES, PLT, CF2, OBJ, HPGL, IGS, PCL, FBX, PDF, SVG, PNG, BMP, DIB, TIFF, TIF, JPEG, GIF, PSD, JPG, JPE, JIF, JFIF, PSD, WEBP, DCM, DICOM, JP2, J2K, JPF, JPM, JPG2, J2C, JPC, JPX, MJ2 , DJVU file format.
-    * @param drawing Form-data file
-    * @param outputTypeExt For output pdf format: PDF_15, PDFa_1a OR PDFa_1b. Null for another format
+    * Initializes a new instance of the PutDrawingDracoRequest class.   
+    * @param drawingData Input drawing
+    * @param outPath Path to updated file (if this is empty, response contains streamed file).
+    * @param exportOptions JSON-serialized export options passed as zero-indexed multipart/form-data. Follow #/definitions/DracoOptionsDTO model definition.
+    * @param storage Your Aspose Cloud Storage name.
     **/
-    public ConvertRequest(String outputFormat, byte[] drawing, String outputTypeExt)             
+    public PutDrawingDracoRequest(byte[] drawingData, String outPath, String exportOptions, String storage)             
     {
-        this.outputFormat = outputFormat;
-        this.drawing = drawing;
-        this.outputTypeExt = outputTypeExt;
+        this.drawingData = drawingData;
+        this.outPath = outPath;
+        this.exportOptions = exportOptions;
+        this.storage = storage;
     }
         
     /**
-    * Output DXF, DWG, DGN, DWF, DWFX, DRC, IFC, STL, STP, STEP, CGM, GLB, GLTF, DWT, IGES, PLT, CF2, OBJ, HPGL, IGS, PCL, FBX, PDF, SVG, PNG, BMP, DIB, TIFF, TIF, JPEG, GIF, PSD, JPG, JPE, JIF, JFIF, PSD, WEBP, DCM, DICOM, JP2, J2K, JPF, JPM, JPG2, J2C, JPC, JPX, MJ2 , DJVU file format.
+    * Input drawing
     **/
-    public String outputFormat;
+    public byte[] drawingData;
 
     /**
-    * Form-data file
+    * Path to updated file (if this is empty, response contains streamed file).
     **/
-    public byte[] drawing;
+    public String outPath;
 
     /**
-    * For output pdf format: PDF_15, PDFa_1a OR PDFa_1b. Null for another format
+    * JSON-serialized export options passed as zero-indexed multipart/form-data. Follow #/definitions/DracoOptionsDTO model definition.
     **/
-    public String outputTypeExt;
+    public String exportOptions;
+
+    /**
+    * Your Aspose Cloud Storage name.
+    **/
+    public String storage;
 }
