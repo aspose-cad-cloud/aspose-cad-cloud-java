@@ -36,22 +36,22 @@ public class ExtractMetadataRequest
 {
     /**
     * Initializes a new instance of the ExtractMetadataRequest class.   
+    * @param drawingData Input drawing
     * @param outputFormat Output TXT, XML or JSON file format.
-    * @param drawing Form-data file
     **/
-    public ExtractMetadataRequest(String outputFormat, byte[] drawing)             
+    public ExtractMetadataRequest(byte[] drawingData, String outputFormat)             
     {
+        this.drawingData = drawingData;
         this.outputFormat = outputFormat;
-        this.drawing = drawing;
     }
         
+    /**
+    * Input drawing
+    **/
+    public byte[] drawingData;
+
     /**
     * Output TXT, XML or JSON file format.
     **/
     public String outputFormat;
-
-    /**
-    * Form-data file
-    **/
-    public byte[] drawing;
 }

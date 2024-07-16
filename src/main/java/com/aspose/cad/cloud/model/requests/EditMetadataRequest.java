@@ -36,15 +36,15 @@ public class EditMetadataRequest
 {
     /**
     * Initializes a new instance of the EditMetadataRequest class.   
-    * @param drawing 
+    * @param drawingData Input drawing
     **/
-    public EditMetadataRequest(byte[] drawing)             
+    public EditMetadataRequest(byte[] drawingData)             
     {
-        this.drawing = drawing;
+        this.drawingData = drawingData;
     }
         
     /**
-    * Gets or sets drawing
+    * Input drawing
     **/
-    public byte[] drawing;
+    public byte[] drawingData;
 }

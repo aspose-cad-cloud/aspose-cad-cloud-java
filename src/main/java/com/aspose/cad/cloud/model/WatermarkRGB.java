@@ -1,6 +1,6 @@
 /*
 * --------------------------------------------------------------------------------------------------------------------
-* <copyright company="Aspose" file="Color.java">
+* <copyright company="Aspose" file="WatermarkRGB.java">
 *   Copyright (c) 2018-2020 Aspose Pty Ltd. All rights reserved.
 * </copyright>
 * <summary>
@@ -39,9 +39,12 @@ import com.google.gson.stream.*;
 import com.google.gson.annotations.*;
 
 /**
- * Color
+ * Watermark text with RGB values
  */
-public class Color {
+public class WatermarkRGB {
+  @JsonProperty("text")
+  private String text = null;
+
   @JsonProperty("R")
   private Integer R = null;
 
@@ -51,28 +54,30 @@ public class Color {
   @JsonProperty("B")
   private Integer B = null;
 
-  @JsonProperty("A")
-  private Integer A = null;
+  public WatermarkRGB text(String text) {
+    this.text = text;
+    return this;
+  }
 
-  @JsonProperty("isKnownColor")
-  private Boolean isKnownColor = null;
+  /**
+   * Watermark text.
+   * @return text
+  **/
+  public String getText() {
+    return text;
+  }  
 
-  @JsonProperty("isEmpty")
-  private Boolean isEmpty = null;
+  public void setText(String text) {
+    this.text = text;
+  }
 
-  @JsonProperty("isNamedColor")
-  private Boolean isNamedColor = null;
-
-  @JsonProperty("name")
-  private String name = null;
-
-  public Color R(Integer R) {
+  public WatermarkRGB R(Integer R) {
     this.R = R;
     return this;
   }
 
   /**
-   * Get R
+   * Red light(0-255).
    * @return R
   **/
   public Integer getR() {
@@ -83,13 +88,13 @@ public class Color {
     this.R = R;
   }
 
-  public Color G(Integer G) {
+  public WatermarkRGB G(Integer G) {
     this.G = G;
     return this;
   }
 
   /**
-   * Get G
+   * Green light(0-255).
    * @return G
   **/
   public Integer getG() {
@@ -100,13 +105,13 @@ public class Color {
     this.G = G;
   }
 
-  public Color B(Integer B) {
+  public WatermarkRGB B(Integer B) {
     this.B = B;
     return this;
   }
 
   /**
-   * Get B
+   * Blue light(0-255).
    * @return B
   **/
   public Integer getB() {
@@ -115,91 +120,6 @@ public class Color {
 
   public void setB(Integer B) {
     this.B = B;
-  }
-
-  public Color A(Integer A) {
-    this.A = A;
-    return this;
-  }
-
-  /**
-   * Get A
-   * @return A
-  **/
-  public Integer getA() {
-    return A;
-  }  
-
-  public void setA(Integer A) {
-    this.A = A;
-  }
-
-  public Color isKnownColor(Boolean isKnownColor) {
-    this.isKnownColor = isKnownColor;
-    return this;
-  }
-
-  /**
-   * Get isKnownColor
-   * @return isKnownColor
-  **/
-  public Boolean isIsKnownColor() {
-    return isKnownColor;
-  }  
-
-  public void setIsKnownColor(Boolean isKnownColor) {
-    this.isKnownColor = isKnownColor;
-  }
-
-  public Color isEmpty(Boolean isEmpty) {
-    this.isEmpty = isEmpty;
-    return this;
-  }
-
-  /**
-   * Get isEmpty
-   * @return isEmpty
-  **/
-  public Boolean isIsEmpty() {
-    return isEmpty;
-  }  
-
-  public void setIsEmpty(Boolean isEmpty) {
-    this.isEmpty = isEmpty;
-  }
-
-  public Color isNamedColor(Boolean isNamedColor) {
-    this.isNamedColor = isNamedColor;
-    return this;
-  }
-
-  /**
-   * Get isNamedColor
-   * @return isNamedColor
-  **/
-  public Boolean isIsNamedColor() {
-    return isNamedColor;
-  }  
-
-  public void setIsNamedColor(Boolean isNamedColor) {
-    this.isNamedColor = isNamedColor;
-  }
-
-  public Color name(String name) {
-    this.name = name;
-    return this;
-  }
-
-  /**
-   * Get name
-   * @return name
-  **/
-  public String getName() {
-    return name;
-  }  
-
-  public void setName(String name) {
-    this.name = name;
   }
 
 
@@ -211,36 +131,28 @@ public class Color {
   if (o == null || getClass() != o.getClass()) {
     return false;
   }
-    Color color = (Color) o;
-    return ObjectUtils.equals(this.R, color.R) &&
-    ObjectUtils.equals(this.G, color.G) &&
-    ObjectUtils.equals(this.B, color.B) &&
-    ObjectUtils.equals(this.A, color.A) &&
-    ObjectUtils.equals(this.isKnownColor, color.isKnownColor) &&
-    ObjectUtils.equals(this.isEmpty, color.isEmpty) &&
-    ObjectUtils.equals(this.isNamedColor, color.isNamedColor) &&
-    ObjectUtils.equals(this.name, color.name);
+    WatermarkRGB watermarkRGB = (WatermarkRGB) o;
+    return ObjectUtils.equals(this.text, watermarkRGB.text) &&
+    ObjectUtils.equals(this.R, watermarkRGB.R) &&
+    ObjectUtils.equals(this.G, watermarkRGB.G) &&
+    ObjectUtils.equals(this.B, watermarkRGB.B);
   }
 
   @Override
   public int hashCode() {
-    return ObjectUtils.hashCodeMulti(R, G, B, A, isKnownColor, isEmpty, isNamedColor, name);
+    return ObjectUtils.hashCodeMulti(text, R, G, B);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Color {\n");
+    sb.append("class WatermarkRGB {\n");
     
+    sb.append("    text: ").append(toIndentedString(text)).append("\n");
     sb.append("    R: ").append(toIndentedString(R)).append("\n");
     sb.append("    G: ").append(toIndentedString(G)).append("\n");
     sb.append("    B: ").append(toIndentedString(B)).append("\n");
-    sb.append("    A: ").append(toIndentedString(A)).append("\n");
-    sb.append("    isKnownColor: ").append(toIndentedString(isKnownColor)).append("\n");
-    sb.append("    isEmpty: ").append(toIndentedString(isEmpty)).append("\n");
-    sb.append("    isNamedColor: ").append(toIndentedString(isNamedColor)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("}");
     return sb.toString();
   }

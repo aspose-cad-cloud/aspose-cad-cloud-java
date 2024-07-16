@@ -1,6 +1,6 @@
 /*
 * --------------------------------------------------------------------------------------------------------------------
-* <copyright company="Aspose" file="ErrorModel.java">
+* <copyright company="Aspose" file="ColorDTO.java">
 *   Copyright (c) 2018-2020 Aspose Pty Ltd. All rights reserved.
 * </copyright>
 * <summary>
@@ -39,87 +39,67 @@ import com.google.gson.stream.*;
 import com.google.gson.annotations.*;
 
 /**
- * Error
+ * RGB color values
  */
-public class ErrorModel {
-  @JsonProperty("code")
-  private String code = null;
+public class ColorDTO {
+  @JsonProperty("R")
+  private Integer R = null;
 
-  @JsonProperty("message")
-  private String message = null;
+  @JsonProperty("G")
+  private Integer G = null;
 
-  @JsonProperty("description")
-  private String description = null;
+  @JsonProperty("B")
+  private Integer B = null;
 
-  @JsonProperty("innerError")
-  private ErrorDetails innerError = null;
-
-  public ErrorModel code(String code) {
-    this.code = code;
+  public ColorDTO R(Integer R) {
+    this.R = R;
     return this;
   }
 
   /**
-   * Code             
-   * @return code
+   * Red light(0-255).
+   * @return R
   **/
-  public String getCode() {
-    return code;
+  public Integer getR() {
+    return R;
   }  
 
-  public void setCode(String code) {
-    this.code = code;
+  public void setR(Integer R) {
+    this.R = R;
   }
 
-  public ErrorModel message(String message) {
-    this.message = message;
+  public ColorDTO G(Integer G) {
+    this.G = G;
     return this;
   }
 
   /**
-   * Message             
-   * @return message
+   * Green light(0-255).
+   * @return G
   **/
-  public String getMessage() {
-    return message;
+  public Integer getG() {
+    return G;
   }  
 
-  public void setMessage(String message) {
-    this.message = message;
+  public void setG(Integer G) {
+    this.G = G;
   }
 
-  public ErrorModel description(String description) {
-    this.description = description;
+  public ColorDTO B(Integer B) {
+    this.B = B;
     return this;
   }
 
   /**
-   * Description             
-   * @return description
+   * Blue light(0-255).
+   * @return B
   **/
-  public String getDescription() {
-    return description;
+  public Integer getB() {
+    return B;
   }  
 
-  public void setDescription(String description) {
-    this.description = description;
-  }
-
-  public ErrorModel innerError(ErrorDetails innerError) {
-    this.innerError = innerError;
-    return this;
-  }
-
-  /**
-   * Inner Error             
-   * @return innerError
-  **/
-  public ErrorDetails getInnerError() {
-    return innerError;
-  }  
-
-  public void setInnerError(ErrorDetails innerError) {
-    this.innerError = innerError;
+  public void setB(Integer B) {
+    this.B = B;
   }
 
 
@@ -131,28 +111,26 @@ public class ErrorModel {
   if (o == null || getClass() != o.getClass()) {
     return false;
   }
-    ErrorModel errorModel = (ErrorModel) o;
-    return ObjectUtils.equals(this.code, errorModel.code) &&
-    ObjectUtils.equals(this.message, errorModel.message) &&
-    ObjectUtils.equals(this.description, errorModel.description) &&
-    ObjectUtils.equals(this.innerError, errorModel.innerError);
+    ColorDTO colorDTO = (ColorDTO) o;
+    return ObjectUtils.equals(this.R, colorDTO.R) &&
+    ObjectUtils.equals(this.G, colorDTO.G) &&
+    ObjectUtils.equals(this.B, colorDTO.B);
   }
 
   @Override
   public int hashCode() {
-    return ObjectUtils.hashCodeMulti(code, message, description, innerError);
+    return ObjectUtils.hashCodeMulti(R, G, B);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ErrorModel {\n");
+    sb.append("class ColorDTO {\n");
     
-    sb.append("    code: ").append(toIndentedString(code)).append("\n");
-    sb.append("    message: ").append(toIndentedString(message)).append("\n");
-    sb.append("    description: ").append(toIndentedString(description)).append("\n");
-    sb.append("    innerError: ").append(toIndentedString(innerError)).append("\n");
+    sb.append("    R: ").append(toIndentedString(R)).append("\n");
+    sb.append("    G: ").append(toIndentedString(G)).append("\n");
+    sb.append("    B: ").append(toIndentedString(B)).append("\n");
     sb.append("}");
     return sb.toString();
   }

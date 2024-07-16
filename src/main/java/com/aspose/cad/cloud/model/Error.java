@@ -1,6 +1,6 @@
 /*
 * --------------------------------------------------------------------------------------------------------------------
-* <copyright company="Aspose" file="FilesUploadResult.java">
+* <copyright company="Aspose" file="Error.java">
 *   Copyright (c) 2018-2020 Aspose Pty Ltd. All rights reserved.
 * </copyright>
 * <summary>
@@ -39,63 +39,87 @@ import com.google.gson.stream.*;
 import com.google.gson.annotations.*;
 
 /**
- * File upload result
+ * Error
  */
-public class FilesUploadResult {
-  @JsonProperty("uploaded")
-  private List<String> uploaded = null;
+public class Error {
+  @JsonProperty("code")
+  private String code = null;
 
-  @JsonProperty("errors")
-  private List<Error> errors = null;
+  @JsonProperty("message")
+  private String message = null;
 
-  public FilesUploadResult uploaded(List<String> uploaded) {
-    this.uploaded = uploaded;
-    return this;
-  }
+  @JsonProperty("description")
+  private String description = null;
 
-  public FilesUploadResult addUploadedItem(String uploadedItem) {
-    if (this.uploaded == null) {
-      this.uploaded = new ArrayList<String>();
-    }
-    this.uploaded.add(uploadedItem);
-    return this;
-  }
+  @JsonProperty("innerError")
+  private ErrorDetails innerError = null;
 
-  /**
-   * List of uploaded file names
-   * @return uploaded
-  **/
-  public List<String> getUploaded() {
-    return uploaded;
-  }  
-
-  public void setUploaded(List<String> uploaded) {
-    this.uploaded = uploaded;
-  }
-
-  public FilesUploadResult errors(List<Error> errors) {
-    this.errors = errors;
-    return this;
-  }
-
-  public FilesUploadResult addErrorsItem(Error errorsItem) {
-    if (this.errors == null) {
-      this.errors = new ArrayList<Error>();
-    }
-    this.errors.add(errorsItem);
+  public Error code(String code) {
+    this.code = code;
     return this;
   }
 
   /**
-   * List of errors.
-   * @return errors
+   * Code             
+   * @return code
   **/
-  public List<Error> getErrors() {
-    return errors;
+  public String getCode() {
+    return code;
   }  
 
-  public void setErrors(List<Error> errors) {
-    this.errors = errors;
+  public void setCode(String code) {
+    this.code = code;
+  }
+
+  public Error message(String message) {
+    this.message = message;
+    return this;
+  }
+
+  /**
+   * Message             
+   * @return message
+  **/
+  public String getMessage() {
+    return message;
+  }  
+
+  public void setMessage(String message) {
+    this.message = message;
+  }
+
+  public Error description(String description) {
+    this.description = description;
+    return this;
+  }
+
+  /**
+   * Description             
+   * @return description
+  **/
+  public String getDescription() {
+    return description;
+  }  
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
+  public Error innerError(ErrorDetails innerError) {
+    this.innerError = innerError;
+    return this;
+  }
+
+  /**
+   * Inner Error             
+   * @return innerError
+  **/
+  public ErrorDetails getInnerError() {
+    return innerError;
+  }  
+
+  public void setInnerError(ErrorDetails innerError) {
+    this.innerError = innerError;
   }
 
 
@@ -107,24 +131,28 @@ public class FilesUploadResult {
   if (o == null || getClass() != o.getClass()) {
     return false;
   }
-    FilesUploadResult filesUploadResult = (FilesUploadResult) o;
-    return ObjectUtils.equals(this.uploaded, filesUploadResult.uploaded) &&
-    ObjectUtils.equals(this.errors, filesUploadResult.errors);
+    Error error = (Error) o;
+    return ObjectUtils.equals(this.code, error.code) &&
+    ObjectUtils.equals(this.message, error.message) &&
+    ObjectUtils.equals(this.description, error.description) &&
+    ObjectUtils.equals(this.innerError, error.innerError);
   }
 
   @Override
   public int hashCode() {
-    return ObjectUtils.hashCodeMulti(uploaded, errors);
+    return ObjectUtils.hashCodeMulti(code, message, description, innerError);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class FilesUploadResult {\n");
+    sb.append("class Error {\n");
     
-    sb.append("    uploaded: ").append(toIndentedString(uploaded)).append("\n");
-    sb.append("    errors: ").append(toIndentedString(errors)).append("\n");
+    sb.append("    code: ").append(toIndentedString(code)).append("\n");
+    sb.append("    message: ").append(toIndentedString(message)).append("\n");
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    innerError: ").append(toIndentedString(innerError)).append("\n");
     sb.append("}");
     return sb.toString();
   }

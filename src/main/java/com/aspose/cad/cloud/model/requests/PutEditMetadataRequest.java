@@ -36,22 +36,22 @@ public class PutEditMetadataRequest
 {
     /**
     * Initializes a new instance of the PutEditMetadataRequest class.   
-    * @param drawing 
-    * @param metadataComponent 
+    * @param drawingData Input drawing
+    * @param metadataComponent Metadata string json from POST/EditMetadata
     **/
-    public PutEditMetadataRequest(byte[] drawing, String metadataComponent)             
+    public PutEditMetadataRequest(byte[] drawingData, String metadataComponent)             
     {
-        this.drawing = drawing;
+        this.drawingData = drawingData;
         this.metadataComponent = metadataComponent;
     }
         
     /**
-    * Gets or sets drawing
+    * Input drawing
     **/
-    public byte[] drawing;
+    public byte[] drawingData;
 
     /**
-    * Gets or sets metadataComponent
+    * Metadata string json from POST/EditMetadata
     **/
     public String metadataComponent;
 }
