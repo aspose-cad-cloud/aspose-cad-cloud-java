@@ -55,10 +55,10 @@ public class VectorRasterizationOptionsDTO {
   private Double pageWidth = null;
 
   @JsonProperty("backgroundColor")
-  private Color backgroundColor = null;
+  private ColorDTO backgroundColor = null;
 
   @JsonProperty("drawColor")
-  private Color drawColor = null;
+  private ColorDTO drawColor = null;
 
   /**
    * Gets or Sets unitType
@@ -224,7 +224,7 @@ public class VectorRasterizationOptionsDTO {
     this.pageWidth = pageWidth;
   }
 
-  public VectorRasterizationOptionsDTO backgroundColor(Color backgroundColor) {
+  public VectorRasterizationOptionsDTO backgroundColor(ColorDTO backgroundColor) {
     this.backgroundColor = backgroundColor;
     return this;
   }
@@ -233,15 +233,15 @@ public class VectorRasterizationOptionsDTO {
    * Gets or sets a background color.
    * @return backgroundColor
   **/
-  public Color getBackgroundColor() {
+  public ColorDTO getBackgroundColor() {
     return backgroundColor;
   }  
 
-  public void setBackgroundColor(Color backgroundColor) {
+  public void setBackgroundColor(ColorDTO backgroundColor) {
     this.backgroundColor = backgroundColor;
   }
 
-  public VectorRasterizationOptionsDTO drawColor(Color drawColor) {
+  public VectorRasterizationOptionsDTO drawColor(ColorDTO drawColor) {
     this.drawColor = drawColor;
     return this;
   }
@@ -250,11 +250,11 @@ public class VectorRasterizationOptionsDTO {
    * Gets or sets a foreground color.
    * @return drawColor
   **/
-  public Color getDrawColor() {
+  public ColorDTO getDrawColor() {
     return drawColor;
   }  
 
-  public void setDrawColor(Color drawColor) {
+  public void setDrawColor(ColorDTO drawColor) {
     this.drawColor = drawColor;
   }
 

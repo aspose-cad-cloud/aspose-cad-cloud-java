@@ -36,22 +36,22 @@ public class PaperToCadRequest
 {
     /**
     * Initializes a new instance of the PaperToCadRequest class.   
+    * @param drawingData Input drawing
     * @param outputFormat Output DXF, DWG, DGN, DWF, DWFX, DRC, IFC, STL, STP, STEP, CGM, GLB, GLTF, DWT, IGES, PLT, CF2, OBJ, HPGL, IGS, PCL, FBX, SVG file format.
-    * @param drawing Form-data file
     **/
-    public PaperToCadRequest(String outputFormat, byte[] drawing)             
+    public PaperToCadRequest(byte[] drawingData, String outputFormat)             
     {
+        this.drawingData = drawingData;
         this.outputFormat = outputFormat;
-        this.drawing = drawing;
     }
         
+    /**
+    * Input drawing
+    **/
+    public byte[] drawingData;
+
     /**
     * Output DXF, DWG, DGN, DWF, DWFX, DRC, IFC, STL, STP, STEP, CGM, GLB, GLTF, DWT, IGES, PLT, CF2, OBJ, HPGL, IGS, PCL, FBX, SVG file format.
     **/
     public String outputFormat;
-
-    /**
-    * Form-data file
-    **/
-    public byte[] drawing;
 }

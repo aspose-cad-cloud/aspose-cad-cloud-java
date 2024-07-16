@@ -36,33 +36,33 @@ public class WatermarkRequest
 {
     /**
     * Initializes a new instance of the WatermarkRequest class.   
+    * @param drawingData Input drawing
     * @param outputFormat 
-    * @param drawing 
-    * @param watermarkRgb 
+    * @param watermark JSON-serialized export options passed as zero-indexed multipart/form-data. Follow #/definitions/WatermarkRGB model definition.
     * @param outputTypeExt 
     **/
-    public WatermarkRequest(String outputFormat, byte[] drawing, String watermarkRgb, String outputTypeExt)             
+    public WatermarkRequest(byte[] drawingData, String outputFormat, String watermark, String outputTypeExt)             
     {
+        this.drawingData = drawingData;
         this.outputFormat = outputFormat;
-        this.drawing = drawing;
-        this.watermarkRgb = watermarkRgb;
+        this.watermark = watermark;
         this.outputTypeExt = outputTypeExt;
     }
         
+    /**
+    * Input drawing
+    **/
+    public byte[] drawingData;
+
     /**
     * Gets or sets outputFormat
     **/
     public String outputFormat;
 
     /**
-    * Gets or sets drawing
+    * JSON-serialized export options passed as zero-indexed multipart/form-data. Follow #/definitions/WatermarkRGB model definition.
     **/
-    public byte[] drawing;
-
-    /**
-    * Gets or sets watermarkRgb
-    **/
-    public String watermarkRgb;
+    public String watermark;
 
     /**
     * Gets or sets outputTypeExt

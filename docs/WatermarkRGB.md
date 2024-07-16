@@ -4,10 +4,10 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**watermarktext** | **String** | Watermark text. |  [optional]
-**watermarkr** | **String** | Red light(0-255). |  [optional]
-**watermarkg** | **String** | Green light(0-255). |  [optional]
-**watermarkb** | **String** | Blue light(0-255). |  [optional]
+**text** | **String** | Watermark text. |  [optional]
+**R** | **Integer** | Red light(0-255). | 
+**G** | **Integer** | Green light(0-255). | 
+**B** | **Integer** | Blue light(0-255). | 
 
 
 [[Back to Model list]](API_README.md#documentation-for-models) [[Back to API list]](API_README.md#documentation-for-api-endpoints) [[Back to API_README]](API_README.md)

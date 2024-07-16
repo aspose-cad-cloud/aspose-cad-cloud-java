@@ -36,26 +36,26 @@ public class ConvertRequest
 {
     /**
     * Initializes a new instance of the ConvertRequest class.   
+    * @param drawingData Input drawing
     * @param outputFormat Output DXF, DWG, DGN, DWF, DWFX, DRC, IFC, STL, STP, STEP, CGM, GLB, GLTF, DWT, IGES, PLT, CF2, OBJ, HPGL, IGS, PCL, FBX, PDF, SVG, PNG, BMP, DIB, TIFF, TIF, JPEG, GIF, PSD, JPG, JPE, JIF, JFIF, PSD, WEBP, DCM, DICOM, JP2, J2K, JPF, JPM, JPG2, J2C, JPC, JPX, MJ2 , DJVU file format.
-    * @param drawing Form-data file
     * @param outputTypeExt For output pdf format: PDF_15, PDFa_1a OR PDFa_1b. Null for another format
     **/
-    public ConvertRequest(String outputFormat, byte[] drawing, String outputTypeExt)             
+    public ConvertRequest(byte[] drawingData, String outputFormat, String outputTypeExt)             
     {
+        this.drawingData = drawingData;
         this.outputFormat = outputFormat;
-        this.drawing = drawing;
         this.outputTypeExt = outputTypeExt;
     }
         
     /**
+    * Input drawing
+    **/
+    public byte[] drawingData;
+
+    /**
     * Output DXF, DWG, DGN, DWF, DWFX, DRC, IFC, STL, STP, STEP, CGM, GLB, GLTF, DWT, IGES, PLT, CF2, OBJ, HPGL, IGS, PCL, FBX, PDF, SVG, PNG, BMP, DIB, TIFF, TIF, JPEG, GIF, PSD, JPG, JPE, JIF, JFIF, PSD, WEBP, DCM, DICOM, JP2, J2K, JPF, JPM, JPG2, J2C, JPC, JPX, MJ2 , DJVU file format.
     **/
     public String outputFormat;
-
-    /**
-    * Form-data file
-    **/
-    public byte[] drawing;
 
     /**
     * For output pdf format: PDF_15, PDFa_1a OR PDFa_1b. Null for another format

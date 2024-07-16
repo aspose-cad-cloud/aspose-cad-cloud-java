@@ -4,20 +4,20 @@
 ## **convert**
 > byte[] convert(ConvertRequest request)
 
-Convert CAD drawing to DXF, DWG, DGN, DWF, DWFX, DRC, IFC, STL, STP, STEP, CGM, GLB, GLTF, DWT, IGES, PLT, CF2, OBJ, HPGL, IGS, PCL, FBX, PDF, SVG format.
+Convert CAD drawing to DXF, DWG, DGN, DRC, DWF, DWFX, IFC, STL, STP, STEP, CGM, GLB, GLTF, DWT, IGES, PLT, CF2, OBJ, HPGL, IGS, PCL, FBX, PDF, SVG format.
 
 ### **ConvertRequest** Parameters
 ```java
 ConvertRequest(
+    byte[] drawingData, 
     String outputFormat, 
-    byte[] drawing, 
     String outputTypeExt)
 ```
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **drawingData** | **byte[]**| Input drawing |
  **outputFormat** | **String**| Output DXF, DWG, DGN, DWF, DWFX, DRC, IFC, STL, STP, STEP, CGM, GLB, GLTF, DWT, IGES, PLT, CF2, OBJ, HPGL, IGS, PCL, FBX, PDF, SVG, PNG, BMP, DIB, TIFF, TIF, JPEG, GIF, PSD, JPG, JPE, JIF, JFIF, PSD, WEBP, DCM, DICOM, JP2, J2K, JPF, JPM, JPG2, J2C, JPC, JPX, MJ2 , DJVU file format. |
- **drawing** | **byte[]**| Form-data file | [optional]
  **outputTypeExt** | **String**| For output pdf format: PDF_15, PDFa_1a OR PDFa_1b. Null for another format | [optional]
 
 ### Return type
@@ -195,12 +195,12 @@ Get Metadata info
 ### **EditMetadataRequest** Parameters
 ```java
 EditMetadataRequest(
-    byte[] drawing)
+    byte[] drawingData)
 ```
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **drawing** | **byte[]**|  | [optional]
+ **drawingData** | **byte[]**| Input drawing |
 
 ### Return type
 
@@ -217,14 +217,14 @@ Extract Metadata from CAD drawing to txt, xml or json file.
 ### **ExtractMetadataRequest** Parameters
 ```java
 ExtractMetadataRequest(
-    String outputFormat, 
-    byte[] drawing)
+    byte[] drawingData, 
+    String outputFormat)
 ```
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **drawingData** | **byte[]**| Input drawing |
  **outputFormat** | **String**| Output TXT, XML or JSON file format. |
- **drawing** | **byte[]**| Form-data file | [optional]
 
 ### Return type
 
@@ -241,12 +241,12 @@ Extract Text from CAD drawing to txt file
 ### **ExtractTextRequest** Parameters
 ```java
 ExtractTextRequest(
-    byte[] drawing)
+    byte[] drawingData)
 ```
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **drawing** | **byte[]**|  | [optional]
+ **drawingData** | **byte[]**| Input drawing |
 
 ### Return type
 
@@ -539,14 +539,14 @@ Convert bitmap image to DXF, DWG, DGN, DWF, DWFX, DRC, IFC, STL, STP, STEP, CGM,
 ### **PaperToCadRequest** Parameters
 ```java
 PaperToCadRequest(
-    String outputFormat, 
-    byte[] drawing)
+    byte[] drawingData, 
+    String outputFormat)
 ```
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **drawingData** | **byte[]**| Input drawing |
  **outputFormat** | **String**| Output DXF, DWG, DGN, DWF, DWFX, DRC, IFC, STL, STP, STEP, CGM, GLB, GLTF, DWT, IGES, PLT, CF2, OBJ, HPGL, IGS, PCL, FBX, SVG file format. |
- **drawing** | **byte[]**| Form-data file | [optional]
 
 ### Return type
 
@@ -2009,14 +2009,14 @@ Save Metadata
 ### **PutEditMetadataRequest** Parameters
 ```java
 PutEditMetadataRequest(
-    byte[] drawing, 
+    byte[] drawingData, 
     String metadataComponent)
 ```
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **drawing** | **byte[]**|  | [optional]
- **metadataComponent** | **String**|  | [optional]
+ **drawingData** | **byte[]**| Input drawing |
+ **metadataComponent** | **String**| Metadata string json from POST/EditMetadata |
 
 ### Return type
 
@@ -2105,17 +2105,17 @@ Add watermark to drawing
 ### **WatermarkRequest** Parameters
 ```java
 WatermarkRequest(
+    byte[] drawingData, 
     String outputFormat, 
-    byte[] drawing, 
-    String watermarkRgb, 
+    String watermark, 
     String outputTypeExt)
 ```
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **drawingData** | **byte[]**| Input drawing |
  **outputFormat** | **String**|  |
- **drawing** | **byte[]**|  | [optional]
- **watermarkRgb** | **String**|  | [optional]
+ **watermark** | **String**| JSON-serialized export options passed as zero-indexed multipart/form-data. Follow #/definitions/WatermarkRGB model definition. |
  **outputTypeExt** | **String**|  | [optional]
 
 ### Return type

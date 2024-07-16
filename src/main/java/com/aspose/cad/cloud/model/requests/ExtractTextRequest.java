@@ -36,15 +36,15 @@ public class ExtractTextRequest
 {
     /**
     * Initializes a new instance of the ExtractTextRequest class.   
-    * @param drawing 
+    * @param drawingData Input drawing
     **/
-    public ExtractTextRequest(byte[] drawing)             
+    public ExtractTextRequest(byte[] drawingData)             
     {
-        this.drawing = drawing;
+        this.drawingData = drawingData;
     }
         
     /**
-    * Gets or sets drawing
+    * Input drawing
     **/
-    public byte[] drawing;
+    public byte[] drawingData;
 }

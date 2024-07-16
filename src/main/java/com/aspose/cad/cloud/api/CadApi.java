@@ -169,7 +169,7 @@ public class CadApi
     }
     
     /**
-     * Convert CAD drawing to DXF, DWG, DGN, DWF, DWFX, DRC, IFC, STL, STP, STEP, CGM, GLB, GLTF, DWT, IGES, PLT, CF2, OBJ, HPGL, IGS, PCL, FBX, PDF, SVG format.
+     * Convert CAD drawing to DXF, DWG, DGN, DRC, DWF, DWFX, IFC, STL, STP, STEP, CGM, GLB, GLTF, DWT, IGES, PLT, CF2, OBJ, HPGL, IGS, PCL, FBX, PDF, SVG format.
      * 
      * @param request Holds parameters for this request invocation.
      * @return byte[]
@@ -177,6 +177,10 @@ public class CadApi
      */
     public byte[] convert(ConvertRequest request) throws Exception 
     {
+       // verify the required parameter 'request.drawingData' is set
+      if (request.drawingData== null) {
+        throw new ApiException(400, "Missing the required parameter 'request.drawingData' when calling convert");
+      }
        // verify the required parameter 'request.outputFormat' is set
       if (request.outputFormat== null) {
         throw new ApiException(400, "Missing the required parameter 'request.outputFormat' when calling convert");
@@ -189,9 +193,9 @@ public class CadApi
       resourcePath = UrlHelper.addQueryParameterToUrl(resourcePath, "outputFormat", request.outputFormat);
       resourcePath = UrlHelper.addQueryParameterToUrl(resourcePath, "outputTypeExt", request.outputTypeExt);
       
-            if (request.drawing != null) 
+            if (request.drawingData != null) 
       {
-          formParams.put("drawing", this.apiInvoker.toFileInfo(request.drawing, "drawing"));
+          formParams.put("drawingData", this.apiInvoker.toFileInfo(request.drawingData, "drawingData"));
       }
       byte[] response = this.apiInvoker.invokeApi(
           resourcePath, 
@@ -412,15 +416,19 @@ public class CadApi
      */
     public byte[] editMetadata(EditMetadataRequest request) throws Exception 
     {
+       // verify the required parameter 'request.drawingData' is set
+      if (request.drawingData== null) {
+        throw new ApiException(400, "Missing the required parameter 'request.drawingData' when calling editMetadata");
+      }
       // create path and map variables
       String resourcePath = this.Configuration.getApiRootUrl() + "/cad/EditMetadata";
       
       HashMap<String, Object> formParams = new HashMap<String, Object>();
       
       
-            if (request.drawing != null) 
+            if (request.drawingData != null) 
       {
-          formParams.put("drawing", this.apiInvoker.toFileInfo(request.drawing, "drawing"));
+          formParams.put("drawingData", this.apiInvoker.toFileInfo(request.drawingData, "drawingData"));
       }
       byte[] response = this.apiInvoker.invokeApi(
           resourcePath, 
@@ -442,6 +450,10 @@ public class CadApi
      */
     public byte[] extractMetadata(ExtractMetadataRequest request) throws Exception 
     {
+       // verify the required parameter 'request.drawingData' is set
+      if (request.drawingData== null) {
+        throw new ApiException(400, "Missing the required parameter 'request.drawingData' when calling extractMetadata");
+      }
        // verify the required parameter 'request.outputFormat' is set
       if (request.outputFormat== null) {
         throw new ApiException(400, "Missing the required parameter 'request.outputFormat' when calling extractMetadata");
@@ -453,9 +465,9 @@ public class CadApi
       
       resourcePath = UrlHelper.addQueryParameterToUrl(resourcePath, "outputFormat", request.outputFormat);
       
-            if (request.drawing != null) 
+            if (request.drawingData != null) 
       {
-          formParams.put("drawing", this.apiInvoker.toFileInfo(request.drawing, "drawing"));
+          formParams.put("drawingData", this.apiInvoker.toFileInfo(request.drawingData, "drawingData"));
       }
       byte[] response = this.apiInvoker.invokeApi(
           resourcePath, 
@@ -477,15 +489,19 @@ public class CadApi
      */
     public byte[] extractText(ExtractTextRequest request) throws Exception 
     {
+       // verify the required parameter 'request.drawingData' is set
+      if (request.drawingData== null) {
+        throw new ApiException(400, "Missing the required parameter 'request.drawingData' when calling extractText");
+      }
       // create path and map variables
       String resourcePath = this.Configuration.getApiRootUrl() + "/cad/ExtractText";
       
       HashMap<String, Object> formParams = new HashMap<String, Object>();
       
       
-            if (request.drawing != null) 
+            if (request.drawingData != null) 
       {
-          formParams.put("drawing", this.apiInvoker.toFileInfo(request.drawing, "drawing"));
+          formParams.put("drawingData", this.apiInvoker.toFileInfo(request.drawingData, "drawingData"));
       }
       byte[] response = this.apiInvoker.invokeApi(
           resourcePath, 
@@ -902,6 +918,10 @@ public class CadApi
      */
     public byte[] paperToCad(PaperToCadRequest request) throws Exception 
     {
+       // verify the required parameter 'request.drawingData' is set
+      if (request.drawingData== null) {
+        throw new ApiException(400, "Missing the required parameter 'request.drawingData' when calling paperToCad");
+      }
        // verify the required parameter 'request.outputFormat' is set
       if (request.outputFormat== null) {
         throw new ApiException(400, "Missing the required parameter 'request.outputFormat' when calling paperToCad");
@@ -913,9 +933,9 @@ public class CadApi
       
       resourcePath = UrlHelper.addQueryParameterToUrl(resourcePath, "outputFormat", request.outputFormat);
       
-            if (request.drawing != null) 
+            if (request.drawingData != null) 
       {
-          formParams.put("drawing", this.apiInvoker.toFileInfo(request.drawing, "drawing"));
+          formParams.put("drawingData", this.apiInvoker.toFileInfo(request.drawingData, "drawingData"));
       }
       byte[] response = this.apiInvoker.invokeApi(
           resourcePath, 
@@ -2931,15 +2951,23 @@ public class CadApi
      */
     public byte[] putEditMetadata(PutEditMetadataRequest request) throws Exception 
     {
+       // verify the required parameter 'request.drawingData' is set
+      if (request.drawingData== null) {
+        throw new ApiException(400, "Missing the required parameter 'request.drawingData' when calling putEditMetadata");
+      }
+       // verify the required parameter 'request.metadataComponent' is set
+      if (request.metadataComponent== null) {
+        throw new ApiException(400, "Missing the required parameter 'request.metadataComponent' when calling putEditMetadata");
+      }
       // create path and map variables
       String resourcePath = this.Configuration.getApiRootUrl() + "/cad/EditMetadata";
       
       HashMap<String, Object> formParams = new HashMap<String, Object>();
       
       
-            if (request.drawing != null) 
+            if (request.drawingData != null) 
       {
-          formParams.put("drawing", this.apiInvoker.toFileInfo(request.drawing, "drawing"));
+          formParams.put("drawingData", this.apiInvoker.toFileInfo(request.drawingData, "drawingData"));
       }if (request.metadataComponent != null) 
       {
           formParams.put("metadataComponent", request.metadataComponent);
@@ -3081,9 +3109,17 @@ public class CadApi
      */
     public byte[] watermark(WatermarkRequest request) throws Exception 
     {
+       // verify the required parameter 'request.drawingData' is set
+      if (request.drawingData== null) {
+        throw new ApiException(400, "Missing the required parameter 'request.drawingData' when calling watermark");
+      }
        // verify the required parameter 'request.outputFormat' is set
       if (request.outputFormat== null) {
         throw new ApiException(400, "Missing the required parameter 'request.outputFormat' when calling watermark");
+      }
+       // verify the required parameter 'request.watermark' is set
+      if (request.watermark== null) {
+        throw new ApiException(400, "Missing the required parameter 'request.watermark' when calling watermark");
       }
       // create path and map variables
       String resourcePath = this.Configuration.getApiRootUrl() + "/cad/Watermark";
@@ -3093,12 +3129,12 @@ public class CadApi
       resourcePath = UrlHelper.addQueryParameterToUrl(resourcePath, "outputFormat", request.outputFormat);
       resourcePath = UrlHelper.addQueryParameterToUrl(resourcePath, "outputTypeExt", request.outputTypeExt);
       
-            if (request.drawing != null) 
+            if (request.drawingData != null) 
       {
-          formParams.put("drawing", this.apiInvoker.toFileInfo(request.drawing, "drawing"));
-      }if (request.watermarkRgb != null) 
+          formParams.put("drawingData", this.apiInvoker.toFileInfo(request.drawingData, "drawingData"));
+      }if (request.watermark != null) 
       {
-          formParams.put("watermarkRgb", request.watermarkRgb);
+          formParams.put("watermark", request.watermark);
       }
       byte[] response = this.apiInvoker.invokeApi(
           resourcePath, 
