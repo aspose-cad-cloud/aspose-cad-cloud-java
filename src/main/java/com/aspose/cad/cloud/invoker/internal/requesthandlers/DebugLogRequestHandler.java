@@ -28,6 +28,7 @@
 package com.aspose.cad.cloud.invoker.internal.requesthandlers;
 
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.util.List;
@@ -36,6 +37,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.aspose.cad.cloud.invoker.Configuration;
+import org.apache.commons.io.output.ByteArrayOutputStream;
 
 /**
  * Debug log request handler.
@@ -78,7 +80,21 @@ public class DebugLogRequestHandler implements IRequestHandler
     {
         if (this.configuration.getDebugMode())
         {
-            this.logRequest(connection, streamToSend);
+            String contentType = connection.getRequestProperty("Content-Type");
+            if(contentType.contains("multipart/form-data")){
+
+                OutputStream out = new ByteArrayOutputStream("application/octet-stream".length());
+                try {
+                    out.write("application/octet-stream".getBytes());
+                } catch (IOException e) {
+                    this.logRequest(connection, null);
+                }
+
+                this.logRequest(connection, out);
+            }
+            else {
+                this.logRequest(connection, streamToSend);
+            }
         }
     }  
     

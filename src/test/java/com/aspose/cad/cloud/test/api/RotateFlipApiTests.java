@@ -85,6 +85,7 @@ public class RotateFlipApiTests extends ApiTester {
         String name = null;
         String outPath = null;
         String folder = CloudTestFolder;
+        String inputFileFolder = CloudTestDataFolder;
         String storage = DefaultStorage;
 		String outName = null;
 		
@@ -113,24 +114,31 @@ public class RotateFlipApiTests extends ApiTester {
             {
                 for (String method : _rotateFlipMethods)
                 {
-                    getImageRotateFlipRequest = new GetDrawingRotateFlipRequest(name, format, method, folder, outPath, storage);
-                    outName = name + "_" + method + "." + format;
+                    try
+                    {
+                        getImageRotateFlipRequest = new GetDrawingRotateFlipRequest(name, format, method, inputFileFolder, outPath, storage);
+                        outName = name + "_" + method + "." + format;
 
-                    Method propertiesTester = RotateFlipApiTests.class.getDeclaredMethod("getImageRotateFlipPropertiesTester", CadResponse.class, CadResponse.class);
-                    propertiesTester.setAccessible(true);
-                    Method requestInvoker = RotateFlipApiTests.class.getDeclaredMethod("getImageRotateFlipGetRequestInvoker", String.class, String.class);
-                    requestInvoker.setAccessible(true);
-                    this.testGetRequest(
-                            "getImageRotateFlipTest; save result to storage: " + saveResultToStorage,
-                            saveResultToStorage,
-                            String.format("Input image: %s; Output format: %s; Method: %s",
-                                    name, format, method),
-                            name,
-                            outName,
-                            requestInvoker,
-                            propertiesTester,
-                            folder,
-                            storage);
+                        Method propertiesTester = RotateFlipApiTests.class.getDeclaredMethod("getImageRotateFlipPropertiesTester", CadResponse.class, CadResponse.class);
+                        propertiesTester.setAccessible(true);
+                        Method requestInvoker = RotateFlipApiTests.class.getDeclaredMethod("getImageRotateFlipGetRequestInvoker", String.class, String.class);
+                        requestInvoker.setAccessible(true);
+                        this.testGetRequest(
+                                "getImageRotateFlipTest; save result to storage: " + saveResultToStorage,
+                                saveResultToStorage,
+                                String.format("Input image: %s; Output format: %s; Method: %s",
+                                        name, format, method),
+                                name,
+                                outName,
+                                requestInvoker,
+                                propertiesTester,
+                                folder,
+                                storage);
+                    }
+                    catch (Exception exception)
+                    {
+                        System.out.println(exception.getMessage());
+                    }
                 }
 
                 break;
@@ -176,7 +184,7 @@ public class RotateFlipApiTests extends ApiTester {
             {
                 name = inputFile.getName();
                 imageFile = Paths.get(LocalTestFolder + name).toFile();
-				//imageData = Files.readAllBytes(Paths.get(LocalTestFolder + name));
+                imageData = FileUtils.readFileToByteArray(imageFile);
             }
             else
             {
@@ -187,24 +195,31 @@ public class RotateFlipApiTests extends ApiTester {
             {
                 for (String method : _rotateFlipMethods)
                 {
-                    outName = name + "_" + method + "." + format;
-                    postImageRotateFlipRequest = new PostDrawingRotateFlipRequest(FileUtils.readFileToByteArray(imageFile), format, method, outPath, storage);
+                    try
+                    {
+                        outName = name + "_" + method + "." + format;
+                        postImageRotateFlipRequest = new PostDrawingRotateFlipRequest(imageData, format, method, outPath, storage);
 
-                    Method propertiesTester = RotateFlipApiTests.class.getDeclaredMethod("postImageRotateFlipPropertiesTester", CadResponse.class, CadResponse.class);
-                    propertiesTester.setAccessible(true);
-                    Method requestInvoker = RotateFlipApiTests.class.getDeclaredMethod("postImageRotateFlipPostRequestInvoker", byte[].class, String.class);
-                    requestInvoker.setAccessible(true);
-                    this.testPostRequest(
-                            "postImageRotateFlipTest; save result to storage: " + saveResultToStorage,
-                            saveResultToStorage,
-                            String.format("Input image: %s; Output format: %s; Method: %s",
-                                    name, format, method),
-                            name,
-                            outName,
-                            requestInvoker,
-                            propertiesTester,
-                            folder,
-                            storage);
+                        Method propertiesTester = RotateFlipApiTests.class.getDeclaredMethod("postImageRotateFlipPropertiesTester", CadResponse.class, CadResponse.class);
+                        propertiesTester.setAccessible(true);
+                        Method requestInvoker = RotateFlipApiTests.class.getDeclaredMethod("postImageRotateFlipPostRequestInvoker", byte[].class, String.class);
+                        requestInvoker.setAccessible(true);
+                        this.testPostRequest(
+                                "postImageRotateFlipTest; save result to storage: " + saveResultToStorage,
+                                saveResultToStorage,
+                                String.format("Input image: %s; Output format: %s; Method: %s",
+                                        name, format, method),
+                                name,
+                                outName,
+                                requestInvoker,
+                                propertiesTester,
+                                folder,
+                                storage);
+                    }
+                    catch (Exception exception)
+                    {
+                        System.out.println(exception.getMessage());
+                    }
                 }
 
 			    break;

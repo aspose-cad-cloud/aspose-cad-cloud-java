@@ -28,6 +28,7 @@
 package com.aspose.cad.cloud.test.base;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -79,9 +80,19 @@ public abstract class ApiTester
     protected final String LocalTestFolder = "TestData/";
 
     /**
+     * The local test folder
+     */
+    protected final String LocalReferenceDataFolder = "ReferenceData/";
+
+
+    /**
      * The cloud storage test folder
      */
     protected final String CloudTestFolder = "CloudTestJava";
+    /**
+     * The cloud storage test folder
+     */
+    protected final String CloudTestDataFolder = "CloudTestDataJava";
 
     /**
      * The cloud storage references folder
@@ -126,6 +137,16 @@ public abstract class ApiTester
     };
 
     /**
+     * The basic export metadata formats
+     */
+    protected final String[] BasicExportMetadataFormats = new String[]
+            {
+                    "txt",
+                    "json",
+                    "xml"
+            };
+
+    /**
      * Gets or sets a value indicating whether resulting images should be removed from cloud storage.
      */
     public Boolean RemoveResult = false;
@@ -134,7 +155,7 @@ public abstract class ApiTester
      * Gets or sets a value indicating whether to automatic recover reference (i.e. if resulting images of failed tests are considered as new valid references).
      * Please, change this value ONLY if you clearly understand the consequences, or it may lead to replacement of the images you need, so they will be lost.
      */
-    public Boolean AutoRecoverReference = true;
+    public Boolean AutoRecoverReference = false;
 
     /**
      *  Forces test data to upload to cloud
@@ -317,11 +338,50 @@ public abstract class ApiTester
             	public Long call() throws Exception
             	{
             		String outPath = finalSaveResultToStorage ? String.format("%s/%s", finalFolder, finalResultFileName) : null;
-            		return (Long)obtainMethod.invoke(thisReference, finalFolder + "/" + finalInputFileName, outPath, finalStorage, finalRequestInvoker);
+            		return (Long)obtainMethod.invoke(thisReference, CloudTestDataFolder + "/" + finalInputFileName, outPath, finalStorage, finalRequestInvoker);
                 }
             }, 
             propertiesTester, folder, storage);
-        }
+    }
+    /**
+     * Tests the typical POST request.
+     * @param testMethodName Name of the test method.
+     * @param saveResultToStorage If set to true, save result to storage.
+     * @param parametersLine The parameters line.
+     * @param inputFileName Name of the input file.
+     * @param resultFileName Name of the result file.
+     * @param requestInvoker The request invoker.
+     * @param propertiesTester The properties tester.
+     * @param folder The folder.
+     * @param storage The storage.
+     * @throws Exception
+     * @throws NoSuchMethodException
+     */
+    protected void testPutRequest(String testMethodName, Boolean saveResultToStorage, String parametersLine, String inputFileName,
+                                   String resultFileName, Method requestInvoker, Method propertiesTester, String folder, String storage) throws NoSuchMethodException, Exception
+    {
+        final Boolean finalSaveResultToStorage = saveResultToStorage;
+        final String finalFolder = folder;
+        final String finalResultFileName = resultFileName;
+        final String finalInputFileName = inputFileName;
+        final Method finalRequestInvoker = requestInvoker;
+        final String finalStorage = storage;
+        final Method obtainMethod = ApiTester.class.getDeclaredMethod("obtainPostResponseLength", String.class, String.class, String.class,
+                Method.class);
+        obtainMethod.setAccessible(true);
+        final Object thisReference = this;
+
+        this.testRequest(testMethodName, saveResultToStorage, parametersLine, inputFileName, resultFileName,
+                new Callable<Long>()
+                {
+                    public Long call() throws Exception
+                    {
+                        String outPath = finalSaveResultToStorage ? String.format("%s/%s", finalFolder, finalResultFileName) : null;
+                        return (Long)obtainMethod.invoke(thisReference, CloudTestDataFolder + "/" + finalInputFileName, outPath, finalStorage, finalRequestInvoker);
+                    }
+                },
+                propertiesTester, folder, storage);
+    }
 
     /**
      * Checks the size difference.
@@ -410,10 +470,13 @@ public abstract class ApiTester
                 CadApi.createFolder(new CreateFolderRequest(CloudTestFolder, DefaultStorage));
             }
 
+            if (!CadApi.objectExists(new ObjectExistsRequest(CloudTestDataFolder, DefaultStorage, null)).isExists()) {
+                CadApi.createFolder(new CreateFolderRequest(CloudTestDataFolder, DefaultStorage));
+            }
+
             if (!CadApi.objectExists(new ObjectExistsRequest(CloudReferencesFolder, DefaultStorage, null)).isExists()) {
                 CadApi.createFolder(new CreateFolderRequest(CloudReferencesFolder, DefaultStorage));
             }
-
 
             File localTestDataDir = Paths.get(LocalTestFolder).toFile();
 
@@ -422,25 +485,39 @@ public abstract class ApiTester
             }
 
             for (File file : localTestDataDir.listFiles()) {
-                if (file.isDirectory() || file.getName().toLowerCase().endsWith(".json")) {
+                if (file.isDirectory() || file.getName().equalsIgnoreCase((ServerAccessFile))) {
                     continue;
                 }
 
-                if (ForceTestDataUpload || !CadApi.objectExists(new ObjectExistsRequest(CloudTestFolder + "/" + file.getName(), DefaultStorage, null)).isExists()) {
-                    CadApi.uploadFile(new UploadFileRequest(CloudTestFolder + "/" + file.getName(), FileUtils.readFileToByteArray(file), DefaultStorage));
+                if (ForceTestDataUpload || !CadApi.objectExists(new ObjectExistsRequest(CloudTestDataFolder + "/" + file.getName(), DefaultStorage, null)).isExists()) {
+                    CadApi.uploadFile(new UploadFileRequest(CloudTestDataFolder + "/" + file.getName(), FileUtils.readFileToByteArray(file), DefaultStorage));
                 }
             }
 
-            FilesList FilesList = CadApi.getFilesList(new GetFilesListRequest(CloudTestFolder, DefaultStorage));
-            //Assert.assertEquals((int)FilesList.getCode(), 200);
-            //InputStream stream = FilesList.getInputStream();
-            //byte[] stringBytes = StreamHelper.readAsBytes(stream);
-            //stream.close();
+            File localReferenceDataDataDir = Paths.get(LocalReferenceDataFolder).toFile();
 
-            //String responseString = new String(stringBytes);
-            //FilesList filesList = SerializationHelper.deserialize(responseString, FilesList.class);
+            if (!localReferenceDataDataDir.exists()) {
+                localReferenceDataDataDir.mkdir();
+            }
+
+            for (File file : localReferenceDataDataDir.listFiles()) {
+                if (file.isDirectory() || file.getName().equalsIgnoreCase((ServerAccessFile))) {
+                    continue;
+                }
+
+                if (ForceTestDataUpload || !CadApi.objectExists(new ObjectExistsRequest(CloudReferencesFolder + "/" + file.getName(), DefaultStorage, null)).isExists()) {
+                    CadApi.uploadFile(new UploadFileRequest(CloudReferencesFolder + "/" + file.getName(), FileUtils.readFileToByteArray(file), DefaultStorage));
+                }
+            }
+
+            FilesList FilesList = CadApi.getFilesList(new GetFilesListRequest(CloudTestDataFolder, DefaultStorage));
             _testFiles = FilesList.getValue();
             IsTestDataUploaded = true;
+        }
+        else
+        {
+            FilesList FilesList = CadApi.getFilesList(new GetFilesListRequest(CloudTestDataFolder, DefaultStorage));
+            _testFiles = FilesList.getValue();
         }
 
         return _testFiles;
@@ -604,13 +681,18 @@ public abstract class ApiTester
         }
         finally
         {
-            if (saveResultToStorage && !passed && this.AutoRecoverReference 
+            if (!passed && this.AutoRecoverReference
                 && CadApi.objectExists(new ObjectExistsRequest(outPath, storage, null)).isExists())
             {
                 byte[] download = CadApi.downloadFile(new DownloadFileRequest(outPath, storage, null));
 
+                try (FileOutputStream fos = new FileOutputStream(Paths.get(LocalReferenceDataFolder) + "/" + resultFileName)) {
+                    fos.write(download);
+                    System.out.println("Data written to file successfully.");
+                }
                 FilesUploadResult moveStorageFile = CadApi.uploadFile(new UploadFileRequest(referencePath + "/" + resultFileName, download, storage));
-                Assert.assertEquals(moveStorageFile.getErrors() == null || moveStorageFile.getErrors().size() == 0, true);
+
+                passed = moveStorageFile.getErrors() == null || moveStorageFile.getErrors().size() == 0;
             }
             else if (saveResultToStorage 
                         && this.RemoveResult && CadApi.objectExists(new ObjectExistsRequest(outPath, storage, null)).isExists())
@@ -619,7 +701,7 @@ public abstract class ApiTester
             }
 
             System.out.println("Test passed: " + passed);
-            //Assert.assertEquals(true, passed);
+            Assert.assertEquals(true, passed);
         }
     }
 }
