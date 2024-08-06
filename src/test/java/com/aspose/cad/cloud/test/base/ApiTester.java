@@ -688,7 +688,7 @@ public abstract class ApiTester
 
                 try (FileOutputStream fos = new FileOutputStream(Paths.get(LocalReferenceDataFolder) + "/" + resultFileName)) {
                     fos.write(download);
-                    System.out.println("Data written to file successfully.");
+                    System.out.println("Updated reference file.");
                 }
                 FilesUploadResult moveStorageFile = CadApi.uploadFile(new UploadFileRequest(referencePath + "/" + resultFileName, download, storage));
 
