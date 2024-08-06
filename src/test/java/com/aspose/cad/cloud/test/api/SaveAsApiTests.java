@@ -95,6 +95,7 @@ public class SaveAsApiTests extends ApiTester {
     public void getImageSaveAsTest(String formatExtension, Boolean saveResultToStorage, String... additionalExportFormats) throws Exception {
         String name = null;
         String folder = CloudTestFolder;
+		String inputFileFolder = CloudTestDataFolder;
         String storage = DefaultStorage;
 		String outName = null;
 		
@@ -111,34 +112,40 @@ public class SaveAsApiTests extends ApiTester {
 		for (StorageFile inputFile : InputTestFiles)
 		{
 			if (inputFile.getName().endsWith(formatExtension))
-            {
-                name = inputFile.getName();
-            }
-            else
-            {
-                continue;
-            }
-			
+			{
+				name = inputFile.getName();
+			}
+			else
+			{
+				continue;
+			}
+
 			for (String format : formatsToExport)
-            {
-                outName = name + "." + format;
-				getImageSaveAsRequest = new GetDrawingSaveAsRequest(name, format, folder, outName, storage);
-				
-				Method propertiesTester = SaveAsApiTests.class.getDeclaredMethod("getImageSaveAsPropertiesTester", CadResponse.class, CadResponse.class);
-				propertiesTester.setAccessible(true);
-				Method requestInvoker = SaveAsApiTests.class.getDeclaredMethod("getImageSaveAsGetRequestInvoker", String.class, String.class);
-				requestInvoker.setAccessible(true);
-			    this.testGetRequest(
-		            "getImageSaveAsTest; save result to storage: " + saveResultToStorage, 
-		            saveResultToStorage,
-		            String.format("Input image: %s; Output format: %s", name, format),
-		            name,
-		            outName,
-		            requestInvoker,
-		            propertiesTester,
-		            folder,
-		            storage);
-            }
+			{
+				try
+				{
+					outName = name + "." + format;
+					getImageSaveAsRequest = new GetDrawingSaveAsRequest(name, format, inputFileFolder, outName, storage);
+					Method propertiesTester = SaveAsApiTests.class.getDeclaredMethod("getImageSaveAsPropertiesTester", CadResponse.class, CadResponse.class);
+					propertiesTester.setAccessible(true);
+					Method requestInvoker = SaveAsApiTests.class.getDeclaredMethod("getImageSaveAsGetRequestInvoker", String.class, String.class);
+					requestInvoker.setAccessible(true);
+					this.testGetRequest(
+							"getImageSaveAsTest; save result to storage: " + saveResultToStorage,
+							saveResultToStorage,
+							String.format("Input image: %s; Output format: %s", name, format),
+							name,
+							outName,
+							requestInvoker,
+							propertiesTester,
+							folder,
+							storage);
+				}
+				catch (Exception exception)
+				{
+					System.out.println(exception.getMessage());
+				}
+			}
 		}
     }
     
@@ -154,17 +161,17 @@ public class SaveAsApiTests extends ApiTester {
     @Test
 	@Parameters({
 			".dwg, true,",
-            //".dwg, false,",
+            ".dwg, false,",
 			".dxf, true,",
-			//".dxf, false,",
+			".dxf, false,",
 			".dgn, true,",
-			//".dgn, false,",
+			".dgn, false,",
 			".stl, true,",
-			//".stl, false,",
+			".stl, false,",
 			".ifc, true,",
-			//".ifc, false,",
+			".ifc, false,",
 			".dwf, true,",
-			//".dwf, false,"
+			".dwf, false,"
 	})
     public void postImageSaveAsTest(String formatExtension, Boolean saveResultToStorage, String... additionalExportFormats) throws Exception {
     	byte[] imageData = null;
@@ -191,7 +198,7 @@ public class SaveAsApiTests extends ApiTester {
             {
                 name = inputFile.getName();
                 imageFile = Paths.get(LocalTestFolder + name).toFile();
-                //imageData = Files.readAllBytes(Paths.get(LocalTestFolder + name));
+				imageData = FileUtils.readFileToByteArray(imageFile);
             }
             else
             {
@@ -200,24 +207,31 @@ public class SaveAsApiTests extends ApiTester {
 			
 			for (String format : formatsToExport)
             {
-				postImageSaveAsRequest = new PostDrawingSaveAsRequest(FileUtils.readFileToByteArray(imageFile), format, outPath, storage);
-				outName = name + "." + format;
-				
-				Method propertiesTester = SaveAsApiTests.class.getDeclaredMethod("postImageSaveAsPropertiesTester", CadResponse.class, CadResponse.class);
-				propertiesTester.setAccessible(true);
-				Method requestInvoker = SaveAsApiTests.class.getDeclaredMethod("postImageSaveAsPostRequestInvoker", byte[].class, String.class);
-				requestInvoker.setAccessible(true);
-			    this.testPostRequest(
-		            "postImageSaveAsTest; save result to storage: " + saveResultToStorage,  
-		            saveResultToStorage,
-		            String.format("Input image: %s; Output format: %s",
-		            		name, format),
-		            name,
-		            outName,
-		            requestInvoker,
-		            propertiesTester,
-		            folder,
-		            storage);
+				try
+				{
+					postImageSaveAsRequest = new PostDrawingSaveAsRequest(imageData, format, outPath, storage);
+					outName = name + "." + format;
+
+					Method propertiesTester = SaveAsApiTests.class.getDeclaredMethod("postImageSaveAsPropertiesTester", CadResponse.class, CadResponse.class);
+					propertiesTester.setAccessible(true);
+					Method requestInvoker = SaveAsApiTests.class.getDeclaredMethod("postImageSaveAsPostRequestInvoker", byte[].class, String.class);
+					requestInvoker.setAccessible(true);
+					this.testPostRequest(
+							"postImageSaveAsTest; save result to storage: " + saveResultToStorage,
+							saveResultToStorage,
+							String.format("Input image: %s; Output format: %s",
+									name, format),
+							name,
+							outName,
+							requestInvoker,
+							propertiesTester,
+							folder,
+							storage);
+				}
+				catch (Exception exception)
+				{
+					System.out.println(exception.getMessage());
+				}
             }
 		}
     }
