@@ -31,10 +31,10 @@
 	
 	<properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <jackson-version>2.10.1</jackson-version>
+        <jackson-version>2.13.3</jackson-version>
         <maven-plugin-version>1.0.0</maven-plugin-version>
         <junit-version>4.12</junit-version>
-		<skipTests>true</skipTests>
+		<skipTests>false</skipTests>
 		<maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
 		<javadoc.opts>-Xdoclint:none</javadoc.opts>
