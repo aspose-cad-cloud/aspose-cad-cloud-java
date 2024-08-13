@@ -113,7 +113,10 @@ public class AuthRequestHandler implements IRequestHandler
      */
     private void requestJwtToken() throws Exception
     {
-        String requestUrl = this.configuration.getApiBaseUrl() + "connect/token";
+        String pattern = "api(-qa)?";
+        String replacement = "id$1";
+
+        String requestUrl = this.configuration.getApiBaseUrl().replaceAll(pattern, replacement) + "connect/token";
 
         String postData = "grant_type=client_credentials";
         postData += "&client_id=" + this.configuration.ClientId;
