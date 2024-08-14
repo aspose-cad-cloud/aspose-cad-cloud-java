@@ -65,7 +65,7 @@ Add Aspose.CAD Cloud Java SDK as a dependency.
     <dependency>
         <groupId>com.aspose</groupId>
         <artifactId>aspose-cad-cloud</artifactId>
-        <version>24.1</version>
+        <version>24.5.1</version>
     </dependency>
 </dependencies>
 ```
