@@ -44,7 +44,7 @@ public class CadApi
     /**
      * Current SDK version
      */
-    public static final String Version = "24.5";
+    public static final String Version = "24.5.1";
 
     /**
      * The configuration
