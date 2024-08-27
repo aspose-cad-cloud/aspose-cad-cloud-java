@@ -27,3 +27,4 @@ build
 .idea/
 /TestData/serverAccess.json
 /*.log
+/src/test/test.iml
